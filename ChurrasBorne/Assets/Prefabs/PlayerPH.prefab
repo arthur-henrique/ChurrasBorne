@@ -118,7 +118,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -131,7 +131,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7439086971969871812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99124fd67f13e9445b5cef053141e7d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 71e997c7dede8d84789f490ae70b07ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   speed: 10
