@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -14,24 +14,39 @@ public class PlayerMovement : MonoBehaviour
     private LayerMask dashLayerMask;
 
     public float speed;
+    private float x, y;
     private float rollSpeed;
     private Rigidbody2D rb;
-    private Vector3 direction;
+    private Animator anim;
     private Vector3 rollDirection;
-    private Vector3 lastMovedDirection;
+    public Vector3 lastMovedDirection;
+    public Vector2 direcao;
     private Vector2 moveVelocity;
 
     private bool isDashing;
     private State state;
+
+
+    PlayerController pc;
     // Start is called before the first frame update
 
     private void Awake()
     {
         state = State.Normal;
+        pc = new PlayerController();
+    }
+    private void OnEnable()
+    {
+        pc.Enable();
+    }
+    private void OnDisable()
+    {
+        pc.Disable();
     }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,16 +55,20 @@ public class PlayerMovement : MonoBehaviour
         switch (state)
         {
             case State.Normal:
-                Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                moveVelocity = moveInput.normalized * speed;
-                direction = moveInput.normalized;
-                if (moveInput.x != 0 || moveInput.y != 0)
-                    lastMovedDirection = direction;
-                if (Input.GetKeyDown(KeyCode.Q))
+                x = pc.Movimento.LesteOeste.ReadValue<float>();
+                y = pc.Movimento.NorteSul.ReadValue<float>();
+                direcao = new Vector2(x, y);
+                
+                direcao.Normalize();
+                if (x != 0 || y != 0)
                 {
-                    isDashing = true;
+                    lastMovedDirection = direcao;
                 }
-                if (Input.GetKeyDown(KeyCode.Space))
+                //if (Input.GetKeyDown(KeyCode.Q))
+                //{
+                //    isDashing = true;
+                //}
+                if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     rollDirection = lastMovedDirection;
                     rollSpeed = 35f;
@@ -73,7 +92,10 @@ public class PlayerMovement : MonoBehaviour
         switch (state)
         {
             case State.Normal:
+                moveVelocity = direcao.normalized * speed;
                 rb.velocity = moveVelocity;
+                anim.SetFloat("moveX", lastMovedDirection.x);
+                anim.SetFloat("moveY", lastMovedDirection.y);
                 if (isDashing)
                 {
                     float dashAmount = 10f;
