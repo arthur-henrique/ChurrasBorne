@@ -94,8 +94,12 @@ public class PlayerMovement : MonoBehaviour
             case State.Normal:
                 moveVelocity = direcao.normalized * speed;
                 rb.velocity = moveVelocity;
-                anim.SetFloat("moveX", lastMovedDirection.x);
-                anim.SetFloat("moveY", lastMovedDirection.y);
+                if (rb.velocity.x < 0)
+                    gameObject.transform.localScale = new Vector3(-1f, 1, 1 );
+                else if (rb.velocity.x > 1f)
+                    gameObject.transform.localScale = new Vector3(1f, 1, 1);
+                anim.SetFloat("moveX", rb.velocity.x);
+                anim.SetFloat("moveY", rb.velocity.y);
                 if (isDashing)
                 {
                     float dashAmount = 10f;
