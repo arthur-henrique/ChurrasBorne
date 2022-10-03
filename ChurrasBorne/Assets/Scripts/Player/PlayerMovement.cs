@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private float x, y;
     private float rollSpeed;
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Collider2D c2D;
     private Animator anim;
     private Vector3 rollDirection;
     public Vector3 lastMovedDirection;
@@ -47,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        c2D = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -96,9 +100,13 @@ public class PlayerMovement : MonoBehaviour
                 moveVelocity = direcao.normalized * speed;
                 rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
-                    gameObject.transform.localScale = new Vector3(-1f, 1, 1 );
+                {
+                    sr.flipX = true;
+                }
                 else if (rb.velocity.x > 1f)
-                    gameObject.transform.localScale = new Vector3(1f, 1, 1);
+                {
+                    sr.flipX = false;
+                }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
                 if (isDashing)
