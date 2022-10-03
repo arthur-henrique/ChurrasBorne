@@ -71,8 +71,9 @@ public class PlayerMovement : MonoBehaviour
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     rollDirection = lastMovedDirection;
-                    rollSpeed = 35f;
+                    rollSpeed = 70f;
                     state = State.Rolling;
+                    anim.SetTrigger("isRolling");
                 }
                 break;
             case State.Rolling:
