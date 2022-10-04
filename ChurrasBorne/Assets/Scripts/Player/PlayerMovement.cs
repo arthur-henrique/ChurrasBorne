@@ -9,20 +9,21 @@ public class PlayerMovement : MonoBehaviour
     {
         Normal,
         Rolling,
+        Attacking,
     }
     [SerializeField]
     private LayerMask dashLayerMask;
 
     public float speed;
     private float x, y;
-    private float rollSpeed;
+    public float rollSpeed, attackTimer;
+    public float attackAnimCd;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Collider2D c2D;
     private Animator anim;
     private Vector3 rollDirection;
-    public Vector3 lastMovedDirection;
-    public Vector2 direcao;
+    private Vector3 lastMovedDirection;
+    private Vector2 direcao;
     private Vector2 moveVelocity;
 
     private bool isDashing;
@@ -50,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        c2D = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -64,9 +64,10 @@ public class PlayerMovement : MonoBehaviour
                 direcao = new Vector2(x, y);
                 
                 direcao.Normalize();
-                if (x != 0 || y != 0)
+                if (x != 0)
                 {
                     lastMovedDirection = direcao;
+                    anim.SetFloat("lastMoveX", lastMovedDirection.x);
                 }
                 //if (Input.GetKeyDown(KeyCode.Q))
                 //{
@@ -79,6 +80,12 @@ public class PlayerMovement : MonoBehaviour
                     state = State.Rolling;
                     anim.SetTrigger("isRolling");
                 }
+                if (pc.Movimento.Attack.WasPressedThisFrame())
+                {
+                    attackAnimCd = 0.6f;
+                    state = State.Attacking;
+                    anim.SetTrigger("isAttacking");
+                }
                 break;
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;
@@ -86,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
                 float rollSpeedMinimun = 10f;
                 if (rollSpeed < rollSpeedMinimun)
+                    state = State.Normal;
+                break;
+            case State.Attacking:
+                attackAnimCd -= Time.deltaTime;
+                if (attackAnimCd <= 0f)
                     state = State.Normal;
                 break;
         }
@@ -124,6 +136,9 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Rolling:
                 rb.velocity = rollDirection * rollSpeed;
+                break;
+            case State.Attacking:
+                rb.velocity = Vector2.zero;
                 break;
         }
 

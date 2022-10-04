@@ -62,6 +62,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""16d99780-6620-4238-abf4-ad6938562ee5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -295,6 +304,39 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8861326a-86e1-4baf-a82f-d2cf68574a72"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f633cbdf-a6a0-42fc-b9c9-e6d505d3a3e0"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cedf5a18-4849-469d-95ab-fe5605cf8116"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -346,6 +388,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_LesteOeste = m_Movimento.FindAction("Leste / Oeste", throwIfNotFound: true);
         m_Movimento_Rolar = m_Movimento.FindAction("Rolar", throwIfNotFound: true);
         m_Movimento_MousePosition = m_Movimento.FindAction("MousePosition", throwIfNotFound: true);
+        m_Movimento_Attack = m_Movimento.FindAction("Attack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -412,6 +455,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_LesteOeste;
     private readonly InputAction m_Movimento_Rolar;
     private readonly InputAction m_Movimento_MousePosition;
+    private readonly InputAction m_Movimento_Attack;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -420,6 +464,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @LesteOeste => m_Wrapper.m_Movimento_LesteOeste;
         public InputAction @Rolar => m_Wrapper.m_Movimento_Rolar;
         public InputAction @MousePosition => m_Wrapper.m_Movimento_MousePosition;
+        public InputAction @Attack => m_Wrapper.m_Movimento_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -441,6 +486,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @MousePosition.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMousePosition;
+                @Attack.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -457,6 +505,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
             }
         }
     }
@@ -500,6 +551,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnLesteOeste(InputAction.CallbackContext context);
         void OnRolar(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
