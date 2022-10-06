@@ -1,7 +1,19 @@
 fileFormatVersion: 2
-guid: ef74413b7a9af744ea2508572fb4ec4a
+guid: 1b9d92b25e29f5c458a88438b4edc5a6
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5454715655167556501
+    second: Attack Protag 0_0
+  - first:
+      213: -8401797417386514853
+    second: Attack Protag 0_1
+  - first:
+      213: -3092483384547059206
+    second: Attack Protag 0_2
+  - first:
+      213: 8854489715357850677
+    second: Attack Protag 0_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,10 +53,10 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -113,7 +125,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Attack Protag 0_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 17
+        width: 60
+        height: 126
+      alignment: 9
+      pivot: {x: 0.4933354, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b3601fcfa03bb40800000000000000
+      internalID: 5454715655167556501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Protag 0_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 19
+        width: 101
+        height: 101
+      alignment: 9
+      pivot: {x: 0.29412177, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b56e1e573c1d66b80800000000000000
+      internalID: -8401797417386514853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Protag 0_2
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 17
+        width: 97
+        height: 112
+      alignment: 9
+      pivot: {x: 0.30624422, y: 0.03}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af956461fba4515d0800000000000000
+      internalID: -3092483384547059206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack Protag 0_3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 13
+        width: 92
+        height: 103
+      alignment: 9
+      pivot: {x: 0.32002226, y: 0.055}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53c1147ab7771ea70800000000000000
+      internalID: 8854489715357850677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
