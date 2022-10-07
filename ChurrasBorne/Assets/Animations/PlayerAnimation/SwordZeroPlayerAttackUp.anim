@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MeleePlayerAttackRight
+  m_Name: SwordZeroPlayerAttackUp
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -42,19 +42,19 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: AttackHitBoxRight
+    path: AttackHitBoxUP
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 2776722730966262532, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
+      value: {fileID: -8679670115117235313, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
     - time: 0.16666667
-      value: {fileID: 6043961338730551653, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
+      value: {fileID: -4133246339286687481, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
     - time: 0.33333334
-      value: {fileID: -5345748245249461301, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
+      value: {fileID: -418347237505465916, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
     - time: 0.5
-      value: {fileID: -2036972081244321343, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
+      value: {fileID: -735221690771563064, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -67,7 +67,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3246100838
+      path: 3865483491
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -81,10 +81,10 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 2776722730966262532, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
-    - {fileID: 6043961338730551653, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
-    - {fileID: -5345748245249461301, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
-    - {fileID: -2036972081244321343, guid: 50c07d07fa958c942a38ea48c20b99d3, type: 3}
+    - {fileID: -8679670115117235313, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
+    - {fileID: -4133246339286687481, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
+    - {fileID: -418347237505465916, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
+    - {fileID: -735221690771563064, guid: c8dcbc82f9284eb488a06a0485b5a8c4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -95,7 +95,7 @@ AnimationClip:
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -131,7 +131,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: AttackHitBoxRight
+    path: AttackHitBoxUP
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []

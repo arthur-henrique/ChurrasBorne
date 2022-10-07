@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer sr;
     private Animator anim;
     private Vector3 rollDirection;
-    private Vector3 lastMovedDirection;
+    public Vector3 lastMovedDirection;
     private Vector2 direcao;
     private Vector2 moveVelocity;
 
@@ -64,10 +64,11 @@ public class PlayerMovement : MonoBehaviour
                 direcao = new Vector2(x, y);
                 
                 direcao.Normalize();
-                if (x != 0)
+                if (x != 0 || y !=0)
                 {
                     lastMovedDirection = direcao;
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 //if (Input.GetKeyDown(KeyCode.Q))
                 //{
