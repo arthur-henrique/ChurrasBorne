@@ -116,7 +116,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -134,3 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a647117a9e7fc4eac5f8e52d4e8ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target1: {fileID: 2169908265737832073, guid: 287f67026f9042147abc03cffa8d504e, type: 3}
+  target2: {fileID: 8396909276715860771, guid: 2a72e443d188cd2478e263760898d5f6, type: 3}
+  target3: {fileID: 7551968630794993227, guid: 31714e19b1b916d4d8690e733bb84958, type: 3}
+  target4: {fileID: 5452121099929116601, guid: 85f8539df59b4684d8161583f3ed0485, type: 3}
+  player: {fileID: 0}
+  speed: 15
+  fireDistance: 5
+  minorEnemyProjectile: {fileID: 4065512257406873361, guid: 6e0723a131e61cd4b985d1ff1e75eddb, type: 3}
