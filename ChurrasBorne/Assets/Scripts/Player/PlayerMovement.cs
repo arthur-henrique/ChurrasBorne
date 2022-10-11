@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveVelocity;
 
     private bool isDashing;
+    bool attackPressed = false;
     private State state;
 
 
@@ -92,14 +93,28 @@ public class PlayerMovement : MonoBehaviour
                 float rollSpeedMultiplier = 5f;
                 rollSpeed -= rollSpeed * rollSpeedMultiplier * Time.deltaTime;
 
+                if (pc.Movimento.Attack.WasPressedThisFrame())
+                {
+                    attackAnimCd = 0.6f;
+                    attackPressed = true;
+                }
+
                 float rollSpeedMinimun = 10f;
                 if (rollSpeed < rollSpeedMinimun)
                     state = State.Normal;
+                if (rollSpeed < rollSpeedMinimun && attackPressed)
+                {
+                    state = State.Attacking;
+                    anim.SetTrigger("isAttacking");
+                }
                 break;
             case State.Attacking:
                 attackAnimCd -= Time.deltaTime;
                 if (attackAnimCd <= 0f)
+                {
                     state = State.Normal;
+                    attackPressed = false;
+                }
                 break;
         }
 
@@ -137,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Rolling:
                 rb.velocity = rollDirection * rollSpeed;
+                Debug.Log("Roll");
                 break;
             case State.Attacking:
                 rb.velocity = Vector2.zero;

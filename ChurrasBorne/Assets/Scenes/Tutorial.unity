@@ -4777,6 +4777,26 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7439086971969871809, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439086971969871809, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439086971969871809, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439086971969871809, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439086971969871809, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -677462173
+      objectReference: {fileID: 0}
     - target: {fileID: 7439086971969871812, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Name
       value: PlayerPH
