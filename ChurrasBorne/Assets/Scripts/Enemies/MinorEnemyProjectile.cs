@@ -39,7 +39,7 @@ public class MinorEnemyProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //GameManager.instance.TakeDamage(1);
+            GameManager.instance.TakeDamage(20);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Obst"))

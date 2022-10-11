@@ -140,5 +140,6 @@ MonoBehaviour:
   target4: {fileID: 5452121099929116601, guid: 85f8539df59b4684d8161583f3ed0485, type: 3}
   player: {fileID: 0}
   speed: 15
-  fireDistance: 5
+  targetDistance: 30
+  startDestroyTime: 1
   minorEnemyProjectile: {fileID: 4065512257406873361, guid: 6e0723a131e61cd4b985d1ff1e75eddb, type: 3}

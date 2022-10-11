@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class FirstBossAI : MonoBehaviour
 {
     public Transform player;
 
-    public float agroDistance, stopDistance, speed;
+    public Transform position1;
+    public Transform position2;
+    public Transform position3;
+
+    public float agroDistance, stopDistance, distanceToTarget, dashDistance, speed;
 
     public Collider2D bodyCollider;
     public Rigidbody2D rb;
@@ -18,7 +22,13 @@ public class EnemyAI : MonoBehaviour
     public float startTimeBTWAttacks;
 
     public Animator animator;
-    
+
+    private Vector2 target;
+
+    private Vector2 strikePos1;
+    private Vector2 strikePos2;
+    private Vector2 strikePos3;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -45,7 +55,27 @@ public class EnemyAI : MonoBehaviour
 
         //ATAQUE
 
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0)
+        if (Vector2.Distance(position1.position, player.position) < distanceToTarget && timeBTWAttacks <= 0)
+        {
+            GameManager.instance.TakeDamage(20);
+            timeBTWAttacks = startTimeBTWAttacks;
+        }
+        else
+        {
+            timeBTWAttacks -= Time.deltaTime;
+        }
+        
+        if (Vector2.Distance(position2.position, player.position) < distanceToTarget && timeBTWAttacks <= 0)
+        {
+            GameManager.instance.TakeDamage(20);
+            timeBTWAttacks = startTimeBTWAttacks;
+        }
+        else
+        {
+            timeBTWAttacks -= Time.deltaTime;
+        }
+
+        if (Vector2.Distance(position3.position, player.position) < distanceToTarget && timeBTWAttacks <= 0)
         {
             GameManager.instance.TakeDamage(20);
             timeBTWAttacks = startTimeBTWAttacks;
