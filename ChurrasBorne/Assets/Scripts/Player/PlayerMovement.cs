@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.6f;
+                    attackAnimCd = 0.3f;
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
