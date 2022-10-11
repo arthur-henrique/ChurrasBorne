@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
+    private PlayerController pc; 
     public Slider slider;
 
     // Health and Stuff
@@ -20,6 +22,15 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        pc = new PlayerController();
+    }
+    private void OnEnable()
+    {
+        pc.Enable();
+    }
+    private void OnDisable()
+    {
+        pc.Disable();
     }
     private void Start()
     {
@@ -28,7 +39,10 @@ public class GameManager : MonoBehaviour
         playerAnimator = player.GetComponent<Animator>();
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
+        damageCD = 1.5f;
         damageCDCounter = damageCD;
+        canTakeDamage = true;
+        isAlive = true;
     }
     private void Update()
     {
@@ -42,22 +56,28 @@ public class GameManager : MonoBehaviour
             canTakeDamage = true;
         }
         SetHealth(currentHealth);
+
+        if (pc.Tester.LKey.WasPressedThisFrame())
+            TakeDamage(3);
+        if (pc.Tester.PKey.WasPressedThisFrame())
+            HealPlayer(2);
     }
 
     // Damage
 
     public void TakeDamage(int damage)
     {
+        Debug.Log("damage");
         if (canTakeDamage && isAlive)
         {
-            playerAnimator.SetTrigger("IsHit");
+            playerAnimator.SetTrigger("isHit");
             damageCDCounter = damageCD;
             canTakeDamage = false;
             currentHealth -= damage;
             SetHealth(currentHealth);
             if (currentHealth <= 0)
             {
-                //StartCoroutine(GameOverRoutine());
+                isAlive = false;
             }
         }
     }
@@ -65,8 +85,10 @@ public class GameManager : MonoBehaviour
     {
         if (isAlive)
         {
-            playerAnimator.SetTrigger("Healed");
+            //playerAnimator.SetTrigger("Healed");
             currentHealth += healValue;
+            if (currentHealth >= maxHealth)
+                currentHealth = maxHealth;
             SetHealth(currentHealth);
         }
     }
