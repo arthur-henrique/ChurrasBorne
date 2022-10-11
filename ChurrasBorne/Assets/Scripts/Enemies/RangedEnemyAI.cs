@@ -18,8 +18,6 @@ public class RangedEnemyAI : MonoBehaviour
 
     public Animator animator;
 
-    public Collider2D bodyCollider;
-
 
     void Start()
     {
