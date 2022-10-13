@@ -33,6 +33,7 @@ public class DialogSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (pc.Movimento.Attack.WasPressedThisFrame()) {
             var selec = getChildGameObject(gameObject, "BalloonBox");
             if (selec.GetComponent<RectTransform>().anchoredPosition.y < -190)
@@ -50,38 +51,78 @@ public class DialogSystem : MonoBehaviour
                 _title.text = "Your new text is here";
             }
 
-        }
+        }*/
     }
 
-    IEnumerator PullUp()
+    public IEnumerator PullUp()
     {
         var selec = getChildGameObject(gameObject, "BalloonBox");
         if (selec.GetComponent<RectTransform>().anchoredPosition.y >= -173.99f)
         {
             StopCoroutine(PullUp());
         }
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 120; i++)
         {
             selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -174, 0), 0.08f);
+                                                               new Vector3(0, -174, 0), 25f * Time.fixedDeltaTime);
             yield return null;
         }
     }
 
-    IEnumerator PullDown()
+    public IEnumerator PullDown()
     {
         var selec = getChildGameObject(gameObject, "BalloonBox");
         if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
         {
             StopCoroutine(PullDown());
         }
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 120; i++)
         {
             selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -334, 0), 0.08f);
+                                                               new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
             yield return null;
         }
     }
+
+    public IEnumerator StopDialog()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        for (int i = 0; !pc.Movimento.Attack.WasPressedThisFrame(); i++)
+        {
+            yield return null;
+        }
+
+        var selec = getChildGameObject(gameObject, "BalloonBox");
+        if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
+        {
+            StopCoroutine(PullDown());
+        }
+        for (int i = 0; i < 120; i++)
+        {
+            selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
+                                                               new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+            yield return null;
+        }
+        
+    }
+
+    public void db_PullUP()
+    {
+        StartCoroutine(PullUp());
+    }
+
+    public void db_PullDOWN()
+    {
+        StartCoroutine(PullDown());
+    }
+    public void db_SetSceneSimple(int scene_number)
+    {
+        _title.text = DialogBank.test_bank[scene_number];
+        StartCoroutine(StopDialog());
+    }
+
+
 
     public void Habilitacao(CallbackContext context)
     {
