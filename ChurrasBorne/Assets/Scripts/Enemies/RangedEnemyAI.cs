@@ -13,23 +13,31 @@ public class RangedEnemyAI : MonoBehaviour
     public int maxHealth;
     int currentHealth;
 
-    public Animator animator;
+    private float timeBTWShots;
+    public float startTimeBTWShots;
 
-    public Collider2D bodyCollider;
+    public Animator animator;
 
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
+        timeBTWShots = startTimeBTWShots;
+
         currentHealth = maxHealth;
     }
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < agroDistance)
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWShots <= 0)
         {
-            Instantiate(enemyProjectile);
+            Instantiate(enemyProjectile, transform.position, Quaternion.identity);
+            timeBTWShots = startTimeBTWShots;
+        }
+        else
+        {
+            timeBTWShots -= Time.deltaTime;
         }
     }
 }

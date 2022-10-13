@@ -14,6 +14,9 @@ public class EnemyAI : MonoBehaviour
     public int maxHealth;
     int currentHealth;
 
+    private float timeBTWAttacks;
+    public float startTimeBTWAttacks;
+
     public Animator animator;
     
     void Start()
@@ -21,6 +24,8 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         currentHealth = maxHealth;
+
+        timeBTWAttacks = startTimeBTWAttacks;
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -40,18 +45,22 @@ public class EnemyAI : MonoBehaviour
 
         //ATAQUE
 
-        /*
-        if (Vector2.Distance(transform.position, player.position) <= stopDistance)
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0)
         {
-
+            GameManager.instance.TakeDamage(20);
+            timeBTWAttacks = startTimeBTWAttacks;
         }
-        */
+        else
+        {
+            timeBTWAttacks -= Time.deltaTime;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.instance.TakeDamage(20);
             bodyCollider.isTrigger = true;
             rb.velocity = Vector2.zero;
         }

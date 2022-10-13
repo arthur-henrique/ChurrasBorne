@@ -378,6 +378,54 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Tester"",
+            ""id"": ""3d9c69ec-23f8-499f-bc71-36c1e7ffd1e4"",
+            ""actions"": [
+                {
+                    ""name"": ""LKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""e23eb623-70fe-4d11-a2a4-962c8e7fa665"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""ea025e6c-2c3e-471a-ad06-5c6b804bd59d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""65b6f02d-85cc-4a76-898d-78e310cd6b9d"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""570893b8-eb36-4244-97ad-97369871b8db"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -392,6 +440,10 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        // Tester
+        m_Tester = asset.FindActionMap("Tester", throwIfNotFound: true);
+        m_Tester_LKey = m_Tester.FindAction("LKey", throwIfNotFound: true);
+        m_Tester_PKey = m_Tester.FindAction("PKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -545,6 +597,47 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Tester
+    private readonly InputActionMap m_Tester;
+    private ITesterActions m_TesterActionsCallbackInterface;
+    private readonly InputAction m_Tester_LKey;
+    private readonly InputAction m_Tester_PKey;
+    public struct TesterActions
+    {
+        private @PlayerController m_Wrapper;
+        public TesterActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LKey => m_Wrapper.m_Tester_LKey;
+        public InputAction @PKey => m_Wrapper.m_Tester_PKey;
+        public InputActionMap Get() { return m_Wrapper.m_Tester; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TesterActions set) { return set.Get(); }
+        public void SetCallbacks(ITesterActions instance)
+        {
+            if (m_Wrapper.m_TesterActionsCallbackInterface != null)
+            {
+                @LKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnLKey;
+                @LKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnLKey;
+                @LKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnLKey;
+                @PKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
+                @PKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
+                @PKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
+            }
+            m_Wrapper.m_TesterActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @LKey.started += instance.OnLKey;
+                @LKey.performed += instance.OnLKey;
+                @LKey.canceled += instance.OnLKey;
+                @PKey.started += instance.OnPKey;
+                @PKey.performed += instance.OnPKey;
+                @PKey.canceled += instance.OnPKey;
+            }
+        }
+    }
+    public TesterActions @Tester => new TesterActions(this);
     public interface IMovimentoActions
     {
         void OnNorteSul(InputAction.CallbackContext context);
@@ -556,5 +649,10 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnPause(InputAction.CallbackContext context);
+    }
+    public interface ITesterActions
+    {
+        void OnLKey(InputAction.CallbackContext context);
+        void OnPKey(InputAction.CallbackContext context);
     }
 }

@@ -356,6 +356,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Tester",
+            "id": "3d9c69ec-23f8-499f-bc71-36c1e7ffd1e4",
+            "actions": [
+                {
+                    "name": "LKey",
+                    "type": "Button",
+                    "id": "e23eb623-70fe-4d11-a2a4-962c8e7fa665",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PKey",
+                    "type": "Button",
+                    "id": "ea025e6c-2c3e-471a-ad06-5c6b804bd59d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "65b6f02d-85cc-4a76-898d-78e310cd6b9d",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "570893b8-eb36-4244-97ad-97369871b8db",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
