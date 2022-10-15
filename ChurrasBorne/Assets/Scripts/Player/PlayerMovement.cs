@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
         Attacking,
     }
     [SerializeField]
-    private LayerMask dashLayerMask;
 
     public float speed;
     private float x, y;
@@ -95,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.6f;
+                    attackAnimCd = 0.3f;
                     attackPressed = true;
                 }
 
@@ -125,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
         switch (state)
         {
             case State.Normal:
-                moveVelocity = direcao.normalized * speed;
+                moveVelocity = direcao * speed;
                 rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
                 {
@@ -137,22 +136,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
-                if (isDashing)
-                {
-                    float dashAmount = 10f;
-                    Vector3 dashPosition = transform.position + lastMovedDirection * dashAmount;
-                    RaycastHit2D raycastHit2D = Physics2D.Raycast(transform.position, lastMovedDirection, dashAmount, dashLayerMask);
-                    if (raycastHit2D.collider != null)
-                    {
-                        dashPosition = raycastHit2D.point;
-                    }
-                    rb.MovePosition(dashPosition);
-                    isDashing = false;
-                }
                 break;
             case State.Rolling:
                 rb.velocity = rollDirection * rollSpeed;
-                Debug.Log("Roll");
                 break;
             case State.Attacking:
                 rb.velocity = Vector2.zero;

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public float respawnCooldown;
     private bool canTakeDamage, isAlive;
 
+    public bool[] hasCleared;
+    private GameObject[] gameManagers; 
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -103,7 +105,16 @@ public class GameManager : MonoBehaviour
         slider.value = health;
     }
 
-
+    private void OnLevelWasLoaded(int level)
+    {
+        gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
+        if (gameManagers.Length > 1)
+            Destroy(gameManagers[1]);
+    }
+    public void NextLevelSetter(Vector2 spawn)
+    {
+        player.transform.position = spawn;
+    }
     //void OnLevelWasLoaded(int level)
     //{
     //    spawnPoint.transform.position = GameObject.FindWithTag("SpawnPoint").transform.position;
