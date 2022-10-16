@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class GameManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerController pc; 
     public Slider slider;
+    public CinemachineVirtualCamera dft, death;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
     private float damageCD, damageCDCounter;
+    public float healsLeft;
     public float respawnCooldown;
-    private bool canTakeDamage, isAlive;
+    private bool canTakeDamage, isAlive, hasJustDied;
 
     public bool[] hasCleared;
     private GameObject[] gameManagers; 
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
         damageCDCounter = damageCD;
         canTakeDamage = true;
         isAlive = true;
+        dft.Priority = 1;
+        death.Priority = 0;
     }
     private void Update()
     {
@@ -69,7 +74,6 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("damage");
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
@@ -79,6 +83,14 @@ public class GameManager : MonoBehaviour
             SetHealth(currentHealth);
             if (currentHealth <= 0)
             {
+                hasJustDied = true;
+                if (hasJustDied)
+                {
+                    PlayerMovement.SetDead();
+                    StartCoroutine(CameraDelay());
+                }
+                hasJustDied = false;
+                StartCoroutine(deadCounter());
                 isAlive = false;
             }
         }
@@ -91,8 +103,22 @@ public class GameManager : MonoBehaviour
             currentHealth += healValue;
             if (currentHealth >= maxHealth)
                 currentHealth = maxHealth;
+            healsLeft--;
+            playerAnimator.SetFloat("numberOfMeat", healsLeft);
+
             SetHealth(currentHealth);
         }
+    }
+
+    public void SetHeals(float heals)
+    {
+        playerAnimator.SetFloat("numberOfMeat", heals);
+        healsLeft = heals;
+    }
+
+    public float GetHeals()
+    {
+        return healsLeft;
     }
     // HealthBarFunctions
     public void SetMaxHealth(int maxHealth)
@@ -144,6 +170,24 @@ public class GameManager : MonoBehaviour
     //    yield return new WaitForSeconds(respawnCooldown);
     //    gameOverS.Setup();
     //}
+
+
+    public void SwitchToDeathCam()
+    {
+        dft.Priority = 0;
+        death.Priority = 1;
+    }
+    IEnumerator deadCounter()
+    {
+        yield return new WaitForSeconds(2f);
+        playerAnimator.SetBool("isDead", false);
+    }
+    IEnumerator CameraDelay()
+    {
+        SwitchToDeathCam();
+        yield return new WaitForSeconds(1.5f);
+        playerAnimator.SetBool("isDead", true);
+    }
 }
 
 // HealthBarFunctions

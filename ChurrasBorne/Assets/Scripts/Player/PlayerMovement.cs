@@ -10,24 +10,28 @@ public class PlayerMovement : MonoBehaviour
         Normal,
         Rolling,
         Attacking,
+        Healing,
+        Dead
     }
-    [SerializeField]
+    
 
     public float speed;
     private float x, y;
     public float rollSpeed, attackTimer;
-    public float attackAnimCd;
+    public float attackAnimCd, healingAnimCd;
+    private float healsLeft;
+    private int amountToHeal = 20;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Animator anim;
+    private static Animator anim;
     private Vector3 rollDirection;
     public Vector3 lastMovedDirection;
     private Vector2 direcao;
     private Vector2 moveVelocity;
 
-    private bool isDashing;
     bool attackPressed = false;
-    private State state;
+    bool healingPressed = false;
+    private static State state;
 
 
     PlayerController pc;
@@ -51,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -70,10 +75,8 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
-                //if (Input.GetKeyDown(KeyCode.Q))
-                //{
-                //    isDashing = true;
-                //}
+
+                healsLeft = GameManager.instance.GetHeals();
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     rollDirection = lastMovedDirection;
@@ -87,6 +90,12 @@ public class PlayerMovement : MonoBehaviour
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                {
+                    healingAnimCd = 0.3f;
+                    state = State.Healing;
+                    anim.SetTrigger("isHealing");
+                }
                 break;
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;
@@ -97,6 +106,12 @@ public class PlayerMovement : MonoBehaviour
                     attackAnimCd = 0.3f;
                     attackPressed = true;
                 }
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                {
+                    healingAnimCd = 0.3f;
+                    healingPressed = true;
+                    attackPressed = false;
+                }
 
                 float rollSpeedMinimun = 10f;
                 if (rollSpeed < rollSpeedMinimun)
@@ -106,6 +121,11 @@ public class PlayerMovement : MonoBehaviour
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
+                if (rollSpeed < rollSpeedMinimun && healingPressed)
+                {
+                    state = State.Healing;
+                    anim.SetTrigger("isHealing");
+                }
                 break;
             case State.Attacking:
                 attackAnimCd -= Time.deltaTime;
@@ -114,6 +134,18 @@ public class PlayerMovement : MonoBehaviour
                     state = State.Normal;
                     attackPressed = false;
                 }
+                break;
+            case State.Healing:
+                print("Healing");
+                healingAnimCd -= Time.deltaTime;
+                if (healingAnimCd <= 0f)
+                {
+                    GameManager.instance.HealPlayer(amountToHeal);
+                    state = State.Normal;
+                    healingPressed = false;
+                }
+                break;
+            case State.Dead:
                 break;
         }
 
@@ -143,7 +175,18 @@ public class PlayerMovement : MonoBehaviour
             case State.Attacking:
                 rb.velocity = Vector2.zero;
                 break;
+            case State.Healing:
+                rb.velocity = Vector2.zero;
+                break;
+            case State.Dead:
+                rb.velocity = Vector2.zero;
+                break;
         }
 
+    }
+
+    public static void SetDead()
+    {
+        state = State.Dead;
     }
 }
