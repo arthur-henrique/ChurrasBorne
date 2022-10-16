@@ -71,6 +71,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Curar"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e8bb773-447a-4c40-8d05-a43f78d1d59f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -337,6 +346,28 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e5086d9-0e81-4bd5-831b-88aaf1e621fe"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""212594ba-2cac-49cb-9aa4-db84458cbfb5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -437,6 +468,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_Rolar = m_Movimento.FindAction("Rolar", throwIfNotFound: true);
         m_Movimento_MousePosition = m_Movimento.FindAction("MousePosition", throwIfNotFound: true);
         m_Movimento_Attack = m_Movimento.FindAction("Attack", throwIfNotFound: true);
+        m_Movimento_Curar = m_Movimento.FindAction("Curar", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -508,6 +540,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_Rolar;
     private readonly InputAction m_Movimento_MousePosition;
     private readonly InputAction m_Movimento_Attack;
+    private readonly InputAction m_Movimento_Curar;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -517,6 +550,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @Rolar => m_Wrapper.m_Movimento_Rolar;
         public InputAction @MousePosition => m_Wrapper.m_Movimento_MousePosition;
         public InputAction @Attack => m_Wrapper.m_Movimento_Attack;
+        public InputAction @Curar => m_Wrapper.m_Movimento_Curar;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -541,6 +575,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Attack.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttack;
+                @Curar.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
+                @Curar.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
+                @Curar.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -560,6 +597,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @Curar.started += instance.OnCurar;
+                @Curar.performed += instance.OnCurar;
+                @Curar.canceled += instance.OnCurar;
             }
         }
     }
@@ -645,6 +685,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnRolar(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnCurar(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
