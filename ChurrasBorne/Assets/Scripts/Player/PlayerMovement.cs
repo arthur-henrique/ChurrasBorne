@@ -188,6 +188,5 @@ public class PlayerMovement : MonoBehaviour
     public static void SetDead()
     {
         state = State.Dead;
-        anim.SetBool("isDead", true);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerController pc; 
     public Slider slider;
+    public CinemachineVirtualCamera dft, death;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
         damageCDCounter = damageCD;
         canTakeDamage = true;
         isAlive = true;
+        dft.Priority = 1;
+        death.Priority = 0;
     }
     private void Update()
     {
@@ -70,7 +74,6 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("damage");
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
                 if (hasJustDied)
                 {
                     PlayerMovement.SetDead();
+                    StartCoroutine(CameraDelay());
                 }
                 hasJustDied = false;
                 StartCoroutine(deadCounter());
@@ -167,10 +171,22 @@ public class GameManager : MonoBehaviour
     //    gameOverS.Setup();
     //}
 
+
+    public void SwitchToDeathCam()
+    {
+        dft.Priority = 0;
+        death.Priority = 1;
+    }
     IEnumerator deadCounter()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2f);
         playerAnimator.SetBool("isDead", false);
+    }
+    IEnumerator CameraDelay()
+    {
+        SwitchToDeathCam();
+        yield return new WaitForSeconds(1.5f);
+        playerAnimator.SetBool("isDead", true);
     }
 }
 
