@@ -19,11 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
-    private float healsLeft = 3;
+    private float healsLeft;
     private int amountToHeal = 20;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    private Animator anim;
+    private static Animator anim;
     private Vector3 rollDirection;
     public Vector3 lastMovedDirection;
     private Vector2 direcao;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool attackPressed = false;
     bool healingPressed = false;
-    private State state;
+    private static State state;
 
 
     PlayerController pc;
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -75,8 +76,7 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
 
-                anim.SetFloat("numberOfMeat", healsLeft);
-                
+                healsLeft = GameManager.instance.GetHeals();
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     rollDirection = lastMovedDirection;
@@ -143,8 +143,9 @@ public class PlayerMovement : MonoBehaviour
                     GameManager.instance.HealPlayer(amountToHeal);
                     state = State.Normal;
                     healingPressed = false;
-                    healsLeft--;
                 }
+                break;
+            case State.Dead:
                 break;
         }
 
@@ -177,7 +178,16 @@ public class PlayerMovement : MonoBehaviour
             case State.Healing:
                 rb.velocity = Vector2.zero;
                 break;
+            case State.Dead:
+                rb.velocity = Vector2.zero;
+                break;
         }
 
+    }
+
+    public static void SetDead()
+    {
+        state = State.Dead;
+        anim.SetBool("isDead", true);
     }
 }

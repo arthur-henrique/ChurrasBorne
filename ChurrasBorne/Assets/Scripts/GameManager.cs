@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     // Health and Stuff
     public int maxHealth, currentHealth;
     private float damageCD, damageCDCounter;
+    public float healsLeft;
     public float respawnCooldown;
-    private bool canTakeDamage, isAlive;
+    private bool canTakeDamage, isAlive, hasJustDied;
 
     public bool[] hasCleared;
     private GameObject[] gameManagers; 
@@ -79,6 +80,13 @@ public class GameManager : MonoBehaviour
             SetHealth(currentHealth);
             if (currentHealth <= 0)
             {
+                hasJustDied = true;
+                if (hasJustDied)
+                {
+                    PlayerMovement.SetDead();
+                }
+                hasJustDied = false;
+                StartCoroutine(deadCounter());
                 isAlive = false;
             }
         }
@@ -91,8 +99,22 @@ public class GameManager : MonoBehaviour
             currentHealth += healValue;
             if (currentHealth >= maxHealth)
                 currentHealth = maxHealth;
+            healsLeft--;
+            playerAnimator.SetFloat("numberOfMeat", healsLeft);
+
             SetHealth(currentHealth);
         }
+    }
+
+    public void SetHeals(float heals)
+    {
+        playerAnimator.SetFloat("numberOfMeat", heals);
+        healsLeft = heals;
+    }
+
+    public float GetHeals()
+    {
+        return healsLeft;
     }
     // HealthBarFunctions
     public void SetMaxHealth(int maxHealth)
@@ -144,6 +166,12 @@ public class GameManager : MonoBehaviour
     //    yield return new WaitForSeconds(respawnCooldown);
     //    gameOverS.Setup();
     //}
+
+    IEnumerator deadCounter()
+    {
+        yield return new WaitForSeconds(0.1f);
+        playerAnimator.SetBool("isDead", false);
+    }
 }
 
 // HealthBarFunctions
