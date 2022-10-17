@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetHeals(float heals)
     {
-        print("Djá");
+        print("Dj");
         playerAnimator.SetFloat("numberOfMeat", heals);
         healsLeft = heals;
     }
