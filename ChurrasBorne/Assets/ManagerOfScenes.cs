@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ManagerOfScenes : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         if (gameObject.tag == "Tutorial")
         {

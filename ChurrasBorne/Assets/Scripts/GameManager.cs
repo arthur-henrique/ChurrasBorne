@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
+        instance = this;
         pc = new PlayerController();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerAnimator = player.GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -40,9 +43,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        instance = this;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerAnimator = player.GetComponent<Animator>();
+        print(playerAnimator.name);
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
         damageCD = 1.5f;
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetHeals(float heals)
     {
+        print("Djá");
         playerAnimator.SetFloat("numberOfMeat", heals);
         healsLeft = heals;
     }
