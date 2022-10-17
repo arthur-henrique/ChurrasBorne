@@ -185,7 +185,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator deadCounter()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
     }
     IEnumerator CameraDelay()

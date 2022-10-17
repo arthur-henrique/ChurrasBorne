@@ -6,7 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform player;
 
-    public float agroDistance, stopDistance, speed;
+    public float agroDistance, stopDistance, speed, attackDistance, startTimeBTWAttacks;
+    private float timeBTWAttacks;
 
     public Collider2D bodyCollider;
     public Rigidbody2D rb;
@@ -14,26 +15,25 @@ public class EnemyAI : MonoBehaviour
     public int maxHealth;
     int currentHealth;
 
-    private float timeBTWAttacks;
-    public float startTimeBTWAttacks;
-
     public Animator animator;
     
     void Start()
     {
+        //Para MELEE
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        currentHealth = maxHealth;
 
         timeBTWAttacks = startTimeBTWAttacks;
 
+        //Para HEALTH
+        currentHealth = maxHealth;
+
+        //Para MELEE ON CONTACT
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        //MOVIMENTO
-
+        //MOVEMENT
         if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -43,11 +43,11 @@ public class EnemyAI : MonoBehaviour
             transform.position = this.transform.position;
         }
 
-        //ATAQUE
-
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0)
+        
+        //MELEE
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0)
         {
-            GameManager.instance.TakeDamage(20);
+            GameManager.instance.TakeDamage(5);
             timeBTWAttacks = startTimeBTWAttacks;
         }
         else
@@ -56,11 +56,13 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    
+    //MELEE ON CONTACT
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(20);
+            GameManager.instance.TakeDamage(5);
             bodyCollider.isTrigger = true;
             rb.velocity = Vector2.zero;
         }
@@ -72,5 +74,22 @@ public class EnemyAI : MonoBehaviour
         {
             bodyCollider.isTrigger = false;
         }
+    }
+
+    
+    //HEALTH
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }

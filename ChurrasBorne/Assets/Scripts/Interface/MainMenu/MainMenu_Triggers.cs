@@ -21,7 +21,6 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
 
     public void SelectItem(BaseEventData data)
     {
-        Debug.Log("start");
         if (MainMenu_Manager.menu_selection_confirm == false)
         {
             switch (gameObject.name)

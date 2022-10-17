@@ -6,38 +6,64 @@ public class RangedEnemyAI : MonoBehaviour
 {
     public Transform player;
 
-    public GameObject enemyProjectile;
+    public GameObject projectile;
 
-    public float agroDistance;
+    public float agroDistance, startTimeBTWAttacks;
+    private float timeBTWAttacks;
 
     public int maxHealth;
     int currentHealth;
 
-    private float timeBTWShots;
-    public float startTimeBTWShots;
-
     public Animator animator;
-
 
     void Start()
     {
+        //Para RANGED
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        timeBTWShots = startTimeBTWShots;
+        timeBTWAttacks = startTimeBTWAttacks;
 
+        //Para HEALTH
         currentHealth = maxHealth;
     }
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWShots <= 0)
+        //RANGED
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0)
         {
-            Instantiate(enemyProjectile, transform.position, Quaternion.identity);
-            timeBTWShots = startTimeBTWShots;
+            Instantiate(projectile);
+            timeBTWAttacks = startTimeBTWAttacks;
         }
         else
         {
-            timeBTWShots -= Time.deltaTime;
+            timeBTWAttacks -= Time.deltaTime;
         }
+    }
+
+    
+    //MELEE ON CONTACT
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.instance.TakeDamage(5);
+        }
+    }
+
+    //HEALTH
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }

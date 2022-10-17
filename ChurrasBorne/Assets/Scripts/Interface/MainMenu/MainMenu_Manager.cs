@@ -183,13 +183,8 @@ public class MainMenu_Manager : MonoBehaviour
                         }
                         menu_sel1.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-170, -50, 0), ref velocity_sel1, smooth_time + 0.5f);
-                        //sel1_img_color = menu_sel1.GetComponent<TextMeshProUGUI>().color;
-                        //sel1_img_color.r = 1f;
-                        //sel1_img_color.g = 0.7411765f;
-                        //sel1_img_color.b = 0.4039216f;
 
                         menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
-                        //menu_sel1.GetComponent<TextMeshProUGUI>().color = sel1_img_color;
                         break;
                 }
             }

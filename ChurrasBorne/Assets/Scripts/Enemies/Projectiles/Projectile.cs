@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinorEnemyProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    public Transform player;
-
     public float speed;
 
+    public Transform player;
     private Vector2 target;
+
+    public int maxHealth;
+    int currentHealth;
+
+    public Animator animator;
+
 
     void Start()
     {
+        //Para PROJECTILE MOVEMENT
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         target = player.position;
@@ -25,6 +31,8 @@ public class MinorEnemyProjectile : MonoBehaviour
         target.y = player.position.y + fator.y * 3;
     }
 
+    
+    //PROJECTILE MOVEMENT
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -35,16 +43,34 @@ public class MinorEnemyProjectile : MonoBehaviour
         }
     }
 
+    
+    //DAMAGE
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(20);
+            GameManager.instance.TakeDamage(5);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Obst"))
         {
             Destroy(gameObject);
         }
+    }
+
+    //HEALTH
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }
