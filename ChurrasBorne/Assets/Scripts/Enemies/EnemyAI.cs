@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour
     int currentHealth;
 
     public Animator animator;
+
+    public Animator playerAnimator;
     
     void Start()
     {
@@ -27,7 +29,7 @@ public class EnemyAI : MonoBehaviour
         //Para HEALTH
         currentHealth = maxHealth;
 
-        //Para MELEE ON CONTACT
+        //Para ON CONTACT
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -57,12 +59,11 @@ public class EnemyAI : MonoBehaviour
     }
 
     
-    //MELEE ON CONTACT
+    //ON CONTACT
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
             bodyCollider.isTrigger = true;
             rb.velocity = Vector2.zero;
         }
@@ -76,8 +77,27 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    
+
     //HEALTH
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("AttackHit"))
+        {
+            if(!playerAnimator.GetBool("isHoldingSword"))
+            {
+                TakeDamage(15);
+            }
+            else
+            {
+                TakeDamage(34);
+            }
+        }
+
+        Vector2 difference = transform.position - collision.transform.position;
+        transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+    }
+
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
