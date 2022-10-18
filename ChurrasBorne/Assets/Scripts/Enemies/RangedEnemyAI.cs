@@ -30,7 +30,7 @@ public class RangedEnemyAI : MonoBehaviour
     void Update()
     {
         //RANGED
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0)
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive())
         {
             Instantiate(projectile);
             timeBTWAttacks = startTimeBTWAttacks;
