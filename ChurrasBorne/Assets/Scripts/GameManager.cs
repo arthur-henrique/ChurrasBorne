@@ -88,12 +88,8 @@ public class GameManager : MonoBehaviour
                 hasJustDied = true;
                 if (hasJustDied)
                 {
-                    PlayerMovement.SetDead();
-                    StartCoroutine(CameraDelay());
+                    DeathRoutine();
                 }
-                hasJustDied = false;
-                StartCoroutine(deadCounter());
-                isAlive = false;
             }
         }
     }
@@ -149,11 +145,20 @@ public class GameManager : MonoBehaviour
     {
         player.transform.position = spawn;
     }
-    //void OnLevelWasLoaded(int level)
-    //{
-    //    spawnPoint.transform.position = GameObject.FindWithTag("SpawnPoint").transform.position;
-    //}
-
+    
+    public void DeathRoutine()
+    {
+        PlayerMovement.SetDead();
+        StartCoroutine(CameraDelay());
+        hasJustDied = false;
+        StartCoroutine(deadCounter());
+        isAlive = false;
+    }
+    
+    public bool GetAlive()
+    {
+        return isAlive;
+    }
     //void IsDead()
     //{
     //    isAlive = false;
