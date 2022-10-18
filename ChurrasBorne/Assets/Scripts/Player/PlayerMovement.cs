@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
         Rolling,
         Attacking,
         Healing,
+        TakingDamage,
         Dead
     }
     
@@ -146,6 +147,38 @@ public class PlayerMovement : MonoBehaviour
                     healingPressed = false;
                 }
                 break;
+            case State.TakingDamage:
+                float timer = GameManager.instance.GetDamagetime();
+                timer -= Time.deltaTime;
+
+                if (pc.Movimento.Attack.WasPressedThisFrame())
+                {
+                    attackAnimCd = 0.3f;
+                    attackPressed = true;
+                }
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                {
+                    healingAnimCd = 0.3f;
+                    healingPressed = true;
+                    attackPressed = false;
+                }
+
+                if (timer <= 0f)
+                {
+                    if (attackPressed)
+                    {
+                        state = State.Attacking;
+                        anim.SetTrigger("isAttacking");
+                    }
+                    else if (healingPressed)
+                    {
+                        state = State.Healing;
+                        anim.SetTrigger("isHealing");
+                    }
+                    else
+                        state = State.Normal;
+                }
+                break;
             case State.Dead:
                 break;
         }
@@ -179,13 +212,30 @@ public class PlayerMovement : MonoBehaviour
             case State.Healing:
                 rb.velocity = Vector2.zero;
                 break;
+            case State.TakingDamage:
+                moveVelocity = direcao * speed * 0.2f;
+                rb.velocity = moveVelocity;
+                if (rb.velocity.x < 0)
+                {
+                    sr.flipX = true;
+                }
+                else if (rb.velocity.x > 1f)
+                {
+                    sr.flipX = false;
+                }
+                anim.SetFloat("moveX", rb.velocity.x);
+                anim.SetFloat("moveY", rb.velocity.y);
+                break;
             case State.Dead:
                 rb.velocity = Vector2.zero;
                 break;
         }
 
     }
-
+    public static void SetDamageState()
+    {
+        state = State.TakingDamage;
+    }
     public static void SetDead()
     {
         state = State.Dead;

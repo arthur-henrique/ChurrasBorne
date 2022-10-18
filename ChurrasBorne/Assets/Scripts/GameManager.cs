@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
 
     // Health and Stuff
     public int maxHealth, currentHealth;
-    private float damageCD, damageCDCounter;
-    private float rollDmgCd = 0.5f;
+    private float damageCDCounter, damagetime;
+    private const float DamageCD = 1.5f;
+    private float rollDmgCd = 0.3f;
     public float healsLeft;
     public float respawnCooldown;
     private bool canTakeDamage, isAlive, hasJustDied;
@@ -46,8 +47,7 @@ public class GameManager : MonoBehaviour
         print(playerAnimator.name);
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
-        damageCD = 1.5f;
-        damageCDCounter = damageCD;
+        damageCDCounter = DamageCD;
         canTakeDamage = true;
         isAlive = true;
         dft.Priority = 1;
@@ -74,12 +74,13 @@ public class GameManager : MonoBehaviour
 
     // Damage
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, float damageTime = DamageCD)
     {
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
-            damageCDCounter = damageCD;
+            damageCDCounter = damageTime;
+            SetDamagetime(damageTime);
             canTakeDamage = false;
             currentHealth -= damage;
             SetHealth(currentHealth);
@@ -92,6 +93,14 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+    public void SetDamagetime(float time)
+    {
+        damagetime = time;
+    }
+    public float GetDamagetime()
+    {
+        return damagetime;
     }
     public void HealPlayer(int healValue)
     {
@@ -115,7 +124,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetHeals(float heals)
     {
-        print("Dj");
         playerAnimator.SetFloat("numberOfMeat", heals);
         healsLeft = heals;
     }
