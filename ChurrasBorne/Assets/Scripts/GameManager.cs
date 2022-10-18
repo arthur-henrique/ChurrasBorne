@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             playerAnimator.SetTrigger("isHit");
             damageCDCounter = damageTime;
             SetDamagetime(damageTime);
+            PlayerMovement.SetDamageState();
             canTakeDamage = false;
             currentHealth -= damage;
             SetHealth(currentHealth);

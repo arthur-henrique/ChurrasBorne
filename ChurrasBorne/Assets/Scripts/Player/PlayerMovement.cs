@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     public float speed;
+    float timer;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool attackPressed = false;
     bool healingPressed = false;
+    bool takingDamage = false;
     private static State state;
 
 
@@ -148,7 +150,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.TakingDamage:
-                float timer = GameManager.instance.GetDamagetime();
+                if (takingDamage)
+                {
+                    timer = GameManager.instance.GetDamagetime();
+                    takingDamage = false;
+                }
                 timer -= Time.deltaTime;
 
                 if (pc.Movimento.Attack.WasPressedThisFrame())
@@ -169,14 +175,19 @@ public class PlayerMovement : MonoBehaviour
                     {
                         state = State.Attacking;
                         anim.SetTrigger("isAttacking");
+                        takingDamage = true;
                     }
                     else if (healingPressed)
                     {
                         state = State.Healing;
                         anim.SetTrigger("isHealing");
+                        takingDamage = true;
                     }
                     else
+                    {
                         state = State.Normal;
+                        takingDamage = true;
+                    }
                 }
                 break;
             case State.Dead:
@@ -192,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
             case State.Normal:
                 moveVelocity = direcao * speed;
                 rb.velocity = moveVelocity;
+                print("Somic");
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;
@@ -215,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
             case State.TakingDamage:
                 moveVelocity = direcao * speed * 0.2f;
                 rb.velocity = moveVelocity;
+                print("Lento");
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;

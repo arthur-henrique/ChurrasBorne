@@ -61,8 +61,7 @@ public class MarleyAI : MonoBehaviour
         {
             for (int i = 0; i < bites; i++)
             {
-                GameManager.instance.TakeDamage(5);
-                print("whghuobwfqOUEG9ERPHAWNP");
+                GameManager.instance.TakeDamage(5, .5f);
                 yield return new WaitForSeconds(delay);
             }
         }
