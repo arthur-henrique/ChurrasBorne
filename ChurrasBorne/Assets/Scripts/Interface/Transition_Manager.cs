@@ -68,36 +68,37 @@ public class Transition_Manager : MonoBehaviour
         for (int i = 0; i < 60 * 4; i++)
         {
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, 0, 0), ref velocity_left1, smooth_time);
+                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, 0, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, 0, 0), ref velocity_left2, smooth_time * 1.5f);
+                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, 0, 0), ref velocity_left2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
             curtain_left_3.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, 0, 0), ref velocity_left3, smooth_time * 2f);
+                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, 0, 0), ref velocity_left3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
 
             curtain_right_1.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, 0, 0), ref velocity_right1, smooth_time);
+                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, 0, 0), ref velocity_right1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_right_2.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, 0, 0), ref velocity_right2, smooth_time * 1.5f);
+                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, 0, 0), ref velocity_right2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
             curtain_right_3.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, 0, 0), ref velocity_right3, smooth_time * 2f);
+                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, 0, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
         SceneManager.LoadScene(scene_name);
+        Time.timeScale = 1;
         for (int i = 0; i < 60 * 8; i++)
         {
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time);
+                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, -670, 0), ref velocity_left2, smooth_time * 1.5f);
+                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, -670, 0), ref velocity_left2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
             curtain_left_3.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, -670, 0), ref velocity_left3, smooth_time * 2f);
+                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, -670, 0), ref velocity_left3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
 
             curtain_right_1.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, -670, 0), ref velocity_right1, smooth_time);
+                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, -670, 0), ref velocity_right1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_right_2.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, -670, 0), ref velocity_right2, smooth_time * 1.5f);
+                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, -670, 0), ref velocity_right2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
             curtain_right_3.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f);
+                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
     }
@@ -119,15 +120,15 @@ public class Transition_Manager : MonoBehaviour
         for (int i = 0; i < 60 * 4; i++)
         {
             var txt_col = scene_text_display.GetComponent<TextMeshProUGUI>().color;
-            txt_col.a = Mathf.Lerp(txt_col.a, 1.0f, Time.deltaTime * 2f);
+            txt_col.a = Mathf.Lerp(txt_col.a, 1.0f, Time.unscaledDeltaTime * 2f);
             scene_text_display.GetComponent<TextMeshProUGUI>().color = txt_col;
             yield return null;
         }
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2);
         for (int i = 0; i < 60 * 8; i++)
         {
             var txt_col = scene_text_display.GetComponent<TextMeshProUGUI>().color;
-            txt_col.a = Mathf.Lerp(txt_col.a, 0.0f, Time.deltaTime * 2f);
+            txt_col.a = Mathf.Lerp(txt_col.a, 0.0f, Time.unscaledDeltaTime * 2f);
             scene_text_display.GetComponent<TextMeshProUGUI>().color = txt_col;
             yield return null;
         }
