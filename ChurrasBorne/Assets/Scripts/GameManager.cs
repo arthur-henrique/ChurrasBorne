@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     // Health and Stuff
     public int maxHealth, currentHealth;
     private float damageCDCounter, damagetime;
-    private const float DamageCD = 1.5f;
+    private const float DamageCD = .5f;
     private float rollDmgCd = 0.3f;
     public float healsLeft;
     public float respawnCooldown;
@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        print(playerAnimator.name);
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
         damageCDCounter = DamageCD;

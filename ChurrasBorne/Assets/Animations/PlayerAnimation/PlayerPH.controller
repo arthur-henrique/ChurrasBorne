@@ -328,6 +328,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isHit
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: attackIsPlaying
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3660512141870659420}
   m_Solo: 0
@@ -403,7 +406,7 @@ BlendTree:
   m_Name: Unarmed
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b8a792d0fe1737f4eb31fadb9f234b4e, type: 2}
+    m_Motion: {fileID: 7400000, guid: 84c0e49fb2555b8428702ae7597a7133, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0.1}
     m_TimeScale: 1
@@ -435,7 +438,7 @@ BlendTree:
     m_DirectBlendParameter: moveX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b8a792d0fe1737f4eb31fadb9f234b4e, type: 2}
+    m_Motion: {fileID: 7400000, guid: 84c0e49fb2555b8428702ae7597a7133, type: 2}
     m_Threshold: 0.5714286
     m_Position: {x: 0.1, y: 0.1}
     m_TimeScale: 1
@@ -443,7 +446,7 @@ BlendTree:
     m_DirectBlendParameter: moveX
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: b8a792d0fe1737f4eb31fadb9f234b4e, type: 2}
+    m_Motion: {fileID: 7400000, guid: 84c0e49fb2555b8428702ae7597a7133, type: 2}
     m_Threshold: 0.71428573
     m_Position: {x: -0.1, y: 0.1}
     m_TimeScale: 1
@@ -896,6 +899,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: isDead
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: attackIsPlaying
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
