@@ -9,6 +9,9 @@ using UnityEngine.UI;
 public class MainMenu_Manager : MonoBehaviour
 {
     public static MainMenu_Manager instance;
+    public GameObject canvas;
+    PlayerController pc;
+    
     GameObject menu_bg;
     GameObject menu_shadow;
     GameObject menu_drop_shadow;
@@ -19,6 +22,21 @@ public class MainMenu_Manager : MonoBehaviour
     GameObject menu_sel3;
     GameObject menu_dropout;
 
+    GameObject menu_res;
+    GameObject menu_res_text;
+    GameObject menu_fscreen;
+    GameObject menu_fscreen_text;
+    GameObject menu_vol_master;
+    GameObject menu_vol_master_text;
+    GameObject menu_vol_master_slider;
+    GameObject menu_vol_bgm;
+    GameObject menu_vol_bgm_text;
+    GameObject menu_vol_bgm_slider;
+    GameObject menu_vol_sfx;
+    GameObject menu_vol_sfx_text;
+    GameObject menu_vol_sfx_slider;
+    GameObject menu_apply;
+
     private Vector3 velocity_bg = Vector3.zero;
     private Vector3 velocity_drop_shadow = Vector3.zero;
     private Vector3 velocity_copyright = Vector3.zero;
@@ -26,6 +44,12 @@ public class MainMenu_Manager : MonoBehaviour
     private Vector3 velocity_sel1 = Vector3.zero;
     private Vector3 velocity_sel2 = Vector3.zero;
     private Vector3 velocity_sel3 = Vector3.zero;
+    private Vector3 velocity_res = Vector3.zero;
+    private Vector3 velocity_fscreen = Vector3.zero;
+    private Vector3 velocity_vol_master = Vector3.zero;
+    private Vector3 velocity_vol_bgm = Vector3.zero;
+    private Vector3 velocity_vol_sfx = Vector3.zero;
+    private Vector3 velocity_apply = Vector3.zero;
 
     Color bg_img_color;
     Color shadow_img_color;
@@ -40,10 +64,25 @@ public class MainMenu_Manager : MonoBehaviour
 
     public static bool menu_selection_confirm = false;
     public static int menu_position = 0;
-    bool menu_transition = false;
+    private bool menu_transition = false;
+    private bool stage_transition = false;
+
+    private void Awake()
+    {
+        pc = new PlayerController();
+    }
+    private void OnEnable()
+    {
+        pc.Enable();
+    }
+    private void OnDisable()
+    {
+        pc.Disable();
+    }
 
     void Start()
     {
+        canvas = GameObject.Find("TransitionCanvas");
         instance = this;
 
         #region Menu Background
@@ -112,6 +151,27 @@ public class MainMenu_Manager : MonoBehaviour
         menu_dropout.SetActive(false);
         #endregion
 
+        #region -------- Options Menu
+
+        menu_res = DialogSystem.getChildGameObject(gameObject, "MENU_Resolution");
+        menu_res.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -15, 0);
+
+        menu_fscreen = DialogSystem.getChildGameObject(gameObject, "MENU_Fullscreen");
+        menu_fscreen.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -50, 0);
+
+        menu_vol_master = DialogSystem.getChildGameObject(gameObject, "MENU_Master");
+        menu_vol_master.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -85, 0);
+
+        menu_vol_bgm = DialogSystem.getChildGameObject(gameObject, "MENU_BGM");
+        menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -120, 0);
+
+        menu_vol_sfx = DialogSystem.getChildGameObject(gameObject, "MENU_SFX");
+        menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -155, 0);
+
+        menu_apply = DialogSystem.getChildGameObject(gameObject, "MENU_Apply");
+        menu_apply.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -190, 0);
+
+        #endregion
     }
 
     void Update()
@@ -121,6 +181,20 @@ public class MainMenu_Manager : MonoBehaviour
         (Mouse.current.position.x.ReadValue() / Screen.width) * 10,
         (Mouse.current.position.y.ReadValue() / Screen.height) * 10
         );
+
+        if (pc.Movimento.NorteSul.WasPressedThisFrame())
+        {
+            menu_position -= (int) pc.Movimento.NorteSul.ReadValue<float>();
+            if (menu_position > 2) { menu_position = 0; }
+            if (menu_position < 0) { menu_position = 2; }
+        }
+
+        if (pc.Movimento.Attack.WasPressedThisFrame())
+        {
+            menu_selection_confirm = true;
+        }
+
+        
 
         if (Time.fixedTime > 3)
         {
@@ -133,6 +207,8 @@ public class MainMenu_Manager : MonoBehaviour
                 switch (menu_position)
                 {
                     case 0:
+
+                        #region Render behavior
                         menu_sel1.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_sel1, smooth_time);
                         menu_sel2.GetComponent<RectTransform>().anchoredPosition =
@@ -143,9 +219,19 @@ public class MainMenu_Manager : MonoBehaviour
                         menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
 
+                        var mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 1.0f, Time.deltaTime * 4f));
+                        var mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
+                        var mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
+                        #endregion
                         break;
+                    
 
                     case 1:
+
+                        #region Render behavior
                         menu_sel1.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
                         menu_sel2.GetComponent<RectTransform>().anchoredPosition =
@@ -155,9 +241,19 @@ public class MainMenu_Manager : MonoBehaviour
 
                         menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+
+                        mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
+                        mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 1.00f, Time.deltaTime * 4f));
+                        mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
+                        #endregion
                         break;
 
                     case 2:
+
+                        #region Render behavior
                         menu_sel1.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
                         menu_sel2.GetComponent<RectTransform>().anchoredPosition =
@@ -167,6 +263,14 @@ public class MainMenu_Manager : MonoBehaviour
 
                         menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+
+                        mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
+                        mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
+                        mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 1.00f, Time.deltaTime * 4f));
+                        #endregion
                         break;
                 }
             } else
@@ -185,6 +289,16 @@ public class MainMenu_Manager : MonoBehaviour
                             Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-170, -50, 0), ref velocity_sel1, smooth_time + 0.5f);
 
                         menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+
+                        if (stage_transition == false)
+                        {
+                            canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
+                            stage_transition = true;
+                        }
+                        break;
+
+                    case 1:
+
                         break;
                 }
             }
@@ -193,6 +307,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     }
 
+    #region Transition animations
     private IEnumerator Intro_BG_Zoom()
     {
         for (int i = 0; i < 60 * 32; i++)
@@ -262,6 +377,7 @@ public class MainMenu_Manager : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 
     // ---- Post-initialization
     private IEnumerator Transition_Start_Game()
