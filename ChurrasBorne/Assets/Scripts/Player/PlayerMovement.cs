@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
-
     private enum State
     {
         Normal,
@@ -14,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
         TakingDamage,
         Dead
     }
-    
-
     public float speed;
     float timer;
     private float x, y;
@@ -30,16 +27,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 lastMovedDirection;
     private Vector2 direcao;
     private Vector2 moveVelocity;
-
     bool attackPressed = false;
     bool healingPressed = false;
     bool takingDamage = false;
     private static State state;
-
-
     PlayerController pc;
     // Start is called before the first frame update
-
     private void Awake()
     {
         state = State.Normal;
@@ -58,9 +51,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -70,15 +61,13 @@ public class PlayerMovement : MonoBehaviour
                 x = pc.Movimento.LesteOeste.ReadValue<float>();
                 y = pc.Movimento.NorteSul.ReadValue<float>();
                 direcao = new Vector2(x, y);
-                
                 direcao.Normalize();
-                if (x != 0 || y !=0)
+                if (x != 0 || y != 0)
                 {
                     lastMovedDirection = direcao;
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
-
                 healsLeft = GameManager.instance.GetHeals();
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
@@ -89,13 +78,13 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.3f;
+                    attackAnimCd = 0.6f;
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
                 {
-                    healingAnimCd = 0.3f;
+                    healingAnimCd = 1f;
                     state = State.Healing;
                     anim.SetTrigger("isHealing");
                 }
@@ -104,19 +93,17 @@ public class PlayerMovement : MonoBehaviour
                 float rollSpeedMultiplier = 5f;
                 rollSpeed -= rollSpeed * rollSpeedMultiplier * Time.deltaTime;
                 GameManager.instance.rollInvuln();
-
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.3f;
+                    attackAnimCd = 0.6f;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
                 {
-                    healingAnimCd = 0.3f;
+                    healingAnimCd = 1f;
                     healingPressed = true;
                     attackPressed = false;
                 }
-
                 float rollSpeedMinimun = 10f;
                 if (rollSpeed < rollSpeedMinimun)
                     state = State.Normal;
@@ -132,15 +119,16 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Attacking:
+                anim.SetBool("attackIsPlaying", true);
                 attackAnimCd -= Time.deltaTime;
                 if (attackAnimCd <= 0f)
                 {
                     state = State.Normal;
+                    anim.SetBool("attackIsPlaying", false);
                     attackPressed = false;
                 }
                 break;
             case State.Healing:
-                print("Healing");
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
                 {
@@ -150,25 +138,33 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.TakingDamage:
+                x = pc.Movimento.LesteOeste.ReadValue<float>();
+                y = pc.Movimento.NorteSul.ReadValue<float>();
+                direcao = new Vector2(x, y);
+                direcao.Normalize();
+                if (x != 0 || y != 0)
+                {
+                    lastMovedDirection = direcao;
+                    anim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                }
                 if (takingDamage)
                 {
                     timer = GameManager.instance.GetDamagetime();
                     takingDamage = false;
                 }
                 timer -= Time.deltaTime;
-
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.3f;
+                    attackAnimCd = 0.6f;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
                 {
-                    healingAnimCd = 0.3f;
+                    healingAnimCd = 1f;
                     healingPressed = true;
                     attackPressed = false;
                 }
-
                 if (timer <= 0f)
                 {
                     if (attackPressed)
@@ -193,9 +189,7 @@ public class PlayerMovement : MonoBehaviour
             case State.Dead:
                 break;
         }
-
     }
-
     private void FixedUpdate()
     {
         switch (state)
@@ -203,7 +197,6 @@ public class PlayerMovement : MonoBehaviour
             case State.Normal:
                 moveVelocity = direcao * speed;
                 rb.velocity = moveVelocity;
-                print("Somic");
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;
@@ -227,7 +220,6 @@ public class PlayerMovement : MonoBehaviour
             case State.TakingDamage:
                 moveVelocity = direcao * speed * 0.2f;
                 rb.velocity = moveVelocity;
-                print("Lento");
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;
@@ -243,7 +235,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
         }
-
     }
     public static void SetDamageState()
     {
