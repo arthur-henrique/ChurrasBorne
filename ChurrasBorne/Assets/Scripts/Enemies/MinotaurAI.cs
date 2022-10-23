@@ -47,11 +47,11 @@ public class MinotaurAI : MonoBehaviour
 
         if (player.transform.position.x < transform.position.x)
         {
-            transform.localScale = new Vector3(-2, 2, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (player.transform.position.x > transform.position.x)
         {
-            transform.localScale = new Vector3(2, 2, 1);
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
 
