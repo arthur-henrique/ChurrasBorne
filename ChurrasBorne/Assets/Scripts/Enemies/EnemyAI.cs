@@ -39,17 +39,36 @@ public class EnemyAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+            animator.SetBool("Walking", true);
         }
         else if (Vector2.Distance(transform.position, player.position) <= stopDistance)
         {
             transform.position = this.transform.position;
+
+            animator.SetBool("Walking", false);
+        }
+        else if (Vector2.Distance(transform.position, player.position) > agroDistance)
+        {
+            animator.SetBool("Walking", false);
         }
 
-        
+        if (player.transform.position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (player.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
         //MELEE
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive())
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(10);
+
+            animator.SetTrigger("Attack");
+
             timeBTWAttacks = startTimeBTWAttacks;
         }
         else
@@ -102,6 +121,8 @@ public class EnemyAI : MonoBehaviour
     {
         currentHealth -= damage;
 
+        animator.SetTrigger("Hit");
+
         if (currentHealth <= 0)
         {
             Die();
@@ -109,6 +130,8 @@ public class EnemyAI : MonoBehaviour
     }
     void Die()
     {
+        animator.SetBool("Walking", false);
+        animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }
