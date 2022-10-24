@@ -9,6 +9,9 @@ public class EAZoneATK : MonoBehaviour
 
     public Collider2D bodyCollider;
 
+    public GameObject zoneAttack;
+
+
     void Start()
     {
         zoneATKTime = startZoneATKTime;
@@ -18,7 +21,7 @@ public class EAZoneATK : MonoBehaviour
 
     void Update()
     {
-        
+        zoneAttack.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +40,6 @@ public class EAZoneATK : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        this.enabled = false;
+        zoneAttack.SetActive(false);
     }
 }
