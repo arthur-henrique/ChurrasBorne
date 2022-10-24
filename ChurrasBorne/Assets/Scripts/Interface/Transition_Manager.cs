@@ -84,7 +84,7 @@ public class Transition_Manager : MonoBehaviour
         }
         SceneManager.LoadScene(scene_name);
         Time.timeScale = 1;
-        for (int i = 0; i < 60 * 8; i++)
+        for (int i = 0; i < 60 * 20; i++)
         {
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
                 Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
@@ -115,6 +115,11 @@ public class Transition_Manager : MonoBehaviour
             case "TransitionTest_2":
 
                 scene_text_display.GetComponent<TextMeshProUGUI>().text = "Boss final Nazaré Tedesco";
+                break;
+
+            case "Tutorial":
+
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Tutorial";
                 break;
         }
         for (int i = 0; i < 60 * 4; i++)

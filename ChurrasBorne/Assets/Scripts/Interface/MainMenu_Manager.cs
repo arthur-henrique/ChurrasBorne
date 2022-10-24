@@ -241,12 +241,9 @@ public class MainMenu_Manager : MonoBehaviour
             {
                 if (menu_submenu == true)
                 {
-                    menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -50, 0), ref velocity_sel1, smooth_time);
-                    menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -85, 0), ref velocity_sel2, smooth_time);
-                    menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -120, 0), ref velocity_sel3, smooth_time);
+                    ElementTranslate(menu_sel1, new Vector3(-600, -50, 0), ref velocity_sel1, smooth_time);
+                    ElementTranslate(menu_sel2, new Vector3(-600, -85, 0), ref velocity_sel2, smooth_time);
+                    ElementTranslate(menu_sel3, new Vector3(-600, -120, 0), ref velocity_sel3, smooth_time);
 
                     menu_sel1.GetComponent<EventTrigger>().enabled = false;
                     menu_sel2.GetComponent<EventTrigger>().enabled = false;
@@ -264,18 +261,13 @@ public class MainMenu_Manager : MonoBehaviour
                         case 0:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            ElementTranslate(menu_res, new Vector3(-275, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -15, -1), ref velocity_drop_shadow, smooth_time);
@@ -316,18 +308,13 @@ public class MainMenu_Manager : MonoBehaviour
                         case 1:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-275, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
@@ -367,18 +354,13 @@ public class MainMenu_Manager : MonoBehaviour
                         case 2:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-275, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
@@ -418,18 +400,12 @@ public class MainMenu_Manager : MonoBehaviour
                         case 3:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-275, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
@@ -469,18 +445,13 @@ public class MainMenu_Manager : MonoBehaviour
                         case 4:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-275, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -155, -1), ref velocity_drop_shadow, smooth_time);
@@ -520,18 +491,13 @@ public class MainMenu_Manager : MonoBehaviour
                         case 5:
 
                             #region Render behavior
-                            menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
-                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -190, 0), ref velocity_apply, smooth_time);
+
+                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-275, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -190, -1), ref velocity_drop_shadow, smooth_time);
@@ -571,18 +537,12 @@ public class MainMenu_Manager : MonoBehaviour
 
                 } else
                 {
-                    menu_res.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -15, 0), ref velocity_res, smooth_time);
-                    menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -50, 0), ref velocity_fscreen, smooth_time);
-                    menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -85, 0), ref velocity_vol_master, smooth_time);
-                    menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -120, 0), ref velocity_vol_bgm, smooth_time);
-                    menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -155, 0), ref velocity_vol_sfx, smooth_time);
-                    menu_apply.GetComponent<RectTransform>().anchoredPosition =
-                        Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -190, 0), ref velocity_apply, smooth_time);
+                    ElementTranslate(menu_res, new Vector3(-700, -15, 0), ref velocity_res, smooth_time);
+                    ElementTranslate(menu_fscreen, new Vector3(-700, -50, 0), ref velocity_fscreen, smooth_time);
+                    ElementTranslate(menu_vol_master, new Vector3(-825, -85, 0), ref velocity_vol_master, smooth_time);
+                    ElementTranslate(menu_vol_bgm, new Vector3(-825, -120, 0), ref velocity_vol_bgm, smooth_time);
+                    ElementTranslate(menu_vol_sfx, new Vector3(-825, -155, 0), ref velocity_vol_sfx, smooth_time);
+                    ElementTranslate(menu_apply, new Vector3(-700, -190, 0), ref velocity_apply, smooth_time);
 
                     menu_sel1.GetComponent<EventTrigger>().enabled = true;
                     menu_sel2.GetComponent<EventTrigger>().enabled = true;
@@ -601,12 +561,9 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_sel1, smooth_time);
-                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
-                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+                            ElementTranslate(menu_sel1, new Vector3(-275, -50, 0), ref velocity_sel1, smooth_time);
+                            ElementTranslate(menu_sel2, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
+                            ElementTranslate(menu_sel3, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
@@ -624,12 +581,10 @@ public class MainMenu_Manager : MonoBehaviour
                         case 1:
 
                             #region Render behavior
-                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
-                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -85, 0), ref velocity_sel2, smooth_time);
-                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+
+                            ElementTranslate(menu_sel1, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
+                            ElementTranslate(menu_sel2, new Vector3(-275, -85, 0), ref velocity_sel2, smooth_time);
+                            ElementTranslate(menu_sel3, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
@@ -646,12 +601,10 @@ public class MainMenu_Manager : MonoBehaviour
                         case 2:
 
                             #region Render behavior
-                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
-                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
-                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -120, 0), ref velocity_sel3, smooth_time);
+
+                            ElementTranslate(menu_sel1, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
+                            ElementTranslate(menu_sel2, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
+                            ElementTranslate(menu_sel3, new Vector3(-275, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                                 Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
@@ -856,13 +809,13 @@ public class MainMenu_Manager : MonoBehaviour
         }
     }
 
-    private void ElementTranslate(GameObject gm, Vector3 pos, Vector3 vel, float time)
+    private void ElementTranslate(GameObject gm, Vector3 pos, ref Vector3 vel, float time)
     {
         gm.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(gm.GetComponent<RectTransform>().anchoredPosition, new Vector3(pos.x, pos.y, pos.z), ref vel, time);
+                                Vector3.SmoothDamp(gm.GetComponent<RectTransform>().anchoredPosition, pos, ref vel, time);
     }
 
-    private void ElementTranslateF(GameObject gm, float pos1, float pos2, float vel1, float vel2, float time)
+   /* private void ElementTranslateF(GameObject gm, float pos1, float pos2, float vel1, float vel2, float time)
     {
         var gmpos = gm.GetComponent<RectTransform>().anchoredPosition;
         gmpos.x = Mathf.SmoothDamp(gmpos.x, pos1, ref vel1, time);
@@ -873,7 +826,7 @@ public class MainMenu_Manager : MonoBehaviour
     private Vector3 ElementTranslateA(GameObject gm, Vector3 pos, Vector3 vel, float time)
     {
         return Vector3.SmoothDamp(gm.GetComponent<RectTransform>().anchoredPosition, new Vector3(pos.x, pos.y, pos.z), ref vel, time);
-    }
+    }*/
 
 
 
