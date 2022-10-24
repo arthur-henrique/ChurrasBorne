@@ -278,6 +278,9 @@ TextureImporter:
   - first:
       213: 1070608105836793628
     second: "Port\xE3o_Touro Obstaculos_13"
+  - first:
+      213: -828367922399630639
+    second: "Port\xE3o_Touro Obstaculos_14"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -672,7 +675,7 @@ TextureImporter:
         width: 64
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -680,6 +683,27 @@ TextureImporter:
       bones: []
       spriteID: c1f4e0266609bde00800000000000000
       internalID: 1070608105836793628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Port\xE3o_Touro Obstaculos_14"
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1daaa0273cb0184f0800000000000000
+      internalID: -828367922399630639
       vertices: []
       indices: 
       edges: []
