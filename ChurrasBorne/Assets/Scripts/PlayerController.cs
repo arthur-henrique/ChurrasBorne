@@ -431,6 +431,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""af0c067c-f6e9-4819-a2f8-0c20291ee754"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -455,6 +464,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""PKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fac1ddc-3dc8-4885-8990-6aa0b81582d5"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -476,6 +496,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Tester = asset.FindActionMap("Tester", throwIfNotFound: true);
         m_Tester_LKey = m_Tester.FindAction("LKey", throwIfNotFound: true);
         m_Tester_PKey = m_Tester.FindAction("PKey", throwIfNotFound: true);
+        m_Tester_TKey = m_Tester.FindAction("TKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -643,12 +664,14 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private ITesterActions m_TesterActionsCallbackInterface;
     private readonly InputAction m_Tester_LKey;
     private readonly InputAction m_Tester_PKey;
+    private readonly InputAction m_Tester_TKey;
     public struct TesterActions
     {
         private @PlayerController m_Wrapper;
         public TesterActions(@PlayerController wrapper) { m_Wrapper = wrapper; }
         public InputAction @LKey => m_Wrapper.m_Tester_LKey;
         public InputAction @PKey => m_Wrapper.m_Tester_PKey;
+        public InputAction @TKey => m_Wrapper.m_Tester_TKey;
         public InputActionMap Get() { return m_Wrapper.m_Tester; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -664,6 +687,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @PKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
                 @PKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
                 @PKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnPKey;
+                @TKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
+                @TKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
+                @TKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
             }
             m_Wrapper.m_TesterActionsCallbackInterface = instance;
             if (instance != null)
@@ -674,6 +700,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @PKey.started += instance.OnPKey;
                 @PKey.performed += instance.OnPKey;
                 @PKey.canceled += instance.OnPKey;
+                @TKey.started += instance.OnTKey;
+                @TKey.performed += instance.OnTKey;
+                @TKey.canceled += instance.OnTKey;
             }
         }
     }
@@ -695,5 +724,6 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     {
         void OnLKey(InputAction.CallbackContext context);
         void OnPKey(InputAction.CallbackContext context);
+        void OnTKey(InputAction.CallbackContext context);
     }
 }

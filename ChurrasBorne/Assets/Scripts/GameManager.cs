@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
             TakeDamage(3);
         if (pc.Tester.PKey.WasPressedThisFrame())
             HealPlayer(2);
+        if (pc.Tester.TKey.WasPressedThisFrame())
+        {
+            NextLevelSetter(Vector2.zero);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
+        }
     }
 
     // Damage
