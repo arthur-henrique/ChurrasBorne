@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startZoneATKTime: 0
   bodyCollider: {fileID: 8422290717289140613}
+  zoneAttack: {fileID: 2918733508188025954}
 --- !u!1 &7239849123268631009
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ MonoBehaviour:
   rb: {fileID: 1244297050672771105}
   maxHealth: 100
   animator: {fileID: 5991577763585983942}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   zoneAttack: {fileID: 2918733508188025954}
   towah:
   - {fileID: 0}

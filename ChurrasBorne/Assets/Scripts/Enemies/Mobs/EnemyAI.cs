@@ -41,16 +41,19 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
             animator.SetBool("Walking", true);
+            animator.SetBool("Idle", false);
         }
         else if (Vector2.Distance(transform.position, player.position) <= stopDistance)
         {
             transform.position = this.transform.position;
 
             animator.SetBool("Walking", false);
+            animator.SetBool("Idle", true);
         }
         else if (Vector2.Distance(transform.position, player.position) > agroDistance)
         {
             animator.SetBool("Walking", false);
+            animator.SetBool("Idle", true);
         }
 
         if (player.transform.position.x < transform.position.x)
@@ -112,8 +115,8 @@ public class EnemyAI : MonoBehaviour
             }
         }
 
-        Vector2 difference = transform.position - collision.transform.position;
-        transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+        //Vector2 difference = transform.position - collision.transform.position;
+        //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
     }
 
 
@@ -131,6 +134,7 @@ public class EnemyAI : MonoBehaviour
     void Die()
     {
         animator.SetBool("Walking", false);
+        animator.SetBool("Idle", false);
         animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
