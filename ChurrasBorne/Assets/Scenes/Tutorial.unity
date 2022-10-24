@@ -22251,12 +22251,20 @@ PrefabInstance:
       value: 2.2806134
       objectReference: {fileID: 0}
     - target: {fileID: 1045178173, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045178173, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.x
       value: 0.90439725
       objectReference: {fileID: 0}
     - target: {fileID: 1045178173, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.y
       value: -0.05839753
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045178173, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1475002057, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_IsActive
@@ -22273,6 +22281,10 @@ PrefabInstance:
     - target: {fileID: 1475002060, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.y
       value: 1.184333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475002060, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1475002060, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.x
@@ -22303,6 +22315,10 @@ PrefabInstance:
       value: 1.184333
       objectReference: {fileID: 0}
     - target: {fileID: 1830869714, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830869714, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.x
       value: 0.051328063
       objectReference: {fileID: 0}
@@ -22319,12 +22335,20 @@ PrefabInstance:
       value: 2.2806134
       objectReference: {fileID: 0}
     - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.x
       value: 0.90439725
       objectReference: {fileID: 0}
     - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Offset.y
       value: -0.05839753
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5920647588938471532, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_IsActive
