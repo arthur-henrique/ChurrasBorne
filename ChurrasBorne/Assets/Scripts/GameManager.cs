@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.LKey.WasPressedThisFrame())
             TakeDamage(3);
         if (pc.Tester.PKey.WasPressedThisFrame())
-            HealPlayer(2);
+            HealPlayer(15);
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
