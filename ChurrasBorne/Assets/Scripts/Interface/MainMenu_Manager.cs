@@ -66,6 +66,19 @@ public class MainMenu_Manager : MonoBehaviour
     public static int menu_position = 0;
     private bool menu_transition = false;
     private bool stage_transition = false;
+    private bool menu_submenu = false;
+    
+    private int restable_opt = 0;
+    private int[,] restable = { { 640, 360 },
+                                { 854, 480 },
+                                { 1024, 576 },
+                                { 1280, 720 },
+                                { 1920, 1080 },
+                                { 3840, 2160 }};
+
+    private int fs_mode_opt = 0;
+    private string[] fs_mode = { "Desligada", "Exclusiva", "Borderless" };
+    private FullScreenMode[] fs_mode_out = { FullScreenMode.Windowed, FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow };
 
     private void Awake()
     {
@@ -82,6 +95,15 @@ public class MainMenu_Manager : MonoBehaviour
 
     void Start()
     {
+        var resolution_size = PlayerPrefs.GetInt("RESOLUTION_SIZE", 3);
+        var fullscreen_mode = PlayerPrefs.GetInt("FULLSCREEN_MODE", 0);
+        restable_opt = resolution_size;
+        fs_mode_opt = fullscreen_mode;
+        Debug.Log(resolution_size);
+        Debug.Log(fullscreen_mode);
+        Screen.SetResolution(restable[restable_opt, 0], restable[restable_opt, 1], fs_mode_out[fs_mode_opt]);
+
+
         canvas = GameObject.Find("TransitionCanvas");
         instance = this;
 
@@ -156,17 +178,30 @@ public class MainMenu_Manager : MonoBehaviour
         menu_res = DialogSystem.getChildGameObject(gameObject, "MENU_Resolution");
         menu_res.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -15, 0);
 
+        menu_res_text = DialogSystem.getChildGameObject(gameObject, "MENU_ResolutionTable");
+
         menu_fscreen = DialogSystem.getChildGameObject(gameObject, "MENU_Fullscreen");
         menu_fscreen.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -50, 0);
 
+        menu_fscreen_text = DialogSystem.getChildGameObject(gameObject, "MENU_FullscreenMode");
+
         menu_vol_master = DialogSystem.getChildGameObject(gameObject, "MENU_Master");
-        menu_vol_master.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -85, 0);
+        menu_vol_master.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -85, 0);
+
+        menu_vol_master_text = DialogSystem.getChildGameObject(gameObject, "MENU_MasterVolume");
+        menu_vol_master_slider = DialogSystem.getChildGameObject(gameObject, "MENU_MasterSlider");
 
         menu_vol_bgm = DialogSystem.getChildGameObject(gameObject, "MENU_BGM");
-        menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -120, 0);
+        menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -120, 0);
+
+        menu_vol_bgm_text = DialogSystem.getChildGameObject(gameObject, "MENU_BGMVolume");
+        menu_vol_bgm_slider = DialogSystem.getChildGameObject(gameObject, "MENU_BGMSlider");
 
         menu_vol_sfx = DialogSystem.getChildGameObject(gameObject, "MENU_SFX");
-        menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition = new Vector3(-800, -155, 0);
+        menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -155, 0);
+
+        menu_vol_sfx_text = DialogSystem.getChildGameObject(gameObject, "MENU_SFXVolume");
+        menu_vol_sfx_slider = DialogSystem.getChildGameObject(gameObject, "MENU_SFXSlider");
 
         menu_apply = DialogSystem.getChildGameObject(gameObject, "MENU_Apply");
         menu_apply.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -190, 0);
@@ -204,106 +239,536 @@ public class MainMenu_Manager : MonoBehaviour
 
             if (menu_selection_confirm == false)
             {
-                switch (menu_position)
+                if (menu_submenu == true)
                 {
-                    case 0:
+                    menu_sel1.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -50, 0), ref velocity_sel1, smooth_time);
+                    menu_sel2.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -85, 0), ref velocity_sel2, smooth_time);
+                    menu_sel3.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-600, -120, 0), ref velocity_sel3, smooth_time);
 
-                        #region Render behavior
-                        menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_sel1, smooth_time);
-                        menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
-                        menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+                    menu_sel1.GetComponent<EventTrigger>().enabled = false;
+                    menu_sel2.GetComponent<EventTrigger>().enabled = false;
+                    menu_sel3.GetComponent<EventTrigger>().enabled = false;
 
-                        menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
+                    menu_res.GetComponent<EventTrigger>().enabled = true;
+                    menu_fscreen.GetComponent<EventTrigger>().enabled = true;
+                    menu_vol_master.GetComponent<EventTrigger>().enabled = true;
+                    menu_vol_bgm.GetComponent<EventTrigger>().enabled = true;
+                    menu_vol_sfx.GetComponent<EventTrigger>().enabled = true;
+                    menu_apply.GetComponent<EventTrigger>().enabled = true;
 
-                        var mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 1.0f, Time.deltaTime * 4f));
-                        var mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
-                        var mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
-                        #endregion
-                        break;
-                    
+                    switch (menu_position)
+                    {
+                        case 0:
 
-                    case 1:
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
-                        #region Render behavior
-                        menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
-                        menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -85, 0), ref velocity_sel2, smooth_time);
-                        menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -15, -1), ref velocity_drop_shadow, smooth_time);
 
-                        menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+                            #region Element colors
+                            var mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 1.0f, Time.deltaTime * 4f));
+                            var mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 1.0f, Time.deltaTime * 4f));
 
-                        mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
-                        mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 1.00f, Time.deltaTime * 4f));
-                        mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
-                        #endregion
-                        break;
+                            var mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            var mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
 
-                    case 2:
+                            var mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            var mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
 
-                        #region Render behavior
-                        menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
-                        menu_sel2.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
-                        menu_sel3.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -120, 0), ref velocity_sel3, smooth_time);
+                            var mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            var mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
 
-                        menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+                            var mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            var mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
-                        mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
-                        mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
-                        mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
-                        menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 1.00f, Time.deltaTime * 4f));
-                        #endregion
-                        break;
+                            var mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+
+                            #endregion
+                            break;
+
+                        case 1:
+
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 1.0f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 1.0f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+
+                        case 2:
+
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 1.0f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 1.0f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+
+                        case 3:
+
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 1.0f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 1.0f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+
+                        case 4:
+
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -155, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 1.0f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 1.0f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+
+                        case 5:
+
+                            #region Render behavior
+                            menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
+                            menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
+                            menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
+                            menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
+                            menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -190, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 1.0f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+                    }
+
+                } else
+                {
+                    menu_res.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_res.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -15, 0), ref velocity_res, smooth_time);
+                    menu_fscreen.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_fscreen.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -50, 0), ref velocity_fscreen, smooth_time);
+                    menu_vol_master.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_vol_master.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -85, 0), ref velocity_vol_master, smooth_time);
+                    menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -120, 0), ref velocity_vol_bgm, smooth_time);
+                    menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition, new Vector3(-825, -155, 0), ref velocity_vol_sfx, smooth_time);
+                    menu_apply.GetComponent<RectTransform>().anchoredPosition =
+                        Vector3.SmoothDamp(menu_apply.GetComponent<RectTransform>().anchoredPosition, new Vector3(-700, -190, 0), ref velocity_apply, smooth_time);
+
+                    menu_sel1.GetComponent<EventTrigger>().enabled = true;
+                    menu_sel2.GetComponent<EventTrigger>().enabled = true;
+                    menu_sel3.GetComponent<EventTrigger>().enabled = true;
+
+                    menu_res.GetComponent<EventTrigger>().enabled = false;
+                    menu_fscreen.GetComponent<EventTrigger>().enabled = false;
+                    menu_vol_master.GetComponent<EventTrigger>().enabled = false;
+                    menu_vol_bgm.GetComponent<EventTrigger>().enabled = false;
+                    menu_vol_sfx.GetComponent<EventTrigger>().enabled = false;
+                    menu_apply.GetComponent<EventTrigger>().enabled = false;
+
+                    switch (menu_position)
+                    {
+                        case 0:
+
+                            #region Render behavior
+
+                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -50, 0), ref velocity_sel1, smooth_time);
+                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
+                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
+
+                            var mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 1.0f, Time.deltaTime * 4f));
+                            var mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
+                            var mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            break;
+
+
+                        case 1:
+
+                            #region Render behavior
+                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
+                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -85, 0), ref velocity_sel2, smooth_time);
+                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+
+                            mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
+                            mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 1.00f, Time.deltaTime * 4f));
+                            mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            break;
+
+                        case 2:
+
+                            #region Render behavior
+                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -50, 0), ref velocity_sel1, smooth_time);
+                            menu_sel2.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-300, -85, 0), ref velocity_sel2, smooth_time);
+                            menu_sel3.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-275, -120, 0), ref velocity_sel3, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+
+                            mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
+                            mns2 = menu_sel2.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(mns2.r, mns2.g, mns2.b, Mathf.Lerp(mns2.a, 0.25f, Time.deltaTime * 4f));
+                            mns3 = menu_sel3.GetComponent<TextMeshProUGUI>().color;
+                            menu_sel3.GetComponent<TextMeshProUGUI>().color = new Color(mns3.r, mns3.g, mns3.b, Mathf.Lerp(mns3.a, 1.00f, Time.deltaTime * 4f));
+                            #endregion
+                            break;
+
+
+                    }
                 }
+                
             } else
             {
-                switch (menu_position)
+                if (menu_submenu == true)
                 {
-                    case 0:
+                    switch (menu_position)
+                    {
+                        case 0:
 
-                        if (menu_transition == false)
-                        {
-                            StartCoroutine(Transition_Start_Game());
-                            menu_dropout.SetActive(true);
-                            menu_transition = true;
-                        }
-                        menu_sel1.GetComponent<RectTransform>().anchoredPosition =
-                            Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-170, -50, 0), ref velocity_sel1, smooth_time + 0.5f);
+                            restable_opt++;
+                            menu_selection_confirm = false;
+                            break;
 
-                        menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        case 1:
 
-                        if (stage_transition == false)
-                        {
-                            canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
-                            stage_transition = true;
-                        }
-                        break;
+                            fs_mode_opt++;
+                            menu_selection_confirm = false;
+                            break;
 
-                    case 1:
+                        case 5:
+                            
+                            Screen.SetResolution(restable[restable_opt, 0], restable[restable_opt, 1], fs_mode_out[fs_mode_opt]);
 
-                        break;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                            menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                            menu_position = 0;
+                            menu_submenu = false;
+                            menu_selection_confirm = false;
+                            PlayerPrefs.SetInt("RESOLUTION_SIZE", restable_opt);
+                            PlayerPrefs.SetInt("FULLSCREEN_MODE", fs_mode_opt);
+                            break;
+                    }
+                } else
+                {
+                    switch (menu_position)
+                    {
+                        case 0:
+
+                            if (menu_transition == false)
+                            {
+                                StartCoroutine(Transition_Start_Game());
+                                menu_dropout.SetActive(true);
+                                menu_transition = true;
+                            }
+                            menu_sel1.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-170, -50, 0), ref velocity_sel1, smooth_time + 0.5f);
+
+                            menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+
+                            if (stage_transition == false)
+                            {
+                                canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
+                                stage_transition = true;
+                            }
+                            break;
+
+                        case 1:
+
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                            menu_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                            menu_position = 0;
+                            menu_submenu = true;
+                            menu_selection_confirm = false;
+                            break;
+
+                        case 2:
+
+                            Application.Quit();
+                            break;
+                    }
                 }
             }
             
         }
+
+        menu_vol_master_text.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(menu_vol_master_slider.GetComponent<Slider>().value * 100) + "%";
+        menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(menu_vol_bgm_slider.GetComponent<Slider>().value * 100) + "%";
+        menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().text = Mathf.RoundToInt(menu_vol_sfx_slider.GetComponent<Slider>().value * 100) + "%";
+
+        if (restable_opt > restable.Length/2 - 1) { restable_opt = 0; }
+        if (restable_opt < 0) { restable_opt = restable.Length / 2 - 1; }
+
+        menu_res_text.GetComponent<TextMeshProUGUI>().text = restable[restable_opt, 0] + "x" + restable[restable_opt, 1];
+
+        if (fs_mode_opt > 2) { fs_mode_opt = 0; }
+        if (fs_mode_opt < 0) { fs_mode_opt = 2; }
+
+        menu_fscreen_text.GetComponent<TextMeshProUGUI>().text = fs_mode[fs_mode_opt];
+
+        if (menu_submenu == true)
+        {
+            if (menu_position > 5) { menu_position = 0; }
+            if (menu_position < 0) { menu_position = 5; }
+        } else
+        {
+            if (menu_position > 2) { menu_position = 0; }
+            if (menu_position < 0) { menu_position = 2; }
+        }
+
+        //print("length is: " + restable.Length);
+
 
     }
 
@@ -389,6 +854,25 @@ public class MainMenu_Manager : MonoBehaviour
             menu_bg.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(menu_bg.GetComponent<RectTransform>().localScale, new Vector3(4f, 4f, 1), ref velocity_bg, 1);
             yield return null;
         }
+    }
+
+    private void ElementTranslate(GameObject gm, Vector3 pos, Vector3 vel, float time)
+    {
+        gm.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(gm.GetComponent<RectTransform>().anchoredPosition, new Vector3(pos.x, pos.y, pos.z), ref vel, time);
+    }
+
+    private void ElementTranslateF(GameObject gm, float pos1, float pos2, float vel1, float vel2, float time)
+    {
+        var gmpos = gm.GetComponent<RectTransform>().anchoredPosition;
+        gmpos.x = Mathf.SmoothDamp(gmpos.x, pos1, ref vel1, time);
+        gmpos.y = Mathf.SmoothDamp(gmpos.y, pos2, ref vel2, time);
+        gm.GetComponent<RectTransform>().anchoredPosition = gmpos;
+    }
+
+    private Vector3 ElementTranslateA(GameObject gm, Vector3 pos, Vector3 vel, float time)
+    {
+        return Vector3.SmoothDamp(gm.GetComponent<RectTransform>().anchoredPosition, new Vector3(pos.x, pos.y, pos.z), ref vel, time);
     }
 
 

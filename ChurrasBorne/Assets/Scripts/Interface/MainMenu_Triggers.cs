@@ -40,6 +40,38 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
                     MainMenu_Manager.menu_position = 2;
                     break;
 
+                // ----------------------- Options
+
+                case "MENU_Resolution":
+
+                    MainMenu_Manager.menu_position = 0;
+                    break;
+
+                case "MENU_Fullscreen":
+
+                    MainMenu_Manager.menu_position = 1;
+                    break;
+
+                case "MENU_Master":
+
+                    MainMenu_Manager.menu_position = 2;
+                    break;
+
+                case "MENU_BGM":
+
+                    MainMenu_Manager.menu_position = 3;
+                    break;
+
+                case "MENU_SFX":
+
+                    MainMenu_Manager.menu_position = 4;
+                    break;
+
+                case "MENU_Apply":
+
+                    MainMenu_Manager.menu_position = 5;
+                    break;
+
             }
         }
         
