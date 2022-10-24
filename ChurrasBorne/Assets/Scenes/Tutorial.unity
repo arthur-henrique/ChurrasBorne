@@ -17724,7 +17724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3671831932537637786, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6973534537789977671, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: hasDeathEvents
@@ -19735,6 +19735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1626536253}
   - component: {fileID: 1626536254}
+  - component: {fileID: 1626536255}
   m_Layer: 0
   m_Name: "Port\xE3o Cima Entrada - Fechado"
   m_TagString: Untagged
@@ -19785,6 +19786,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6290798, y: 13.684365}
   m_EdgeRadius: 0
+--- !u!50 &1626536255
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626536252}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &1692861621
 GameObject:
   m_ObjectHideFlags: 0
