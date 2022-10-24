@@ -15,6 +15,12 @@ public class DoorPortal : MonoBehaviour
                 SceneManager.LoadScene("Tutorial");
             }
 
+            if (gameObject.tag == "ParaHub")
+            {
+                GameManager.instance.NextLevelSetter(Vector2.zero);
+                SceneManager.LoadScene("Hub");
+            }
+
             if (gameObject.tag == "PortaUm")
             {
                 if (!GameManager.instance.hasCleared[0])
