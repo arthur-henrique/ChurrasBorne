@@ -11,16 +11,12 @@ public class EATowah : MonoBehaviour
     public float startTimeBTWAttacks;
     private float timeBTWAttacks;
 
-    public GameObject towah;
-
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBTWAttacks = startTimeBTWAttacks;
-
-        towah.SetActive(false);
     }
 
     void Update()

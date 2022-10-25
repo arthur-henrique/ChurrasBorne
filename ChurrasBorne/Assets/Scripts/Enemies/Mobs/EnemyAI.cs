@@ -6,8 +6,8 @@ public class EnemyAI : MonoBehaviour
 {
     public Transform player;
 
-    public float agroDistance, stopDistance, speed, attackDistance, startTimeBTWAttacks;
-    private float timeBTWAttacks;
+    public float agroDistance, stopDistance, speed, angySpeed, attackDistance, startTimeBTWAttacks, startStunTime;
+    private float timeBTWAttacks, stunTime;
 
     public Collider2D bodyCollider;
     public Rigidbody2D rb;
@@ -20,13 +20,21 @@ public class EnemyAI : MonoBehaviour
     public Animator playerAnimator;
     public bool isDead = false;
     public bool hasDeathEvents = false;
-    
+
+    private bool stunned = false;
+
+    private bool angy = false;
+
+    public GameObject angyDetector;
+
     void Start()
     {
-        //Para MELEE
+        //Para MELEE, ANGY PUNCH, MOVEMENT, ANGY MOVEMENT, STUN
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBTWAttacks = startTimeBTWAttacks;
+
+        stunTime = startStunTime;   
 
         //Para HEALTH
         currentHealth = maxHealth;
@@ -38,26 +46,51 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         //MOVEMENT
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance)
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance && stunned == false && angy == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
             animator.SetBool("Walking", true);
             animator.SetBool("Idle", false);
         }
-        else if (Vector2.Distance(transform.position, player.position) <= stopDistance)
+        else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == false)
         {
             transform.position = this.transform.position;
 
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", true);
         }
-        else if (Vector2.Distance(transform.position, player.position) > agroDistance)
+        else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == false)
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", true);
         }
 
+        //ANGY MOVEMENT
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance && stunned == false && angy == true)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, angySpeed * Time.deltaTime);
+
+            animator.SetBool("Walking", false);
+            animator.SetBool("AngyWalking", true);
+            animator.SetBool("Idle", false);
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == true)
+        {
+            transform.position = this.transform.position;
+
+            animator.SetBool("Walking", false);
+            animator.SetBool("Idle", false);
+            animator.SetBool("AngyIdle", true);
+        }
+        else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == true)
+        {
+            animator.SetBool("Walking", false);
+            animator.SetBool("Idle", false);
+            animator.SetBool("AngyIdle", true);
+        }
+
+        //FLIP
         if (player.transform.position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -68,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         //MELEE
-        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive())
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == false)
         {
             GameManager.instance.TakeDamage(10);
 
@@ -79,6 +112,43 @@ public class EnemyAI : MonoBehaviour
         else
         {
             timeBTWAttacks -= Time.deltaTime;
+        }
+
+        //MELEE
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == true)
+        {
+            GameManager.instance.TakeDamage(20);
+
+            animator.SetTrigger("Attack");
+
+            timeBTWAttacks = startTimeBTWAttacks;
+
+            angy = false;
+        }
+        else
+        {
+            timeBTWAttacks -= Time.deltaTime;
+        }
+
+        //STUN
+        if (stunned == true)
+        {
+            if (stunTime <= 0)
+            {
+                stunned = false;
+
+                stunTime = startStunTime;
+            }
+            else
+            {
+                stunTime -= Time.deltaTime;
+            }
+        }
+
+        //ANGY DETECTION
+        if(!angyDetector.activeSelf)
+        {
+            angy = true;
         }
     }
 
@@ -127,6 +197,8 @@ public class EnemyAI : MonoBehaviour
         currentHealth -= damage;
 
         animator.SetTrigger("Hit");
+
+        stunned = true;
 
         if (currentHealth <= 0)
         {
