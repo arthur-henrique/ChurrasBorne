@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 5054337974537831557}
   - component: {fileID: 9201290858415813941}
   - component: {fileID: 6973534537789977671}
+  - component: {fileID: -9148983123163820449}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -223,7 +224,7 @@ MonoBehaviour:
   angySpeed: 6
   attackDistance: 2
   startTimeBTWAttacks: 2
-  startStunTime: 4
+  startStunTime: 0.3
   bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
   maxHealth: 100
@@ -232,3 +233,17 @@ MonoBehaviour:
   isDead: 0
   hasDeathEvents: 0
   angyDetector: {fileID: 863171584477415739}
+--- !u!114 &-9148983123163820449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3671831932537637786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 0

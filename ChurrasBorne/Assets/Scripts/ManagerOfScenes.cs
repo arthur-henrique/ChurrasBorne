@@ -8,11 +8,11 @@ public class ManagerOfScenes : MonoBehaviour
     {
         if (gameObject.tag == "Tutorial")
         {
-            GameManager.instance.SetHeals(-1f);
+            GameManager.instance.SetHeals(-1f, true);
         }
         else if (gameObject.tag == "Untagged")
         {
-            GameManager.instance.SetHeals(3f);
+            GameManager.instance.SetHeals(3f, false);
         }
     }
 

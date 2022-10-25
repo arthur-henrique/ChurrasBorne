@@ -215,7 +215,7 @@ public class EnemyAI : MonoBehaviour
         if (hasDeathEvents)
         {
             //gameObject.GetComponent<OnDeath>().DoOnDeath();
-            //TriggerEventManager.instance.SpawnMobs();
+            TriggerEventManager.instance.SpawnMobs();
         }
         this.enabled = false;
     }

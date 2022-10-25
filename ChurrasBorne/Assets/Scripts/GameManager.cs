@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     private const float DamageCD = .5f;
     private float rollDmgCd = 0.3f;
     public float healsLeft;
+    public bool isTut;
     public float respawnCooldown;
     private bool canTakeDamage, isAlive, hasJustDied;
 
@@ -116,6 +117,10 @@ public class GameManager : MonoBehaviour
             if (currentHealth >= maxHealth)
                 currentHealth = maxHealth;
             healsLeft--;
+            if (isTut && healsLeft < -1)
+                healsLeft = -1;
+            else if (!isTut && healsLeft < 0)
+                healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
 
             SetHealth(currentHealth);
@@ -127,10 +132,11 @@ public class GameManager : MonoBehaviour
         damageCDCounter = rollDmgCd;
         canTakeDamage = false;
     }
-    public void SetHeals(float heals)
+    public void SetHeals(float heals, bool isTutorial)
     {
         playerAnimator.SetFloat("numberOfMeat", heals);
         healsLeft = heals;
+        isTut = isTutorial;
     }
 
     public float GetHeals()
