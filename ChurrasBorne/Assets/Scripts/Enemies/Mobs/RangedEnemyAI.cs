@@ -15,6 +15,7 @@ public class RangedEnemyAI : MonoBehaviour
     int currentHealth;
 
     public Animator animator;
+    public bool isDead = false;
 
     void Start()
     {
@@ -63,6 +64,7 @@ public class RangedEnemyAI : MonoBehaviour
     }
     void Die()
     {
+        isDead = true;
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
     }

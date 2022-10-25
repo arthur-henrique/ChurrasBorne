@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
 
     public Animator playerAnimator;
+    public bool isDead = false;
     public bool hasDeathEvents = false;
     
     void Start()
@@ -134,13 +135,15 @@ public class EnemyAI : MonoBehaviour
     }
     void Die()
     {
+        isDead = true;
         animator.SetBool("Walking", false);
         animator.SetBool("Idle", false);
         animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
         if (hasDeathEvents)
         {
-            gameObject.GetComponent<OnDeath>().DoOnDeath();
+            //gameObject.GetComponent<OnDeath>().DoOnDeath();
+            //TriggerEventManager.instance.SpawnMobs();
         }
         this.enabled = false;
     }

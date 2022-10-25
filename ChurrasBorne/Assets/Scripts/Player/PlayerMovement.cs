@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;
                 rollSpeed -= rollSpeed * rollSpeedMultiplier * Time.deltaTime;
-                GameManager.instance.rollInvuln();
+                GameManager.instance.RollInvuln();
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
                     attackAnimCd = 0.6f;

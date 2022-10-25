@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void rollInvuln()
+    public void RollInvuln()
     {
         damageCDCounter = rollDmgCd;
         canTakeDamage = false;
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
         PlayerMovement.SetDead();
         StartCoroutine(CameraDelay());
         hasJustDied = false;
-        StartCoroutine(deadCounter());
+        StartCoroutine(DeadCounter());
         isAlive = false;
     }
     
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour
         dft.Priority = 0;
         death.Priority = 1;
     }
-    IEnumerator deadCounter()
+    IEnumerator DeadCounter()
     {
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
