@@ -331,6 +331,11 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &85080364 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3671831932537637786, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
+  m_PrefabInstance: {fileID: 402896597}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &120745378
 GameObject:
   m_ObjectHideFlags: 3
@@ -595,6 +600,10 @@ PrefabInstance:
       propertyPath: startStunTime
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8612752022033232800, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 85080364}
     - target: {fileID: 8753556001257868423, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2348,7 +2357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1683456189
 Transform:
   m_ObjectHideFlags: 0

@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angyDetector: {fileID: 863171584477415739}
+  enemy: {fileID: 0}
 --- !u!1 &3671831932537637786
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,13 +218,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  agroDistance: 15
+  agroDistance: 30
   stopDistance: 2
-  speed: 3
-  angySpeed: 6
+  speed: 1
+  angySpeed: 30
   attackDistance: 2
   startTimeBTWAttacks: 2
-  startStunTime: 4
+  startStunTime: 0.3
   bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
   maxHealth: 100
@@ -231,4 +232,5 @@ MonoBehaviour:
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   isDead: 0
   hasDeathEvents: 0
+  angy: 0
   angyDetector: {fileID: 863171584477415739}

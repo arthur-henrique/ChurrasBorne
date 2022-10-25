@@ -22,8 +22,8 @@ public class EnemyAI : MonoBehaviour
     public bool hasDeathEvents = false;
 
     private bool stunned = false;
-
-    private bool angy = false;
+    
+    public bool angy = false;    
 
     public GameObject angyDetector;
 
@@ -103,7 +103,7 @@ public class EnemyAI : MonoBehaviour
         //MELEE
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == false)
         {
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(5);
 
             animator.SetTrigger("Attack");
 
@@ -114,10 +114,10 @@ public class EnemyAI : MonoBehaviour
             timeBTWAttacks -= Time.deltaTime;
         }
 
-        //MELEE
+        //ANGY PUNCH
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == true)
         {
-            GameManager.instance.TakeDamage(20);
+            GameManager.instance.TakeDamage(10);
 
             animator.SetTrigger("Attack");
 
@@ -143,12 +143,6 @@ public class EnemyAI : MonoBehaviour
             {
                 stunTime -= Time.deltaTime;
             }
-        }
-
-        //ANGY DETECTION
-        if(!angyDetector.activeSelf)
-        {
-            angy = true;
         }
     }
 
