@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AngyDetector : MonoBehaviour
 {
-    public GameObject angyDetector;
+    public GameObject enemy;
     
     void Start()
     {
@@ -20,7 +20,8 @@ public class AngyDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            angyDetector.SetActive(false);  
+            enemy.GetComponent<EnemyAI>().angy = true;
+            print(enemy.GetComponent<EnemyAI>().angy);
         }
     }
 }
