@@ -13354,6 +13354,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 0
   healsLeft: 0
+  isTut: 0
   respawnCooldown: 0
   hasCleared: 0101
 --- !u!4 &97914785
@@ -19517,6 +19518,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1002470893}
+    - target: {fileID: 8612752022033232800, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 170474933}
     - target: {fileID: 8753556001257868423, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -19993,6 +19998,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1002470893}
+    - target: {fileID: 8612752022033232800, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1606827026}
     - target: {fileID: 8753556001257868423, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -20238,6 +20247,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 1002470893}
+    - target: {fileID: 8612752022033232800, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 1372963290}
     - target: {fileID: 8753556001257868423, guid: 5636def521c304f4f9bfa952e588399f, type: 3}
       propertyPath: m_RootOrder
       value: 1

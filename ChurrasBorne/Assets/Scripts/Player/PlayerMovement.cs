@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
-                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
                 {
                     healingAnimCd = 1f;
                     state = State.Healing;
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
                     attackAnimCd = 0.6f;
                     attackPressed = true;
                 }
-                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
                 {
                     healingAnimCd = 1f;
                     healingPressed = true;
@@ -159,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
                     attackAnimCd = 0.6f;
                     attackPressed = true;
                 }
-                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft > 0)
+                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
                 {
                     healingAnimCd = 1f;
                     healingPressed = true;
@@ -187,6 +187,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Dead:
+                anim.SetFloat("moveX", 0);
+                anim.SetFloat("moveY", 0);
                 break;
         }
     }
