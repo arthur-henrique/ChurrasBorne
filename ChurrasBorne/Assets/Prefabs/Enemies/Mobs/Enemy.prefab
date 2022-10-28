@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.106790066, y: 0.018845558}
   serializedVersion: 2
-  m_Radius: 4.5
+  m_Radius: 8
 --- !u!114 &8612752022033232800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,6 +62,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   angyDetector: {fileID: 863171584477415739}
+  angyDistance: 4
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
 --- !u!1 &3671831932537637786
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,11 +223,11 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   agroDistance: 30
   stopDistance: 2
-  speed: 2
-  angySpeed: 7
+  speed: 5
+  angySpeed: 15
   attackDistance: 2
   startTimeBTWAttacks: 2
-  startStunTime: 0.3
+  startStunTime: 0.5
   bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
   maxHealth: 100
@@ -233,6 +235,7 @@ MonoBehaviour:
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   isDead: 0
   hasDeathEvents: 0
+  isOnFaseUm: 0
   angy: 0
   angyDetector: {fileID: 863171584477415739}
 --- !u!114 &-9148983123163820449

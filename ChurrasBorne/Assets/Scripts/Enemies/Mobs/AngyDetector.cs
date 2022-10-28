@@ -7,17 +7,25 @@ public class AngyDetector : MonoBehaviour
     public GameObject enemy;
     
     public GameObject angyDetector;
-    
+
+    public float angyDistance;
+
+    public Transform player;
+
+    private bool canBeAngy = false;
+
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        if (angyDetector.activeSelf == false)
+        if (Vector2.Distance(transform.position, player.position) > angyDistance && canBeAngy == true)
         {
-            enemy.GetComponent<EnemyAI>().angy = false;
+            enemy.GetComponent<EnemyAI>().angy = true;
+
+            GameObject.Destroy(angyDetector);
         }
     }
 
@@ -25,9 +33,7 @@ public class AngyDetector : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            enemy.GetComponent<EnemyAI>().angy = true;
-
-            angyDetector.SetActive(false);
+            canBeAngy = true;
         }
     }
 }

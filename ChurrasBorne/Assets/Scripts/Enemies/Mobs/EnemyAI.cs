@@ -52,6 +52,7 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
             animator.SetBool("Walking", true);
+            animator.SetBool("Running", false);
             animator.SetBool("Idle", false);
         }
         else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == false)
@@ -73,7 +74,7 @@ public class EnemyAI : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, angySpeed * Time.deltaTime);
 
             animator.SetBool("Walking", false);
-            animator.SetBool("AngyWalking", true);
+            animator.SetBool("Running", true);
             animator.SetBool("Idle", false);
         }
         else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == true)
@@ -81,13 +82,11 @@ public class EnemyAI : MonoBehaviour
             transform.position = this.transform.position;
 
             animator.SetBool("Walking", false);
-            animator.SetBool("Idle", false);
             animator.SetBool("Idle", true);
         }
         else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == true)
         {
             animator.SetBool("Walking", false);
-            animator.SetBool("Idle", false);
             animator.SetBool("Idle", true);
         }
 
