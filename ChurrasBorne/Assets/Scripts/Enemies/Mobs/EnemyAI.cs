@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     public Animator playerAnimator;
     public bool isDead = false;
     public bool hasDeathEvents = false;
+    public bool isOnFaseUm;
 
     private bool stunned = false;
     
@@ -210,6 +211,10 @@ public class EnemyAI : MonoBehaviour
         {
             //gameObject.GetComponent<OnDeath>().DoOnDeath();
             TriggerEventManager.instance.SpawnMobs();
+        }
+        if (isOnFaseUm)
+        {
+            EnemyControl.Instance.KilledEnemy(gameObject);
         }
         this.enabled = false;
     }

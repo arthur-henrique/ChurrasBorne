@@ -131,9 +131,10 @@ public class GameManager : MonoBehaviour
         damageCDCounter = rollDmgCd;
         canTakeDamage = false;
     }
-    public void SetHeals(float heals, bool isTutorial)
+    public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
         playerAnimator.SetFloat("numberOfMeat", heals);
+        playerAnimator.SetBool("isHoldingSword", isHoldingSword);
         healsLeft = heals;
         isTut = isTutorial;
     }
