@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908582621145875556}
   - component: {fileID: 4908582621145875557}
+  - component: {fileID: 1893306294122516671}
   m_Layer: 0
   m_Name: P. Esquerdo
   m_TagString: Untagged
@@ -163,6 +164,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1893306294122516671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908582621145875579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: -1
 --- !u!1 &4908582621852912741
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908582621852912742}
   - component: {fileID: 4908582621852912743}
+  - component: {fileID: 6397756571573037015}
   m_Layer: 0
   m_Name: P. Direito
   m_TagString: Untagged
@@ -245,6 +261,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6397756571573037015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908582621852912741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: -1
 --- !u!1 &4908582622063162245
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908582622063162246}
   - component: {fileID: 4908582622063162247}
+  - component: {fileID: 456914862324580948}
   m_Layer: 0
   m_Name: P. Direito
   m_TagString: Untagged
@@ -327,6 +358,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &456914862324580948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908582622063162245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 0
 --- !u!1 &4908582622127659270
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4908582622213996504}
   - component: {fileID: 4908582622213996505}
+  - component: {fileID: 2090052714800987776}
   m_Layer: 0
   m_Name: P. Esquerdo
   m_TagString: Untagged
@@ -441,6 +487,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2090052714800987776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908582622213996511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 0
 --- !u!1 &4908582622797399392
 GameObject:
   m_ObjectHideFlags: 0
