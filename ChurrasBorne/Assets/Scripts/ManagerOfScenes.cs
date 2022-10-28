@@ -6,13 +6,13 @@ public class ManagerOfScenes : MonoBehaviour
 {
     private void Start()
     {
-        if (gameObject.tag == "Tutorial")
+        if (gameObject.CompareTag("Tutorial"))
         {
-            GameManager.instance.SetHeals(-1f, true);
+            GameManager.instance.SetHeals(-1f, true, false);
         }
-        else if (gameObject.tag == "Untagged")
+        else if (gameObject.CompareTag("Untagged"))
         {
-            GameManager.instance.SetHeals(3f, false);
+            GameManager.instance.SetHeals(3f, false, true);
         }
     }
 
@@ -20,7 +20,7 @@ public class ManagerOfScenes : MonoBehaviour
     {
         if (!GameManager.instance.GetAlive())
         {
-            if (gameObject.tag == "Tutorial")
+            if (gameObject.CompareTag("Tutorial"))
             {
                 // Passa a animação de morte
                 // Começa a Transição de tela escura

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int maxHealth, currentHealth;
     private float damageCDCounter, damagetime;
     private const float DamageCD = .5f;
-    private float rollDmgCd = 0.3f;
+    private readonly float rollDmgCd = 0.3f;
     public float healsLeft;
     public bool isTut;
     public float respawnCooldown;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
         }
     }
 
@@ -112,9 +112,8 @@ public class GameManager : MonoBehaviour
     {
         if (isAlive)
         {
-            //playerAnimator.SetTrigger("Healed");
             currentHealth += healValue;
-            if (currentHealth >= maxHealth)
+            if (currentHealth > maxHealth)
                 currentHealth = maxHealth;
             healsLeft--;
             if (isTut && healsLeft < -1)
@@ -122,7 +121,7 @@ public class GameManager : MonoBehaviour
             else if (!isTut && healsLeft < 0)
                 healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
-
+            print(playerAnimator.GetFloat("numberOfMeat"));
             SetHealth(currentHealth);
         }
     }
@@ -132,9 +131,10 @@ public class GameManager : MonoBehaviour
         damageCDCounter = rollDmgCd;
         canTakeDamage = false;
     }
-    public void SetHeals(float heals, bool isTutorial)
+    public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
         playerAnimator.SetFloat("numberOfMeat", heals);
+        playerAnimator.SetBool("isHoldingSword", isHoldingSword);
         healsLeft = heals;
         isTut = isTutorial;
     }

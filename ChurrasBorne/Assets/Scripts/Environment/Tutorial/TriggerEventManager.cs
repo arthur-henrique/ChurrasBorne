@@ -10,7 +10,11 @@ public class TriggerEventManager : MonoBehaviour
     [SerializeField] private UnityEvent openMobGate;
     // Cuida do primeiro evento do Tutorial: Abrir a porta após os mobs:
     public GameObject rangedMobOne, rangedMobTwo;
-    private bool rangedMobOneIsDead = false, rangedMobTwoIsDead = false, mobGateIsClosed = true;
+    private bool rangedMobOneIsDead = false,
+        rangedMobTwoIsDead = false,
+        mobGateIsClosed = true;
+
+    // Cuida do primeiro evento da Fase Um: Liberar a passagem do tronco:
 
     private void Awake()
     {
@@ -28,10 +32,6 @@ public class TriggerEventManager : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-    }
-
     public void SpawnMobs()
     {
         spawnMobs.Invoke();
@@ -39,7 +39,6 @@ public class TriggerEventManager : MonoBehaviour
 
     public void OpenMobGate()
     {
-        print("Abrete");
         openMobGate.Invoke();
     }
 
