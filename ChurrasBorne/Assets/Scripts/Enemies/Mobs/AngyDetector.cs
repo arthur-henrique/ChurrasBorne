@@ -6,6 +6,8 @@ public class AngyDetector : MonoBehaviour
 {
     public GameObject enemy;
     
+    public GameObject angyDetector;
+    
     void Start()
     {
         
@@ -13,7 +15,10 @@ public class AngyDetector : MonoBehaviour
 
     void Update()
     {
-        
+        if (angyDetector.activeSelf == false)
+        {
+            enemy.GetComponent<EnemyAI>().angy = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -21,7 +26,8 @@ public class AngyDetector : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             enemy.GetComponent<EnemyAI>().angy = true;
-            print(enemy.GetComponent<EnemyAI>().angy);
+
+            angyDetector.SetActive(false);
         }
     }
 }

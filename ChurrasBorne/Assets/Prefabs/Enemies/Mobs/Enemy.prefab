@@ -60,8 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcbdfa4e20dddc0448d82d0e421e880f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angyDetector: {fileID: 863171584477415739}
   enemy: {fileID: 0}
+  angyDetector: {fileID: 863171584477415739}
 --- !u!1 &3671831932537637786
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   agroDistance: 30
   stopDistance: 2
-  speed: 1
-  angySpeed: 30
+  speed: 2
+  angySpeed: 7
   attackDistance: 2
   startTimeBTWAttacks: 2
   startStunTime: 0.3

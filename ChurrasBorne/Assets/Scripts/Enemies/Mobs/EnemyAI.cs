@@ -81,13 +81,13 @@ public class EnemyAI : MonoBehaviour
 
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", false);
-            animator.SetBool("AngyIdle", true);
+            animator.SetBool("Idle", true);
         }
         else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == true)
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", false);
-            animator.SetBool("AngyIdle", true);
+            animator.SetBool("Idle", true);
         }
 
         //FLIP
@@ -119,11 +119,11 @@ public class EnemyAI : MonoBehaviour
         {
             GameManager.instance.TakeDamage(10);
 
-            animator.SetTrigger("Attack");
+            angy = false;
+
+            animator.SetTrigger("Punch");
 
             timeBTWAttacks = startTimeBTWAttacks;
-
-            angy = false;
         }
         else
         {
