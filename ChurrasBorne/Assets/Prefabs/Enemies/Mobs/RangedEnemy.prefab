@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3191120739224459224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3044769443708321145}
+  - component: {fileID: 7170723733426877302}
+  m_Layer: 8
+  m_Name: ProjectileInstantiator
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3044769443708321145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191120739224459224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3349108995056041357}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7170723733426877302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191120739224459224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42b7acce5723a4188be65ad2d9b445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canShoot: 0
+  projectile: {fileID: 3958311754951014021, guid: 4a580c97b33632b4ab345582abfed78e, type: 3}
+  startTimeBTWAttacks: 2
 --- !u!1 &6350248437054539928
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,9 +74,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350248437054539928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.125713, y: 24.172445, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3044769443708321145}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,15 +170,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb679c503a4f0642a1276f152be120b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools:
-  - tag: Minor
-    prefab: {fileID: 5514345918442372780, guid: 7e827d6d9a883ba4b93d15cf09c364d4, type: 3}
-    size: 5
-  player: {fileID: 0}
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  instantiator: {fileID: 3191120739224459224}
   agroDistance: 20
-  startTimeBTWAttacks: 2
-  maxHealth: 100
+  startStunTime: 0.5
+  maxHealth: 20
   animator: {fileID: 6108812726486386711}
+  playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  isDead: 0
+  hasDeathEvents: 0
+  isOnFaseUm: 0
 --- !u!95 &6108812726486386711
 Animator:
   serializedVersion: 3

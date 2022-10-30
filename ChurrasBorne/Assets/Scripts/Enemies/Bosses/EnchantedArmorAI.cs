@@ -18,6 +18,8 @@ public class EnchantedArmorAI : MonoBehaviour
     public Animator animator;
 
     public Animator playerAnimator;
+    public bool isDead = false;
+    public bool isOnFaseUm;
 
     public GameObject zoneAttack;
 
@@ -131,11 +133,11 @@ public class EnchantedArmorAI : MonoBehaviour
         {
             if (!playerAnimator.GetBool("isHoldingSword"))
             {
-                TakeDamage(5);
+                TakeDamage(15);
             }
             else
             {
-                TakeDamage(10);
+                TakeDamage(34);
             }
         }
 
@@ -143,11 +145,14 @@ public class EnchantedArmorAI : MonoBehaviour
         //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
     }
 
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         animator.SetTrigger("Hit");
+
+        //stunned = true;
 
         if (currentHealth <= 0)
         {
@@ -156,10 +161,16 @@ public class EnchantedArmorAI : MonoBehaviour
     }
     void Die()
     {
+        isDead = true;
         animator.SetBool("Walking", false);
         animator.SetBool("Idle", false);
-        animator.SetBool("Dead", true);
+        animator.SetBool("Pheesh", true);
         GetComponent<Collider2D>().enabled = false;
+
+        if (isOnFaseUm)
+        {
+            EnemyControl.Instance.KilledEnemy(gameObject);
+        }
         this.enabled = false;
     }
 }
