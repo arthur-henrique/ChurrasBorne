@@ -97,6 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: -3
+  runOnlyOnce: 1
 --- !u!1 &7790717044166218997
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: -12
+  runOnlyOnce: 1
 --- !u!1 &7790717044200858786
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: 0
+  runOnlyOnce: 1
 --- !u!70 &7790717044200858799
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -392,7 +395,7 @@ MonoBehaviour:
   - {x: -2, y: 2, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 73034
+  m_InstanceId: 233186
 --- !u!1 &7790717044292768257
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,6 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: -3
+  runOnlyOnce: 1
 --- !u!114 &7790717044292768267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,4 +574,4 @@ MonoBehaviour:
   - {x: -1.4527359, y: -1.6038618, z: 0}
   m_ShapePathHash: -1695693941
   m_Mesh: {fileID: 0}
-  m_InstanceId: 73044
+  m_InstanceId: 233196
