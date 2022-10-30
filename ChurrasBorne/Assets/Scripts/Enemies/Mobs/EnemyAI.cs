@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
 
     public Animator playerAnimator;
-    public bool isOnFaseUm;
+    public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf;
 
     private bool stunned = false;
     
@@ -203,7 +203,10 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("Idle", false);
         animator.SetBool("Pheesh", true);
         GetComponent<Collider2D>().enabled = false;
-
+        if (isOnTutorial)
+        {
+            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+        }
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
