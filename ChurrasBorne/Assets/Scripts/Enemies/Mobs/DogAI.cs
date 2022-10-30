@@ -2,29 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinotaurAI : MonoBehaviour
+public class DogAI : MonoBehaviour
 {
     public Transform player;
 
-    public float agroDistance, stopDistance, speed, attackDistance, dashDistance, startDashTime, dashSpeed, startTimeBTWAttacks;
-    private float timeBTWAttacks, dashTime;
+    public float agroDistance, stopDistance, speed, attackDistance, startTimeBTWAttacks, startStunTime;
+    private float timeBTWAttacks, stunTime, delay = 2f;
 
     public Collider2D bodyCollider;
     public Rigidbody2D rb;
 
-    public int maxHealth;
+    public int maxHealth, bites = 2;
     int currentHealth;
 
     public Animator animator;
 
-    private int direction;
+    public Animator playerAnimator;
+    public bool isOnFaseUm;
+
+    private bool stunned = false;
 
     void Start()
     {
-        //Para MELEE
+        //Para MELEE, STUN
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBTWAttacks = startTimeBTWAttacks;
+
+        stunTime = startStunTime;
 
         //Para HEALTH
         currentHealth = maxHealth;
@@ -33,6 +38,7 @@ public class MinotaurAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         //MOVEMENT
@@ -45,6 +51,7 @@ public class MinotaurAI : MonoBehaviour
             transform.position = this.transform.position;
         }
 
+        //FLIP
         if (player.transform.position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -54,11 +61,9 @@ public class MinotaurAI : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-
-        //MELEE
-        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0)
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive())
         {
-            GameManager.instance.TakeDamage(5);
+            StartCoroutine(Bite());
             timeBTWAttacks = startTimeBTWAttacks;
         }
         else
@@ -66,49 +71,34 @@ public class MinotaurAI : MonoBehaviour
             timeBTWAttacks -= Time.deltaTime;
         }
 
-        if (Vector2.Distance(transform.position, player.position) > dashDistance)
+        //MELEE
+        IEnumerator Bite()
         {
-            if (direction == 0)
+            for (int i = 0; i < bites; i++)
             {
-                if (player.transform.position.x < transform.position.x)
-                {
-                    direction = 1;
-                }
-                else if (player.transform.position.x > transform.position.x)
-                {
-                    direction = 2;
-                }
+                GameManager.instance.TakeDamage(5, .5f);
+                yield return new WaitForSeconds(delay);
+            }
+        }
+
+        //STUN
+        if (stunned == true)
+        {
+            if (stunTime <= 0)
+            {
+                stunned = false;
+
+                stunTime = startStunTime;
             }
             else
             {
-                if (dashTime <= 0)
-                {
-                    direction = 0;
-                    dashTime = startDashTime;
-                    rb.velocity = Vector2.zero;
-                    rb.angularVelocity = 0;
-                }
-                else
-                {
-                    dashTime -= Time.deltaTime;
-
-                    animator.SetTrigger("Melee");
-
-                    if (direction == 1)
-                    {
-                        rb.velocity = Vector2.left * dashSpeed;
-                    }
-                    else if (direction == 2)
-                    {
-                        rb.velocity = Vector2.right * dashSpeed;
-                    }
-                }
+                stunTime -= Time.deltaTime;
             }
         }
     }
 
 
-    //ON CONTACT
+    //ON CONTACT    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -126,11 +116,33 @@ public class MinotaurAI : MonoBehaviour
         }
     }
 
-
     //HEALTH
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackHit"))
+        {
+            if (!playerAnimator.GetBool("isHoldingSword"))
+            {
+                TakeDamage(15);
+            }
+            else
+            {
+                TakeDamage(34);
+            }
+        }
+
+        //Vector2 difference = transform.position - collision.transform.position;
+        //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
+    }
+
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        animator.SetTrigger("Hit");
+
+        stunned = true;
 
         if (currentHealth <= 0)
         {
@@ -139,7 +151,15 @@ public class MinotaurAI : MonoBehaviour
     }
     void Die()
     {
+        animator.SetBool("Walking", false);
+        animator.SetBool("Idle", false);
+        animator.SetBool("Pheesh", true);
         GetComponent<Collider2D>().enabled = false;
+
+        if (isOnFaseUm)
+        {
+            EnemyControl.Instance.KilledEnemy(gameObject);
+        }
         this.enabled = false;
     }
 }

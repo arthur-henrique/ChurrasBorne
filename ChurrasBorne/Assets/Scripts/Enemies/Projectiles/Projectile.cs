@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviour
 
     public Animator animator;
 
+    public Animator playerAnimator;
+
 
     void Start()
     {
@@ -44,9 +46,9 @@ public class Projectile : MonoBehaviour
     }
 
     
-    //DAMAGE
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //DAMAGE
         if (collision.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
@@ -56,21 +58,32 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //HEALTH
+        if (collision.CompareTag("AttackHit"))
+        {
+            if (!playerAnimator.GetBool("isHoldingSword"))
+            {
+                TakeDamage(10);
+            }
+            else
+            {
+                TakeDamage(1);
+            }
+        }
+
+        //Vector2 difference = transform.position - collision.transform.position;
+        //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
     }
 
-    //HEALTH
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
-            Die();
+            Destroy(gameObject);
         }
-    }
-    void Die()
-    {
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
     }
 }

@@ -6,23 +6,27 @@ public class RangedEnemyAI : MonoBehaviour
 {
     public Transform player;
 
-    public GameObject projectile;
+    public GameObject instantiator;
 
-    public float agroDistance, startTimeBTWAttacks;
-    private float timeBTWAttacks;
+    public float agroDistance, startStunTime;
+    private float stunTime;
 
     public int maxHealth;
     int currentHealth;
 
     public Animator animator;
-    public bool isDead = false;
+
+    public Animator playerAnimator;
+    public bool isOnFaseUm;
+
+    private bool stunned = false;
 
     void Start()
     {
-        //Para RANGED
+        //Para RANGED, STUN
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        timeBTWAttacks = startTimeBTWAttacks;
+        stunTime = startStunTime;
 
         //Para HEALTH
         currentHealth = maxHealth;
@@ -31,31 +35,65 @@ public class RangedEnemyAI : MonoBehaviour
     void Update()
     {
         //RANGED
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive())
+        if (Vector2.Distance(transform.position, player.position) < agroDistance && stunned == false)
         {
-            Instantiate(projectile);
-            timeBTWAttacks = startTimeBTWAttacks;
+            instantiator.GetComponent<REInstantiator>().canShoot = true;
         }
         else
         {
-            timeBTWAttacks -= Time.deltaTime;
+            instantiator.GetComponent<REInstantiator>().canShoot = false;
+        }
+
+        //STUN
+        if (stunned == true)
+        {
+            if (stunTime <= 0)
+            {
+                stunned = false;
+
+                stunTime = startStunTime;
+            }
+            else
+            {
+                stunTime -= Time.deltaTime;
+            }
         }
     }
 
-    
-    //MELEE ON CONTACT
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        //MELEE ON CONTACT
+        if (collision.gameObject.CompareTag("Player") && stunned == false)
         {
             GameManager.instance.TakeDamage(5);
         }
+
+        //HEALTH
+        if (collision.CompareTag("AttackHit"))
+        {
+            if (!playerAnimator.GetBool("isHoldingSword"))
+            {
+                TakeDamage(15);
+            }
+            else
+            {
+                TakeDamage(34);
+            }
+        }
+
+        //Vector2 difference = transform.position - collision.transform.position;
+        //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
     }
 
-    //HEALTH
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        animator.SetTrigger("Hit");
+
+        stunned = true;
 
         if (currentHealth <= 0)
         {
@@ -64,8 +102,15 @@ public class RangedEnemyAI : MonoBehaviour
     }
     void Die()
     {
-        isDead = true;
+        animator.SetBool("Walking", false);
+        animator.SetBool("Idle", false);
+        animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
+
+        if (isOnFaseUm)
+        {
+            EnemyControl.Instance.KilledEnemy(gameObject);
+        }
         this.enabled = false;
     }
 }

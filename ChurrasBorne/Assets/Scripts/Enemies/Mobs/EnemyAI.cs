@@ -18,8 +18,6 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
 
     public Animator playerAnimator;
-    public bool isDead = false;
-    public bool hasDeathEvents = false;
     public bool isOnFaseUm;
 
     private bool stunned = false;
@@ -187,30 +185,25 @@ public class EnemyAI : MonoBehaviour
 
 
     public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
+    {        
+           currentHealth -= damage;
 
-        animator.SetTrigger("Hit");
+           animator.SetTrigger("Hit");
 
-        stunned = true;
+           stunned = true;
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+           if (currentHealth <= 0)
+           {
+               Die();
+           }
     }
     void Die()
     {
-        isDead = true;
         animator.SetBool("Walking", false);
         animator.SetBool("Idle", false);
-        animator.SetBool("Dead", true);
+        animator.SetBool("Pheesh", true);
         GetComponent<Collider2D>().enabled = false;
-        if (hasDeathEvents)
-        {
-            //gameObject.GetComponent<OnDeath>().DoOnDeath();
-            TriggerEventManager.instance.SpawnMobs();
-        }
+
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
