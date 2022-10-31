@@ -13,8 +13,8 @@ public class BossGate : MonoBehaviour
         if(isTutorial)
         {
             TutorialTriggerController.Instance.SecondGateTrigger();
-            boss.SetActive(true);
             gameObject.SetActive(false);
+            boss.SetActive(true);
         }
         if(isFaseUm)
         {

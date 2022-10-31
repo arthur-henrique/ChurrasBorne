@@ -101,7 +101,7 @@ public class EnemyAI : MonoBehaviour
         //MELEE
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == false)
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(3);
 
             animator.SetTrigger("Attack");
 
@@ -115,7 +115,7 @@ public class EnemyAI : MonoBehaviour
         //ANGY PUNCH
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == true)
         {
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(5);
 
             angy = false;
 
