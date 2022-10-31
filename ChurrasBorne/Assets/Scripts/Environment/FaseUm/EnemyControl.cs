@@ -11,19 +11,41 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> firstRound = new List<GameObject>();
     private readonly List<GameObject> secondRound = new List<GameObject>();
     private readonly List<GameObject> finalRound = new List<GameObject>();
-    public GameObject tronco;
+    public GameObject tronco, troncosHalf;
+    private bool clearedUm, clearedHalf;
     private void Awake()
     {
         Instance = this;
     }
     void Start()
     {
+        clearedUm = GameManager.instance.GetHasCleared(0);
+        clearedHalf = GameManager.instance.GetHasCleared(1);
+
         firstMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALAUMMOB"));
         secondMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALAUMMOBDOIS"));
         thirdMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALADOISMOB"));
         firstRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_FIRSTROUND"));
         secondRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SECONDROUND"));
         finalRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_FINALROUND"));
+        if (clearedUm && !clearedHalf)
+        {
+            print("MobsHalf");
+            for (int i = 0; i < firstMob.Count; i++)
+            {
+                firstMob[i].SetActive(false);
+            }
+            //firstMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALAUMMOB"));
+            //secondMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALAUMMOBDOIS"));
+            //thirdMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALADOISMOB"));
+            //firstRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FIRSTROUND"));
+            //secondRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SECONDROUND"));
+            //finalRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FINALROUND"));
+            for (int i = 0; i < firstMob.Count; i++)
+            {
+                firstMob[i].SetActive(true);
+            }
+        }
         for (int i = 0; i < secondMob.Count; i++)
         {
             secondMob[i].SetActive(false);
@@ -131,6 +153,11 @@ public class EnemyControl : MonoBehaviour
         if(secondMob.Count <= 0)
         {
             tronco.SetActive(false);
+            if(clearedUm)
+            {
+                troncosHalf.SetActive(true);
+                // Abre o portão do jardim
+            }
             SpawnThirdMob();
         }
     }
@@ -139,14 +166,26 @@ public class EnemyControl : MonoBehaviour
     {
         if (thirdMob.Count <= 0)
         {
-            FaseUmTriggerController.Instance.FirstGateTrigger();
+            if(!clearedUm)
+            {
+                FaseUmTriggerController.Instance.FirstGateTrigger();
+            }
+            if (clearedUm)
+                BeginArena();
         }
     }
     public void IsFirstRoundCleared()
     {
         if (firstRound.Count <= 0)
         {
-            BeginSecondRound();
+            if (!clearedUm)
+            {
+                BeginSecondRound();
+            }
+            if(clearedUm)
+            {
+                // Opens checkpoint Gate
+            }
         }
     }
     public void IsSecondRoundCleared()

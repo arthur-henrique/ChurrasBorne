@@ -169,7 +169,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(collision.CompareTag("AttackHit"))
         {
-            if(!playerAnimator.GetBool("isHoldingSword"))
+            if(isOnTutorial)
             {
                 TakeDamage(15);
             }
