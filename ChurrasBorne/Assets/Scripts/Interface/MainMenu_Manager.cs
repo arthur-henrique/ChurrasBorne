@@ -219,9 +219,92 @@ public class MainMenu_Manager : MonoBehaviour
 
         if (pc.Movimento.NorteSul.WasPressedThisFrame())
         {
-            menu_position -= (int) pc.Movimento.NorteSul.ReadValue<float>();
-            if (menu_position > 2) { menu_position = 0; }
-            if (menu_position < 0) { menu_position = 2; }
+            if (menu_submenu == true)
+            {
+                menu_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
+                if (menu_position > 5) { menu_position = 0; }
+                if (menu_position < 0) { menu_position = 5; }
+            } else
+            {
+                menu_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
+                if (menu_position > 2) { menu_position = 0; }
+                if (menu_position < 0) { menu_position = 2; }
+            }
+            
+        }
+
+        if (pc.Movimento.LesteOeste.WasPressedThisFrame())
+        {
+            if (menu_submenu == true)
+            {
+                float x = pc.Movimento.LesteOeste.ReadValue<float>();
+                switch (menu_position)
+                {
+                    case 0:
+
+                        if (x > 0)
+                        {
+                            restable_opt++;
+                        } else if (x < 0)
+                        {
+                            restable_opt--;
+                        }
+                        
+                        break;
+
+                    case 1:
+
+                        if (x > 0)
+                        {
+                            fs_mode_opt++;
+                        }
+                        else if (x < 0)
+                        {
+                            fs_mode_opt--;
+                        }
+                        break;
+
+                    case 2:
+
+                        if (x > 0)
+                        {
+                            menu_vol_master_slider.GetComponent<Slider>().value = menu_vol_master_slider.GetComponent<Slider>().value + 0.1f;
+                        }
+                        else if (x < 0)
+                        {
+                            menu_vol_master_slider.GetComponent<Slider>().value = menu_vol_master_slider.GetComponent<Slider>().value - 0.1f;
+                        }
+                        
+                        break;
+
+                    case 3:
+
+                        if (x > 0)
+                        {
+                            menu_vol_bgm_slider.GetComponent<Slider>().value = menu_vol_bgm_slider.GetComponent<Slider>().value + 0.1f;
+                        }
+                        else if (x < 0)
+                        {
+                            menu_vol_bgm_slider.GetComponent<Slider>().value = menu_vol_bgm_slider.GetComponent<Slider>().value - 0.1f;
+                        }
+
+                        break;
+
+                    case 4:
+
+                        if (x > 0)
+                        {
+                            menu_vol_sfx_slider.GetComponent<Slider>().value = menu_vol_sfx_slider.GetComponent<Slider>().value + 0.1f;
+                        }
+                        else if (x < 0)
+                        {
+                            menu_vol_sfx_slider.GetComponent<Slider>().value = menu_vol_sfx_slider.GetComponent<Slider>().value - 0.1f;
+                        }
+
+                        break;
+                }
+            }
+
         }
 
         if (pc.Movimento.Attack.WasPressedThisFrame())

@@ -153,6 +153,10 @@ public class GameManager : MonoBehaviour
     {
         slider.value = health;
     }
+    public float GetHealth()
+    {
+        return currentHealth;
+    }
 
     private void OnLevelWasLoaded(int level)
     {

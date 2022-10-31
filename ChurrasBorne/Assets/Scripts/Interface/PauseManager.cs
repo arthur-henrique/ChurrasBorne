@@ -109,6 +109,18 @@ public class PauseManager : MonoBehaviour
 
         if (isPaused)
         {
+            if (pc.Movimento.NorteSul.WasPressedThisFrame())
+            {
+                selection_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
+                if (selection_position > 2) { selection_position = 0; }
+                if (selection_position < 0) { selection_position = 2; }
+            }
+
+            if (pc.Movimento.Attack.WasPressedThisFrame())
+            {
+                selection_confirm = true;
+            }
+
             //StopCoroutine(cr_pause_drop_sh);
             pause_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(pause_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, ypos, 0), ref velocity_drop_shadow, 5 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
