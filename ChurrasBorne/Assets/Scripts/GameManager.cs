@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public float respawnCooldown;
     private bool canTakeDamage, isAlive, hasJustDied;
 
-    public bool[] hasCleared;
+    public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half;
     private GameObject[] gameManagers; 
     private void Awake()
     {
@@ -112,9 +112,12 @@ public class GameManager : MonoBehaviour
     {
         if (isAlive)
         {
-            currentHealth += healValue;
-            if (currentHealth > maxHealth)
-                currentHealth = maxHealth;
+            if(healsLeft > 0)
+            {
+                currentHealth += healValue;
+                if (currentHealth > maxHealth)
+                    currentHealth = maxHealth;
+            }
             healsLeft--;
             if (isTut && healsLeft < -1)
                 healsLeft = -1;
@@ -178,30 +181,11 @@ public class GameManager : MonoBehaviour
     {
         return isAlive;
     }
-    //void IsDead()
-    //{
-    //    isAlive = false;
-    //    Destroy(player.GetComponent<PlayerMovement>());
-    //    player.GetComponent<PlayerMelee>().enabled = false;
-    //    player.GetComponent<PlayerRanged>().enabled = false;
-    //    playerAnimator.SetBool("IsDead", true);
-    //}
-
-    //IEnumerator PlayerRespawn()
-    //{
-    //    yield return new WaitForSeconds(respawnCooldown);
-    //    player.transform.position = spawnPoint.transform.position;
-    //    currentHealth = maxHealth;
-    //    healthBar.SetHealth(currentHealth);
-    //    player.SetActive(true);
-    //}
-
-    //IEnumerator GameOverRoutine()
-    //{
-    //    IsDead();
-    //    yield return new WaitForSeconds(respawnCooldown);
-    //    gameOverS.Setup();
-    //}
+    
+    public bool GetHasCleared(int fase)
+    {
+        return hasCleared[fase];
+    }
 
 
     public void SwitchToDeathCam()
