@@ -5,39 +5,61 @@ using UnityEngine;
 public class FaseUmTriggerController : MonoBehaviour
 {
     public static FaseUmTriggerController Instance;
-    public GameObject[] firstGateIn;
-    public GameObject[] secondGateIn;
-    public GameObject[] firstGateOut;
+    public GameObject[] upPathFirstGateIn;
+    public GameObject[] upPathSecondGateIn;
+    public GameObject[] upPathFirstGateOut;
+    public GameObject[] sidePathFirstGateIn;
+    public GameObject[] sidePathSecondGateIn;
 
     private void Awake()
     {
         Instance = this;
     }
+
+    // UpPathGates
     public void FirstGateTrigger()
     {
-        for (int i = 0; i < firstGateIn.Length; i++)
+        for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
-            firstGateIn[i].SetActive(!firstGateIn[i].activeSelf);
+            upPathFirstGateIn[i].SetActive(!upPathFirstGateIn[i].activeSelf);
         }
     }
 
     public void FirstGateOut()
     {
-        for (int i = 0; i < firstGateIn.Length; i++)
+        for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
-            firstGateIn[i].SetActive(!firstGateIn[i].activeSelf);
+            upPathFirstGateIn[i].SetActive(!upPathFirstGateIn[i].activeSelf);
         }
-        for (int i = 0; i < firstGateOut.Length; i++)
+        for (int i = 0; i < upPathFirstGateOut.Length; i++)
         {
-            firstGateOut[i].SetActive(!firstGateOut[i].activeSelf);
+            upPathFirstGateOut[i].SetActive(!upPathFirstGateOut[i].activeSelf);
         }
     }
 
     public void SecondGateTrigger()
     {
-        for (int i = 0; i < secondGateIn.Length; i++)
+        for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
-            secondGateIn[i].SetActive(!secondGateIn[i].activeSelf);
+            upPathSecondGateIn[i].SetActive(!upPathSecondGateIn[i].activeSelf);
         }
     }
+
+    // SidePathGates
+    public void SideFirstGateTrigger()
+    {
+        for (int i = 0; i < sidePathFirstGateIn.Length; i++)
+        {
+            sidePathFirstGateIn[i].SetActive(!sidePathFirstGateIn[i].activeSelf);
+        }
+    }
+
+    public void SideSecondGateTrigger()
+    {
+        for (int i = 0; i < sidePathSecondGateIn.Length; i++)
+        {
+            sidePathSecondGateIn[i].SetActive(!sidePathSecondGateIn[i].activeSelf);
+        }
+    }
+
 }

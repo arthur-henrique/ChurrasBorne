@@ -328,7 +328,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""f633cbdf-a6a0-42fc-b9c9-e6d505d3a3e0"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

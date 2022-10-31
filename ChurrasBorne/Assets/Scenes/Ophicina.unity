@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 173790695}
   - component: {fileID: 173790694}
   - component: {fileID: 173790693}
+  - component: {fileID: 173790692}
   m_Layer: 0
   m_Name: Dog
   m_TagString: Untagged
@@ -512,6 +513,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &173790692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173790691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9794beea25cfe049b84a750b9fb2d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  agroDistance: 0
+  stopDistance: 0
+  speed: 0
+  attackDistance: 0
+  startTimeBTWAttacks: 0
+  startStunTime: 0
+  bodyCollider: {fileID: 0}
+  rb: {fileID: 0}
+  maxHealth: 0
+  bites: 2
+  animator: {fileID: 0}
+  playerAnimator: {fileID: 0}
+  isOnFaseUm: 0
 --- !u!58 &173790693
 CircleCollider2D:
   m_ObjectHideFlags: 0
