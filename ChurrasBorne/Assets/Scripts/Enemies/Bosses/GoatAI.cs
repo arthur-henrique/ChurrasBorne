@@ -20,14 +20,21 @@ public class GoatAI : MonoBehaviour
 
     public Transform player;
 
+    private Vector2 target;
+
     private bool mustStomp, mustDash, mustDashAttack, mustSummonSpikes;
 
     public float walkingSpeed, dashingSpeed;
 
-    public float agroDistance, stompDistance, dashDistance;
+    public float stompDistance, dashDistance, dashATKDistance;
 
-    public float startSpawnTime, startDashTime, startStompTime;
-    private float spawnTime, dashTime, stompTime;
+    public float startSpawnTime, startDashTime, startStompTime, startSummonPrepTime, startSpikeSpawnTime, startStopSummoningTime;
+    private float spawnTime, dashTime, stompTime, summonPrepTime, spikeSpawnTime, stopSummoningTime;
+
+    public List<GameObject> Spikes = new List<GameObject>();
+    int counter = 0;
+    public int spikes = 6;
+    private float delay = 2f;
 
     public int maxHealth;
     int currentHealth;
@@ -36,7 +43,9 @@ public class GoatAI : MonoBehaviour
     public Collider2D col;
     public GameObject goat;
 
-    public static Animator anim;
+    public Animator anim;
+
+    public Animator playerAnim;
 
     private static State state;
 
@@ -53,7 +62,17 @@ public class GoatAI : MonoBehaviour
 
         stompTime = startStompTime;
 
+        spikeSpawnTime = startSpikeSpawnTime; 
+
         currentHealth = maxHealth;
+
+        summonPrepTime = startSummonPrepTime;
+
+        stopSummoningTime = startStopSummoningTime;
+
+        target = player.position;
+
+        new Vector2(player.position.x, player.position.y);
     }
 
     void Update()
@@ -104,11 +123,54 @@ public class GoatAI : MonoBehaviour
                 {
                     GameManager.instance.TakeDamage(20);
 
+                    anim.SetTrigger("Stomp");
+
                     stompTime = startStompTime;
                 }
                 else
                 {
                     stompTime -= Time.deltaTime;    
+                }
+                break;
+            case State.Dashing:
+                transform.position = Vector2.MoveTowards(transform.position, target, dashingSpeed * Time.deltaTime);
+
+                anim.SetBool("Dashing", true);
+
+                if (transform.position.x == target.x && transform.position.y == target.y || Vector2.Distance(transform.position, player.position) <= dashATKDistance) 
+                {
+                    state = State.DashAttack;
+                }
+                break;
+            case State.SummoningSpikes:
+                rb.velocity = Vector2.zero;
+
+                anim.SetTrigger("SummonPrep");
+
+                summonPrepTime -= Time.deltaTime;
+
+                if(summonPrepTime <= 0)
+                {
+                    anim.SetBool("Summoning", true);
+
+                    stopSummoningTime -= Time.deltaTime;
+
+                    if(spikeSpawnTime <= 0)
+                    {
+                        Spikes[counter].SetActive(true);
+                        counter++;
+
+                        spikeSpawnTime = startSpikeSpawnTime;
+                    }
+                    else
+                    {
+                        spikeSpawnTime -= Time.deltaTime;   
+                    }
+
+                    if(stopSummoningTime <= 0)
+                    {
+                        state = State.Chasing;
+                    }
                 }
                 break;
         }

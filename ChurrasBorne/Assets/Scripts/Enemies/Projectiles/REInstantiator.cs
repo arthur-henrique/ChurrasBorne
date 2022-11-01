@@ -20,7 +20,7 @@ public class REInstantiator : MonoBehaviour
     {
         if (canShoot == true && timeBTWAttacks <= 0)
         {
-            Instantiate(projectile);
+            Instantiate(projectile,transform.position,Quaternion.identity);
             timeBTWAttacks = startTimeBTWAttacks;
         }
         else

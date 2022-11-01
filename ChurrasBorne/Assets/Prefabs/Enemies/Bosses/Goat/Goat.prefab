@@ -154,9 +154,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb065329e6f8a114aa3f29f09ac99a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   walkingSpeed: 5
   dashingSpeed: 10
+  stompDistance: 3
+  dashDistance: 20
+  dashATKDistance: 1
   startSpawnTime: 2
+  startDashTime: 5
+  startStompTime: 3
+  startSummonPrepTime: 1
+  startSpikeSpawnTime: 3
+  startStopSummoningTime: 10
+  Spikes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spikes: 6
+  maxHealth: 100
   rb: {fileID: 8446388628132816272}
   col: {fileID: 5743075216512499694}
   goat: {fileID: 6555616963489609874}
+  anim: {fileID: 9160456545418378528}
+  playerAnim: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
