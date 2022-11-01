@@ -104,7 +104,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,14 +213,13 @@ MonoBehaviour:
   startTimeBTWAttacks: 2
   startStunTime: 0.5
   bodyCollider: {fileID: 5054337974537831557}
-  ignoreTrigger: {fileID: 0}
   rb: {fileID: 3635214071342444493}
   maxHealth: 100
   animator: {fileID: 9201290858415813941}
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  isDead: 0
-  hasDeathEvents: 0
+  isOnTutorial: 0
   isOnFaseUm: 0
+  isOnFaseUmHalf: 0
   angy: 0
   angyDetector: {fileID: 863171584477415739}
 --- !u!114 &-9148983123163820449
@@ -237,3 +236,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: 1
+  runOnlyOnce: 0
