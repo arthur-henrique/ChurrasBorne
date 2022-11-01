@@ -16,6 +16,8 @@ public class HealthBar_Manager : MonoBehaviour
     }
     private State state;
 
+    public static HealthBar_Manager instance;
+
     GameObject HP_Base;
     GameObject HP_Meat;
     GameObject HP_OverlayColor;
@@ -39,11 +41,13 @@ public class HealthBar_Manager : MonoBehaviour
     float convertHealth = 0;
 
     float color_time = 0f;
+    public static bool alpha_reduce = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         state = State.HPM6;
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -53,17 +57,26 @@ public class HealthBar_Manager : MonoBehaviour
         HP_OverlayColor = DialogSystem.getChildGameObject(gameObject, "HP_OverlayColor");
         HP_OverlayLines = DialogSystem.getChildGameObject(gameObject, "HP_OverlayLines");
 
-        hp_color_6 = new Color(0.1254902f, 0.7459202f, 0.9058824f);
-        hp_color_5 = new Color(0.1254902f, 0.9058824f, 0.3886421f);
-        hp_color_4 = new Color(0.6274008f, 0.9058824f, 0.1254902f);
-        hp_color_3 = new Color(0.9058824f, 0.8306620f, 0.1254902f);
-        hp_color_2 = new Color(0.9058824f, 0.4308138f, 0.1254902f);
-        hp_color_1 = new Color(0.9058824f, 0.2118464f, 0.1254902f);
+        hp_color_6 = new Color(0.1254902f, 0.7459202f, 0.9058824f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_5 = new Color(0.1254902f, 0.9058824f, 0.3886421f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_4 = new Color(0.6274008f, 0.9058824f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_3 = new Color(0.9058824f, 0.8306620f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_2 = new Color(0.9058824f, 0.4308138f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_1 = new Color(0.9058824f, 0.2118464f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+
+        StartCoroutine(Alpha_Control_Disable());
     }
 
     // Update is called once per frame
     void Update()
     {
+        hp_color_6 = new Color(0.1254902f, 0.7459202f, 0.9058824f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_5 = new Color(0.1254902f, 0.9058824f, 0.3886421f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_4 = new Color(0.6274008f, 0.9058824f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_3 = new Color(0.9058824f, 0.8306620f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_2 = new Color(0.9058824f, 0.4308138f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+        hp_color_1 = new Color(0.9058824f, 0.2118464f, 0.1254902f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
+
         float meat = player.GetComponent<Animator>().GetFloat("numberOfMeat");
         switch (meat)
         {
@@ -98,7 +111,7 @@ public class HealthBar_Manager : MonoBehaviour
 
         realHealth = GameManager.instance.GetHealth();
         convertHealth = realHealth / GameManager.instance.maxHealth;
-        hp_amount_lerp = Mathf.Lerp(hp_amount_lerp, convertHealth, 4f * Time.deltaTime);
+        hp_amount_lerp = Mathf.Lerp(hp_amount_lerp, convertHealth, 6f * Time.deltaTime);
         HP_OverlayColor.GetComponent<Image>().fillAmount = hp_amount_lerp;
 
         if (convertHealth >= 0.835f)
@@ -127,6 +140,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_6)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_6, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_6)
@@ -139,6 +153,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_5)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_5, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_5)
@@ -151,6 +166,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_4)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_4, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_4)
@@ -163,6 +179,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_3)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_3, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_3)
@@ -175,6 +192,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_2)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_2, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_2)
@@ -187,6 +205,7 @@ public class HealthBar_Manager : MonoBehaviour
 
                 if (HP_OverlayColor.GetComponent<Image>().color != hp_color_1)
                 {
+                    //StartCoroutine(Alpha_Control_Enable());
                     HP_OverlayColor.GetComponent<Image>().color = Color.Lerp(HP_OverlayColor.GetComponent<Image>().color, hp_color_1, color_time);
                 }
                 if (HP_OverlayColor.GetComponent<Image>().color == hp_color_1)
@@ -196,6 +215,64 @@ public class HealthBar_Manager : MonoBehaviour
                 break;
         }
 
-        color_time = color_time + 0.05f;
+        color_time = color_time + 0.005f;
+
+        
+
+        //Debug.Log(color_time);
+        //Debug.Log(alpha_reduce);
+    }
+
+    public static IEnumerator Alpha_Control_Enable()
+    {
+        HealthBar_Manager.alpha_reduce = true;
+        for (int i = 0; i < 60 * 4; i++)
+        {
+            HealthBar_Manager.alpha_reduce = true;
+            var hpovcol = HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color;
+            hpovcol = new Color(hpovcol.r, hpovcol.g, hpovcol.b, Mathf.Lerp(hpovcol.a, 1f, Time.deltaTime * 4f));
+            HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color = hpovcol;
+
+            var hpbasecol = HealthBar_Manager.instance.HP_Base.GetComponent<Image>().color;
+            hpbasecol = new Color(hpbasecol.r, hpbasecol.g, hpbasecol.b, Mathf.Lerp(hpbasecol.a, 1f, Time.deltaTime * 4f));
+            HealthBar_Manager.instance.HP_Base.GetComponent<Image>().color = hpbasecol;
+
+            var hpmeatcol = HealthBar_Manager.instance.HP_Meat.GetComponent<Image>().color;
+            hpmeatcol = new Color(hpmeatcol.r, hpmeatcol.g, hpmeatcol.b, Mathf.Lerp(hpmeatcol.a, 1f, Time.deltaTime * 4f));
+            HealthBar_Manager.instance.HP_Meat.GetComponent<Image>().color = hpmeatcol;
+
+            var hplinescol = HealthBar_Manager.instance.HP_OverlayLines.GetComponent<Image>().color;
+            hplinescol = new Color(hplinescol.r, hplinescol.g, hplinescol.b, Mathf.Lerp(hplinescol.a, 1f, Time.deltaTime * 4f));
+            HealthBar_Manager.instance.HP_OverlayLines.GetComponent<Image>().color = hplinescol;
+            yield return null;
+        }
+        HealthBar_Manager.alpha_reduce = false;
+    }
+
+    private IEnumerator Alpha_Control_Disable()
+    {
+        while (true)
+        {
+            if (HealthBar_Manager.alpha_reduce == false)
+            {
+                var hpovcol = HP_OverlayColor.GetComponent<Image>().color;
+                hpovcol = new Color(hpovcol.r, hpovcol.g, hpovcol.b, Mathf.Lerp(hpovcol.a, 0.3f, Time.deltaTime * 4f));
+                HP_OverlayColor.GetComponent<Image>().color = hpovcol;
+
+                var hpbasecol = HP_Base.GetComponent<Image>().color;
+                hpbasecol = new Color(hpbasecol.r, hpbasecol.g, hpbasecol.b, Mathf.Lerp(hpbasecol.a, 0.3f, Time.deltaTime * 4f));
+                HP_Base.GetComponent<Image>().color = hpbasecol;
+
+                var hpmeatcol = HP_Meat.GetComponent<Image>().color;
+                hpmeatcol = new Color(hpmeatcol.r, hpmeatcol.g, hpmeatcol.b, Mathf.Lerp(hpmeatcol.a, 0.3f, Time.deltaTime * 4f));
+                HP_Meat.GetComponent<Image>().color = hpmeatcol;
+
+                var hplinescol = HP_OverlayLines.GetComponent<Image>().color;
+                hplinescol = new Color(hplinescol.r, hplinescol.g, hplinescol.b, Mathf.Lerp(hplinescol.a, 0.3f, Time.deltaTime * 4f));
+                HP_OverlayLines.GetComponent<Image>().color = hplinescol;
+            }
+            
+            yield return null;
+        }
     }
 }

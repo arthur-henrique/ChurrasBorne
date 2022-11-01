@@ -129,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Healing:
+                StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
                 {
@@ -138,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.TakingDamage:
+                StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
                 x = pc.Movimento.LesteOeste.ReadValue<float>();
                 y = pc.Movimento.NorteSul.ReadValue<float>();
                 direcao = new Vector2(x, y);
