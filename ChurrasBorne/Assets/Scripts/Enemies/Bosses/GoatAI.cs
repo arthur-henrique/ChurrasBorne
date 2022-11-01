@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 
 public class GoatAI : MonoBehaviour
@@ -19,12 +20,17 @@ public class GoatAI : MonoBehaviour
 
     public Transform player;
 
+    private bool mustStomp, mustDash, mustDashAttack, mustSummonSpikes;
+
     public float walkingSpeed, dashingSpeed;
 
     public float agroDistance, stompDistance, dashDistance;
 
-    public float startSpawnTime;
-    private float spawnTime;
+    public float startSpawnTime, startDashTime, startStompTime;
+    private float spawnTime, dashTime, stompTime;
+
+    public int maxHealth;
+    int currentHealth;
 
     public Rigidbody2D rb;
     public Collider2D col;
@@ -42,6 +48,12 @@ public class GoatAI : MonoBehaviour
     void Start()
     {
         spawnTime = startSpawnTime;
+
+        dashTime = startDashTime;
+
+        stompTime = startStompTime;
+
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -65,7 +77,39 @@ public class GoatAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
             case State.Chasing:
-                
+                anim.SetBool("Walking", true);
+                Vector2.MoveTowards(transform.position, player.position, walkingSpeed * Time.deltaTime);
+                if(Vector2.Distance(transform.position, player.position) <= stompDistance)
+                {
+                    state = State.Stomping;
+                }
+                if(Vector2.Distance(transform.position, player.position) > dashDistance)
+                {
+                    dashTime -= Time.deltaTime;
+                }
+                if (dashTime <= 0)
+                {
+                    state = State.Dashing;
+
+                    dashTime = startDashTime;
+                }
+                if(currentHealth == 50)
+                {
+                    state = State.SummoningSpikes;
+                }
+                break;
+            case State.Stomping:
+                rb.velocity = Vector2.zero;
+                if(stompTime <0)
+                {
+                    GameManager.instance.TakeDamage(20);
+
+                    stompTime = startStompTime;
+                }
+                else
+                {
+                    stompTime -= Time.deltaTime;    
+                }
                 break;
         }
     }
