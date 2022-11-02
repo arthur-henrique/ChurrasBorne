@@ -8,9 +8,9 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> firstMob = new List<GameObject>();
     private readonly List<GameObject> secondMob = new List<GameObject>();
     private readonly List<GameObject> thirdMob = new List<GameObject>();
-    private readonly List<GameObject> firstRound = new List<GameObject>();
-    private readonly List<GameObject> secondRound = new List<GameObject>();
-    private readonly List<GameObject> finalRound = new List<GameObject>();
+    private readonly List<GameObject> fourthMob = new List<GameObject>();
+    private readonly List<GameObject> fifthMob = new List<GameObject>();
+    private readonly List<GameObject> sixthMob = new List<GameObject>();
     public GameObject tronco, troncosHalf;
     private bool clearedUm, clearedHalf;
     private void Awake()
@@ -22,12 +22,12 @@ public class EnemyControl : MonoBehaviour
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
 
-        firstMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALAUMMOB"));
-        secondMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALAUMMOBDOIS"));
-        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SALADOISMOB"));
-        firstRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_FIRSTROUND"));
-        secondRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_SECONDROUND"));
-        finalRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUM_FINALROUND"));
+        firstMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBUM"));
+        secondMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBDOIS"));
+        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBTRES"));
+        fourthMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBQUATRO"));
+        fifthMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBCINCO"));
+        sixthMob.AddRange(GameObject.FindGameObjectsWithTag("P1-MOBSEIS"));
         if (clearedUm && !clearedHalf)
         {
             print("MobsHalf");
@@ -38,9 +38,9 @@ public class EnemyControl : MonoBehaviour
             //firstMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALAUMMOB"));
             //secondMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALAUMMOBDOIS"));
             //thirdMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SALADOISMOB"));
-            //firstRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FIRSTROUND"));
-            //secondRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SECONDROUND"));
-            //finalRound.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FINALROUND"));
+            //fourthMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FIRSTROUND"));
+            //fifthMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_SECONDROUND"));
+            //sixthMob.AddRange(GameObject.FindGameObjectsWithTag("FASEUMHALF_FINALROUND"));
             for (int i = 0; i < firstMob.Count; i++)
             {
                 firstMob[i].SetActive(true);
@@ -54,17 +54,17 @@ public class EnemyControl : MonoBehaviour
         {
             thirdMob[i].SetActive(false);
         }
-        for (int i = 0; i < firstRound.Count; i++)
+        for (int i = 0; i < fourthMob.Count; i++)
         {
-            firstRound[i].SetActive(false);
+            fourthMob[i].SetActive(false);
         }
-        for (int i = 0; i < secondRound.Count; i++)
+        for (int i = 0; i < fifthMob.Count; i++)
         {
-            secondRound[i].SetActive(false);
+            fifthMob[i].SetActive(false);
         }
-        for (int i = 0; i < finalRound.Count; i++)
+        for (int i = 0; i < sixthMob.Count; i++)
         {
-            finalRound[i].SetActive(false);
+            sixthMob[i].SetActive(false);
         }
     }
 
@@ -85,20 +85,20 @@ public class EnemyControl : MonoBehaviour
             thirdMob.Remove(enemy);
             IsThirdMobCleared();
         }
-        else if (firstRound.Contains(enemy))
+        else if (fourthMob.Contains(enemy))
         {
-            firstRound.Remove(enemy);
-            IsFirstRoundCleared();
+            fourthMob.Remove(enemy);
+            IsFourthMobCleared();
         }
-        else if (secondRound.Contains(enemy))
+        else if (fifthMob.Contains(enemy))
         {
-            secondRound.Remove(enemy);
-            IsSecondRoundCleared();
+            fifthMob.Remove(enemy);
+            IsFifthMobCleared();
         }
-        else if (finalRound.Contains(enemy))
+        else if (sixthMob.Contains(enemy))
         {
-            finalRound.Remove(enemy);
-            IsFinalRoundCleared();
+            sixthMob.Remove(enemy);
+            IsSixthMobCleared();
         }
     }
 
@@ -116,26 +116,26 @@ public class EnemyControl : MonoBehaviour
             thirdMob[i].SetActive(true);
         }
     }
-    public void BeginArena()
+    public void SpawnFourthMob()
     {
         // Spawns the first round
-        for (int i = 0; i < firstRound.Count; i++)
+        for (int i = 0; i < fourthMob.Count; i++)
         {
-            firstRound[i].SetActive(true);
+            fourthMob[i].SetActive(true);
         }
     }
     public void BeginSecondRound()
     {
-        for (int i = 0; i < secondRound.Count; i++)
+        for (int i = 0; i < fifthMob.Count; i++)
         {
-            secondRound[i].SetActive(true);
+            fifthMob[i].SetActive(true);
         }
     }
     public void BeginFinalRound()
     {
-        for (int i = 0; i < finalRound.Count; i++)
+        for (int i = 0; i < sixthMob.Count; i++)
         {
-            finalRound[i].SetActive(true);
+            sixthMob[i].SetActive(true);
         }
     }
 
@@ -143,7 +143,6 @@ public class EnemyControl : MonoBehaviour
     {
         if(firstMob.Count <= 0)
         {
-            // Call the event that spawns the second wave
             SpawnSecondMob();
         }
     }
@@ -171,12 +170,12 @@ public class EnemyControl : MonoBehaviour
                 FaseUmTriggerController.Instance.FirstGateTrigger();
             }
             if (clearedUm)
-                BeginArena();
+                SpawnFourthMob();
         }
     }
-    public void IsFirstRoundCleared()
+    public void IsFourthMobCleared()
     {
-        if (firstRound.Count <= 0)
+        if (fourthMob.Count <= 0)
         {
             if (!clearedUm)
             {
@@ -188,16 +187,16 @@ public class EnemyControl : MonoBehaviour
             }
         }
     }
-    public void IsSecondRoundCleared()
+    public void IsFifthMobCleared()
     {
-        if (secondRound.Count <= 0)
+        if (fifthMob.Count <= 0)
         {
             BeginFinalRound();
         }
     }
-    public void IsFinalRoundCleared()
+    public void IsSixthMobCleared()
     {
-        if (finalRound.Count <= 0)
+        if (sixthMob.Count <= 0)
         {
             FaseUmTriggerController.Instance.FirstGateOut();
         }

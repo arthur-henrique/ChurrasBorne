@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3057450621734071589}
   - component: {fileID: 6108812726486386711}
   - component: {fileID: 1075967772786269608}
+  - component: {fileID: 5972629764127780226}
   m_Layer: 8
   m_Name: Spitter
   m_TagString: Untagged
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,19 +128,20 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   projectile: {fileID: 3958311754951014021, guid: 4a580c97b33632b4ab345582abfed78e, type: 3}
   agroDistance: 30
-  chaseDistance: 10
-  stopDistance: 3
-  meleeDistance: 3
+  chaseDistance: 5
+  stopDistance: 1.5
+  meleeDistance: 1.5
   startStunTime: 0.5
   startMeleeTime: 2
-  startSpitTime: 3
+  startSpitTime: 2
   speed: 2
   maxHealth: 30
   col: {fileID: 5175821950574835398}
   rb: {fileID: 1075967772786269608}
   animator: {fileID: 6108812726486386711}
-  playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  isOnFaseUm: 0
+  isOnTutorial: 0
+  isOnFaseUm: 1
+  isOnFaseUmHalf: 0
 --- !u!95 &6108812726486386711
 Animator:
   serializedVersion: 3
@@ -180,3 +182,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5972629764127780226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350248437054539928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 0

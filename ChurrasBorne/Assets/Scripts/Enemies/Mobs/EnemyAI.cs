@@ -18,7 +18,6 @@ public class EnemyAI : MonoBehaviour
 
     public Animator animator;
 
-    public Animator playerAnimator;
     public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf;
 
     private bool stunned = false;

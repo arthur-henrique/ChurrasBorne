@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 6973534537789977671}
   - component: {fileID: -9148983123163820449}
   m_Layer: 8
-  m_Name: Enemy
+  m_Name: Dasher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,9 +205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  agroDistance: 30
+  agroDistance: 25
   stopDistance: 2
-  speed: 5
+  speed: 7
   dashSpeed: 10
   dashPunchDistance: 2
   attackDistance: 2
@@ -215,7 +215,7 @@ MonoBehaviour:
   startStunTime: 0.5
   bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
-  maxHealth: 40
+  maxHealth: 70
   animator: {fileID: 9201290858415813941}
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   isOnTutorial: 0

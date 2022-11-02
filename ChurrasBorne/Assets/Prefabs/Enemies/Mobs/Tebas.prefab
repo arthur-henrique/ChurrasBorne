@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1962373924799368207}
   - component: {fileID: 1962373924799368194}
   - component: {fileID: 1092608728338018227}
+  - component: {fileID: -5299975102097468759}
   m_Layer: 0
   m_Name: Tebas
   m_TagString: Untagged
@@ -121,17 +122,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   agroDistance: 20
-  stopDistance: 2
-  speed: 7
-  attackDistance: 2
+  stopDistance: 1.5
+  speed: 5
+  attackDistance: 1.5
   startTimeBTWAttacks: 1
-  startStunTime: 0.1
+  startStunTime: 1
   bodyCollider: {fileID: 1092608728338018227}
   rb: {fileID: 1962373924799368192}
   maxHealth: 40
   animator: {fileID: 1962373924799368194}
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  isOnTutorial: 0
   isOnFaseUm: 0
+  isOnFaseUmHalf: 0
 --- !u!95 &1962373924799368194
 Animator:
   serializedVersion: 3
@@ -167,3 +170,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.010236621, y: 0.097248316}
   m_Size: {x: 0.90852714, y: 2.9660969}
   m_Direction: 0
+--- !u!114 &-5299975102097468759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962373924799368197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 0

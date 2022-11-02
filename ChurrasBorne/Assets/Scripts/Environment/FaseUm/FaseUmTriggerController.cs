@@ -10,6 +10,7 @@ public class FaseUmTriggerController : MonoBehaviour
     public GameObject[] upPathFirstGateOut;
     public GameObject[] sidePathFirstGateIn;
     public GameObject[] sidePathSecondGateIn;
+    public GameObject[] sidePathThirdGateIn;
 
     private void Awake()
     {

@@ -20,8 +20,7 @@ public class RangedEnemyAI : MonoBehaviour
 
     public Animator animator;
 
-    public Animator playerAnimator;
-    public bool isOnFaseUm;
+    public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf;
 
     private bool stunned = false;
 
@@ -156,7 +155,7 @@ public class RangedEnemyAI : MonoBehaviour
         //HEALTH
         if (collision.CompareTag("AttackHit"))
         {
-            if (!playerAnimator.GetBool("isHoldingSword"))
+            if (isOnTutorial)
             {
                 TakeDamage(15);
             }
@@ -190,7 +189,10 @@ public class RangedEnemyAI : MonoBehaviour
         animator.SetBool("Idling", false);
         animator.SetBool("Dead", true);
         GetComponent<Collider2D>().enabled = false;
-
+        if (isOnTutorial)
+        {
+            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+        }
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);

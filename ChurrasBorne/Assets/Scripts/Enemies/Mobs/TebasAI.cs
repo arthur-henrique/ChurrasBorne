@@ -16,9 +16,7 @@ public class TebasAI : MonoBehaviour
     int currentHealth;
 
     public Animator animator;
-
-    public Animator playerAnimator;
-    public bool isOnFaseUm;
+    public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf;
 
     private bool stunned = false;
 
@@ -129,7 +127,7 @@ public class TebasAI : MonoBehaviour
     {
         if (collision.CompareTag("AttackHit"))
         {
-            if (!playerAnimator.GetBool("isHoldingSword"))
+            if (isOnTutorial)
             {
                 TakeDamage(15);
             }
@@ -163,7 +161,10 @@ public class TebasAI : MonoBehaviour
         animator.SetBool("Idling", false);
         animator.SetBool("Death", true);
         GetComponent<Collider2D>().enabled = false;
-
+        if (isOnTutorial)
+        {
+            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+        }
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
