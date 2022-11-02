@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public Transform player;
+    private Vector2 target;
 
-    public float agroDistance, stopDistance, speed, angySpeed, attackDistance, startTimeBTWAttacks, startStunTime;
+    public float agroDistance, stopDistance, speed, dashSpeed, dashPunchDistance, attackDistance, startTimeBTWAttacks, startStunTime;
     private float timeBTWAttacks, stunTime;
 
     public Collider2D bodyCollider;
@@ -22,18 +23,28 @@ public class EnemyAI : MonoBehaviour
 
     private bool stunned = false;
     
-    public bool angy = false;    
+    public bool dash = false;    
 
     public GameObject angyDetector;
 
     void Start()
     {
-        //Para MELEE, ANGY PUNCH, MOVEMENT, ANGY MOVEMENT, STUN
+        //Para MELEE, DASH, MOVEMENT, STUN
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         timeBTWAttacks = startTimeBTWAttacks;
 
-        stunTime = startStunTime;   
+        stunTime = startStunTime;
+
+        target = player.position;
+
+        new Vector2(player.position.x, player.position.y);
+
+        Vector3 fator = player.position - transform.position;
+
+        target.x = player.position.x + fator.x * 2;
+
+        target.y = player.position.y + fator.y * 2;
 
         //Para HEALTH
         currentHealth = maxHealth;
@@ -45,48 +56,61 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         //MOVEMENT
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance && stunned == false && angy == false)
+        if (Vector2.Distance(transform.position, player.position) <= agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance && stunned == false && dash == false)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+            Debug.Log("NotDashingAnimore");
 
             animator.SetBool("Walking", true);
             animator.SetBool("Running", false);
             animator.SetBool("Idle", false);
         }
-        else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == false)
+        else if (Vector2.Distance(transform.position, player.position) <= stopDistance && dash == false)
         {
-            transform.position = this.transform.position;
+            rb.velocity = Vector2.zero;
 
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", true);
         }
-        else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == false)
+        else if (Vector2.Distance(transform.position, player.position) > agroDistance && dash == false)
         {
             animator.SetBool("Walking", false);
             animator.SetBool("Idle", true);
         }
 
-        //ANGY MOVEMENT
-        if (Vector2.Distance(transform.position, player.position) < agroDistance && Vector2.Distance(transform.position, player.position) > stopDistance && stunned == false && angy == true)
+        //DASH
+        if (dash == true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, angySpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target, dashSpeed * Time.deltaTime);
 
-            animator.SetBool("Walking", false);
+            Debug.Log("Stuck");
+
             animator.SetBool("Running", true);
-            animator.SetBool("Idle", false);
-        }
-        else if (Vector2.Distance(transform.position, player.position) <= stopDistance && angy == true)
-        {
-            transform.position = this.transform.position;
 
-            animator.SetBool("Walking", false);
-            animator.SetBool("Idle", true);
+            if (Vector2.Distance(transform.position, player.position) < dashPunchDistance)
+            {
+                GameManager.instance.TakeDamage(7);
+
+                animator.SetTrigger("Punch");
+
+                dash = false;
+            }
+            else if(transform.position.x == target.x && transform.position.y == target.y)
+            {
+                dash = false;
+            }
         }
-        else if (Vector2.Distance(transform.position, player.position) > agroDistance && angy == true)
+
+        if(dash == false)
         {
-            animator.SetBool("Walking", false);
-            animator.SetBool("Idle", true);
+            //Debug.Log("NotDashing");
         }
+        else
+        {
+            //Debug.Log("Dashing");
+        }
+
 
         //FLIP
         if (player.transform.position.x < transform.position.x)
@@ -99,7 +123,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         //MELEE
-        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == false)
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && dash == false)
         {
             GameManager.instance.TakeDamage(3);
 
@@ -112,25 +136,10 @@ public class EnemyAI : MonoBehaviour
             timeBTWAttacks -= Time.deltaTime;
         }
 
-        //ANGY PUNCH
-        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && angy == true)
-        {
-            GameManager.instance.TakeDamage(5);
-
-            angy = false;
-
-            animator.SetTrigger("Punch");
-
-            timeBTWAttacks = startTimeBTWAttacks;
-        }
-        else
-        {
-            timeBTWAttacks -= Time.deltaTime;
-        }
-
         //STUN
         if (stunned == true)
         {
+            rb.velocity = Vector2.zero;
             if (stunTime <= 0)
             {
                 stunned = false;

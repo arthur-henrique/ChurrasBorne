@@ -208,20 +208,20 @@ MonoBehaviour:
   agroDistance: 30
   stopDistance: 2
   speed: 5
-  angySpeed: 15
+  dashSpeed: 10
+  dashPunchDistance: 2
   attackDistance: 2
   startTimeBTWAttacks: 2
   startStunTime: 0.5
   bodyCollider: {fileID: 5054337974537831557}
-  ignoreTrigger: {fileID: 0}
   rb: {fileID: 3635214071342444493}
-  maxHealth: 100
+  maxHealth: 40
   animator: {fileID: 9201290858415813941}
   playerAnimator: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  isDead: 0
-  hasDeathEvents: 0
+  isOnTutorial: 0
   isOnFaseUm: 0
-  angy: 0
+  isOnFaseUmHalf: 0
+  dash: 0
   angyDetector: {fileID: 863171584477415739}
 --- !u!114 &-9148983123163820449
 MonoBehaviour:
@@ -237,3 +237,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBase: 5000
   offset: 1
+  runOnlyOnce: 0

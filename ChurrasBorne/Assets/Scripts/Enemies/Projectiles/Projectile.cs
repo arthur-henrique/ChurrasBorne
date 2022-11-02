@@ -39,6 +39,8 @@ public class Projectile : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
+        animator.SetBool("Flying", true);
+
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
             Destroy(gameObject);
@@ -54,7 +56,11 @@ public class Projectile : MonoBehaviour
             GameManager.instance.TakeDamage(5);
             Destroy(gameObject);
         }
-        else if (collision.CompareTag("Obst"))
+        else if (collision.CompareTag("TRONCO"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("PAREDE"))
         {
             Destroy(gameObject);
         }

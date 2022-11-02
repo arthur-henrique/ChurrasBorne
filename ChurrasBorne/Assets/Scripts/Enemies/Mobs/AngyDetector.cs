@@ -28,7 +28,7 @@ public class AngyDetector : MonoBehaviour
 
         if (Vector2.Distance(transform.position, player.position) > angyDistance && canBeAngy == true)
         {
-            enemy.GetComponent<EnemyAI>().angy = true;
+            enemy.GetComponent<EnemyAI>().dash = true;
 
             GameObject.Destroy(angyDetector);
         }
