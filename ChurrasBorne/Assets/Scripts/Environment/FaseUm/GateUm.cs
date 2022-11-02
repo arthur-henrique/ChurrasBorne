@@ -9,7 +9,7 @@ public class GateUm : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             FaseUmTriggerController.Instance.FirstGateTrigger();
-            EnemyControl.Instance.BeginArena();
+            EnemyControl.Instance.SpawnFourthMob();
             gameObject.SetActive(false);
         }
     }
