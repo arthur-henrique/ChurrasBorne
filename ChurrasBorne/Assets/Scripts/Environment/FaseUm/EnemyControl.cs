@@ -135,6 +135,8 @@ public class EnemyControl : MonoBehaviour
         if(secondMob.Count <= 0)
         {
             tronco.SetActive(false);
+            if (!clearedUm)
+                SpawnThirdMob();
             if(clearedUm)
             {
                 troncosHalf.SetActive(true);
