@@ -22602,6 +22602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439608edba019a8499bf25a481aabec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  passado: {fileID: 0}
+  eclipse: {fileID: 0}
 --- !u!4 &1378905018
 Transform:
   m_ObjectHideFlags: 0
@@ -29269,6 +29271,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 97914785}
     m_Modifications:
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7125668
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.77458555
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_Intensity
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_ShadowIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_LightVolumeOpacity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_PointLightDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[1]
+      value: -677462173
+      objectReference: {fileID: 0}
+    - target: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.data[2]
+      value: -405050785
+      objectReference: {fileID: 0}
     - target: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -7,13 +7,14 @@ public class EnemyControl : MonoBehaviour
     public static EnemyControl Instance;
     public GameObject p1, p2;
     private readonly List<GameObject> firstMob = new List<GameObject>();
-    private readonly List<GameObject> secondMob = new List<GameObject>();
+    public List<GameObject> secondMob = new List<GameObject>();
     private readonly List<GameObject> thirdMob = new List<GameObject>();
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
     private readonly List<GameObject> sixthMob = new List<GameObject>();
-    public GameObject tronco, troncosHalf;
+    public GameObject troncoP1, troncoP2, troncosHalf;
     private bool clearedUm, clearedHalf;
+    private int randomTL;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class EnemyControl : MonoBehaviour
     {
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
+        randomTL = ManagerOfScenes.randomTimeline;
 
         if (!clearedUm && !clearedHalf)
         {
@@ -34,8 +36,19 @@ public class EnemyControl : MonoBehaviour
             p1.SetActive(false);
             p2.SetActive(true);
         }
-            
-
+        else if (clearedUm && clearedHalf)
+        {
+            if (randomTL == 1)
+            {
+                p1.SetActive(true);
+                p2.SetActive(false);
+            }
+            else if (randomTL == 2)
+            {
+                p1.SetActive(false);
+                p2.SetActive(true);
+            }
+        }
 
         firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
         secondMob.AddRange(GameObject.FindGameObjectsWithTag("MOBDOIS"));
@@ -61,6 +74,7 @@ public class EnemyControl : MonoBehaviour
         else if (secondMob.Contains(enemy))
         {
             secondMob.Remove(enemy);
+            print(secondMob.Count);
             IsSecondMobCleared();
         }
         else if (thirdMob.Contains(enemy))
@@ -134,11 +148,12 @@ public class EnemyControl : MonoBehaviour
     {
         if(secondMob.Count <= 0)
         {
-            tronco.SetActive(false);
+            troncoP1.SetActive(false);
             if (!clearedUm)
                 SpawnThirdMob();
             if(clearedUm)
             {
+                troncoP2.SetActive(false);
                 troncosHalf.SetActive(true);
                 FaseUmTriggerController.Instance.SideFirstGateTrigger();
             }
