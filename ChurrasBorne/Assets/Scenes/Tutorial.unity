@@ -13215,7 +13215,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.40784314, b: 0.5372549, a: 1}
   m_Origin: {x: -10, y: -7, z: 0}
   m_Size: {x: 71, y: 39, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -13463,7 +13463,7 @@ MonoBehaviour:
   healsLeft: 0
   isTut: 0
   respawnCooldown: 0
-  hasCleared: 0100
+  hasCleared: 0000
 --- !u!4 &97914785
 Transform:
   m_ObjectHideFlags: 0
@@ -23685,7 +23685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927680279429263341, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
@@ -28723,7 +28723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3814595800453784547, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5562796071122361804, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_AnchoredPosition.y
