@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     public void NextLevelSetter(Vector2 spawn)
     {
         player.transform.position = spawn;
+        currentHealth = maxHealth;
     }
     
     public void DeathRoutine()

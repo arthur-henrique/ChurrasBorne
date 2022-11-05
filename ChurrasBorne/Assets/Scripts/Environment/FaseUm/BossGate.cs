@@ -30,6 +30,7 @@ public class BossGate : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 FaseUmTriggerController.Instance.SideSecondGateTrigger();
+                FaseUmTriggerController.Instance.SideThirdGateTrigger();
                 gameObject.SetActive(false);
                 boss.SetActive(true);
             }
