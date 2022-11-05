@@ -36,5 +36,6 @@ public class TutorialTriggerController : MonoBehaviour
         {
             secondGateOut[i].SetActive(!secondGateOut[i].activeSelf);
         }
+        SecondGateTrigger();
     }
 }

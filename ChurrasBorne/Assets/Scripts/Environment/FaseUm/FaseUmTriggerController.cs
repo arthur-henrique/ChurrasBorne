@@ -12,6 +12,8 @@ public class FaseUmTriggerController : MonoBehaviour
     public GameObject[] sidePathSecondGateIn;
     public GameObject[] sidePathThirdGateIn;
 
+    public GameObject portalToHub;
+
     private void Awake()
     {
         Instance = this;
@@ -63,4 +65,9 @@ public class FaseUmTriggerController : MonoBehaviour
         }
     }
 
+    public void P1Portal()
+    {
+        portalToHub.SetActive(true);
+        GameManager.instance.SetHasCleared(0, true);
+    }
 }

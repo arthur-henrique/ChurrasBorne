@@ -187,6 +187,11 @@ public class GameManager : MonoBehaviour
     {
         return isAlive;
     }
+
+    public void SetHasCleared(int fase, bool cleared)
+    {
+        hasCleared[fase] = cleared;
+    }
     
     public bool GetHasCleared(int fase)
     {

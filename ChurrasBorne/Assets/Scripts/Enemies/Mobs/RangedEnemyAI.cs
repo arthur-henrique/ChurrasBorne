@@ -192,6 +192,11 @@ public class RangedEnemyAI : MonoBehaviour
         if (isOnTutorial)
         {
             EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+            // Teste only
+            if(gameObject.CompareTag("BOSS"))
+            {
+                TutorialTriggerController.Instance.SecondGateTriggerOut();
+            }
         }
         if (isOnFaseUm)
         {
