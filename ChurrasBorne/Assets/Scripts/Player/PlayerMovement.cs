@@ -71,10 +71,15 @@ public class PlayerMovement : MonoBehaviour
                 healsLeft = GameManager.instance.GetHeals();
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
-                    rollDirection = lastMovedDirection;
-                    rollSpeed = 70f;
-                    state = State.Rolling;
-                    anim.SetTrigger("isRolling");
+                    if (Dash_Manager.dash_fill_global >= 60)
+                    {
+                        rollDirection = lastMovedDirection;
+                        rollSpeed = 70f;
+                        state = State.Rolling;
+                        anim.SetTrigger("isRolling");
+                        Dash_Manager.dash_fill_global -= 60;
+                        Dash_Manager.dash_light_global = 0;
+                    }
                 }
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
