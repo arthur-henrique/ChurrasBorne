@@ -20,7 +20,7 @@ public class SpitterAI : MonoBehaviour
 
     public Animator animator;
 
-    public bool isOnTutorial, isOnFaseUm;
+    public bool isOnFaseUm;
 
     private bool stunned = false;
 
@@ -144,14 +144,7 @@ public class SpitterAI : MonoBehaviour
     {
         if (collision.CompareTag("AttackHit"))
         {
-            if (isOnTutorial)
-            {
-                TakeDamage(10);
-            }
-            else
-            {
-                TakeDamage(20);
-            }
+            TakeDamage(20);
         }
 
         //Vector2 difference = transform.position - collision.transform.position;
@@ -177,15 +170,14 @@ public class SpitterAI : MonoBehaviour
         animator.SetBool("Walking", false);
         animator.SetBool("Idling", false);
         animator.SetBool("Dead", true);
+        
         GetComponent<Collider2D>().enabled = false;
-        if (isOnTutorial)
-        {
-            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
-        }
+        
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
         }
+        
         this.enabled = false;
     }
 }
