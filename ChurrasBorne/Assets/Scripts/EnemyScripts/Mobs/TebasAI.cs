@@ -165,6 +165,14 @@ public class TebasAI : MonoBehaviour
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
+            if (gameObject.CompareTag("BOSSP1"))
+            {
+                FaseUmTriggerController.Instance.P1Portal();
+            }
+            if (gameObject.CompareTag("BOSSP2"))
+            {
+                FaseUmTriggerController.Instance.P2Portal();
+            }
         }
         this.enabled = false;
     }

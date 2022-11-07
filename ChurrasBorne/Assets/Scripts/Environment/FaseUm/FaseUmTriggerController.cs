@@ -76,6 +76,7 @@ public class FaseUmTriggerController : MonoBehaviour
     public void P1Portal()
     {
         portalToHubP1.SetActive(true);
+        SecondGateTrigger();
         GameManager.instance.SetHasCleared(0, true);
     }
     public void P2Portal()

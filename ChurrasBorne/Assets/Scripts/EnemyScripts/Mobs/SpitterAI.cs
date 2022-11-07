@@ -181,6 +181,10 @@ public class SpitterAI : MonoBehaviour
         if (isOnTutorial)
         {
             EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+            if(gameObject.CompareTag("BOSS"))
+            {
+                TutorialTriggerController.Instance.SecondGateTriggerOut();
+            }
         }
         if (isOnFaseUm)
         {
