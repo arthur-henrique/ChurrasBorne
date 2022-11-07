@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.6f;
+                    attackAnimCd = 0.4f;
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
                 GameManager.instance.RollInvuln();
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.6f;
+                    attackAnimCd = 0.4f;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.6f;
+                    attackAnimCd = 0.4f;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
