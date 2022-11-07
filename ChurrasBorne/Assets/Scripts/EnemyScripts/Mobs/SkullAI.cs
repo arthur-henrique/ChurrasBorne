@@ -17,7 +17,7 @@ public class SkullAI : MonoBehaviour
 
     public Animator anim;
 
-    public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf;
+    public bool isOnFaseUm, isOnFaseUmHalf;
 
     private bool stunned = false;
     
@@ -118,14 +118,7 @@ public class SkullAI : MonoBehaviour
     {
         if (collision.CompareTag("AttackHit"))
         {
-            if (isOnTutorial)
-            {
-                TakeDamage(10);
-            }
-            else
-            {
-                TakeDamage(20);
-            }
+            TakeDamage(20);
         }
 
         //Vector2 difference = transform.position - collision.transform.position;
@@ -153,14 +146,12 @@ public class SkullAI : MonoBehaviour
         anim.SetBool("Die", true);
 
         GetComponent<Collider2D>().enabled = false;
-        if (isOnTutorial)
-        {
-            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
-        }
+
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);
         }
+        
         Destroy(gameObject, 1f);
     }
 }

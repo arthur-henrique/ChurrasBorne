@@ -18,7 +18,7 @@ public class DasherAI : MonoBehaviour
 
     public Animator animator;
 
-    public bool isOnTutorial, isOnFaseUm, isOnFaseUmHalf, dash = false, canDash;
+    public bool isOnFaseUm, isOnFaseUmHalf, dash = false, canDash;
 
     private bool stunned = false, recovering = false;   
 
@@ -210,14 +210,7 @@ public class DasherAI : MonoBehaviour
     {
         if(collision.CompareTag("AttackHit"))
         {
-            if(isOnTutorial)
-            {
-                TakeDamage(10);
-            }
-            else
-            {
-                TakeDamage(20);
-            }
+            TakeDamage(20);
         }
 
         //Vector2 difference = transform.position - collision.transform.position;
@@ -246,10 +239,6 @@ public class DasherAI : MonoBehaviour
         
         GetComponent<Collider2D>().enabled = false;
         
-        if (isOnTutorial)
-        {
-            EnemyControlTutorial.Instance.KilledEnemy(gameObject);
-        }
         if (isOnFaseUm)
         {
             EnemyControl.Instance.KilledEnemy(gameObject);

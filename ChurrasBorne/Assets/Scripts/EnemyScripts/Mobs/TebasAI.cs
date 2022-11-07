@@ -154,7 +154,7 @@ public class TebasAI : MonoBehaviour
     void Die()
     {
         animator.SetBool("Walking", false);
-        animator.SetBool("Idle", false);
+        animator.SetBool("Idling", false);
         animator.SetBool("Death", true);
         
         GetComponent<Collider2D>().enabled = false;
