@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
         }
     }
 
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     public void NextLevelSetter(Vector2 spawn)
     {
         player.transform.position = spawn;
+        currentHealth = maxHealth;
     }
     
     public void DeathRoutine()
@@ -186,6 +187,11 @@ public class GameManager : MonoBehaviour
     public bool GetAlive()
     {
         return isAlive;
+    }
+
+    public void SetHasCleared(int fase, bool cleared)
+    {
+        hasCleared[fase] = cleared;
     }
     
     public bool GetHasCleared(int fase)

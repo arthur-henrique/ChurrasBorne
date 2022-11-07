@@ -353,7 +353,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -15, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -15, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             var mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -400,7 +400,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -50, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -446,7 +446,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -85, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -491,7 +491,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -120, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -537,7 +537,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -155, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -155, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -583,7 +583,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_apply, new Vector3(-275, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -190, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -190, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -649,7 +649,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_sel3, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -50, -1), ref velocity_drop_shadow, smooth_time);
 
                             var mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
                             menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 1.0f, Time.deltaTime * 4f));
@@ -670,7 +670,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_sel3, new Vector3(-300, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -85, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -85, -1), ref velocity_drop_shadow, smooth_time);
 
                             mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
                             menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
@@ -690,7 +690,7 @@ public class MainMenu_Manager : MonoBehaviour
                             ElementTranslate(menu_sel3, new Vector3(-275, -120, 0), ref velocity_sel3, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -120, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -120, -1), ref velocity_drop_shadow, smooth_time);
 
                             mns1 = menu_sel1.GetComponent<TextMeshProUGUI>().color;
                             menu_sel1.GetComponent<TextMeshProUGUI>().color = new Color(mns1.r, mns1.g, mns1.b, Mathf.Lerp(mns1.a, 0.25f, Time.deltaTime * 4f));
@@ -836,7 +836,7 @@ public class MainMenu_Manager : MonoBehaviour
         for (int i = 0; i < 60 * 32; i++)
         {
             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-145, -50, 1), ref velocity_drop_shadow, 0.7f);
+                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -50, 1), ref velocity_drop_shadow, 0.7f);
             yield return null;
         }
     }

@@ -130,7 +130,7 @@ public class Transition_Manager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSecondsRealtime(2);
-        for (int i = 0; i < 60 * 8; i++)
+        for (int i = 0; i < 60 * 12; i++)
         {
             var txt_col = scene_text_display.GetComponent<TextMeshProUGUI>().color;
             txt_col.a = Mathf.Lerp(txt_col.a, 0.0f, Time.unscaledDeltaTime * 2f);
