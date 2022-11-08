@@ -17,7 +17,7 @@ public class TebasAI : MonoBehaviour
 
     public Animator animator;
 
-    public bool isOnTutorial, isOnFaseUm;
+    public bool isOnTutorial, isOnFaseUm, canDamage = false;
 
     private bool stunned = false;
 
@@ -70,10 +70,10 @@ public class TebasAI : MonoBehaviour
         //MELEE
         if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false)
         {
-            GameManager.instance.TakeDamage(5);
+            canDamage = true;
             
             animator.SetTrigger("Attack");
-            
+
             timeBTWAttacks = startTimeBTWAttacks;
         }
         else
@@ -96,6 +96,17 @@ public class TebasAI : MonoBehaviour
             {
                 stunTime -= Time.deltaTime;
             }
+        }
+    }
+
+    //MELEE
+    public void damagePlayer()
+    {
+        if (canDamage == true && Vector2.Distance(transform.position,player.position) <= attackDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+
+            canDamage = false;  
         }
     }
 
