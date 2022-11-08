@@ -16,6 +16,7 @@ public class BullAI : MonoBehaviour
     }
 
     public Transform player;
+    public Vector3 target;
 
     public Collider2D col;
     public Rigidbody2D rb;
@@ -23,13 +24,15 @@ public class BullAI : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject bullSpike;
+
     public int maxHealth;
     int currentHealth;
 
     public float speed, bashDistance, startBashTime, axeDistance, startAxeTime, startSpawnTime;
     private float bashTime, axeTime, spawnTime;
 
-    private bool swingingAxe = false, bashingHead = false, SummoningSpikes = false;
+    private bool swingingAxe = false, bashingHead = false, SummoningSpikes = false, isDead = false;
 
     public bool isOnFaseUm;
 
@@ -64,6 +67,7 @@ public class BullAI : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            isDead = true;
             state = State.Dead;
         }
 
@@ -76,7 +80,7 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (spawnTime <= 0)
+                if (spawnTime <= 0 && isDead == false)
                 {
                     bull.GetComponent<CapsuleCollider2D>().enabled = true;
 
@@ -89,20 +93,28 @@ public class BullAI : MonoBehaviour
                 break;
 
             case State.Chasing:
-                anim.SetBool("Idle", false);
-                anim.SetBool("Walk", true);
-                
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-
-                if(Vector2.Distance(transform.position, player.position) <= bashDistance)
+                if(isDead == false)
                 {
-                    bashingHead = true;
-                    state = State.HeadBash;
+                    anim.SetBool("Idle", false);
+                    anim.SetBool("Walk", true);
+
+                    transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+                    if (Vector2.Distance(transform.position, player.position) <= bashDistance)
+                    {
+                        bashingHead = true;
+                        state = State.HeadBash;
+                    }
+                    if(Vector2.Distance(transform.position, player.position) > bashDistance)
+                    {
+                        swingingAxe = true;
+                        state = State.AxeSwing;                    
+                    }
                 }
                 break;
 
             case State.HeadBash:
-                if(bashingHead == true)
+                if(bashingHead == true && isDead == false)
                 {
                     rb.velocity = Vector2.zero;
 
@@ -113,7 +125,7 @@ public class BullAI : MonoBehaviour
                     {
                         anim.SetTrigger("Bash");
 
-
+                        GameManager.instance.TakeDamage(20);
 
                         bashTime = startBashTime;
                     }
@@ -123,7 +135,7 @@ public class BullAI : MonoBehaviour
                     }
                 }
 
-                if (Vector2.Distance(transform.position, player.position) > bashDistance)
+                if (Vector2.Distance(transform.position, player.position) > bashDistance && isDead == false)
                 {
                     bashingHead = false;
 
@@ -131,8 +143,31 @@ public class BullAI : MonoBehaviour
                 }
                 break;
 
+            case State.AxeSwing:
+                if(swingingAxe == true && isDead == false)
+                {
+                    rb.velocity = Vector2.zero;
+
+                    anim.SetBool("Idle", true);
+                    anim.SetBool("Walk", false);
+
+                    if (axeTime <= 0)
+                    {
+                        anim.SetTrigger("Axe");
+
+                        Instantiate(bullSpike, player.position, Quaternion.identity);
+
+                        axeTime = startAxeTime;
+                    }
+                    else
+                    {
+                        axeTime -= Time.deltaTime;
+                    }
+                }
+                break;
+
             case State.Dead:
-                anim.SetBool("Die", true);
+                anim.SetTrigger("Die");
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 

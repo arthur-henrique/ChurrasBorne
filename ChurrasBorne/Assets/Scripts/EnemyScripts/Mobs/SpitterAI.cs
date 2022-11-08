@@ -20,7 +20,7 @@ public class SpitterAI : MonoBehaviour
 
     public Animator animator;
 
-    public bool isOnTutorial, isOnFaseUm;
+    public bool isOnTutorial, isOnFaseUm, canDamage = false;
 
     private bool stunned = false;
 
@@ -77,11 +77,11 @@ public class SpitterAI : MonoBehaviour
         }
 
         //MELEE
-        if (Vector2.Distance(transform.position, player.position) <= meleeDistance && meleeTime <= 0 && GameManager.instance.GetAlive() && stunned == false)
+        if (Vector2.Distance(transform.position, player.position) < meleeDistance && meleeTime <= 0 && GameManager.instance.GetAlive() && stunned == false)
         {
-            animator.SetTrigger("Melee");
+            canDamage = true;
 
-            GameManager.instance.TakeDamage(5);
+            animator.SetTrigger("Melee");
 
             meleeTime = startMeleeTime;
         }
@@ -118,6 +118,17 @@ public class SpitterAI : MonoBehaviour
             {
                 stunTime -= Time.deltaTime;
             }
+        }
+    }
+
+    //MELEE
+    public void damagePlayer()
+    {
+        if (canDamage == true && Vector2.Distance(transform.position, player.position) <= meleeDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+
+            canDamage = false;
         }
     }
 
