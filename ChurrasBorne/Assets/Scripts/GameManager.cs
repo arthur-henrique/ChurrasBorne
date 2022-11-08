@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerController pc; 
     public Slider slider;
-    public CinemachineVirtualCamera dft, death;
+    public CinemachineVirtualCamera dft, death, boss;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         isAlive = true;
         dft.Priority = 1;
         death.Priority = 0;
+        boss.Priority = 0;
     }
     private void Update()
     {
@@ -199,11 +200,22 @@ public class GameManager : MonoBehaviour
         return hasCleared[fase];
     }
 
-
     public void SwitchToDeathCam()
     {
         dft.Priority = 0;
         death.Priority = 1;
+    }
+
+    public void SwitchToBossCam()
+    {
+        dft.Priority = 0;
+        boss.Priority = 1;
+    }
+
+    public void SwitchToDefaultCam()
+    {
+        dft.Priority = 1;
+        boss.Priority = 0;
     }
     IEnumerator DeadCounter()
     {

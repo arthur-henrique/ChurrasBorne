@@ -14,6 +14,7 @@ public class BossGate : MonoBehaviour
         {
             TutorialTriggerController.Instance.SecondGateTrigger();
             gameObject.SetActive(false);
+            GameManager.instance.SwitchToBossCam();
             boss.SetActive(true);
         }
         if(isFaseUm)
@@ -22,6 +23,7 @@ public class BossGate : MonoBehaviour
             {
                 FaseUmTriggerController.Instance.SecondGateTrigger();
                 gameObject.SetActive(false);
+                GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
             }
         }

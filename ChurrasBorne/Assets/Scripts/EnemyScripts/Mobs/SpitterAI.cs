@@ -184,6 +184,7 @@ public class SpitterAI : MonoBehaviour
             if(gameObject.CompareTag("BOSS"))
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();
+                GameManager.instance.SwitchToDefaultCam();
             }
         }
         if (isOnFaseUm)
