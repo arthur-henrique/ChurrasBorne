@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class ManagerOfScenes : MonoBehaviour
 {
     public GameObject passado, eclipse;
@@ -12,6 +12,7 @@ public class ManagerOfScenes : MonoBehaviour
     {
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
+
 
         if (gameObject.CompareTag("Tutorial"))
         {

@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     bool attackPressed = false;
     bool healingPressed = false;
     bool takingDamage = false;
+    bool canAttack = true;
     private static State state;
     PlayerController pc;
     // Start is called before the first frame update
@@ -81,9 +82,9 @@ public class PlayerMovement : MonoBehaviour
                         Dash_Manager.dash_light_global = 0;
                     }
                 }
-                if (pc.Movimento.Attack.WasPressedThisFrame())
+                if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
                 {
-                    attackAnimCd = 0.4f;
+                    canAttack = false;
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                 }
@@ -98,9 +99,9 @@ public class PlayerMovement : MonoBehaviour
                 float rollSpeedMultiplier = 5f;
                 rollSpeed -= rollSpeed * rollSpeedMultiplier * Time.deltaTime;
                 GameManager.instance.RollInvuln();
-                if (pc.Movimento.Attack.WasPressedThisFrame())
+                if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
                 {
-                    attackAnimCd = 0.4f;
+                    canAttack = false;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
@@ -125,13 +126,9 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Attacking:
                 anim.SetBool("attackIsPlaying", true);
-                attackAnimCd -= Time.deltaTime;
-                if (attackAnimCd <= 0f)
-                {
-                    state = State.Normal;
-                    anim.SetBool("attackIsPlaying", false);
-                    attackPressed = false;
-                }
+                state = State.Normal;
+                anim.SetBool("attackIsPlaying", false);
+                attackPressed = false;
                 break;
             case State.Healing:
                 StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
@@ -163,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
                 timer -= Time.deltaTime;
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
-                    attackAnimCd = 0.4f;
                     attackPressed = true;
                 }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
@@ -221,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                rb.velocity = Vector2.zero;
+                rb.velocity = rb.velocity*0.1f;
                 break;
             case State.Healing:
                 rb.velocity = Vector2.zero;
@@ -252,5 +248,10 @@ public class PlayerMovement : MonoBehaviour
     public static void SetDead()
     {
         state = State.Dead;
+    }
+
+    public void CantAttack()
+    {
+        canAttack = true;
     }
 }
