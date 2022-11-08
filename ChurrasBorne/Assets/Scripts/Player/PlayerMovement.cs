@@ -217,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                rb.velocity = rb.velocity*0.1f;
+                rb.velocity = Vector2.zero;
                 break;
             case State.Healing:
                 rb.velocity = Vector2.zero;
