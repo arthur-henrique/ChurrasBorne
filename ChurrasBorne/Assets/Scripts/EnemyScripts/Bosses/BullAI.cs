@@ -32,7 +32,7 @@ public class BullAI : MonoBehaviour
     public float speed, bashDistance, startBashTime, axeDistance, startAxeTime, startSpawnTime;
     private float bashTime, axeTime, spawnTime;
 
-    private bool swingingAxe = false, bashingHead = false, SummoningSpikes = false, isDead = false;
+    private bool swingingAxe = false, bashingHead = false, SummoningSpikes = false, isDead = false, canDamage = true;
 
     public bool isOnFaseUm;
 
@@ -125,8 +125,6 @@ public class BullAI : MonoBehaviour
                     {
                         anim.SetTrigger("Bash");
 
-                        GameManager.instance.TakeDamage(20);
-
                         bashTime = startBashTime;
                     }
                     else
@@ -155,14 +153,19 @@ public class BullAI : MonoBehaviour
                     {
                         anim.SetTrigger("Axe");
 
-                        Instantiate(bullSpike, player.position, Quaternion.identity);
-
                         axeTime = startAxeTime;
                     }
                     else
                     {
                         axeTime -= Time.deltaTime;
                     }
+                }
+
+                if (Vector2.Distance(transform.position, player.position) <= axeDistance && isDead == false)
+                {
+                    swingingAxe = false;
+
+                    state = State.Chasing;
                 }
                 break;
 
@@ -191,6 +194,23 @@ public class BullAI : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+
+    //MELEE
+    public void damagePlayer()
+    {
+        if (canDamage == true && Vector2.Distance(transform.position, player.position) <= bashDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+
+            canDamage = false;
+        }
+    }
+
+    //SPIKES
+    public void summonSpike()
+    {
+        Instantiate(bullSpike, transform.position, Quaternion.identity);
     }
 
     //ON CONTACT

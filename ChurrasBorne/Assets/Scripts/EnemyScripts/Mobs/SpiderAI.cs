@@ -19,7 +19,7 @@ public class SpiderAI : MonoBehaviour
 
     public bool isOnFaseUm, isOnFaseUmHalf;
 
-    private bool stunned = false;
+    private bool stunned = false, canDamage = false;
 
     void Start()
     {
@@ -66,7 +66,7 @@ public class SpiderAI : MonoBehaviour
         //MELEE
         if (Vector2.Distance(transform.position, player.position) < attackDistance && attackTime <= 0 && GameManager.instance.GetAlive() && stunned == false)
         {
-            GameManager.instance.TakeDamage(5);
+            canDamage = true;
 
             anim.SetTrigger("Attack");
 
@@ -92,6 +92,17 @@ public class SpiderAI : MonoBehaviour
             {
                 stunTime -= Time.deltaTime;
             }
+        }
+    }
+
+    //MELEE
+    public void damagePlayer()
+    {
+        if (canDamage == true && Vector2.Distance(transform.position, player.position) <= attackDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+
+            canDamage = false;
         }
     }
 

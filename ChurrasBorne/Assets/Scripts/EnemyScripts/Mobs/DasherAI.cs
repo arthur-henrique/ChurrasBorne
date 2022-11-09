@@ -20,7 +20,7 @@ public class DasherAI : MonoBehaviour
 
     public bool isOnFaseUm, isOnFaseUmHalf, dash = false, canDash;
 
-    private bool stunned = false, recovering = false;   
+    private bool stunned = false, recovering = false, canDamage = false;   
 
     public GameObject dashDetector;
 
@@ -149,13 +149,13 @@ public class DasherAI : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        
-        //MELEE
-        if (Vector2.Distance(transform.position, player.position) <= attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false && canDash == false && recovering == false)
-        {
-            animator.SetTrigger("Attack");
 
-            GameManager.instance.TakeDamage(5);
+        //MELEE
+        if (Vector2.Distance(transform.position, player.position) < attackDistance && timeBTWAttacks <= 0 && GameManager.instance.GetAlive() && stunned == false)
+        {
+            canDamage = true;
+
+            animator.SetTrigger("Attack");
 
             timeBTWAttacks = startTimeBTWAttacks;
         }
@@ -164,7 +164,7 @@ public class DasherAI : MonoBehaviour
             timeBTWAttacks -= Time.deltaTime;
         }
 
-        
+
         //STUN
         if (stunned == true)
         {
@@ -185,7 +185,18 @@ public class DasherAI : MonoBehaviour
         }
     }
 
-    
+    //MELEE
+    public void damagePlayer()
+    {
+        if (canDamage == true && Vector2.Distance(transform.position, player.position) <= attackDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+
+            canDamage = false;
+        }
+    }
+
+
     //ON CONTACT
     private void OnCollisionEnter2D(Collision2D collision)
     {

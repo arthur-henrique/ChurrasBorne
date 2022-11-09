@@ -110,7 +110,7 @@ public class TebasAI : MonoBehaviour
         }
     }
 
-
+    /*
     //ON CONTACT    
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -128,6 +128,7 @@ public class TebasAI : MonoBehaviour
             bodyCollider.isTrigger = false;
         }
     }
+    */
 
     //HEALTH
     private void OnTriggerEnter2D(Collider2D collision)

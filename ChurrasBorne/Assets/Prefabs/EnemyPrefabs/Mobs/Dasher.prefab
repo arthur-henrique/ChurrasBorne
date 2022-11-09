@@ -225,16 +225,15 @@ MonoBehaviour:
   stopDistance: 3
   speed: 5
   dashSpeed: 10
-  dashPunchDistance: 3
-  attackDistance: 3
-  startTimeBTWAttacks: 3
+  dashPunchDistance: 2
+  attackDistance: 2
+  startTimeBTWAttacks: 2
   startStunTime: 1
   startRecoveryTime: 1
   bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
   maxHealth: 40
   animator: {fileID: 9201290858415813941}
-  isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseUmHalf: 0
   dash: 0
