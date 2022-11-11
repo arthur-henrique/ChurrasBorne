@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
         }
     }
 
