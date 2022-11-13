@@ -7,10 +7,23 @@ public class PlayerAttack : MonoBehaviour
     private bool hasRun = false;
     public LayerMask mask;
     public Vector2 size;
-
+    private Collider2D[] enemiesHit;
     private void OnEnable()
     {
         hasRun = false;
+        if (!hasRun)
+        { 
+            enemiesHit = Physics2D.OverlapBoxAll(transform.position, size, 0, mask, 0, 1);
+            if (enemiesHit != null)
+            {
+                for (int i = 0; i < enemiesHit.Length; i++)
+                {
+                    enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage(5);
+                }
+            }
+            hasRun = true;
+        }
+        Debug.Log("Attaquei, lek");
     }
     void Start()
     {
@@ -20,25 +33,14 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!hasRun)
-        {
-            Collider2D[] enemiesHit = Physics2D.OverlapBoxAll(transform.position, size, mask);
-            foreach (Collider2D inigo in enemiesHit)
-            {
-                if(enemiesHit != null)
-                {
-                    inigo.gameObject.GetComponent<TebasAI>().TakeDamage(20);
-                }
-            }
-        }
-        Debug.Log("Attaquei, lek");
-        hasRun = true;
+        
 
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;        
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, size);
     }
 
 }
