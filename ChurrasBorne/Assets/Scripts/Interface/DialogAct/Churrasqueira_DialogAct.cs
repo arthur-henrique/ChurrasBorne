@@ -9,6 +9,8 @@ public class Churrasqueira_DialogAct : MonoBehaviour
     public GameObject dbox;
     PlayerController pc;
 
+    public Sprite churrasmorta;
+
     [SerializeField]
     private TMP_Text _title;
 
@@ -55,6 +57,7 @@ public class Churrasqueira_DialogAct : MonoBehaviour
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     GetComponent<Animator>().SetBool("APAGAR", true);
+                    GetComponent<SpriteRenderer>().sprite = churrasmorta;
                 }
             }
             

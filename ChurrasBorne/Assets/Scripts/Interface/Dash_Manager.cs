@@ -34,7 +34,7 @@ public class Dash_Manager : MonoBehaviour
     {
         dash_fill_global = dash_fill_global += 14f * Time.deltaTime;
         dash_fill_global = Mathf.Clamp(dash_fill_global, 0, 60 * 3);
-        Debug.Log(dash_fill_global);
+        //Debug.Log(dash_fill_global);
 
         dash_light_global = Mathf.Lerp(dash_light_global, 0.6f, Time.deltaTime * 2f);
         var dlg = dash_light_global;

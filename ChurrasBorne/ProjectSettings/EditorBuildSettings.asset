@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Hub.unity
+    guid: 0a3c4e4b756751b4c9849cb187d38df9
+  - enabled: 1
     path: Assets/Scenes/FaseUm.unity
     guid: 41c3b535d28934f4ebf2945c530cba83
   - enabled: 1
-    path: Assets/Scenes/Hub.unity
-    guid: 0a3c4e4b756751b4c9849cb187d38df9
+    path: Assets/Scenes/FaseDois.unity
+    guid: 280600760154b7440ba3395c079eae37
   - enabled: 1
     path: Assets/Scenes/Test Scenes/TransitionTest_1.unity
     guid: 14688af5d1f686f469db74774376fefc
