@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3349108995056041357}
   - component: {fileID: 2375443893680619628}
-  - component: {fileID: 3057450621734071589}
   - component: {fileID: 6108812726486386711}
   - component: {fileID: 1075967772786269608}
   - component: {fileID: 3059333531883429573}
+  - component: {fileID: 1307689429699787452}
   m_Layer: 8
   m_Name: Spitter
   m_TagString: Untagged
@@ -86,35 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3057450621734071589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6350248437054539928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb679c503a4f0642a1276f152be120b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  projectile: {fileID: 3958311754951014021, guid: 4a580c97b33632b4ab345582abfed78e, type: 3}
-  agroDistance: 30
-  chaseDistance: 10
-  stopDistance: 2
-  meleeDistance: 2
-  startStunTime: 1
-  startMeleeTime: 2
-  startSpitTime: 3
-  speed: 5
-  maxHealth: 40
-  col: {fileID: 3059333531883429573}
-  rb: {fileID: 1075967772786269608}
-  animator: {fileID: 6108812726486386711}
-  isOnTutorial: 0
-  isOnFaseUm: 0
-  canDamage: 0
 --- !u!95 &6108812726486386711
 Animator:
   serializedVersion: 3
@@ -142,7 +113,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350248437054539928}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -171,3 +142,28 @@ CapsuleCollider2D:
   m_Offset: {x: 0.028762281, y: 0.1380583}
   m_Size: {x: 0.85917485, y: 3.0566022}
   m_Direction: 0
+--- !u!114 &1307689429699787452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350248437054539928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f480ec35be61584186645f4dbd66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1075967772786269608}
+  anim: {fileID: 6108812726486386711}
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  projectile: {fileID: 3958311754951014021, guid: 4a580c97b33632b4ab345582abfed78e, type: 3}
+  agroDistance: 30
+  meleeDistance: 2
+  chaseDistance: 10
+  chasingSpeed: 5
+  startTimeBTWAttacks: 2
+  startTimeBTWShots: 2
+  startStunTime: 0.5
+  maxHealth: 40
+  isASpitter: 1

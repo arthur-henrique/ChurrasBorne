@@ -1,53 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &863171584477415739
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6177049210128756038}
-  - component: {fileID: 8612752022033232800}
-  m_Layer: 8
-  m_Name: Dash Detector
-  m_TagString: Ignore
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6177049210128756038
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863171584477415739}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8753556001257868423}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8612752022033232800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863171584477415739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcbdfa4e20dddc0448d82d0e421e880f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 3671831932537637786}
-  angyDetector: {fileID: 863171584477415739}
-  angyDistance: 8
-  kalmDistance: 8
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
 --- !u!1 &3671831932537637786
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +14,7 @@ GameObject:
   - component: {fileID: 5054337974537831557}
   - component: {fileID: 9201290858415813941}
   - component: {fileID: -9148983123163820449}
-  - component: {fileID: 3363649245640072914}
+  - component: {fileID: 8802307300907700796}
   m_Layer: 8
   m_Name: Dasher
   m_TagString: Untagged
@@ -80,8 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6177049210128756038}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3671831932537637786}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -207,7 +158,7 @@ MonoBehaviour:
   sortingOrderBase: 5000
   offset: 1
   runOnlyOnce: 0
---- !u!114 &3363649245640072914
+--- !u!114 &8802307300907700796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,26 +167,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3671831932537637786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15df6b55e43ffd74ca15a79f498112d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f480ec35be61584186645f4dbd66dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  target: {x: 0, y: 0, z: 0}
-  agroDistance: 20
-  stopDistance: 3
-  speed: 5
-  dashSpeed: 10
-  dashPunchDistance: 2
-  attackDistance: 2
-  startTimeBTWAttacks: 2
-  startStunTime: 1
-  startRecoveryTime: 1
-  bodyCollider: {fileID: 5054337974537831557}
   rb: {fileID: 3635214071342444493}
+  anim: {fileID: 9201290858415813941}
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  dashTarget: {x: 0, y: 0, z: 0}
+  projectile: {fileID: 0}
+  agroDistance: 20
+  meleeDistance: 2
+  canDashDistance: 10
+  dashMeleeDistance: 2
+  chaseDistance: 0
+  chasingSpeed: 5
+  dashingSpeed: 10
+  startTimeBTWAttacks: 2
+  startTimeBTWShots: 0
+  startStunTime: 1
+  startDashRecoveryTime: 2
   maxHealth: 40
-  animator: {fileID: 9201290858415813941}
-  isOnFaseUm: 0
-  isOnFaseUmHalf: 0
-  dash: 0
-  canDash: 0
-  dashDetector: {fileID: 863171584477415739}
+  isASpitter: 0
+  isADasher: 1

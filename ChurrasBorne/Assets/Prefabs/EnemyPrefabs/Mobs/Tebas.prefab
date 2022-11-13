@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1962373924799368206}
   - component: {fileID: 1962373924799368193}
   - component: {fileID: 1962373924799368192}
-  - component: {fileID: 1962373924799368207}
   - component: {fileID: 1962373924799368194}
   - component: {fileID: 1092608728338018227}
   - component: {fileID: -5299975102097468759}
+  - component: {fileID: 3612134723383040295}
   m_Layer: 0
   m_Name: Tebas
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962373924799368197}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -108,32 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1962373924799368207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962373924799368197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9794beea25cfe049b84a750b9fb2d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  agroDistance: 20
-  stopDistance: 2
-  speed: 5
-  attackDistance: 2
-  startTimeBTWAttacks: 1
-  startStunTime: 1
-  bodyCollider: {fileID: 1092608728338018227}
-  rb: {fileID: 1962373924799368192}
-  maxHealth: 40
-  animator: {fileID: 1962373924799368194}
-  isOnTutorial: 0
-  isOnFaseUm: 0
-  canDamage: 0
 --- !u!95 &1962373924799368194
 Animator:
   serializedVersion: 3
@@ -184,3 +158,24 @@ MonoBehaviour:
   sortingOrderBase: 5000
   offset: 1
   runOnlyOnce: 0
+--- !u!114 &3612134723383040295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962373924799368197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f480ec35be61584186645f4dbd66dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1962373924799368192}
+  anim: {fileID: 1962373924799368194}
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  agroDistance: 10
+  meleeDistance: 2
+  chasingSpeed: 3
+  startTimeBTWAttacks: 1
+  startStunTime: 1
+  maxHealth: 15
