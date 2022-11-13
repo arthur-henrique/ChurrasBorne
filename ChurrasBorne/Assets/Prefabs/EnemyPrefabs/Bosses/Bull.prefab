@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2477395731989692587}
   - component: {fileID: 2477395731989692584}
   - component: {fileID: 2477395731989692585}
-  - component: {fileID: 2477395731989692502}
   m_Layer: 0
   m_Name: Bull
   m_TagString: Untagged
@@ -31,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.67, y: 1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2841887143573079819}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,30 +142,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2477395731989692502
-MonoBehaviour:
+--- !u!1 &6501323456506780144
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477395731989692503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ee96901762c1414ba35e937c5c97574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  target: {x: 0, y: 0, z: 0}
-  col: {fileID: 2477395731989692584}
-  rb: {fileID: 2477395731989692587}
-  bull: {fileID: 2477395731989692503}
-  anim: {fileID: 2477395731989692585}
-  bullSpike: {fileID: 7419469322836989000, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
-  maxHealth: 100
-  speed: 5
-  bashDistance: 3
-  startBashTime: 1.5
-  axeDistance: 15
-  startAxeTime: 1.5
-  startSpawnTime: 1.2
-  isOnFaseUm: 0
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2841887143573079819}
+  m_Layer: 0
+  m_Name: SpikeSummoner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2841887143573079819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6501323456506780144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2477395731989692589}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
