@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             if (currentHealth <= 0)
             {
                 hasJustDied = true;
+                isAlive = false;
                 if (hasJustDied)
                 {
                     DeathRoutine();

@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 for (int i = 0; i < enemiesHit.Length; i++)
                 {
-                    enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage(5);
+                    enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage();
                 }
             }
             hasRun = true;

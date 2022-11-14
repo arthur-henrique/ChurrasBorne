@@ -55,9 +55,6 @@ public class BullAI : MonoBehaviour
 
         timeBTWAxeATKs = startTimeBTWAxeATKs;
 
-        //PARA SPIKE SUMMON
-        //spikes0 = GameObject.FindGameObjectsWithTag("BullSpikes0")
-
         //Para HEALTH
         currentHealth = maxHealth;
 
@@ -70,6 +67,7 @@ public class BullAI : MonoBehaviour
         switch (state)
         {
             case State.Spawning:
+                Flip();
                 
                 anim.SetTrigger("Spawn");
 
@@ -89,6 +87,8 @@ public class BullAI : MonoBehaviour
                 break;
 
             case State.Chasing:
+                Flip();
+
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", true);
 
@@ -121,6 +121,8 @@ public class BullAI : MonoBehaviour
                 break;
 
             case State.AxeSwing:
+                Flip();
+
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
@@ -143,6 +145,8 @@ public class BullAI : MonoBehaviour
                 break;
 
             case State.SpikeSummon:
+                Flip();
+
                 transform.position = spawnPoint.position;
 
                 rb.velocity = Vector2.zero;
@@ -227,6 +231,19 @@ public class BullAI : MonoBehaviour
         }
     }
 
+    //FLIP
+    void Flip()
+    {
+        if (player.position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (player.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
     //MELEE
     public void DamagePlayer()
     {
@@ -240,5 +257,18 @@ public class BullAI : MonoBehaviour
     public void SummonSpike()
     {
         Instantiate(bullSpike, transform.position, Quaternion.identity);
+    }
+
+    //HEALTH
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("AttackHit"))
+        {
+            TakeDamage(10);
+        }
     }
 }

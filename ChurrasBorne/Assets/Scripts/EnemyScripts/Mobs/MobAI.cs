@@ -36,6 +36,8 @@ public class MobAI : MonoBehaviour
     public bool isASpitter, isADasher;
     private bool canDash = false, isDashing = false;
 
+    public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
+
     private void Awake()
     {
         state = State.Idling;
@@ -211,6 +213,15 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
+                if(isOnTutorial)
+                {
+                    EnemyControlTutorial.Instance.KilledEnemy(gameObject);
+                }
+                else if(isOnFaseUm)
+                {
+                    EnemyControl.Instance.KilledEnemy(gameObject);
+                }
+
                 Destroy(gameObject, 1.5f);
                 break;
         }
@@ -319,19 +330,30 @@ public class MobAI : MonoBehaviour
     }
 
     //HEALTH
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
         anim.SetTrigger("Hit");
+
+        int damage;
+
+        if(isOnTutorial)
+        {
+            damage = 5;
+        }
+        else
+        {
+            damage = 10;    
+        }
 
         currentHealth -= damage;
 
         state = State.Stunned;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("AttackHit"))
+        if (collision.gameObject.tag == "Player")
         {
-            TakeDamage(5);
+            GameManager.instance.TakeDamage(5);
         }
     }
 }

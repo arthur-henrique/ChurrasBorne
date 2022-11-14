@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1155876717615048490}
   - component: {fileID: 1155876717615048489}
   - component: {fileID: 7526324408610073151}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,3 +173,6 @@ MonoBehaviour:
   maxHealth: 40
   isASpitter: 0
   isADasher: 0
+  isOnTutorial: 0
+  isOnFaseUm: 0
+  isOnFaseDois: 0

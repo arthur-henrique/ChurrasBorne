@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2836564491944049887}
   - component: {fileID: 2836564491944049884}
   - component: {fileID: 7118775276587849981}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,3 +173,6 @@ MonoBehaviour:
   maxHealth: 40
   isASpitter: 0
   isADasher: 0
+  isOnTutorial: 0
+  isOnFaseUm: 0
+  isOnFaseDois: 0
