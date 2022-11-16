@@ -31,7 +31,7 @@ public class MobAI : MonoBehaviour
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
 
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
 
     public bool isASpitter, isADasher;
     private bool canDash = false, isDashing = false;
@@ -41,6 +41,12 @@ public class MobAI : MonoBehaviour
     private void Awake()
     {
         state = State.Idling;
+    }
+
+    private void OnEnable()
+    {
+        print(state.ToString());
+        //state = State.Idling;
     }
 
     // Start is called before the first frame update
