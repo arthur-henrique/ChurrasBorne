@@ -180,12 +180,16 @@ MonoBehaviour:
   canDashDistance: 10
   dashMeleeDistance: 2
   chaseDistance: 0
-  chasingSpeed: 5
-  dashingSpeed: 10
+  chasingSpeed: 6
+  dashingSpeed: 15
   startTimeBTWAttacks: 2
   startTimeBTWShots: 0
   startStunTime: 1
   startDashRecoveryTime: 2
   maxHealth: 40
+  currentHealth: 0
   isASpitter: 0
   isADasher: 1
+  isOnTutorial: 0
+  isOnFaseUm: 0
+  isOnFaseDois: 0

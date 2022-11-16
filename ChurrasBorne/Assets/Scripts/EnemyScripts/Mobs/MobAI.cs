@@ -17,7 +17,7 @@ public class MobAI : MonoBehaviour
         Dead
     }
 
-    private static State state;
+    private State state;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -338,7 +338,10 @@ public class MobAI : MonoBehaviour
     //HEALTH
     public void TakeDamage()
     {
-        anim.SetTrigger("Hit");
+        if (currentHealth >= 0)
+        {
+            anim.SetTrigger("Hit");
+        }
 
         int damage;
 
