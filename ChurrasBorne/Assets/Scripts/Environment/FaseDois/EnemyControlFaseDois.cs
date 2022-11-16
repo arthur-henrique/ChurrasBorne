@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour
+public class EnemyControlFaseDois : MonoBehaviour
 {
-    public static EnemyControl Instance;
+    public static EnemyControlFaseDois Instance;
     public GameObject p1, p2;
     private readonly List<GameObject> firstMob = new List<GameObject>();
     private readonly List<GameObject> secondMob = new List<GameObject>();
@@ -12,31 +12,33 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
     private readonly List<GameObject> sixthMob = new List<GameObject>();
-    public GameObject troncoP1, troncoP2, troncosHalf;
-    private bool clearedUm, clearedHalf;
+    private readonly List<GameObject> seventhMob = new List<GameObject>();
+    private readonly List<GameObject> eigthMob = new List<GameObject>();
+    private bool clearedDois, clearedHalf;
     private int randomTL;
 
     private void Awake()
     {
         Instance = this;
     }
-    void Start()
+
+    private void Start()
     {
-        clearedUm = GameManager.instance.GetHasCleared(0);
-        clearedHalf = GameManager.instance.GetHasCleared(1);
+        clearedDois = GameManager.instance.GetHasCleared(2);
+        clearedHalf = GameManager.instance.GetHasCleared(3);
         randomTL = ManagerOfScenes.randomTimeline;
 
-        if (!clearedUm && !clearedHalf)
+        if (!clearedDois && !clearedHalf)
         {
             p1.SetActive(true);
             p2.SetActive(false);
         }
-        else if (clearedUm && !clearedHalf)
+        else if (clearedDois && !clearedHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
         }
-        else if (clearedUm && clearedHalf)
+        else if (clearedDois && clearedHalf)
         {
             if (randomTL == 1)
             {
@@ -56,17 +58,23 @@ public class EnemyControl : MonoBehaviour
         fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
         fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
         sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
+        seventhMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSETE"));
+        eigthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBOITO"));
 
+        firstMob.ForEach(x => x.SetActive(false));
         secondMob.ForEach(x => x.SetActive(false));
         thirdMob.ForEach(x => x.SetActive(false));
         fourthMob.ForEach(x => x.SetActive(false));
         fifthMob.ForEach(x => x.SetActive(false));
         sixthMob.ForEach(x => x.SetActive(false));
+        seventhMob.ForEach(x => x.SetActive(false));
+        eigthMob.ForEach(x => x.SetActive(false));
     }
 
+    // Função de checagem de morte
     public void KilledEnemy(GameObject enemy)
     {
-        if(firstMob.Contains(enemy))
+        if (firstMob.Contains(enemy))
         {
             firstMob.Remove(enemy);
             IsFirstMobCleared();
@@ -74,7 +82,6 @@ public class EnemyControl : MonoBehaviour
         else if (secondMob.Contains(enemy))
         {
             secondMob.Remove(enemy);
-            print(secondMob.Count);
             IsSecondMobCleared();
         }
         else if (thirdMob.Contains(enemy))
@@ -97,108 +104,113 @@ public class EnemyControl : MonoBehaviour
             sixthMob.Remove(enemy);
             IsSixthMobCleared();
         }
+        if (seventhMob.Contains(enemy))
+        {
+            firstMob.Remove(enemy);
+            IsSeventhMobCleared();
+        }
+        if (eigthMob.Contains(enemy))
+        {
+            firstMob.Remove(enemy);
+            IsEigthMobCleared();
+        }
     }
-
+    // Spawnar Mobs
+    public void SpawnFistMob()
+    {
+        firstMob.ForEach(x => x.SetActive(true));
+    }
     public void SpawnSecondMob()
     {
-        for (int i = 0; i < secondMob.Count; i++)
-        {
-            secondMob[i].SetActive(true);
-        }
+        secondMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnThirdMob()
     {
-        for (int i = 0; i < thirdMob.Count; i++)
-        {
-            thirdMob[i].SetActive(true);
-        }
+        thirdMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnFourthMob()
     {
-        // Spawns the first round
-        for (int i = 0; i < fourthMob.Count; i++)
-        {
-            fourthMob[i].SetActive(true);
-        }
+        fourthMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnFifthMob()
     {
-        for (int i = 0; i < fifthMob.Count; i++)
-        {
-            fifthMob[i].SetActive(true);
-        }
+        fifthMob.ForEach(x => x.SetActive(true));       
     }
     public void SpawnSixthMob()
     {
-        for (int i = 0; i < sixthMob.Count; i++)
-        {
-            sixthMob[i].SetActive(true);
-        }
+        sixthMob.ForEach(x => x.SetActive(true));       
     }
-
+    public void SpawnSeventhMob()
+    {
+        seventhMob.ForEach(x => x.SetActive(true));       
+    }
+    public void SpawnEigthMob()
+    {
+        eigthMob.ForEach(x => x.SetActive(true));
+    }
+    // Fazer quando lista está vazia:
     public void IsFirstMobCleared()
     {
-        if(firstMob.Count <= 0)
+        if (firstMob.Count <= 0)
         {
-            SpawnSecondMob();
+            FaseDoisTriggerController.Instance.SalaUmTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
-
     public void IsSecondMobCleared()
     {
-        if(secondMob.Count <= 0)
+        if (secondMob.Count <= 0)
         {
-            troncoP1.SetActive(false);
-            if (!clearedUm)
-                SpawnThirdMob();
-            if(clearedUm)
-            {
-                troncoP2.SetActive(false);
-                troncosHalf.SetActive(true);
-                FaseUmTriggerController.Instance.SideFirstGateTrigger();
-            }
+            FaseDoisTriggerController.Instance.SalaDoisTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
-
     public void IsThirdMobCleared()
     {
         if (thirdMob.Count <= 0)
         {
-            if(!clearedUm)
-            {
-                FaseUmTriggerController.Instance.FirstGateTrigger();
-            }
-            if (clearedUm)
-                FaseUmTriggerController.Instance.SideSecondGateTrigger();
+            FaseDoisTriggerController.Instance.SalaTresTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
     public void IsFourthMobCleared()
     {
         if (fourthMob.Count <= 0)
         {
-            if (!clearedUm)
-            {
-                SpawnFifthMob();
-            }
-            if(clearedUm)
-            {
-                // Opens checkpoint Gate
-            }
+            FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
     public void IsFifthMobCleared()
     {
         if (fifthMob.Count <= 0)
         {
-            SpawnSixthMob();
+            FaseDoisTriggerController.Instance.SalaCincoTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
     public void IsSixthMobCleared()
     {
         if (sixthMob.Count <= 0)
         {
-            FaseUmTriggerController.Instance.FirstGateOut();
+            FaseDoisTriggerController.Instance.SalaSeisTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
         }
     }
-
+    public void IsSeventhMobCleared()
+    {
+        if (seventhMob.Count <= 0)
+        {
+            FaseDoisTriggerController.Instance.SalaSeteTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
+        }
+    }
+    public void IsEigthMobCleared()
+    {
+        if (eigthMob.Count <= 0)
+        {
+            FaseDoisTriggerController.Instance.SalaOitoTrigger();
+            FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
+        }
+    }
 }
