@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private PlayerController pc; 
     public Slider slider;
     public CinemachineVirtualCamera dft, death, boss;
+    public GameObject gameOverPrefab;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -228,6 +229,7 @@ public class GameManager : MonoBehaviour
         SwitchToDeathCam();
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
+        Instantiate(gameOverPrefab);
     }
 }
 

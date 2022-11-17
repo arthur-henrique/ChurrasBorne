@@ -33,6 +33,7 @@ public class PauseManager : MonoBehaviour
     Coroutine cr_pause_label;
     Coroutine cr_pause_sel;
 
+    private bool canChange = false;
     public static bool isPaused = false;
     float ypos = 34.3f;
 
@@ -90,21 +91,45 @@ public class PauseManager : MonoBehaviour
     {
         if (pc.UI.Pause.WasPressedThisFrame())
         {
-            if (isPaused)
+            if (isPaused && GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetBool("isDead") == false)
             {
                 Hide_Pause();
             } else
             {
+                canChange = false;
                 Show_Pause();
             }
             
         }
-
         
         switch (selection_position) {
             case 0: ypos = 34.3f; break;
             case 1: ypos = -15.7f; break;
             case 2: ypos = -98.4f; break;
+        }
+
+        if (canChange == true)
+        {
+            switch (selection_position)
+            {
+                case 0:
+                    pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel1.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                    pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    break;
+
+                case 1:
+                    pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel2.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                    pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    break;
+
+                case 2:
+                    pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                    pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(pause_sel3.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                    break;
+            }
         }
 
         if (isPaused)
@@ -129,6 +154,7 @@ public class PauseManager : MonoBehaviour
                 switch (selection_position)
                 {
                     case 0:
+                        
                         pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
                         Hide_Pause();
                         selection_confirm = false;
@@ -176,6 +202,7 @@ public class PauseManager : MonoBehaviour
 
     private void Hide_Pause()
     {
+        canChange = false;
         isPaused = false;
         if (cr_pause_bg != null)
             StopCoroutine(cr_pause_bg);
@@ -242,9 +269,17 @@ public class PauseManager : MonoBehaviour
             Color psel2c = pause_sel2.GetComponent<TextMeshProUGUI>().color;
             Color psel3c = pause_sel3.GetComponent<TextMeshProUGUI>().color;
 
-            pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(psel1c.r, psel1c.g, psel1c.b, Mathf.Lerp(pause_sel1.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
-            pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(psel2c.r, psel2c.g, psel2c.b, Mathf.Lerp(pause_sel2.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
-            pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(psel3c.r, psel3c.g, psel3c.b, Mathf.Lerp(pause_sel3.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
+            if (canChange == false)
+            {
+                pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(psel1c.r, psel1c.g, psel1c.b, Mathf.Lerp(pause_sel1.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
+                pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(psel2c.r, psel2c.g, psel2c.b, Mathf.Lerp(pause_sel2.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
+                pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(psel3c.r, psel3c.g, psel3c.b, Mathf.Lerp(pause_sel3.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 4f));
+            }
+
+            if (pause_sel1.GetComponent<TextMeshProUGUI>().color.a >= 0.85f)
+            {
+                canChange = true;
+            }
 
             pause_sel1.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(pause_sel1.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, 34.3f, 0), ref velocity_sel1, 5 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
@@ -254,6 +289,7 @@ public class PauseManager : MonoBehaviour
                             Vector3.SmoothDamp(pause_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -82.5f, 0), ref velocity_sel3, 5 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+        
     }
     #endregion
 
@@ -317,6 +353,7 @@ public class PauseManager : MonoBehaviour
                             Vector3.SmoothDamp(pause_sel3.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -82.5f - 24, 0), ref velocity_sel3, 14 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+        
         pause_sel1.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 34.3f + 24, 0);
         pause_sel2.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -15.7f + 24, 0);
         pause_sel3.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -82.5f + 24, 0);
