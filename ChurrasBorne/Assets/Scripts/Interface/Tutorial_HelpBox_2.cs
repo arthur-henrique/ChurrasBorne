@@ -40,7 +40,7 @@ public class Tutorial_HelpBox_2 : MonoBehaviour
     void Update()
     {
         TUT_BAR_FILL.GetComponent<Image>().fillAmount = roll_amount;
-        if (pc.Movimento.Rolar.WasPressedThisFrame())
+        if (PauseManager.isPaused == false && pc.Movimento.Rolar.WasPressedThisFrame())
         {
             roll_amount += 0.34f;
         }
