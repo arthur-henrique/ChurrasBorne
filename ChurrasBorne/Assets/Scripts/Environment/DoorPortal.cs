@@ -5,26 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class DoorPortal : MonoBehaviour
 {
+    public GameObject canvas; // TransitionCanvas NEEDS to be in scene
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
+
         if (collision.CompareTag("Player"))
         {
             if (gameObject.CompareTag("Tester"))
             {
-                GameManager.instance.NextLevelSetter(Vector2.zero);
-                SceneManager.LoadScene("Tutorial");
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
             }
 
             if (gameObject.CompareTag("ParaHub"))
             {
-                GameManager.instance.NextLevelSetter(Vector2.zero);
-                SceneManager.LoadScene("Hub");
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
             }
 
             if (gameObject.CompareTag("PortaUm"))
             {
-                GameManager.instance.NextLevelSetter(Vector2.zero);
-                SceneManager.LoadScene("FaseUm");
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
                 //if (!GameManager.instance.hasCleared[0])
                 //{
                 //    GameManager.instance.NextLevelSetter(Vector2.zero);
