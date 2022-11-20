@@ -3877,6 +3877,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2576711861933534109, guid: d01f9a6bf7bab3240bd94009dde17204, type: 3}
+      propertyPath: m_SortingOrder
+      value: 32767
+      objectReference: {fileID: 0}
     - target: {fileID: 2576711861933534110, guid: d01f9a6bf7bab3240bd94009dde17204, type: 3}
       propertyPath: m_Name
       value: TransitionCanvas

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameOver_Manager : MonoBehaviour
 {
@@ -31,6 +32,11 @@ public class GameOver_Manager : MonoBehaviour
     private Vector3 velocity_sel1 = Vector3.zero;
     private Vector3 velocity_sel2 = Vector3.zero;
     private Vector3 velocity_sel3 = Vector3.zero;
+
+    private string scene_detect;
+    private int og_health;
+    private float og_meat;
+    private bool og_sword;
 
     float ypos = 34.3f;
 
@@ -150,15 +156,20 @@ public class GameOver_Manager : MonoBehaviour
                 {
                     case 0:
                         gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        canvas.GetComponent<Transition_Manager>().RestartScene(SceneManager.GetActiveScene().name, GameManager.instance.og_health, GameManager.instance.og_meat, GameManager.instance.og_sword, gameObject);
+                        gover_selection_confirm = false;
                         break;
 
                     case 1:
                         gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+                        gover_selection_confirm = false;
                         break;
 
                     case 2:
                         gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
                         canvas.GetComponent<Transition_Manager>().TransitionToScene("MainMenu");
+                        gover_selection_confirm = false;
                         break;
                 }
             }

@@ -274,6 +274,10 @@ public class PlayerMovement : MonoBehaviour
     {
         state = State.Dead;
     }
+    public static void SetStateAlive()
+    {
+        state = State.Normal;
+    }
 
     public void CantAttack()
     {

@@ -112,6 +112,7 @@ public class HealthBar_Manager : MonoBehaviour
         realHealth = GameManager.instance.GetHealth();
         convertHealth = realHealth / GameManager.instance.maxHealth;
         hp_amount_lerp = Mathf.Lerp(hp_amount_lerp, convertHealth, 6f * Time.deltaTime);
+        print("HP_MANAGER: " + realHealth + ", " + convertHealth);
         HP_OverlayColor.GetComponent<Image>().fillAmount = hp_amount_lerp;
 
         if (convertHealth >= 0.835f)

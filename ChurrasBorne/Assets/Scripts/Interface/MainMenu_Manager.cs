@@ -755,7 +755,7 @@ public class MainMenu_Manager : MonoBehaviour
 
                             if (stage_transition == false)
                             {
-                                canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
+                                canvas.GetComponent<Transition_Manager>().TransitionToScene("StartVoid");
                                 stage_transition = true;
                             }
                             break;
