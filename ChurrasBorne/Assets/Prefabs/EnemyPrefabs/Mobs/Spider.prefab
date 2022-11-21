@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1155876717615048490}
   - component: {fileID: 1155876717615048489}
   - component: {fileID: 7526324408610073151}
+  - component: {fileID: -6535169719040685427}
   m_Layer: 8
   m_Name: Spider
   m_TagString: Untagged
@@ -164,7 +165,7 @@ MonoBehaviour:
   canDashDistance: 0
   dashMeleeDistance: 0
   chaseDistance: 0
-  chasingSpeed: 7
+  chasingSpeed: 3
   dashingSpeed: 0
   startTimeBTWAttacks: 1
   startTimeBTWShots: 0
@@ -176,3 +177,18 @@ MonoBehaviour:
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
+--- !u!114 &-6535169719040685427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155876717615048503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 0
