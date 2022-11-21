@@ -93,6 +93,7 @@ public class DialogSystem : MonoBehaviour
             yield return null;
         }
 
+        GameManager.isInDialog = false;
         var selec = getChildGameObject(gameObject, "BalloonBox");
         if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
         {
@@ -109,24 +110,19 @@ public class DialogSystem : MonoBehaviour
 
     public void db_PullUP()
     {
+        GameManager.isInDialog = true;
         StartCoroutine(PullUp());
     }
 
     public void db_PullDOWN()
     {
+        GameManager.isInDialog = false;
         StartCoroutine(PullDown());
     }
     public void db_SetSceneSimple(int scene_number)
     {
         _title.text = DialogBank.test_bank[scene_number];
         StartCoroutine(StopDialog());
-    }
-
-
-
-    public void Habilitacao(CallbackContext context)
-    {
-        
     }
 
     static public GameObject getChildGameObject(GameObject fromGameObject, string withName)

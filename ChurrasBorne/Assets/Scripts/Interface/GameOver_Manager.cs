@@ -38,6 +38,8 @@ public class GameOver_Manager : MonoBehaviour
     private float og_meat;
     private bool og_sword;
 
+    private float interactDelay = 1f;
+
     float ypos = 34.3f;
 
     private bool canChange = false;
@@ -145,10 +147,18 @@ public class GameOver_Manager : MonoBehaviour
             gover_drop.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(gover_drop.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, ypos, 0), ref velocity_drop_shadow, 5 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
 
-            if (pc.Movimento.Attack.WasPressedThisFrame())
+            if (interactDelay <= 0)
             {
-                gover_selection_confirm = true;
+                if (pc.Movimento.Attack.WasPressedThisFrame())
+                {
+                    gover_selection_confirm = true;
+                }
+            } else
+            {
+                interactDelay -= Time.deltaTime;
             }
+
+            print(interactDelay);
 
             if (gover_selection_confirm == true)
             {
@@ -162,7 +172,8 @@ public class GameOver_Manager : MonoBehaviour
 
                     case 1:
                         gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
-                        canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+                        canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 3, true, gameObject);
+                        //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
                         gover_selection_confirm = false;
                         break;
 

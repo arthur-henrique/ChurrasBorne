@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public float og_meat;
     public bool og_sword;
 
+    public static bool isInDialog = false;
+
     public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half;
     private GameObject[] gameManagers; 
     private void Awake()
