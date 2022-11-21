@@ -155,19 +155,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
-  walkingSpeed: 5
-  dashingSpeed: 10
+  chasingSpeed: 5
+  dashingSpeed: 15
   stompDistance: 5
-  dashDistance: 20
-  dashATKDistance: 1
-  startSpawnTime: 1
-  startDashTime: 5
-  startStompTime: 3
-  startSummonPrepTime: 1
+  dashDistance: 15
+  dashATKDistance: 2
+  canDashDistance: 10
+  timeBTWStompATKs: 2
   startSpikeSpawnTime: 3
   startStopSummoningTime: 10
-  maxHealth: 100
+  dashRecoveryTime: 2
+  health: 100
   rb: {fileID: 8446388628132816272}
-  col: {fileID: 5743075216512499694}
-  goat: {fileID: 6555616963489609874}
   anim: {fileID: 9160456545418378528}

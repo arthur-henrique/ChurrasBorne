@@ -164,13 +164,13 @@ MonoBehaviour:
   canDashDistance: 0
   dashMeleeDistance: 0
   chaseDistance: 0
-  chasingSpeed: 7
+  chasingSpeed: 3
   dashingSpeed: 0
   startTimeBTWAttacks: 1
   startTimeBTWShots: 0
   startStunTime: 0.5
   startDashRecoveryTime: 0
-  health: 40
+  health: 20
   isASpitter: 0
   isADasher: 0
   isOnTutorial: 0
