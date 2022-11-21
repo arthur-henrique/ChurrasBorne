@@ -22,6 +22,8 @@ public class PlayerAttack : MonoBehaviour
                         enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage();
                     else if (enemiesHit[i].transform.GetComponent<BullAI>() != null)
                         enemiesHit[i].transform.GetComponent<BullAI>().TakeDamage();
+                    else if (enemiesHit[i].transform.GetComponent<ArmorAI>() != null)
+                        enemiesHit[i].transform.GetComponent<ArmorAI>().TakeDamage();
                 }
             }
             hasRun = true;

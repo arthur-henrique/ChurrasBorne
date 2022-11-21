@@ -31,8 +31,7 @@ public class MobAI : MonoBehaviour
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
 
-    public int maxHealth;
-    public int currentHealth;
+    public int health;
 
     public bool isASpitter, isADasher;
     private bool canDash = false, isDashing = false;
@@ -52,15 +51,13 @@ public class MobAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
 
-        TimeBTWAttacks = startTimeBTWAttacks;
+        TimeBTWAttacks = 0.1f;
 
         timeBTWShots = startTimeBTWShots;
 
         stunTime = startStunTime;
 
         dashRecoveryTime = startDashRecoveryTime;
-
-        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -251,32 +248,32 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && currentHealth > 0 && isASpitter == false)    
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == false)    
         {
             state = State.Chasing;
         }
-        else if(Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && currentHealth > 0 && isASpitter == true)
+        else if(Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == true)
         {
             state = State.Chasing;
         }
     }
     void SwitchToIdling()
     {
-        if(Vector2.Distance(transform.position, target) > agroDistance && currentHealth > 0)
+        if(Vector2.Distance(transform.position, target) > agroDistance && health > 0)
         {
             state = State.Idling;
         }
     }
     void SwitchToAttacking()
     {
-        if(Vector2.Distance(transform.position, target) <= meleeDistance && currentHealth > 0)
+        if(Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
         {
             state = State.Attacking;
         }
     }
     void SwitchToShooting()
     {
-        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && currentHealth > 0 && isASpitter == true)
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter == true)
         {
             state = State.Shooting;
         }
@@ -298,7 +295,7 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToDead()
     {
-        if(currentHealth <= 0)
+        if(health <= 0)
         {
             state = State.Dead;
         }
@@ -341,7 +338,7 @@ public class MobAI : MonoBehaviour
     //HEALTH
     public void TakeDamage()
     {
-        if (currentHealth >= 0)
+        if (health >= 0)
         {
             anim.SetTrigger("Hit");
         }
@@ -357,7 +354,7 @@ public class MobAI : MonoBehaviour
             damage = 10;    
         }
 
-        currentHealth -= damage;
+        health -= damage;
 
         state = State.Stunned;
     }

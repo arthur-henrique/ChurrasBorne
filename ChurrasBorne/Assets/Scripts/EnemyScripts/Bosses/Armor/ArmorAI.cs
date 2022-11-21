@@ -26,8 +26,9 @@ public class ArmorAI : MonoBehaviour
     public int health;
 
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
-    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs;   
+    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs;
 
+    public bool isOnTut;
     private void Awake()
     {
         state = State.Spawning;
@@ -37,8 +38,8 @@ public class ArmorAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentTimeBTWSlashATKs = timeBTWSlashATKs;
-        currentTimeBTWSpinATKs = timeBTWSpinATKs;
+        currentTimeBTWSlashATKs = 0.1f;
+        currentTimeBTWSpinATKs = 0.1f;
     }
 
     void Update()
@@ -113,6 +114,11 @@ public class ArmorAI : MonoBehaviour
 
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
+
+                if (isOnTut)
+                {
+                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                }
                 break;
         }
     }
