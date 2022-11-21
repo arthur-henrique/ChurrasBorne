@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
     public bool isTut;
     public float respawnCooldown;
     private bool canTakeDamage, isAlive, hasJustDied;
+
+    public string scene_detect;
+    public int og_health;
+    public float og_meat;
+    public bool og_sword;
 
     public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half;
     private GameObject[] gameManagers; 
@@ -57,6 +63,17 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (scene_detect != SceneManager.GetActiveScene().name)
+        {
+            og_health = GameManager.instance.currentHealth;
+            og_meat = GameManager.instance.GetMeat();
+            og_sword = GameManager.instance.GetSword();
+            scene_detect = SceneManager.GetActiveScene().name;
+            //print("OG HEALTH" + og_health);
+        }
+
+        //print("GAME_MANAGER: " + currentHealth);
+
         if (damageCDCounter > 0f)
         {
             canTakeDamage = false;
@@ -78,6 +95,7 @@ public class GameManager : MonoBehaviour
         {
             NextLevelSetter(Vector2.zero);
             UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
 
@@ -134,6 +152,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public float GetMeat()
+    {
+        return playerAnimator.GetFloat("numberOfMeat");
+    }
+    public bool GetSword()
+    {
+        return playerAnimator.GetBool("isHoldingSword");
+    }
+
     public void RollInvuln()
     {
         damageCDCounter = rollDmgCd;
@@ -166,16 +193,24 @@ public class GameManager : MonoBehaviour
         return currentHealth;
     }
 
-    private void OnLevelWasLoaded(int level)
-    {
-        gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
-        if (gameManagers.Length > 1)
-            Destroy(gameManagers[1]);
-    }
+    //private void OnLevelWasLoaded(int level)
+    //{
+    //    gameManagers = GameObject.FindGameObjectsWithTag("GameManager");
+    //    if (gameManagers.Length > 1)
+    //    {
+    //        gameManagers[0] = gameManagers[1];
+    //        Destroy(gameManagers[1]);
+    //    }
+    //}
     public void NextLevelSetter(Vector2 spawn)
     {
         player.transform.position = spawn;
         currentHealth = maxHealth;
+    }
+
+    public void SetPlayerPosition(Vector2 position)
+    {
+        player.transform.position = position;
     }
     
     public void DeathRoutine()
@@ -190,6 +225,14 @@ public class GameManager : MonoBehaviour
     public bool GetAlive()
     {
         return isAlive;
+    }
+
+    public void SetAlive()
+    {
+        playerAnimator.SetBool("isDead", false);
+        playerAnimator.SetBool("isDied", false);
+        isAlive = true;
+        PlayerMovement.SetStateAlive();
     }
 
     public void SetHasCleared(int fase, bool cleared)
@@ -229,6 +272,7 @@ public class GameManager : MonoBehaviour
         SwitchToDeathCam();
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
+        playerAnimator.SetBool("isDied", true);
         Instantiate(gameOverPrefab);
     }
 }

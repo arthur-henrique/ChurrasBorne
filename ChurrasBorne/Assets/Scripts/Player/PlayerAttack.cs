@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private bool hasRun = false;
-    public LayerMask mask;
+    public LayerMask mask, bossMask;
     public Vector2 size;
     private Collider2D[] enemiesHit;
     private void OnEnable()
@@ -18,7 +18,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 for (int i = 0; i < enemiesHit.Length; i++)
                 {
-                    enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage();
+                    if (enemiesHit[i].transform.GetComponent<MobAI>() != null)
+                        enemiesHit[i].transform.GetComponent<MobAI>().TakeDamage();
+                    else if (enemiesHit[i].transform.GetComponent<BullAI>() != null)
+                        enemiesHit[i].transform.GetComponent<BullAI>().TakeDamage();
                 }
             }
             hasRun = true;

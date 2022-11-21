@@ -26,7 +26,6 @@ public class EnemyControlTutorial : MonoBehaviour
         if (firstMob.Contains(enemy))
         {
             firstMob.Remove(enemy);
-            print("A");
             IsFirstMobCleared();
         }
         else if (secondMob.Contains(enemy))

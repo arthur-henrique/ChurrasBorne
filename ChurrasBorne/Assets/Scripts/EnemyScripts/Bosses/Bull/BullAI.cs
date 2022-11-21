@@ -31,7 +31,7 @@ public class BullAI : MonoBehaviour
     public float chasingSpeed, bashDistance, startTimeBTWBashATKs, axeDistance, startTimeBTWAxeATKs, startTimeToSpawn, startTimeToSummonSpikes;
     private float timeBTWBashATKs, timeBTWAxeATKs, timeToSpawn, timeToSummonSpikes;
 
-    public bool isOnFaseUm;
+    public bool isOnTut, isOnFaseQuatro;
 
     private static State state;
 
@@ -189,6 +189,10 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
+                if(isOnTut)
+                {
+                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                }
                 Destroy(gameObject, 1.5f);
                 break;
         }
@@ -260,15 +264,16 @@ public class BullAI : MonoBehaviour
     }
 
     //HEALTH
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
+        int damage = 10;
         currentHealth -= damage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("AttackHit"))
         {
-            TakeDamage(10);
+            TakeDamage();
         }
     }
 }
