@@ -69,10 +69,10 @@ public class GameManager : MonoBehaviour
             og_meat = GameManager.instance.GetMeat();
             og_sword = GameManager.instance.GetSword();
             scene_detect = SceneManager.GetActiveScene().name;
-            print("OG HEALTH" + og_health);
+            //print("OG HEALTH" + og_health);
         }
 
-        print("GAME_MANAGER: " + currentHealth);
+        //print("GAME_MANAGER: " + currentHealth);
 
         if (damageCDCounter > 0f)
         {
@@ -93,8 +93,9 @@ public class GameManager : MonoBehaviour
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+            //NextLevelSetter(Vector2.zero);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
+            TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
 

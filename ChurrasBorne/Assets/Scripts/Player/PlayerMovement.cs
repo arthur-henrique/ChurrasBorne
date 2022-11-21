@@ -80,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
                         rollSpeed = 70f;
                         state = State.Rolling;
                         anim.SetTrigger("isRolling");
+                        print("Rolei");
                         Dash_Manager.dash_fill_global -= 60;
                         Dash_Manager.dash_light_global = 0;
                     }
@@ -281,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CantAttack()
     {
-        canAttack = true;
+        StartCoroutine(StupidAttackCD());
     }
 
 
@@ -299,5 +300,11 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnIce = false;
         }
+    }
+
+    IEnumerator StupidAttackCD()
+    {
+        yield return new WaitForSeconds(0.035f);
+        canAttack = true;
     }
 }

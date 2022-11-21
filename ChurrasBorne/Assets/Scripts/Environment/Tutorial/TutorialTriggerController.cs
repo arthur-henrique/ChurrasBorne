@@ -7,7 +7,8 @@ public class TutorialTriggerController : MonoBehaviour
     public static TutorialTriggerController Instance;
     public GameObject[] firstGateOut;
     public GameObject[] secondGateIn;
-    public GameObject[] secondGateOut;
+
+    public Animator portaoAnim;
 
     private void Awake()
     {
@@ -32,10 +33,7 @@ public class TutorialTriggerController : MonoBehaviour
 
     public void SecondGateTriggerOut()
     {
-        for (int i = 0; i < secondGateOut.Length; i++)
-        {
-            secondGateOut[i].SetActive(!secondGateOut[i].activeSelf);
-        }
+        portaoAnim.SetTrigger("OPENIT");
         SecondGateTrigger();
     }
 }

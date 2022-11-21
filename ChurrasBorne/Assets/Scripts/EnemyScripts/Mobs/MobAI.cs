@@ -23,6 +23,7 @@ public class MobAI : MonoBehaviour
     public Animator anim;
 
     public Transform player;
+    private Vector3 target;
     public Vector3 dashTarget;
 
     public GameObject projectile;
@@ -38,21 +39,18 @@ public class MobAI : MonoBehaviour
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
 
+    private float yOffset = 1.6f;
+
     private void Awake()
     {
         state = State.Idling;
-    }
-
-    private void OnEnable()
-    {
-        print(state.ToString());
-        //state = State.Idling;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
 
         TimeBTWAttacks = startTimeBTWAttacks;
 
@@ -83,7 +81,7 @@ public class MobAI : MonoBehaviour
             case State.Chasing:
                 Flip();
 
-                transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
+                transform.position = Vector2.MoveTowards(transform.position, target, chasingSpeed * Time.deltaTime);
 
                 anim.SetBool("Walk", true);
                 anim.SetBool("Idle", false);
@@ -158,7 +156,7 @@ public class MobAI : MonoBehaviour
                     transform.localScale = new Vector3(1, 1, 1);
                 }
 
-                if (Vector2.Distance(transform.position, player.position) <= dashMeleeDistance && isDashing == true)
+                if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
                 {
                     anim.SetTrigger("DashMelee");
 
@@ -235,56 +233,61 @@ public class MobAI : MonoBehaviour
         //DASH
         if(isDashing == false)
         {
-            dashTarget = player.transform.position;
+            dashTarget = target;
 
-            Vector3 fator = player.position - transform.position;
+            Vector3 fator = target - transform.position;
 
-            dashTarget.x = player.position.x + fator.x * 2;
+            dashTarget.x = target.x + fator.x * 2;
 
-            dashTarget.y = player.position.y + fator.y * 2;
+            dashTarget.y = target.y + fator.y * 2;
         }
     }
-    
+
+    private void FixedUpdate()
+    {
+        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+    }
+
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) <= agroDistance && Vector2.Distance(transform.position, player.position) > meleeDistance && currentHealth > 0 && isASpitter == false)    
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && currentHealth > 0 && isASpitter == false)    
         {
             state = State.Chasing;
         }
-        else if(Vector2.Distance(transform.position, player.position) <= chaseDistance && Vector2.Distance(transform.position, player.position) > meleeDistance && currentHealth > 0 && isASpitter == true)
+        else if(Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && currentHealth > 0 && isASpitter == true)
         {
             state = State.Chasing;
         }
     }
     void SwitchToIdling()
     {
-        if(Vector2.Distance(transform.position, player.position) > agroDistance && currentHealth > 0)
+        if(Vector2.Distance(transform.position, target) > agroDistance && currentHealth > 0)
         {
             state = State.Idling;
         }
     }
     void SwitchToAttacking()
     {
-        if(Vector2.Distance(transform.position, player.position) <= meleeDistance && currentHealth > 0)
+        if(Vector2.Distance(transform.position, target) <= meleeDistance && currentHealth > 0)
         {
             state = State.Attacking;
         }
     }
     void SwitchToShooting()
     {
-        if(Vector2.Distance(transform.position, player.position) <= agroDistance && Vector2.Distance(transform.position, player.position) > chaseDistance && currentHealth > 0 && isASpitter == true)
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && currentHealth > 0 && isASpitter == true)
         {
             state = State.Shooting;
         }
     }
     void SwitchToDashing()
     {
-        if(Vector2.Distance(transform.position,player.position) < canDashDistance && isADasher == true)
+        if(Vector2.Distance(transform.position, target) < canDashDistance && isADasher == true)
         {
             canDash = true;
         }
-        else if(Vector2.Distance(transform.position, player.position) >= canDashDistance && canDash == true && isADasher == true)
+        else if(Vector2.Distance(transform.position, target) >= canDashDistance && canDash == true && isADasher == true)
         {
             state = State.Dashing;
         }
@@ -304,11 +307,11 @@ public class MobAI : MonoBehaviour
     //MELEE
     void DamagePlayer()
     {
-        if(Vector2.Distance(transform.position,player.position) <= meleeDistance && isDashing == false)
+        if(Vector2.Distance(transform.position, target) <= meleeDistance && isDashing == false)
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(5, 0.25f);
         }
-        else if(Vector2.Distance(transform.position, player.position) <= dashMeleeDistance && isDashing == true)
+        else if(Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
         {
             GameManager.instance.TakeDamage(10);
 
@@ -325,11 +328,11 @@ public class MobAI : MonoBehaviour
     //FLIP
     void Flip()
     {
-        if (player.position.x < transform.position.x && isDashing == false)
+        if (target.x < transform.position.x && isDashing == false)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (player.position.x > transform.position.x && isDashing == false)
+        else if (target.x > transform.position.x && isDashing == false)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
