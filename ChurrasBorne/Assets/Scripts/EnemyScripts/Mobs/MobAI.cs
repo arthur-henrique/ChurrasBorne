@@ -309,7 +309,7 @@ public class MobAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, target) <= meleeDistance && isDashing == false)
         {
-            GameManager.instance.TakeDamage(5, 0.25f);
+            GameManager.instance.TakeDamage(5);
         }
         else if(Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
         {
@@ -366,6 +366,14 @@ public class MobAI : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+    }
+
 }
