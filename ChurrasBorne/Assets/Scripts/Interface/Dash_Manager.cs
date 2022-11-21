@@ -11,9 +11,6 @@ public class Dash_Manager : MonoBehaviour
     GameObject DASH_Bar_2;
     GameObject DASH_Bar_3;
 
-    float hp_amount_lerp = 0;
-    float convertHealth = 0;
-
     public static float dash_fill_global = 60*3;
     public static float dash_light_global = 0.6f;
 

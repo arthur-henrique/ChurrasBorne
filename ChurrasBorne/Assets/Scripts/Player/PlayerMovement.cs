@@ -61,8 +61,40 @@ public class PlayerMovement : MonoBehaviour
         switch (state)
         {
             case State.Normal:
-                x = pc.Movimento.LesteOeste.ReadValue<float>();
-                y = pc.Movimento.NorteSul.ReadValue<float>();
+                if (!GameManager.isInDialog)
+                {
+                    x = pc.Movimento.LesteOeste.ReadValue<float>();
+                    y = pc.Movimento.NorteSul.ReadValue<float>();
+
+                    if (pc.Movimento.Rolar.WasPressedThisFrame())
+                    {
+                        if (Dash_Manager.dash_fill_global >= 60)
+                        {
+                            rollDirection = lastMovedDirection;
+                            rollSpeed = 70f;
+                            state = State.Rolling;
+                            anim.SetTrigger("isRolling");
+                            print("Rolei");
+                            Dash_Manager.dash_fill_global -= 60;
+                            Dash_Manager.dash_light_global = 0;
+                        }
+                    }
+
+                    if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
+                    {
+                        canAttack = false;
+                        state = State.Attacking;
+                        anim.SetTrigger("isAttacking");
+                    }
+
+                    if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
+                    {
+                        healingAnimCd = 1f;
+                        state = State.Healing;
+                        anim.SetTrigger("isHealing");
+                    }
+                }
+                
                 direcao = new Vector2(x, y);
                 direcao.Normalize();
                 if (x != 0 || y != 0)
@@ -72,31 +104,7 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 healsLeft = GameManager.instance.GetHeals();
-                if (pc.Movimento.Rolar.WasPressedThisFrame())
-                {
-                    if (Dash_Manager.dash_fill_global >= 60)
-                    {
-                        rollDirection = lastMovedDirection;
-                        rollSpeed = 70f;
-                        state = State.Rolling;
-                        anim.SetTrigger("isRolling");
-                        print("Rolei");
-                        Dash_Manager.dash_fill_global -= 60;
-                        Dash_Manager.dash_light_global = 0;
-                    }
-                }
-                if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
-                {
-                    canAttack = false;
-                    state = State.Attacking;
-                    anim.SetTrigger("isAttacking");
-                }
-                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
-                {
-                    healingAnimCd = 1f;
-                    state = State.Healing;
-                    anim.SetTrigger("isHealing");
-                }
+                
                 break;
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;

@@ -137,6 +137,10 @@ public class Transition_Manager : MonoBehaviour
         SceneManager.LoadScene(scene_name);
         switch (scene_name)
         {
+            case "Hub":
+                GameManager.instance.SetPlayerPosition(new Vector2(-6.756674f, 3.171088f));
+                break;
+
             case "Tutorial":
                 GameManager.instance.SetPlayerPosition(new Vector2(-2.46f, -0.22f));
                 break;
@@ -205,7 +209,7 @@ public class Transition_Manager : MonoBehaviour
 
             case "Hub":
 
-                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Hub";
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Templo da Nossa Senhora do Pão d'Alho";
                 break;
 
             case "FaseUm":

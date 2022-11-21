@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class GameOver_Triggers : EventTrigger, IPointerClickHandler
 {
+    private float interactDelay = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,9 +47,13 @@ public class GameOver_Triggers : EventTrigger, IPointerClickHandler
 
     public void EnterItem(BaseEventData data)
     {
-        if (Time.fixedTime > 1)
+        if (interactDelay <= 0)
         {
             GameOver_Manager.gover_selection_confirm = true;
+        }
+        else
+        {
+            interactDelay -= Time.deltaTime;
         }
     }
 }
