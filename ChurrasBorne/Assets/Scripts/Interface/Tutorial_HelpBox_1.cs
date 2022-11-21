@@ -41,7 +41,7 @@ public class Tutorial_HelpBox_1 : MonoBehaviour
     void Update()
     {
         TUT_BAR_FILL.GetComponent<Image>().fillAmount = walk_amount;
-        if (pc.Movimento.NorteSul.IsPressed() || pc.Movimento.LesteOeste.IsPressed())
+        if (PauseManager.isPaused == false && (pc.Movimento.NorteSul.IsPressed() || pc.Movimento.LesteOeste.IsPressed()))
         {
             walk_amount += 0.005f;
         }

@@ -7,7 +7,7 @@ public class EnemyControl : MonoBehaviour
     public static EnemyControl Instance;
     public GameObject p1, p2;
     private readonly List<GameObject> firstMob = new List<GameObject>();
-    public List<GameObject> secondMob = new List<GameObject>();
+    private readonly List<GameObject> secondMob = new List<GameObject>();
     private readonly List<GameObject> thirdMob = new List<GameObject>();
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
@@ -57,6 +57,7 @@ public class EnemyControl : MonoBehaviour
         fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
         sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
 
+        firstMob.ForEach(x => x.SetActive(false));
         secondMob.ForEach(x => x.SetActive(false));
         thirdMob.ForEach(x => x.SetActive(false));
         fourthMob.ForEach(x => x.SetActive(false));
@@ -99,6 +100,13 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    public void SpawnFirstMob()
+    {
+        for (int i = 0; i < firstMob.Count; i++)
+        {
+            firstMob[i].SetActive(true);
+        }
+    }
     public void SpawnSecondMob()
     {
         for (int i = 0; i < secondMob.Count; i++)

@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3671831932537637786}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -177,15 +177,18 @@ MonoBehaviour:
   projectile: {fileID: 0}
   agroDistance: 20
   meleeDistance: 2
-  canDashDistance: 10
+  canDashDistance: 8
   dashMeleeDistance: 2
   chaseDistance: 0
   chasingSpeed: 5
-  dashingSpeed: 10
+  dashingSpeed: 15
   startTimeBTWAttacks: 2
   startTimeBTWShots: 0
-  startStunTime: 1
-  startDashRecoveryTime: 2
-  maxHealth: 40
+  startStunTime: 0.5
+  startDashRecoveryTime: 1.5
+  health: 40
   isASpitter: 0
   isADasher: 1
+  isOnTutorial: 0
+  isOnFaseUm: 0
+  isOnFaseDois: 0

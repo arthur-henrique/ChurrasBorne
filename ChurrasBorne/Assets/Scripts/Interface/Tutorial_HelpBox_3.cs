@@ -38,7 +38,7 @@ public class Tutorial_HelpBox_3 : MonoBehaviour
     void Update()
     {
         TUT_BAR_FILL.GetComponent<Image>().fillAmount = attack_amount;
-        if (pc.Movimento.Attack.WasPressedThisFrame())
+        if (PauseManager.isPaused == false && pc.Movimento.Attack.WasPressedThisFrame())
         {
             attack_amount += 0.34f;
         }

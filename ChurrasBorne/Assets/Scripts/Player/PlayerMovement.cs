@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
-    private int amountToHeal = 20;
+    private readonly int amountToHeal = 20;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private static Animator anim;
@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     bool canAttack = true;
     private static State state;
     PlayerController pc;
+
+    private bool isOnIce;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
                         rollSpeed = 70f;
                         state = State.Rolling;
                         anim.SetTrigger("isRolling");
+                        print("Rolei");
                         Dash_Manager.dash_fill_global -= 60;
                         Dash_Manager.dash_light_global = 0;
                     }
@@ -201,7 +204,12 @@ public class PlayerMovement : MonoBehaviour
         {
             case State.Normal:
                 moveVelocity = direcao * speed;
-                rb.velocity = moveVelocity;
+                if(isOnIce)
+                {
+                    rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else
+                    rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;
@@ -217,14 +225,32 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                rb.velocity = Vector2.zero;
                 break;
             case State.Healing:
-                rb.velocity = Vector2.zero;
+                moveVelocity = 0.8f * speed * direcao;
+                if (isOnIce)
+                {
+                    rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else
+                    rb.velocity = moveVelocity;
+                if (rb.velocity.x < 0)
+                {
+                    sr.flipX = true;
+                }
+                else if (rb.velocity.x > 1f)
+                {
+                    sr.flipX = false;
+                }
                 break;
             case State.TakingDamage:
-                moveVelocity = direcao * speed * 0.2f;
-                rb.velocity = moveVelocity;
+                moveVelocity = 0.8f * speed * direcao;
+                if (isOnIce)
+                {
+                    rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else
+                    rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
                 {
                     sr.flipX = true;
@@ -249,9 +275,36 @@ public class PlayerMovement : MonoBehaviour
     {
         state = State.Dead;
     }
+    public static void SetStateAlive()
+    {
+        state = State.Normal;
+    }
 
     public void CantAttack()
     {
+        StartCoroutine(StupidAttackCD());
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("GELO"))
+        {
+            isOnIce = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("GELO"))
+        {
+            isOnIce = false;
+        }
+    }
+
+    IEnumerator StupidAttackCD()
+    {
+        yield return new WaitForSeconds(0.035f);
         canAttack = true;
     }
 }

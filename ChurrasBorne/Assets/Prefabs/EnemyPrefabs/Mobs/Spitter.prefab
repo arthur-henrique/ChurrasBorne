@@ -113,7 +113,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6350248437054539928}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -157,13 +157,22 @@ MonoBehaviour:
   rb: {fileID: 1075967772786269608}
   anim: {fileID: 6108812726486386711}
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  dashTarget: {x: 0, y: 0, z: 0}
   projectile: {fileID: 3958311754951014021, guid: 4a580c97b33632b4ab345582abfed78e, type: 3}
   agroDistance: 30
   meleeDistance: 2
-  chaseDistance: 10
-  chasingSpeed: 5
-  startTimeBTWAttacks: 2
-  startTimeBTWShots: 2
+  canDashDistance: 0
+  dashMeleeDistance: 0
+  chaseDistance: 6
+  chasingSpeed: 3
+  dashingSpeed: 0
+  startTimeBTWAttacks: 1
+  startTimeBTWShots: 1
   startStunTime: 0.5
-  maxHealth: 40
+  startDashRecoveryTime: 0
+  health: 40
   isASpitter: 1
+  isADasher: 0
+  isOnTutorial: 0
+  isOnFaseUm: 0
+  isOnFaseDois: 0

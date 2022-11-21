@@ -11,28 +11,25 @@ public class GoatAI : MonoBehaviour
         Chasing,
         Stomping,
         Dashing,
-        DashAttack,
+        RecoveringFromDash,
         SummoningSpikes,
         Idling,
-        WasHurt,
         Dead       
     }
 
     public Transform player;
+    private Vector2 dashTarget;
 
-    private bool mustStomp, mustDash, mustDashAttack, mustSummonSpikes;
+    public float chasingSpeed, dashingSpeed, stompDistance, dashDistance, dashATKDistance;
 
-    public float walkingSpeed, dashingSpeed, stompDistance, dashDistance, dashATKDistance;
+    public float timeBTWStompATKs, startSpikeSpawnTime, startStopSummoningTime, dashRecoveryTime;
+    private float currentTimeBTWStompATKs, spikeSpawnTime, stopSummoningTime, currentDashRecoveryTime;
 
-    public float startSpawnTime, startDashTime, startStompTime, startSummonPrepTime, startSpikeSpawnTime, startStopSummoningTime;
-    private float spawnTime, dashTime, stompTime, summonPrepTime, spikeSpawnTime, stopSummoningTime;
+    private bool isDashing = false;
 
-    public int maxHealth;
-    int currentHealth;
+    public int health;
 
     public Rigidbody2D rb;
-    public Collider2D col;
-    public GameObject goat;
 
     public Animator anim;
 
@@ -47,164 +44,213 @@ public class GoatAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        spawnTime = startSpawnTime;
-
-        dashTime = startDashTime;
-
-        stompTime = startStompTime;
+        timeBTWStompATKs = currentTimeBTWStompATKs;
 
         spikeSpawnTime = startSpikeSpawnTime; 
 
-        summonPrepTime = startSummonPrepTime;
-
         stopSummoningTime = startStopSummoningTime;
 
-
-        //Para HEALTH
-        currentHealth = maxHealth;
+        currentDashRecoveryTime = dashRecoveryTime;
     }
 
     void Update()
     {
-        //FLIP
-        if (player.position.x < transform.position.x)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (player.position.x > transform.position.x)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-
         switch (state)
         {
             case State.Spawning:
-                anim.SetTrigger("Spawning");
-                if (spawnTime <= 0)
-                {
-                    goat.GetComponent<CapsuleCollider2D>().enabled = true;
-
-                    state = State.Chasing;
-                }
-                else
-                {
-                    spawnTime -= Time.deltaTime;
-                }
+                Flip();
                 break;
                 
             case State.Chasing:
+                Flip();
+
+                transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
+
+                anim.SetBool("Walk", true);
                 anim.SetBool("Idle", false);
-                anim.SetBool("Walking", true);
-                transform.position = Vector2.MoveTowards(transform.position, player.position, walkingSpeed * Time.deltaTime);
 
-                if(Vector2.Distance(transform.position, player.position) <= stompDistance)
-                {
-                    mustStomp = true;
-                    state = State.Stomping;
-                }
-                /*
-                if(Vector2.Distance(transform.position, player.position) > dashDistance)
-                {
-                    dashTime -= Time.deltaTime;
-                }
-                if (dashTime <= 0)
-                {
-                    state = State.Dashing;
-
-                    dashTime = startDashTime;
-                }
-                if(currentHealth == 50)
-                {
-                    state = State.SummoningSpikes;
-                }
-                */
+                SwitchToDashing();
+                SwitchToDead();
                 break;
 
             case State.Stomping:
+                Flip();
+
                 rb.velocity = Vector2.zero;
-                anim.SetBool("Walking", false);
+
                 anim.SetBool("Idle", true);
-                if (stompTime <= 0 && mustStomp == true)
+                anim.SetBool("Walk", false);
+
+                if(timeBTWStompATKs <= 0)
                 {
                     anim.SetTrigger("Stomp");
 
-                    GameManager.instance.TakeDamage(20);
-
-                    stompTime = startStompTime;
+                    timeBTWStompATKs = currentTimeBTWStompATKs;
                 }
                 else
                 {
-                    stompTime -= Time.deltaTime;    
+                    timeBTWStompATKs -= Time.deltaTime;
                 }
-                if(Vector2.Distance(transform.position, player.position) > stompDistance && mustStomp == true)
+
+                SwitchToDashing();
+                SwitchToDead();
+                break;
+
+            case State.Dashing:
+                isDashing = true;
+
+                DashFlip();
+
+                transform.position = Vector2.MoveTowards(transform.position, player.position, dashingSpeed * Time.deltaTime);
+
+                anim.SetBool("Dash", true);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Walk", false);
+
+                if (Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing == true)
                 {
-                    mustStomp = false;
-                    state = State.Chasing;
+                    anim.SetTrigger("DashMelee");
+
+                    state = State.RecoveringFromDash;
+                }
+                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing == true)
+                {
+                    state = State.RecoveringFromDash;
+
+                    isDashing = false;
                 }
                 break;
 
-            case State.WasHurt:
-                TakeDamage(30);
-                if(currentHealth <= 0)
+            case State.RecoveringFromDash:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
+
+                if(currentDashRecoveryTime <= 0)
                 {
-                    state = State.Dead;
-                }
-                else
-                {
-                    state = State.Chasing;
+                    SwitchToChasing();
+                    SwitchToDashing();
+                    SwitchToStomping();
+                    SwitchToDead();
                 }
                 break;
 
             case State.Dead:
-                anim.SetBool("Dead", true);
-                anim.SetBool("Walking", false);
-                anim.SetBool("Idle", false);
-                GetComponent<Collider2D>().enabled = false;
-                this.enabled = false;
-                break;
-
-                /*
-            case State.Idling:
-                anim.SetBool("Idle", true);
                 rb.velocity = Vector2.zero;
+
+                anim.SetTrigger("Die");
+
+                anim.SetBool("Idle", false);
+                anim.SetBool("Walk", false);
                 break;
-                */
+        }
+
+        if (isDashing == false)
+        {
+            dashTarget = player.transform.position;
+
+            Vector3 fator = player.position - transform.position;
+
+            dashTarget.x = player.position.x + fator.x * 2;
+
+            dashTarget.y = player.position.y + fator.y * 2;
         }
     }
 
-    //ON CONTACT
+    void SwitchToChasing()
+    {
+        if(Vector2.Distance(transform.position, player.position) > dashDistance && health > 0)
+        {
+            state = State.Chasing;
+        }
+    }
+    void SwitchToDashing()
+    {
+        if(Vector2.Distance(transform.position, player.position) <= dashDistance && Vector2.Distance(transform.position, player.position) > stompDistance && health > 0)
+        {
+            state = State.Dashing;
+        }
+    }
+    void SwitchToStomping()
+    {
+        if(Vector2.Distance(transform.position, player.position) <= stompDistance && health > 0)
+        {
+            state = State.Stomping;
+        }
+    }
+    void SwitchToDead()
+    {
+        if(health <= 0)
+        {
+            state = State.Dead;
+        }
+    }
+
+    void BeginCombat()
+    {
+        SwitchToChasing();
+        SwitchToDashing();
+        SwitchToStomping();
+    }
+
+    void StompDamage()
+    {
+        if(Vector2.Distance(transform.position, player.position) <= stompDistance)
+        {
+            GameManager.instance.TakeDamage(5);
+        }
+    }
+
+    void DashDamage()
+    {
+        if(Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing == true)
+        {
+            GameManager.instance.TakeDamage(10);
+
+            isDashing = false;
+
+            state = State.RecoveringFromDash;
+        }
+    }
+
+    void Flip()
+    {
+        if (player.position.x < transform.position.x && isDashing == false)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (player.position.x > transform.position.x && isDashing == false)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+    void DashFlip()
+    {
+        if (dashTarget.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (dashTarget.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
+    public void TakeDamage()
+    {
+        int damage;
+
+        damage = 10;
+
+        health -= damage;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
-            col.isTrigger = true;
-            rb.velocity = Vector2.zero;
+            GameManager.instance.TakeDamage(5);
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            col.isTrigger = false;
-        }
-    }
-
-    //HEALTH
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("AttackHit"))
-        {
-            state = State.WasHurt;
-        }
-
-        //Vector2 difference = transform.position - collision.transform.position;
-        //transform.position = new Vector2(transform.position.x + difference.x, transform.position.y + difference.y);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        anim.SetTrigger("Hit");
     }
 }

@@ -62,6 +62,11 @@ public class Transition_Manager : MonoBehaviour
         StartCoroutine(TransitionHandle(scene_name));
     }
 
+    public void RestartScene(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
+    {
+        StartCoroutine(TransitionHandleRestart(scene_name, health, heals, isHoldingSword, destroyObj));
+    }
+
     private IEnumerator TransitionHandle(string scene_name)
     {
         var smooth_time = 0.25f * 1.25f;
@@ -83,7 +88,83 @@ public class Transition_Manager : MonoBehaviour
             yield return null;
         }
         SceneManager.LoadScene(scene_name);
+        if (GameManager.instance)
+        {
+            GameManager.instance.NextLevelSetter(Vector2.zero);
+        }
         Time.timeScale = 1;
+        for (int i = 0; i < 60 * 20; i++)
+        {
+            curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
+            curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, -670, 0), ref velocity_left2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
+            curtain_left_3.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, -670, 0), ref velocity_left3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
+
+            curtain_right_1.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, -670, 0), ref velocity_right1, smooth_time, 999, Time.unscaledDeltaTime);
+            curtain_right_2.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, -670, 0), ref velocity_right2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
+            curtain_right_3.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
+            yield return null;
+        }
+    }
+
+    private IEnumerator TransitionHandleRestart(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
+    {
+        var smooth_time = 0.25f * 1.25f;
+        for (int i = 0; i < 60 * 4; i++)
+        {
+            curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, 0, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
+            curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(-203.5f, 0, 0), ref velocity_left2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
+            curtain_left_3.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_left_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(-38.5f, 0, 0), ref velocity_left3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
+
+            curtain_right_1.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(368.5f, 0, 0), ref velocity_right1, smooth_time, 999, Time.unscaledDeltaTime);
+            curtain_right_2.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_2.GetComponent<RectTransform>().anchoredPosition, new Vector3(203.5f, 0, 0), ref velocity_right2, smooth_time * 1.5f, 999, Time.unscaledDeltaTime);
+            curtain_right_3.GetComponent<RectTransform>().anchoredPosition =
+                Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, 0, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
+            yield return null;
+        }
+
+        SceneManager.LoadScene("TransitionTest_2");
+        SceneManager.LoadScene(scene_name);
+        switch (scene_name)
+        {
+            case "Tutorial":
+                GameManager.instance.SetPlayerPosition(new Vector2(-2.46f, -0.22f));
+                break;
+
+            case "FaseUm":
+                GameManager.instance.SetPlayerPosition(new Vector2(-6.756674f, 3.171088f));
+                break;
+
+            case "FaseDois":
+                GameManager.instance.SetPlayerPosition(new Vector2(0f, 0f));
+                break;
+        }
+
+        GameManager.instance.currentHealth = health;
+        GameManager.instance.SetHealth(GameManager.instance.currentHealth);
+        GameManager.instance.SwitchToDefaultCam();
+        GameManager.instance.SetAlive();
+        if (scene_name == "Tutorial")
+        {
+            GameManager.instance.SetHeals(heals, true, isHoldingSword);
+        } else
+        {
+            GameManager.instance.SetHeals(heals, false, isHoldingSword);
+        }
+        
+        Destroy(destroyObj);
+        Time.timeScale = 1;
+
         for (int i = 0; i < 60 * 20; i++)
         {
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
@@ -120,6 +201,21 @@ public class Transition_Manager : MonoBehaviour
             case "Tutorial":
 
                 scene_text_display.GetComponent<TextMeshProUGUI>().text = "Tutorial";
+                break;
+
+            case "Hub":
+
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Hub";
+                break;
+
+            case "FaseUm":
+
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Fase 1";
+                break;
+
+            case "FaseDois":
+
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Fase 2";
                 break;
         }
         for (int i = 0; i < 60 * 4; i++)

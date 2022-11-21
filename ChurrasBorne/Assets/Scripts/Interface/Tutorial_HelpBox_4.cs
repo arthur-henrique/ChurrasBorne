@@ -38,7 +38,7 @@ public class Tutorial_HelpBox_4 : MonoBehaviour
     void Update()
     {
         TUT_BAR_FILL.GetComponent<Image>().fillAmount = heal_amount;
-        if (pc.Movimento.Curar.WasPressedThisFrame())
+        if (PauseManager.isPaused == false && pc.Movimento.Curar.WasPressedThisFrame())
         {
             heal_amount += 1f;
         }
