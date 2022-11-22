@@ -121,7 +121,7 @@ public class DialogSystem : MonoBehaviour
     }
     public void db_SetSceneSimple(int scene_number)
     {
-        _title.text = DialogBank.test_bank[scene_number];
+        _title.text = DialogBank.portuguese_bank[scene_number];
         StartCoroutine(StopDialog());
     }
 

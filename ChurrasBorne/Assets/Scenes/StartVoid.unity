@@ -761,6 +761,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  bossMask:
+    serializedVersion: 2
+    m_Bits: 0
   size: {x: 3.5, y: 1.5}
 --- !u!114 &601760235
 MonoBehaviour:
@@ -777,6 +780,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  bossMask:
+    serializedVersion: 2
+    m_Bits: 0
   size: {x: 3.5, y: 1.5}
 --- !u!114 &601760236
 MonoBehaviour:
@@ -793,6 +799,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  bossMask:
+    serializedVersion: 2
+    m_Bits: 0
   size: {x: 1.5, y: 3.25}
 --- !u!114 &601760237
 MonoBehaviour:
@@ -809,6 +818,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
+  bossMask:
+    serializedVersion: 2
+    m_Bits: 0
   size: {x: 1.5, y: 3.25}
 --- !u!1001 &757716132
 PrefabInstance:
@@ -839,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562796071953308085, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5562796071953308085, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_AnchorMax.x
@@ -956,14 +968,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1033251544
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1098553892}
     m_Modifications:
     - target: {fileID: 7927680279429262864, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_SortingOrder
@@ -979,7 +991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1063,6 +1075,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
+--- !u!224 &1033251545 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
+  m_PrefabInstance: {fileID: 1033251544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1098553890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1139,7 @@ Transform:
   - {fileID: 1501838252}
   - {fileID: 1514494212}
   - {fileID: 1561382290}
+  - {fileID: 1033251545}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1420,9 +1438,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  secondGateOut:
-  - {fileID: 0}
-  - {fileID: 0}
+  portaoAnim: {fileID: 0}
 --- !u!114 &1507771060
 MonoBehaviour:
   m_ObjectHideFlags: 0
