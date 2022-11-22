@@ -16,7 +16,6 @@ public class BullAI : MonoBehaviour
     }
 
     public Transform player;
-    public Transform spawnPoint;
 
     public Rigidbody2D rb;
 
@@ -42,11 +41,11 @@ public class BullAI : MonoBehaviour
     void Start()
     {
         //Para SPAWN, MOVEMENT, BASH, AXE
-        spawnPoint = GameObject.FindGameObjectWithTag("BullSpawnPoint").transform;
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        timeBTWBashATKs = startTimeBTWBashATKs;
+        timeBTWBashATKs = 0.5f;
+
+        timeBTWAxeATKs = 0.5f;
     }
 
     void Update()
@@ -60,13 +59,14 @@ public class BullAI : MonoBehaviour
             case State.Chasing:
                 Flip();
 
-                anim.SetBool("Idle", false);
                 anim.SetBool("Walk", true);
+                anim.SetBool("Idle", false);
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
                 SwitchToAxeATK();
                 SwitchToBashATK();
+                SwitchToDead();
                 break;
 
             case State.HeadBash:
@@ -113,9 +113,6 @@ public class BullAI : MonoBehaviour
                 SwitchToBashATK();
                 SwitchToChasing();
                 SwitchToDead();
-                break;
-
-            case State.SpikeSummon:
                 break;
 
             case State.Dead:
@@ -207,7 +204,7 @@ public class BullAI : MonoBehaviour
     //SPIKES
     public void SummonSpike()
     {
-        Instantiate(bullSpikes, transform.position, Quaternion.identity);
+        Instantiate(bullSpikes, player.position, Quaternion.identity);
     }
 
     //HEALTH
