@@ -68,6 +68,7 @@ public class GoatAI : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
                 anim.SetBool("Walk", true);
+                anim.SetBool("Dash", false);
                 anim.SetBool("Idle", false);
 
                 SwitchToStomping();
@@ -81,6 +82,7 @@ public class GoatAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
 
                 if(timeBTWStompATKs <= 0)
@@ -156,6 +158,7 @@ public class GoatAI : MonoBehaviour
                 anim.SetTrigger("Die");
 
                 anim.SetBool("Idle", false);
+                anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
         }

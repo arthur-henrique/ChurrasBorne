@@ -20,7 +20,7 @@ public class BullAI : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    public GameObject bullSpike;
+    public GameObject bullSpikes;
 
     public Animator anim;
 
@@ -207,7 +207,7 @@ public class BullAI : MonoBehaviour
     //SPIKES
     public void SummonSpike()
     {
-        Instantiate(bullSpike, transform.position, Quaternion.identity);
+        Instantiate(bullSpikes, transform.position, Quaternion.identity);
     }
 
     //HEALTH

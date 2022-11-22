@@ -365,6 +365,16 @@ public class MobAI : MonoBehaviour
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
+
+        if (isADasher == true && isDashing == true)
+        {
+            if (collision.gameObject.tag == "PAREDE")
+            {
+                isDashing = false;
+
+                state = State.RecoveringFromDash;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

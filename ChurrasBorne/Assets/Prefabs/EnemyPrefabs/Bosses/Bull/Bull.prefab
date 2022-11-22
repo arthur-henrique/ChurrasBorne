@@ -158,18 +158,17 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   spawnPoint: {fileID: 0}
   rb: {fileID: 2477395731989692587}
-  bullSpike: {fileID: 7419469322836989000, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
-  spikeSummoner: {fileID: 6501323456506780144}
+  bullSpike: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
   anim: {fileID: 2477395731989692585}
-  maxHealth: 100
+  health: 0
   chasingSpeed: 5
   bashDistance: 3
   startTimeBTWBashATKs: 2
   axeDistance: 3
   startTimeBTWAxeATKs: 2
-  startTimeToSpawn: 1
   startTimeToSummonSpikes: 1
-  isOnFaseUm: 0
+  isOnTut: 0
+  isOnFaseQuatro: 0
 --- !u!1 &6501323456506780144
 GameObject:
   m_ObjectHideFlags: 0

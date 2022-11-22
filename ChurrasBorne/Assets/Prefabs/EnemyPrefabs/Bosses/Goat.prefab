@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   chasingSpeed: 5
-  dashingSpeed: 15
+  dashingSpeed: 10
   stompDistance: 5
   dashDistance: 15
   dashATKDistance: 2
