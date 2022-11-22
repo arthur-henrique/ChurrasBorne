@@ -65,6 +65,14 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(gameObject);
+        }
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
             og_health = GameManager.instance.currentHealth;
