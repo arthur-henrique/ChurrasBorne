@@ -5,10 +5,12 @@ using UnityEngine;
 public class DialogBank : MonoBehaviour
 {
 
-    public static string[] test_bank =
+    public static string[] portuguese_bank =
     {
-        "teste um",         /* 0 */
-        "Você agora possui seu primeiro espetinho!"        /* 1 */
+        "",                                                 /* 0 */
+        "teste um",                                         /* 1 */
+        "Você agora possui seu primeiro espetinho!",        /* 2 */
+        "Sua vida foi completamente restaurada."            /* 3 */
     };
 
 
