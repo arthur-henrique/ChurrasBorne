@@ -58,18 +58,18 @@ public class ManagerOfScenes : MonoBehaviour
             if (!clearedDois && !clearedDoisHalf)
             {
                 eclipse.SetActive(false);
-                FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                //FaseDoisTriggerController.Instance.SalaCincoTrigger();
+                //FaseDoisTriggerController.Instance.SalaSeisTrigger();
+                //FaseDoisTriggerController.Instance.SalaSeteTrigger();
+                //FaseDoisTriggerController.Instance.SalaOitoTrigger();
             }
             else if (clearedDois && !clearedDoisHalf)
             {
                 passado.SetActive(false);
-                FaseDoisTriggerController.Instance.SalaUmTrigger();
-                FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                FaseDoisTriggerController.Instance.SalaTresTrigger();
-                FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+                //FaseDoisTriggerController.Instance.SalaUmTrigger();
+                //FaseDoisTriggerController.Instance.SalaDoisTrigger();
+                //FaseDoisTriggerController.Instance.SalaTresTrigger();
+                //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                 eclipse.SetActive(true);
             }
             else if (clearedDois && clearedDoisHalf)
@@ -79,18 +79,18 @@ public class ManagerOfScenes : MonoBehaviour
                 {
                     passado.SetActive(true);
                     eclipse.SetActive(false);
-                    FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                    FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                    FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                    FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                    //FaseDoisTriggerController.Instance.SalaCincoTrigger();
+                    //FaseDoisTriggerController.Instance.SalaSeisTrigger();
+                    //FaseDoisTriggerController.Instance.SalaSeteTrigger();
+                    //FaseDoisTriggerController.Instance.SalaOitoTrigger();
                 }
                 else if (randomTimeline == 2)
                 {
                     passado.SetActive(false);
-                    FaseDoisTriggerController.Instance.SalaUmTrigger();
-                    FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                    FaseDoisTriggerController.Instance.SalaTresTrigger();
-                    FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+                    //FaseDoisTriggerController.Instance.SalaUmTrigger();
+                    //FaseDoisTriggerController.Instance.SalaDoisTrigger();
+                    //FaseDoisTriggerController.Instance.SalaTresTrigger();
+                    //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                     eclipse.SetActive(true);
                 }
             }

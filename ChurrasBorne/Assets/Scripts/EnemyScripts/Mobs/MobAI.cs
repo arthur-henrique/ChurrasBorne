@@ -222,6 +222,10 @@ public class MobAI : MonoBehaviour
                 {
                     EnemyControl.Instance.KilledEnemy(gameObject);
                 }
+                else if (isOnFaseDois)
+                {
+                    EnemyControlFaseDois.Instance.KilledEnemy(gameObject);
+                }
 
                 Destroy(gameObject, 1.5f);
                 break;
