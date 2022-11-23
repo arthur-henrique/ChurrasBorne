@@ -18,13 +18,13 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         Instance = this;
     }
-
     // UpPathGates
     public void FirstGateTrigger()
     {
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
-            upPathFirstGateIn[i].SetActive(!upPathFirstGateIn[i].activeSelf);
+            upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            print("PortãoAberto");
         }
     }
 
@@ -32,7 +32,7 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
-            upPathFirstGateIn[i].SetActive(!upPathFirstGateIn[i].activeSelf);
+            upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
         for (int i = 0; i < upPathFirstGateOut.Length; i++)
         {
@@ -44,7 +44,15 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
-            upPathSecondGateIn[i].SetActive(!upPathSecondGateIn[i].activeSelf);
+            upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+        }
+    }
+
+    public void SecondGateOpen()
+    {
+        for (int i = 0; i < upPathSecondGateIn.Length; i++)
+        {
+            upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
 

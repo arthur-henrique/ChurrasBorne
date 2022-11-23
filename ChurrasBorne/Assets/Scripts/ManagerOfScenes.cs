@@ -9,6 +9,8 @@ public class ManagerOfScenes : MonoBehaviour
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
 
+    // Hub Cam Positions:
+    public GameObject[] GateCamPos;
     private void Start()
     {
         clearedUm = GameManager.instance.GetHasCleared(0);
@@ -17,7 +19,6 @@ public class ManagerOfScenes : MonoBehaviour
         clearedDoisHalf = GameManager.instance.GetHasCleared(3);
         if(gate != null)
             GameManager.instance.GateCamSetter(gate);
-
 
         if (gameObject.CompareTag("Tutorial"))
         {
@@ -29,6 +30,18 @@ public class ManagerOfScenes : MonoBehaviour
         }
 
         // Fase Checker
+        // HUB
+        if (gameObject.CompareTag("HUB"))
+        {
+            gate.transform.position = GateCamPos[1].transform.position;
+            if(!clearedUm && !clearedHalf)
+            {
+                StartCoroutine(ShowFirstPath());
+            }
+        }
+        
+
+        // Fase Um
         if(gameObject.CompareTag("FASEUM"))
         {
             if(!clearedUm && !clearedHalf)
@@ -116,5 +129,11 @@ public class ManagerOfScenes : MonoBehaviour
                 // Personagem fica jogavel novamente
             }
         }
+    }
+
+    IEnumerator ShowFirstPath()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.instance.GateCAM();
     }
 }
