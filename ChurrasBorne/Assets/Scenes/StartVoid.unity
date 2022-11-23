@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 0}
   eclipse: {fileID: 0}
+  gate: {fileID: 0}
 --- !u!4 &43474599
 Transform:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ GameObject:
   - component: {fileID: 223903017}
   - component: {fileID: 223903018}
   m_Layer: 0
-  m_Name: DeathCam
+  m_Name: DeathCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1112,6 +1113,7 @@ MonoBehaviour:
   slider: {fileID: 1561382289}
   dft: {fileID: 189145003}
   death: {fileID: 223903018}
+  gate: {fileID: 0}
   boss: {fileID: 1724782216}
   gameOverPrefab: {fileID: 1214597544727120186, guid: 3068dd6c7bdf1f24c9f61567078f30db, type: 3}
   maxHealth: 100

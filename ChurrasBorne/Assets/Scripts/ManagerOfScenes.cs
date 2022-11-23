@@ -7,6 +7,7 @@ public class ManagerOfScenes : MonoBehaviour
     public GameObject passado, eclipse;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
+    public CinemachineVirtualCamera gate;
 
     private void Start()
     {
@@ -14,6 +15,8 @@ public class ManagerOfScenes : MonoBehaviour
         clearedHalf = GameManager.instance.GetHasCleared(1);
         clearedDois = GameManager.instance.GetHasCleared(2);
         clearedDoisHalf = GameManager.instance.GetHasCleared(3);
+        if(gate != null)
+            GameManager.instance.GateCamSetter(gate);
 
 
         if (gameObject.CompareTag("Tutorial"))

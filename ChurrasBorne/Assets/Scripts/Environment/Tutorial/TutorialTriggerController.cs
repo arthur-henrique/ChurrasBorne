@@ -33,7 +33,15 @@ public class TutorialTriggerController : MonoBehaviour
 
     public void SecondGateTriggerOut()
     {
+        GameManager.instance.GateCAM();
+        StartCoroutine(OpenTheGates());
+    }
+
+    IEnumerator OpenTheGates()
+    {
+        yield return new WaitForSeconds(2);
         portaoAnim.SetTrigger("OPENIT");
         SecondGateTrigger();
+
     }
 }
