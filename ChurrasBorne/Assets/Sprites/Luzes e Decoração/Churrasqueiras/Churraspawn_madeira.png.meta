@@ -1,37 +1,34 @@
 fileFormatVersion: 2
-guid: d903c274c4a176c49866542de40686e4
+guid: fc9efafec396a894a8ad509abc0d2cb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6800545180649558989
-    second: Churraspawn_0
+      213: 5535872866737994428
+    second: Churraspawn_madeira_1
   - first:
-      213: 2681351680721278026
-    second: Churraspawn_1
+      213: -557915257197170975
+    second: Churraspawn_madeira_2
   - first:
-      213: 9219113570478579664
-    second: Churraspawn_2
+      213: -1784045777931589485
+    second: Churraspawn_madeira_3
   - first:
-      213: 4430199745909398184
-    second: Churraspawn_3
+      213: -288799889056743143
+    second: Churraspawn_madeira_4
   - first:
-      213: 4705513383771254677
-    second: Churraspawn_4
+      213: -6861437695162583042
+    second: Churraspawn_madeira_5
   - first:
-      213: -4132685388578724379
-    second: Churraspawn_5
+      213: -5654295321016112278
+    second: Churraspawn_madeira_6
   - first:
-      213: 855964569913784658
-    second: Churraspawn_6
+      213: 2010212093367406824
+    second: Churraspawn_madeira_7
   - first:
-      213: -6090557156129157593
-    second: Churraspawn_7
+      213: 6738142893403396172
+    second: Churraspawn_madeira_8
   - first:
-      213: 9189089376867829928
-    second: Churraspawn_8
-  - first:
-      213: 1386249209543622669
-    second: Churraspawn_9
+      213: -7998690471321655187
+    second: Churraspawn_madeira_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,32 +114,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Churraspawn_0
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dc39c9b9fc3606e50800000000000000
-      internalID: 6800545180649558989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Churraspawn_1
+      name: Churraspawn_madeira_1
       rect:
         serializedVersion: 2
         x: 384
@@ -156,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a44d94fa523163520800000000000000
-      internalID: 2681351680721278026
+      spriteID: cba34afba0f53dc40800000000000000
+      internalID: 5535872866737994428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_2
+      name: Churraspawn_madeira_2
       rect:
         serializedVersion: 2
         x: 512
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0dfdb5882fed0ff70800000000000000
-      internalID: 9219113570478579664
+      spriteID: 1eeedff8703e148f0800000000000000
+      internalID: -557915257197170975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_3
+      name: Churraspawn_madeira_3
       rect:
         serializedVersion: 2
         x: 640
@@ -198,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aa94fa523b3b7d30800000000000000
-      internalID: 4430199745909398184
+      spriteID: 3982a5731dbcd37e0800000000000000
+      internalID: -1784045777931589485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_4
+      name: Churraspawn_madeira_4
       rect:
         serializedVersion: 2
         x: 0
@@ -219,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59f288ddd775d4140800000000000000
-      internalID: 4705513383771254677
+      spriteID: 911c991f70afdfbf0800000000000000
+      internalID: -288799889056743143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_5
+      name: Churraspawn_madeira_5
       rect:
         serializedVersion: 2
         x: 128
@@ -240,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e56155f880c5a6c0800000000000000
-      internalID: -4132685388578724379
+      spriteID: ef7fb5b05c647c0a0800000000000000
+      internalID: -6861437695162583042
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_6
+      name: Churraspawn_madeira_6
       rect:
         serializedVersion: 2
         x: 256
@@ -261,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 259f702cd3ff0eb00800000000000000
-      internalID: 855964569913784658
+      spriteID: a6b6eaffc58e781b0800000000000000
+      internalID: -5654295321016112278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_7
+      name: Churraspawn_madeira_7
       rect:
         serializedVersion: 2
         x: 384
@@ -282,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72e45b0298ef97ba0800000000000000
-      internalID: -6090557156129157593
+      spriteID: 8e0db549f35b5eb10800000000000000
+      internalID: 2010212093367406824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_8
+      name: Churraspawn_madeira_8
       rect:
         serializedVersion: 2
         x: 512
@@ -303,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a8c5853a14368f70800000000000000
-      internalID: 9189089376867829928
+      spriteID: c48d127e241b28d50800000000000000
+      internalID: 6738142893403396172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Churraspawn_9
+      name: Churraspawn_madeira_9
       rect:
         serializedVersion: 2
         x: 640
@@ -324,8 +324,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d008309bf42fc3310800000000000000
-      internalID: 1386249209543622669
+      spriteID: d68229c2561fef090800000000000000
+      internalID: -7998690471321655187
       vertices: []
       indices: 
       edges: []

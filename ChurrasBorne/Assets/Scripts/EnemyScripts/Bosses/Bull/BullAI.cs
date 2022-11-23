@@ -30,7 +30,9 @@ public class BullAI : MonoBehaviour
 
     public bool isOnTut, isOnFaseQuatro;
 
-    private static State state;
+    private bool isAlive = true;
+
+    private State state;
 
     private void Awake()
     {
@@ -118,14 +120,13 @@ public class BullAI : MonoBehaviour
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
+                isAlive = false;
+
                 anim.SetTrigger("Die");
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if(isOnTut)
-                {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
-                }
+                
                 break;
         }
     }
@@ -161,9 +162,13 @@ public class BullAI : MonoBehaviour
     }
     void SwitchToDead()
     {
-        if(health <= 0)
+        if(health <= 0 && isAlive == true)
         {
             state = State.Dead;
+            if (isOnTut)
+            {
+                TutorialTriggerController.Instance.SecondGateTriggerOut();
+            }
         }
     }
 

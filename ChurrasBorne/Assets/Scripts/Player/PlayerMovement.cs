@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     bool takingDamage = false;
     bool canAttack = true;
     private static State state;
-    PlayerController pc;
+    public static PlayerController pc;
 
     private bool isOnIce;
     // Start is called before the first frame update
@@ -274,6 +274,16 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
         }
+    }
+
+    public static void DisableControl()
+    {
+        pc.Movimento.Disable();
+    }
+
+    public static void EnableControl()
+    {
+        pc.Movimento.Enable();
     }
     public static void SetDamageState()
     {

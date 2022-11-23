@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private Animator playerAnimator;
     private PlayerController pc; 
     public Slider slider;
-    public CinemachineVirtualCamera dft, death, boss;
+    public CinemachineVirtualCamera dft, death, gate, boss;
     public GameObject gameOverPrefab;
 
     // Health and Stuff
@@ -65,6 +65,14 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(gameObject);
+        }
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
             og_health = GameManager.instance.currentHealth;
@@ -88,15 +96,19 @@ public class GameManager : MonoBehaviour
         SetHealth(currentHealth);
 
         if (pc.Tester.LKey.WasPressedThisFrame())
-            TakeDamage(3);
+        {
+            FaseUmTriggerController.Instance.FirstGateOut();
+            FaseUmTriggerController.Instance.SecondGateOpen();
+        }
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            currentHealth = maxHealth;
+            SetHealth(maxHealth);
+            FaseUmTriggerController.Instance.SecondGateTrigger();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
@@ -253,6 +265,18 @@ public class GameManager : MonoBehaviour
         death.Priority = 1;
     }
 
+    public void SwitchToGateCam()
+    {
+        dft.Priority = 0;
+        gate.Priority = 1;
+    }
+
+    public void SwitchFromGateCam()
+    {
+        dft.Priority = 1;
+        gate.Priority = 0;
+    }
+
     public void SwitchToBossCam()
     {
         dft.Priority = 0;
@@ -263,6 +287,11 @@ public class GameManager : MonoBehaviour
     {
         dft.Priority = 1;
         boss.Priority = 0;
+    }
+
+    public void GateCamSetter(CinemachineVirtualCamera gateCam)
+    {
+        gate = gateCam;
     }
     IEnumerator DeadCounter()
     {
@@ -276,6 +305,23 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isDead", true);
         playerAnimator.SetBool("isDied", true);
         Instantiate(gameOverPrefab);
+    }
+
+    // Mudar para a gate CAM
+    public void GateCAM()
+    {
+        PlayerMovement.DisableControl();
+        SwitchToGateCam();
+        StartCoroutine(ReturnFromGateCam());
+
+    }
+
+    IEnumerator ReturnFromGateCam()
+    {
+        yield return new WaitForSeconds(6);
+        SwitchFromGateCam();
+        yield return new WaitForSeconds(1.5f);
+        PlayerMovement.EnableControl();
     }
 }
 

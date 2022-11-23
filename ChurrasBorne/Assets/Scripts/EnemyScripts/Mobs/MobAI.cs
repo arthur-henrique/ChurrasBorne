@@ -209,6 +209,7 @@ public class MobAI : MonoBehaviour
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
                 anim.SetTrigger("Die");
                 anim.SetBool("Idle", false);
@@ -221,6 +222,10 @@ public class MobAI : MonoBehaviour
                 else if(isOnFaseUm)
                 {
                     EnemyControl.Instance.KilledEnemy(gameObject);
+                }
+                else if (isOnFaseDois)
+                {
+                    EnemyControlFaseDois.Instance.KilledEnemy(gameObject);
                 }
 
                 Destroy(gameObject, 1.5f);

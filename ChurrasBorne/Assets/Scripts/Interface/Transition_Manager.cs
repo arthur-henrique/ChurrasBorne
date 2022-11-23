@@ -24,9 +24,17 @@ public class Transition_Manager : MonoBehaviour
 
     GameObject scene_text_display;
 
+    Coroutine cr_transition_handle;
+    Coroutine cr_transition_restart_handle;
+
+    bool stop_descend = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        cr_transition_handle = StartCoroutine(VoidTask());
+        cr_transition_restart_handle = StartCoroutine(VoidTask());
+
         DontDestroyOnLoad(this);
 
         scene_text_display = DialogSystem.getChildGameObject(gameObject, "Scene_Name_Display");
@@ -57,14 +65,27 @@ public class Transition_Manager : MonoBehaviour
         }
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        var transManagers = GameObject.FindGameObjectsWithTag("TransitionManagerz");
+        if (transManagers.Length > 1)
+        {
+            Destroy(transManagers[1]);
+        }
+    }
+
     public void TransitionToScene(string scene_name)
     {
-        StartCoroutine(TransitionHandle(scene_name));
+        StopCoroutine(cr_transition_handle);
+        ReturnOriginalPosition();
+        cr_transition_handle = StartCoroutine(TransitionHandle(scene_name));
     }
 
     public void RestartScene(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
     {
-        StartCoroutine(TransitionHandleRestart(scene_name, health, heals, isHoldingSword, destroyObj));
+        StopCoroutine(cr_transition_restart_handle);
+        ReturnOriginalPosition();
+        cr_transition_restart_handle = StartCoroutine(TransitionHandleRestart(scene_name, health, heals, isHoldingSword, destroyObj));
     }
 
     private IEnumerator TransitionHandle(string scene_name)
@@ -87,14 +108,20 @@ public class Transition_Manager : MonoBehaviour
                 Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, 0, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            MainMenu_Manager.menu_selection_confirm = false;
+        }
         SceneManager.LoadScene(scene_name);
         if (GameManager.instance)
         {
             GameManager.instance.NextLevelSetter(Vector2.zero);
         }
         Time.timeScale = 1;
+        stop_descend = false;
         for (int i = 0; i < 60 * 20; i++)
         {
+            if (stop_descend) { break; }
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
                 Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
@@ -110,6 +137,9 @@ public class Transition_Manager : MonoBehaviour
                 Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+
+        //ReturnOriginalPosition();
+
     }
 
     private IEnumerator TransitionHandleRestart(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
@@ -165,12 +195,16 @@ public class Transition_Manager : MonoBehaviour
         {
             GameManager.instance.SetHeals(heals, false, isHoldingSword);
         }
+        if (destroyObj != null)
+        {
+            Destroy(destroyObj);
+        }
         
-        Destroy(destroyObj);
         Time.timeScale = 1;
-
+        stop_descend = false;
         for (int i = 0; i < 60 * 20; i++)
         {
+            if (stop_descend) { break; }
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
                 Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
             curtain_left_2.GetComponent<RectTransform>().anchoredPosition =
@@ -186,6 +220,8 @@ public class Transition_Manager : MonoBehaviour
                 Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+
+        //ReturnOriginalPosition();
     }
 
     private IEnumerator Scene_Text_Display_Handle()
@@ -200,6 +236,11 @@ public class Transition_Manager : MonoBehaviour
             case "TransitionTest_2":
 
                 scene_text_display.GetComponent<TextMeshProUGUI>().text = "Boss final Nazaré Tedesco";
+                break;
+
+            case "MainMenu":
+
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "";
                 break;
 
             case "Tutorial":
@@ -237,5 +278,30 @@ public class Transition_Manager : MonoBehaviour
             scene_text_display.GetComponent<TextMeshProUGUI>().color = txt_col;
             yield return null;
         }
+    }
+
+    private void ReturnOriginalPosition()
+    {
+        curtain_left_1.GetComponent<RectTransform>().anchoredPosition = new Vector3(-368.5f, 670, 0);
+        curtain_left_2.GetComponent<RectTransform>().anchoredPosition = new Vector3(-203.5f, 670, 0);
+        curtain_left_3.GetComponent<RectTransform>().anchoredPosition = new Vector3(-38.5f, 670, 0);
+
+        curtain_right_1.GetComponent<RectTransform>().anchoredPosition = new Vector3(368.5f, 670, 0);
+        curtain_right_2.GetComponent<RectTransform>().anchoredPosition = new Vector3(203.5f, 670, 0);
+        curtain_right_3.GetComponent<RectTransform>().anchoredPosition = new Vector3(38.5f, 670, 0);
+
+        velocity_left1 = Vector3.zero;
+        velocity_left2 = Vector3.zero;
+        velocity_left3 = Vector3.zero;
+        velocity_right1 = Vector3.zero;
+        velocity_right2 = Vector3.zero;
+        velocity_right3 = Vector3.zero;
+
+        stop_descend = true;
+}
+
+    private IEnumerator VoidTask()
+    {
+        yield return null;
     }
 }

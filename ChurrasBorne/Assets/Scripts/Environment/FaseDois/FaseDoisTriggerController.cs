@@ -14,6 +14,9 @@ public class FaseDoisTriggerController : MonoBehaviour
     public GameObject[] salaSeteLock;
     public GameObject[] salaOitoLock;
 
+    public Animator preBossAnim;
+    public Animator bossAnim;
+
     public GameObject portalToHub;
     private int salasTerminadas;
     // Start is called before the first frame update
@@ -83,5 +86,28 @@ public class FaseDoisTriggerController : MonoBehaviour
     public void ContadorDeSalasTerminadas()
     {
         salasTerminadas++;
+    }
+
+    private void FixedUpdate()
+    {
+        if(salasTerminadas > 3)
+        {
+            salasTerminadas = 0;
+            GameManager.instance.GateCAM();
+            StartCoroutine(OpenTheGates());
+
+        }
+    }
+
+    public void GateOpener()
+    {
+        salasTerminadas = 4;
+    }
+    IEnumerator OpenTheGates()
+    {
+        yield return new WaitForSeconds(2);
+        preBossAnim.SetTrigger("OPENIT");
+        bossAnim.SetTrigger("OPENIT");
+
     }
 }

@@ -21,13 +21,11 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -2570682341086314653, guid: ac817f72018ebb14a8c1aa63ab6e2571, type: 3}
-    - time: 12
-      value: {fileID: -2570682341086314653, guid: ac817f72018ebb14a8c1aa63ab6e2571, type: 3}
     attribute: m_Sprite
     path: Tutorial  e FaseUm_13
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 1
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -43,13 +41,12 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: -2570682341086314653, guid: ac817f72018ebb14a8c1aa63ab6e2571, type: 3}
-    - {fileID: -2570682341086314653, guid: ac817f72018ebb14a8c1aa63ab6e2571, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 13
+    m_StopTime: 0.083333336
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -7,14 +7,18 @@ public class ManagerOfScenes : MonoBehaviour
     public GameObject passado, eclipse;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
+    public CinemachineVirtualCamera gate;
 
+    // Hub Cam Positions:
+    public GameObject[] GateCamPos;
     private void Start()
     {
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
         clearedDois = GameManager.instance.GetHasCleared(2);
         clearedDoisHalf = GameManager.instance.GetHasCleared(3);
-
+        if(gate != null)
+            GameManager.instance.GateCamSetter(gate);
 
         if (gameObject.CompareTag("Tutorial"))
         {
@@ -26,6 +30,18 @@ public class ManagerOfScenes : MonoBehaviour
         }
 
         // Fase Checker
+        // HUB
+        if (gameObject.CompareTag("HUB"))
+        {
+            gate.transform.position = GateCamPos[1].transform.position;
+            if(!clearedUm && !clearedHalf)
+            {
+                StartCoroutine(ShowFirstPath());
+            }
+        }
+        
+
+        // Fase Um
         if(gameObject.CompareTag("FASEUM"))
         {
             if(!clearedUm && !clearedHalf)
@@ -58,18 +74,18 @@ public class ManagerOfScenes : MonoBehaviour
             if (!clearedDois && !clearedDoisHalf)
             {
                 eclipse.SetActive(false);
-                FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                //FaseDoisTriggerController.Instance.SalaCincoTrigger();
+                //FaseDoisTriggerController.Instance.SalaSeisTrigger();
+                //FaseDoisTriggerController.Instance.SalaSeteTrigger();
+                //FaseDoisTriggerController.Instance.SalaOitoTrigger();
             }
             else if (clearedDois && !clearedDoisHalf)
             {
                 passado.SetActive(false);
-                FaseDoisTriggerController.Instance.SalaUmTrigger();
-                FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                FaseDoisTriggerController.Instance.SalaTresTrigger();
-                FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+                //FaseDoisTriggerController.Instance.SalaUmTrigger();
+                //FaseDoisTriggerController.Instance.SalaDoisTrigger();
+                //FaseDoisTriggerController.Instance.SalaTresTrigger();
+                //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                 eclipse.SetActive(true);
             }
             else if (clearedDois && clearedDoisHalf)
@@ -79,18 +95,18 @@ public class ManagerOfScenes : MonoBehaviour
                 {
                     passado.SetActive(true);
                     eclipse.SetActive(false);
-                    FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                    FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                    FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                    FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                    //FaseDoisTriggerController.Instance.SalaCincoTrigger();
+                    //FaseDoisTriggerController.Instance.SalaSeisTrigger();
+                    //FaseDoisTriggerController.Instance.SalaSeteTrigger();
+                    //FaseDoisTriggerController.Instance.SalaOitoTrigger();
                 }
                 else if (randomTimeline == 2)
                 {
                     passado.SetActive(false);
-                    FaseDoisTriggerController.Instance.SalaUmTrigger();
-                    FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                    FaseDoisTriggerController.Instance.SalaTresTrigger();
-                    FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+                    //FaseDoisTriggerController.Instance.SalaUmTrigger();
+                    //FaseDoisTriggerController.Instance.SalaDoisTrigger();
+                    //FaseDoisTriggerController.Instance.SalaTresTrigger();
+                    //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                     eclipse.SetActive(true);
                 }
             }
@@ -113,5 +129,11 @@ public class ManagerOfScenes : MonoBehaviour
                 // Personagem fica jogavel novamente
             }
         }
+    }
+
+    IEnumerator ShowFirstPath()
+    {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.instance.GateCAM();
     }
 }
