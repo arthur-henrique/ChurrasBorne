@@ -209,6 +209,7 @@ public class MobAI : MonoBehaviour
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
                 anim.SetTrigger("Die");
                 anim.SetBool("Idle", false);

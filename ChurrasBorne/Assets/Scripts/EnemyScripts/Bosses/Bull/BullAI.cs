@@ -126,10 +126,7 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if(isOnTut)
-                {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
-                }
+                
                 break;
         }
     }
@@ -168,6 +165,10 @@ public class BullAI : MonoBehaviour
         if(health <= 0 && isAlive == true)
         {
             state = State.Dead;
+            if (isOnTut)
+            {
+                TutorialTriggerController.Instance.SecondGateTriggerOut();
+            }
         }
     }
 

@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
             TakeDamage(3);
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            TutorialTriggerController.Instance.SecondGateTriggerOut();
+            SetHealth(maxHealth);
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
