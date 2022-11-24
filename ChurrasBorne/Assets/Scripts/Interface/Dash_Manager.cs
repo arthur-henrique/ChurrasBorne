@@ -29,7 +29,7 @@ public class Dash_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dash_fill_global = dash_fill_global += 14f * Time.deltaTime;
+        dash_fill_global = dash_fill_global += 18f * Time.deltaTime;
         dash_fill_global = Mathf.Clamp(dash_fill_global, 0, 60 * 3);
         //Debug.Log(dash_fill_global);
 
