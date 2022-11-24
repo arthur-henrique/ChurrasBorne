@@ -23,6 +23,10 @@ public class HealthBar_Manager : MonoBehaviour
     GameObject HP_OverlayColor;
     GameObject HP_OverlayLines;
 
+    GameObject MONSTER_Base;
+    GameObject MONSTER_OverlayColor;
+    GameObject MONSTER_OverlayLines;
+
     GameObject player;
     float realHealth;
 
@@ -56,6 +60,14 @@ public class HealthBar_Manager : MonoBehaviour
         HP_Meat = DialogSystem.getChildGameObject(gameObject, "HP_Meat");
         HP_OverlayColor = DialogSystem.getChildGameObject(gameObject, "HP_OverlayColor");
         HP_OverlayLines = DialogSystem.getChildGameObject(gameObject, "HP_OverlayLines");
+
+        MONSTER_Base = DialogSystem.getChildGameObject(gameObject, "MONSTER_Base");
+        MONSTER_OverlayColor = DialogSystem.getChildGameObject(gameObject, "MONSTER_OverlayColor");
+        MONSTER_OverlayLines = DialogSystem.getChildGameObject(gameObject, "MONSTER_OverlayLines");
+
+        MONSTER_Base.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+        MONSTER_OverlayColor.GetComponent<Image>().color = new Color(0.828f, 0.1284265f, 0.1284265f, 0.0f);
+        MONSTER_OverlayLines.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
         hp_color_6 = new Color(0.1254902f, 0.7459202f, 0.9058824f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
         hp_color_5 = new Color(0.1254902f, 0.9058824f, 0.3886421f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);

@@ -12193,11 +12193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 0}
   eclipse: {fileID: 0}
-  gate: {fileID: 445930342}
-  GateCamPos:
-  - {fileID: 983696180}
-  - {fileID: 1004900264}
-  - {fileID: 1772222009}
+  gate: {fileID: 0}
+  GateCamPos: []
 --- !u!4 &1147181883
 Transform:
   m_ObjectHideFlags: 0
@@ -12206,7 +12203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147181881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.756674, y: 3.1710882, z: -22.451406}
+  m_LocalPosition: {x: 0, y: 0, z: -22.451406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -29447,6 +29444,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 552961862707165961, guid: 1f0c1c67e3c78ed4ea9544cc0a05d4ae, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d9598d78e55eb8b45a545f660cd303f4, type: 2}
     - target: {fileID: 4268313785057141117, guid: 1f0c1c67e3c78ed4ea9544cc0a05d4ae, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -29495,6 +29496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Churrasqueira
       objectReference: {fileID: 0}
+    - target: {fileID: 8581850011947925731, guid: 1f0c1c67e3c78ed4ea9544cc0a05d4ae, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5372098382950850693, guid: f3bdc5ae1e982cb4d9f5167dc709eade, type: 3}
     - target: {fileID: 8581850011947925731, guid: 1f0c1c67e3c78ed4ea9544cc0a05d4ae, type: 3}
       propertyPath: m_SortingOrder
       value: 5

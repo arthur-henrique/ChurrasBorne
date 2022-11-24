@@ -158,7 +158,7 @@ public class GameOver_Manager : MonoBehaviour
                 interactDelay -= Time.deltaTime;
             }
 
-            print(interactDelay);
+            //print(interactDelay);
 
             if (gover_selection_confirm == true)
             {
