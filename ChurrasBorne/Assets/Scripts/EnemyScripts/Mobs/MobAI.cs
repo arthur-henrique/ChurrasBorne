@@ -375,9 +375,9 @@ public class MobAI : MonoBehaviour
         {
             if (collision.gameObject.tag == "PAREDE")
             {
-                isDashing = false;
-
                 state = State.RecoveringFromDash;
+
+                isDashing = false;
             }
         }
     }

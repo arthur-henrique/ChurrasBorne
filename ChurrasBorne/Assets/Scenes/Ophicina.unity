@@ -1409,6 +1409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 0}
   eclipse: {fileID: 0}
+  gate: {fileID: 0}
+  GateCamPos: []
 --- !u!4 &1382565170
 Transform:
   m_ObjectHideFlags: 0
@@ -2572,9 +2574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa99f79182709d4a965bf11a11a18f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   slider: {fileID: 1265896492}
   dft: {fileID: 814686046}
   death: {fileID: 637357258}
+  gate: {fileID: 0}
   boss: {fileID: 706156522}
   gameOverPrefab: {fileID: 0}
   maxHealth: 2147483647
