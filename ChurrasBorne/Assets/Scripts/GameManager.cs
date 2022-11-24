@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
     private GameObject player;
     //public Transform spawnPoint, lastCheckPoint;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
         damageCDCounter = DamageCD;
@@ -104,11 +106,12 @@ public class GameManager : MonoBehaviour
         {
             SetHealth(maxHealth);
             FaseUmTriggerController.Instance.SecondGateTrigger();
+            FaseUmTriggerController.Instance.FirstGateTrigger();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Hub");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
@@ -182,8 +185,11 @@ public class GameManager : MonoBehaviour
     }
     public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
-        playerAnimator.SetFloat("numberOfMeat", heals);
-        playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+        if (playerAnimator)
+        {
+            playerAnimator.SetFloat("numberOfMeat", heals);
+            playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+        }
         healsLeft = heals;
         isTut = isTutorial;
     }
@@ -297,6 +303,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
+        if (isTut)
+        {
+            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 3, true, null);
+        }
     }
     IEnumerator CameraDelay()
     {
@@ -304,7 +314,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
         playerAnimator.SetBool("isDied", true);
-        Instantiate(gameOverPrefab);
+        if (!isTut)
+        {
+            Instantiate(gameOverPrefab);
+        }
     }
 
     // Mudar para a gate CAM

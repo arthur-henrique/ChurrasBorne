@@ -168,7 +168,7 @@ public class Transition_Manager : MonoBehaviour
         switch (scene_name)
         {
             case "Hub":
-                GameManager.instance.SetPlayerPosition(new Vector2(-6.756674f, 3.171088f));
+                GameManager.instance.SetPlayerPosition(new Vector2(0f, 0f));
                 break;
 
             case "Tutorial":

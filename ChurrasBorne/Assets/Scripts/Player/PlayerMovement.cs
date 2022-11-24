@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private static State state;
     public static PlayerController pc;
 
-    private bool isOnIce;
+    private bool isOnIce, isOnWeb, isOnBossWeb;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -216,6 +216,16 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.AddForce(moveVelocity, ForceMode2D.Force);
                 }
+                else if(isOnWeb)
+                {
+                    moveVelocity *= 0.4f;
+                    rb.velocity = moveVelocity;
+                }
+                else if (isOnBossWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
+                }
                 else
                     rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
@@ -230,7 +240,20 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetFloat("moveY", rb.velocity.y);
                 break;
             case State.Rolling:
-                rb.velocity = rollDirection * rollSpeed;
+                if (isOnIce)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 1.8f);
+                }
+                else if (isOnWeb)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 0.4f);
+                }
+                else if (isOnBossWeb)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 0.6f);
+                }
+                else
+                    rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
                 break;
@@ -239,6 +262,11 @@ public class PlayerMovement : MonoBehaviour
                 if (isOnIce)
                 {
                     rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else if (isOnWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
                 }
                 else
                     rb.velocity = moveVelocity;
@@ -256,6 +284,16 @@ public class PlayerMovement : MonoBehaviour
                 if (isOnIce)
                 {
                     rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else if (isOnWeb)
+                {
+                    moveVelocity *= 0.4f;
+                    rb.velocity = moveVelocity;
+                }
+                else if (isOnBossWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
                 }
                 else
                     rb.velocity = moveVelocity;
@@ -310,6 +348,14 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnIce = true;
         }
+        else if(other.CompareTag("TEIA"))
+        {
+            isOnWeb = true;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -317,6 +363,14 @@ public class PlayerMovement : MonoBehaviour
         if(other.CompareTag("GELO"))
         {
             isOnIce = false;
+        }
+        else if (other.CompareTag("TEIA"))
+        {
+            isOnWeb = false;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = false;
         }
     }
 

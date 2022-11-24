@@ -33,7 +33,7 @@ public class ManagerOfScenes : MonoBehaviour
         // HUB
         if (gameObject.CompareTag("HUB"))
         {
-            gate.transform.position = GateCamPos[1].transform.position;
+            gate.transform.position = GateCamPos[0].transform.position;
             if(!clearedUm && !clearedHalf)
             {
                 StartCoroutine(ShowFirstPath());
@@ -133,6 +133,20 @@ public class ManagerOfScenes : MonoBehaviour
 
     IEnumerator ShowFirstPath()
     {
+        yield return new WaitForSeconds(2.5f);
+        GameManager.instance.GateCAM();
+    }
+
+    IEnumerator ShowSecondPath()
+    {
+        gate.transform.position = GateCamPos[1].transform.position;
+        yield return new WaitForSeconds(2.5f);
+        GameManager.instance.GateCAM();
+    }
+
+    IEnumerator ShowChurras()
+    {
+        gate.transform.position = GateCamPos[2].transform.position;
         yield return new WaitForSeconds(2.5f);
         GameManager.instance.GateCAM();
     }

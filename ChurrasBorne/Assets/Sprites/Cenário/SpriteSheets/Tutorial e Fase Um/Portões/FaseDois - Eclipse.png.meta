@@ -1,0 +1,588 @@
+fileFormatVersion: 2
+guid: 04c6dcd7773685b4582fba1d18952b77
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4957151310217501991
+    second: FaseDois - Eclipse_0
+  - first:
+      213: 8882107031872784535
+    second: FaseDois - Eclipse_1
+  - first:
+      213: -6887170324675839390
+    second: FaseDois - Eclipse_2
+  - first:
+      213: 6015770391407605394
+    second: FaseDois - Eclipse_3
+  - first:
+      213: -6800552438497493151
+    second: FaseDois - Eclipse_4
+  - first:
+      213: 4264807636331836638
+    second: FaseDois - Eclipse_5
+  - first:
+      213: -7415473587113880806
+    second: FaseDois - Eclipse_6
+  - first:
+      213: 427010048805372901
+    second: FaseDois - Eclipse_7
+  - first:
+      213: -4702053138561397211
+    second: FaseDois - Eclipse_8
+  - first:
+      213: -4551727433145310537
+    second: FaseDois - Eclipse_9
+  - first:
+      213: -7084714543070668268
+    second: FaseDois - Eclipse_10
+  - first:
+      213: 6822624062704456618
+    second: FaseDois - Eclipse_11
+  - first:
+      213: -3642365025743266548
+    second: FaseDois - Eclipse_12
+  - first:
+      213: -6043372588011784154
+    second: FaseDois - Eclipse_13
+  - first:
+      213: -3176063315230253924
+    second: FaseDois - Eclipse_14
+  - first:
+      213: 6182533014914242394
+    second: FaseDois - Eclipse_15
+  - first:
+      213: 8356504970686629473
+    second: FaseDois - Eclipse_16
+  - first:
+      213: -8474916416390682927
+    second: FaseDois - Eclipse_17
+  - first:
+      213: -1598951473864971671
+    second: FaseDois - Eclipse_18
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1280
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d506f3ad65bc440800000000000000
+      internalID: 4957151310217501991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_1
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 1280
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 798c6cb3945934b70800000000000000
+      internalID: 8882107031872784535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_2
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1280
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ab51a541bdb60a0800000000000000
+      internalID: -6887170324675839390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_3
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 1280
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 296b92e4c4f4c7350800000000000000
+      internalID: 6015770391407605394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 960
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16fb0fa86959f91a0800000000000000
+      internalID: -6800552438497493151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_5
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 960
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed4bee603f3af2b30800000000000000
+      internalID: 4264807636331836638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_6
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 960
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1319c6bf02f61990800000000000000
+      internalID: -7415473587113880806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_7
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 960
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e30192806b0de500800000000000000
+      internalID: 427010048805372901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 640
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e89014593febeb0800000000000000
+      internalID: -4702053138561397211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_9
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 640
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b229f0040405d0c0800000000000000
+      internalID: -4551727433145310537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_10
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 640
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a9a35d8a90ead90800000000000000
+      internalID: -7084714543070668268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_11
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 640
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3188def64deae50800000000000000
+      internalID: 6822624062704456618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0d1442ae48b37dc0800000000000000
+      internalID: -3642365025743266548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_13
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 320
+        width: 254
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 628793e76a0a12ca0800000000000000
+      internalID: -6043372588011784154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_14
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 320
+        width: 254
+        height: 249
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c1d870e3b5ce3d0800000000000000
+      internalID: -3176063315230253924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_15
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 320
+        width: 254
+        height: 306
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5796164505ccc550800000000000000
+      internalID: 6182533014914242394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 254
+        height: 316
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16600950ff448f370800000000000000
+      internalID: 8356504970686629473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 254
+        height: 312
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d628ebdb6c036a80800000000000000
+      internalID: -8474916416390682927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FaseDois - Eclipse_18
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 254
+        height: 304
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ae03b2b126fc9e0800000000000000
+      internalID: -1598951473864971671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

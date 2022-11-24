@@ -48,6 +48,9 @@ public class BullAI : MonoBehaviour
         timeBTWBashATKs = 0.5f;
 
         timeBTWAxeATKs = 0.5f;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()

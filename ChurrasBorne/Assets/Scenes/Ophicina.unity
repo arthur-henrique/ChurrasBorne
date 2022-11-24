@@ -1409,6 +1409,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 0}
   eclipse: {fileID: 0}
+  gate: {fileID: 0}
+  GateCamPos: []
 --- !u!4 &1382565170
 Transform:
   m_ObjectHideFlags: 0
@@ -2572,9 +2574,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa99f79182709d4a965bf11a11a18f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   slider: {fileID: 1265896492}
   dft: {fileID: 814686046}
   death: {fileID: 637357258}
+  gate: {fileID: 0}
   boss: {fileID: 706156522}
   gameOverPrefab: {fileID: 0}
   maxHealth: 2147483647
@@ -2680,3 +2684,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8237452546201790315
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.8040986
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2196475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.26185533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953451, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237452544815953489, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
+      propertyPath: m_Name
+      value: Trickster
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98fb772319b5da946ba1b653c7a904b1, type: 3}
