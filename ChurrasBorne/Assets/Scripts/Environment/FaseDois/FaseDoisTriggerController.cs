@@ -16,6 +16,8 @@ public class FaseDoisTriggerController : MonoBehaviour
 
     public Animator preBossAnim;
     public Animator bossAnim;
+    public Animator preBossAnimEc;
+    public Animator bossAnimEc;
 
     public GameObject portalToHub;
     private int salasTerminadas;
@@ -106,8 +108,15 @@ public class FaseDoisTriggerController : MonoBehaviour
     IEnumerator OpenTheGates()
     {
         yield return new WaitForSeconds(2);
-        preBossAnim.SetTrigger("OPENIT");
-        bossAnim.SetTrigger("OPENIT");
-
+        if(!GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnim.SetTrigger("OPENIT");
+            bossAnim.SetTrigger("OPENIT");
+        }
+        if (GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnimEc.SetTrigger("OPENIT");
+            bossAnimEc.SetTrigger("OPENIT");
+        }       
     }
 }

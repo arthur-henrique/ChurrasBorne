@@ -106,11 +106,12 @@ public class GameManager : MonoBehaviour
         {
             SetHealth(maxHealth);
             FaseUmTriggerController.Instance.SecondGateTrigger();
+            FaseUmTriggerController.Instance.FirstGateTrigger();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
