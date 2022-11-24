@@ -69,15 +69,15 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
-            sidePathSecondGateIn[i].SetActive(!sidePathSecondGateIn[i].activeSelf);
+            sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
         }
     }
 
-    public void SideThirdGateTrigger()
+    public void SideSecondGateOpen()
     {
-        for (int i = 0; i < sidePathThirdGateIn.Length; i++)
+        for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
-            sidePathThirdGateIn[i].SetActive(!sidePathThirdGateIn[i].activeSelf);
+            sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
 

@@ -177,7 +177,7 @@ public class EnemyControl : MonoBehaviour
                 FaseUmTriggerController.Instance.FirstGateTrigger();
             }
             if (clearedUm)
-                FaseUmTriggerController.Instance.SideSecondGateTrigger();
+                FaseUmTriggerController.Instance.SideSecondGateOpen();
         }
     }
     public void IsFourthMobCleared()
