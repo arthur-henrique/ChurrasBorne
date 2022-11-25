@@ -159,11 +159,11 @@ MonoBehaviour:
   bullSpikes: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
   anim: {fileID: 2477395731989692585}
   health: 100
-  chasingSpeed: 5
-  bashDistance: 3
-  startTimeBTWBashATKs: 2
-  axeDistance: 10
-  startTimeBTWAxeATKs: 2
-  startTimeToSummonSpikes: 1
+  chasingSpeed: 7
+  meleeDistance: 4
+  startTimeBTWMeleeATKs: 2
+  rangedDistance: 10
+  startTimeBTWRangedATKs: 3
   isOnTut: 0
   isOnFaseQuatro: 0
+  isAlive: 1

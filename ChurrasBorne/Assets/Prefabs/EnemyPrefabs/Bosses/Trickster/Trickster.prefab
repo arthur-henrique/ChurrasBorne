@@ -157,9 +157,12 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   rb: {fileID: 8237452544815953494}
   anim: {fileID: 8237452544815953493}
+  closeRangeSpikes: {fileID: 3754227328577833491, guid: 1167dc9b3a85ba04497571491c064f9a, type: 3}
+  longRangeSpikes: {fileID: 0}
   health: 100
+  isAlive: 1
   chasingSpeed: 5
   chaseDistance: 10
   timeBTWLRATKs: 2
-  closeRangeDistance: 3
+  closeRangeDistance: 4
   timeBTWCRATKs: 2

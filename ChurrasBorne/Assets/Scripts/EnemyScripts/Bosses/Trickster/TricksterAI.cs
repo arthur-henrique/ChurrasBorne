@@ -23,10 +23,16 @@ public class TricksterAI : MonoBehaviour
 
     public Animator anim;
 
+    public GameObject closeRangeSpikes, longRangeSpikes;
+
     public int health;
 
+    public bool isAlive = true;
+
+    private bool isAlreadyDying = false;
+
     public float chasingSpeed, chaseDistance, timeBTWLRATKs, closeRangeDistance, timeBTWCRATKs;
-    private float currentTimeBTWLRATKs, currentTimeBTWCRATKs;
+    private float currentTimeBTWLRATKs, currentTimeBTWCRATKs, timeToDie;
 
     private void Awake()
     {
@@ -37,9 +43,11 @@ public class TricksterAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentTimeBTWLRATKs = 0.5f;
+        currentTimeBTWLRATKs = .5f;
 
-        currentTimeBTWCRATKs = 0.5f;
+        currentTimeBTWCRATKs = .5f;
+
+        timeToDie = .1f;
     }
 
     void Update()
@@ -125,15 +133,29 @@ public class TricksterAI : MonoBehaviour
                 }
 
                 SwitchToLongRange();
+                SwitchToChasing();
                 SwitchToDead();
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                anim.SetTrigger("Die");
+                isAlive = false;
+                isAlreadyDying = true;
+
+                anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
-                anim.SetBool("Idle", false);
+
+                if (timeToDie <= 0)
+                {
+                    anim.SetTrigger("DIe");
+
+                    timeToDie = 1000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
+                }
                 break;
         }
 
@@ -203,10 +225,24 @@ public class TricksterAI : MonoBehaviour
         SwitchToLongRange();
     }
 
-    void TakeDamage()
+    void CloseRangeATK()
+    {
+        Instantiate(closeRangeSpikes, transform.position, Quaternion.identity);
+    }
+    void LongRangeATK()
+    {
+        Instantiate(longRangeSpikes, transform.position, Quaternion.identity);
+    }
+
+    public void TakeDamage()
     {
         int damage = 10;
         health -= damage;
+
+        if (!isAlreadyDying)
+        {
+            SwitchToDead();
+        }
     }
 
     void DestroySelf()

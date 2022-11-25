@@ -10,7 +10,7 @@ public class BullSpike : MonoBehaviour
     
     public float damageDistance;
 
-    public bool canDamage = false;
+    public bool canDamage = false, isOnTut;
 
     public Animator anim;
     
@@ -21,7 +21,14 @@ public class BullSpike : MonoBehaviour
 
     void Update()
     {
-        if (canDamage == true)
+        if (canDamage == true && isOnTut)
+        {
+            if (Vector2.Distance(transform.position, player.position) <= damageDistance)
+            {
+                GameManager.instance.TakeDamage(10);
+            }
+        }
+        if (canDamage == true && !isOnTut)
         {
             if (Vector2.Distance(transform.position, player.position) <= damageDistance)
             {
@@ -29,22 +36,22 @@ public class BullSpike : MonoBehaviour
             }
         }
 
-        if(bull.GetComponent<BullAI>().isAlive == false)
+        if (bull.GetComponent<BullAI>().isAlive == false)
         {
             Destroy(gameObject);
         }
     }
-    public void destruirBagassa(float tempo)
+    public void DestroySelf()
     {
-        Destroy(gameObject, tempo);
+        Destroy(gameObject);
     }
 
-    public void damagePlayerOn()
+    public void DamagePlayerOn()
     {
         canDamage = true;
     }
 
-    public void damagePlayerOff()
+    public void DamagePlayerOff()
     {
         canDamage = false;
     }

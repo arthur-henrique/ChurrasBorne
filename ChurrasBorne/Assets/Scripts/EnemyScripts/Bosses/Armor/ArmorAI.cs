@@ -23,12 +23,13 @@ public class ArmorAI : MonoBehaviour
     public GameObject bladeWave;
     public GameObject waveSpawnPoint;
 
+    private bool isAlreadyDying = false;
+
     public int health;
 
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
-    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs;
+    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
 
-    public bool isOnTut;
     private void Awake()
     {
         state = State.Spawning;
@@ -38,8 +39,9 @@ public class ArmorAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentTimeBTWSlashATKs = 0.1f;
-        currentTimeBTWSpinATKs = 0.1f;
+        currentTimeBTWSlashATKs = .1f;
+        currentTimeBTWSpinATKs = .1f;
+        timeToDie = .1f;
     }
 
     void Update()
@@ -59,7 +61,6 @@ public class ArmorAI : MonoBehaviour
                 anim.SetBool("Idle", false);
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.BladeSlash:
@@ -83,7 +84,6 @@ public class ArmorAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToBladeSpin();
-                SwitchToDead();
                 break;
 
             case State.BladeSpin:
@@ -106,18 +106,25 @@ public class ArmorAI : MonoBehaviour
                 }
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.Dead:
-                anim.SetTrigger("Die");
+                rb.velocity = Vector2.zero;
+
+                isAlreadyDying = true;
 
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if (isOnTut)
+                if (timeToDie <= 0)
                 {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                    anim.SetTrigger("Die");
+
+                    timeToDie = 1000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
                 }
                 break;
         }
@@ -218,6 +225,11 @@ public class ArmorAI : MonoBehaviour
         damage = 10;
 
         health -= damage;
+
+        if (!isAlreadyDying)
+        {
+            SwitchToDead();
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
