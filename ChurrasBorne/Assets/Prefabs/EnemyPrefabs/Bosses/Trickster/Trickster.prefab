@@ -158,4 +158,8 @@ MonoBehaviour:
   rb: {fileID: 8237452544815953494}
   anim: {fileID: 8237452544815953493}
   health: 100
-  chasingSpeed: 8
+  chasingSpeed: 5
+  chaseDistance: 10
+  timeBTWLRATKs: 2
+  closeRangeDistance: 3
+  timeBTWCRATKs: 2

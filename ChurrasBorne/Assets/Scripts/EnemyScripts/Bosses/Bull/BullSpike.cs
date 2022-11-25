@@ -5,6 +5,8 @@ using UnityEngine;
 public class BullSpike : MonoBehaviour
 {
     public Transform player;
+
+    public GameObject bull;
     
     public float damageDistance;
 
@@ -25,6 +27,11 @@ public class BullSpike : MonoBehaviour
             {
                 GameManager.instance.TakeDamage(5);
             }
+        }
+
+        if(bull.GetComponent<BullAI>().isAlive == false)
+        {
+            Destroy(gameObject);
         }
     }
     public void destruirBagassa(float tempo)

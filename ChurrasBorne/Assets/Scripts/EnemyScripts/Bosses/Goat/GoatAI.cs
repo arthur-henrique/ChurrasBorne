@@ -120,6 +120,8 @@ public class GoatAI : MonoBehaviour
                 {
                     state = State.RecoveringFromDash;
                 }
+
+                SwitchToDead();
                 break;
                 
             case State.DashATK:

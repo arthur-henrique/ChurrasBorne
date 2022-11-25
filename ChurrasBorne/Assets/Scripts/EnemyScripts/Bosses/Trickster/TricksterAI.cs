@@ -7,7 +7,11 @@ public class TricksterAI : MonoBehaviour
     private enum State
     {
         Spawning,
+        Ascending,
         Chasing,
+        Descendng,
+        LongRange,
+        CloseRange,
         Dead
     }
 
@@ -21,7 +25,8 @@ public class TricksterAI : MonoBehaviour
 
     public int health;
 
-    public float chasingSpeed;
+    public float chasingSpeed, chaseDistance, timeBTWLRATKs, closeRangeDistance, timeBTWCRATKs;
+    private float currentTimeBTWLRATKs, currentTimeBTWCRATKs;
 
     private void Awake()
     {
@@ -31,6 +36,10 @@ public class TricksterAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        currentTimeBTWLRATKs = 0.5f;
+
+        currentTimeBTWCRATKs = 0.5f;
     }
 
     void Update()
@@ -41,14 +50,81 @@ public class TricksterAI : MonoBehaviour
                 Flip();
                 break;
 
+            case State.Ascending:
+                Flip();
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetTrigger("Ascend");
+                anim.SetBool("Float", true);
+                anim.SetBool("Idle", false);
+                break;
+
             case State.Chasing:
                 Flip();
 
-                anim.SetBool("Walk", true);
+                anim.SetBool("Float", true);
                 anim.SetBool("Idle", false);
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
+                SwitchToDead();
+                break;
+
+            case State.Descendng:
+                Flip();
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetTrigger("Descend");
+                anim.SetBool("Float", true);
+                anim.SetBool("Idle", false);
+                break;
+
+            case State.LongRange:
+                Flip();
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Float", false);
+
+                if(currentTimeBTWLRATKs <= 0)
+                {
+                    anim.SetTrigger("LR");
+
+                    currentTimeBTWLRATKs = timeBTWLRATKs;
+                }
+                else
+                {
+                    currentTimeBTWLRATKs -= Time.deltaTime;
+                }
+
+                SwitchToAscending();
+                SwitchToCloseRange();
+                SwitchToDead();
+                break;
+
+            case State.CloseRange:
+                Flip();
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Float", false);
+
+                if (currentTimeBTWCRATKs <= 0)
+                {
+                    anim.SetTrigger("CR");
+
+                    currentTimeBTWCRATKs = timeBTWCRATKs;
+                }
+                else
+                {
+                    currentTimeBTWCRATKs -= Time.deltaTime;
+                }
+
+                SwitchToLongRange();
                 SwitchToDead();
                 break;
 
@@ -77,14 +153,40 @@ public class TricksterAI : MonoBehaviour
 
     void BeginCombat()
     {
-        SwitchToChasing();
+        SwitchToAscending();
+        SwitchToLongRange();
     }
 
+    void SwitchToAscending()
+    {
+        if (health > 0 && Vector2.Distance(transform.position, player.position) > chaseDistance)
+        {
+            state = State.Ascending;
+        }
+    }
     void SwitchToChasing()
     {
-        if(health > 0)
+        state = State.Chasing;
+    }
+    void SwitchToDescending()
+    {
+        if(health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance)
         {
-            state = State.Chasing;
+            state = State.Descendng;
+        }
+    }
+    void SwitchToLongRange()
+    {
+        if(health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance && Vector2.Distance(transform.position, player.position) > closeRangeDistance)
+        {
+            state = State.LongRange;
+        }
+    }
+    void SwitchToCloseRange()
+    {
+        if(health > 0 && Vector2.Distance(transform.position, player.position) <= closeRangeDistance)
+        {
+            state = State.CloseRange;
         }
     }
     void SwitchToDead()
@@ -93,6 +195,12 @@ public class TricksterAI : MonoBehaviour
         {
             state = State.Dead;
         }
+    }
+
+    void ToAscendOrToBeatPlayerUp()
+    {
+        SwitchToAscending();
+        SwitchToLongRange();
     }
 
     void TakeDamage()

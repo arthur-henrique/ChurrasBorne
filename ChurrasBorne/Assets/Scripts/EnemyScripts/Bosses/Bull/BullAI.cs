@@ -30,7 +30,7 @@ public class BullAI : MonoBehaviour
 
     public bool isOnTut, isOnFaseQuatro;
 
-    private bool isAlive = true;
+    public bool isAlive = true;
 
     private State state;
 
