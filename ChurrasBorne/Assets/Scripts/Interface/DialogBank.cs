@@ -12,7 +12,9 @@ public class DialogBank : MonoBehaviour
         "Você agora possui seu primeiro espetinho!",            /* 2 */
         "Sua vida foi completamente restaurada.",               /* 3 */
         "Sua vida foi completamente restaurada, " +
-        "e um espeto foi reposto se possível em sua espada."    /* 4 */
+        "e um espeto foi reposto se possível em sua espada.",   /* 4 */
+        "Sua vida foi completamente restaurada, " +
+        "e espetos foram repostos se possível em sua espada."   /* 5 */
     };
 
 
