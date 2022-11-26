@@ -133,7 +133,7 @@ public class TricksterAI : MonoBehaviour
                 }
 
                 SwitchToLongRange();
-                SwitchToChasing();
+                SwitchToAscending();
                 SwitchToDead();
                 break;
 
@@ -177,6 +177,7 @@ public class TricksterAI : MonoBehaviour
     {
         SwitchToAscending();
         SwitchToLongRange();
+        SwitchToCloseRange();
     }
 
     void SwitchToAscending()
@@ -231,7 +232,7 @@ public class TricksterAI : MonoBehaviour
     }
     void LongRangeATK()
     {
-        Instantiate(longRangeSpikes, transform.position, Quaternion.identity);
+        Instantiate(longRangeSpikes, player.position, Quaternion.identity);
     }
 
     public void TakeDamage()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8237452544815953494}
   - component: {fileID: 8237452544815953495}
   - component: {fileID: 8237452544815953488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trickster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   rb: {fileID: 8237452544815953494}
   anim: {fileID: 8237452544815953493}
   closeRangeSpikes: {fileID: 3754227328577833491, guid: 1167dc9b3a85ba04497571491c064f9a, type: 3}
-  longRangeSpikes: {fileID: 0}
+  longRangeSpikes: {fileID: 5430003678534342496, guid: 140dea06f76e4774782f2b8afc6fb297, type: 3}
   health: 100
   isAlive: 1
   chasingSpeed: 5

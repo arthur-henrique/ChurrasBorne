@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1712351523996777573}
   - component: {fileID: 1712351523996777570}
   - component: {fileID: 1712351523996777571}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   chasingSpeed: 5
   timeBTWSlashATKs: 2
   slashMeleeDistance: 4
-  slashRangedDistance: 10
+  slashRangedDistance: 20
   timeBTWSpinATKs: 3
   spinDistance: 3
 --- !u!1 &5748991568278659421
