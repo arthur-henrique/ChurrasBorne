@@ -11,7 +11,12 @@ public class MainMenu_Manager : MonoBehaviour
     public static MainMenu_Manager instance;
     public GameObject canvas;
     PlayerController pc;
-    
+
+    public AudioSource audioSource;
+    public AudioClip ui_move;
+    public AudioClip ui_confirm;
+    public AudioClip ui_zoom;
+
     GameObject menu_bg;
     GameObject menu_shadow;
     GameObject menu_drop_shadow;
@@ -84,6 +89,7 @@ public class MainMenu_Manager : MonoBehaviour
     private void Awake()
     {
         pc = new PlayerController();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -96,6 +102,8 @@ public class MainMenu_Manager : MonoBehaviour
 
     void Start()
     {
+        //audioSource = GetComponent<AudioSource>();
+
         var resolution_size = PlayerPrefs.GetInt("RESOLUTION_SIZE", 3);
         var fullscreen_mode = PlayerPrefs.GetInt("FULLSCREEN_MODE", 0);
         restable_opt = resolution_size;
@@ -220,6 +228,10 @@ public class MainMenu_Manager : MonoBehaviour
 
         if (pc.Movimento.NorteSul.WasPressedThisFrame())
         {
+            if (interactDelay <= 0)
+            {
+                audioSource.PlayOneShot(ui_move, audioSource.volume);
+            }
             if (menu_submenu == true)
             {
                 menu_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
@@ -238,6 +250,7 @@ public class MainMenu_Manager : MonoBehaviour
         {
             if (menu_submenu == true)
             {
+                audioSource.PlayOneShot(ui_move, audioSource.volume);
                 float x = pc.Movimento.LesteOeste.ReadValue<float>();
                 switch (menu_position)
                 {
@@ -313,6 +326,7 @@ public class MainMenu_Manager : MonoBehaviour
             if (pc.Movimento.Attack.WasPressedThisFrame())
             {
                 menu_selection_confirm = true;
+                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
             }
         }
         else
@@ -752,6 +766,7 @@ public class MainMenu_Manager : MonoBehaviour
 
                             if (menu_transition == false)
                             {
+                                audioSource.PlayOneShot(ui_zoom, audioSource.volume);
                                 StartCoroutine(Transition_Start_Game());
                                 menu_dropout.SetActive(true);
                                 menu_transition = true;
@@ -893,6 +908,7 @@ public class MainMenu_Manager : MonoBehaviour
     {
         for (int i = 0; i < 60 * 32; i++)
         {
+            audioSource.volume = audioSource.volume - 0.005f;
             dropout_img_color.a = Mathf.Lerp(dropout_img_color.a, 1, Time.deltaTime * 2.5f);
             menu_dropout.GetComponent<Image>().color = dropout_img_color;
             menu_bg.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(menu_bg.GetComponent<RectTransform>().localScale, new Vector3(4f, 4f, 1), ref velocity_bg, 1);

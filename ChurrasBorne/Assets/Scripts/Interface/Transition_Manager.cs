@@ -91,7 +91,7 @@ public class Transition_Manager : MonoBehaviour
     private IEnumerator TransitionHandle(string scene_name)
     {
         var smooth_time = 0.25f * 1.25f;
-        for (int i = 0; i < 60 * 4; i++)
+        for (int i = 0; curtain_left_3.GetComponent<RectTransform>().anchoredPosition.y > 5; i++)
         {
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
                 Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, 0, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);

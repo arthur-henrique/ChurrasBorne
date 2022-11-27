@@ -8,7 +8,6 @@ public class MobAI : MonoBehaviour
     private enum State
     {
         Idling,
-        Kalm,
         Chasing,
         Attacking,
         Shooting,
@@ -29,7 +28,10 @@ public class MobAI : MonoBehaviour
 
     public GameObject projectile;
 
-    public GameObject gameManager;
+    private AudioSource audioSource;
+    public AudioClip monster_death;
+    public AudioClip monster_hurt;
+    public AudioClip monster_punch;
 
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
@@ -53,8 +55,7 @@ public class MobAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManger");
+        audioSource = GetComponent<AudioSource>();
 
         TimeBTWAttacks = 0.1f;
 
@@ -102,10 +103,10 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (TimeBTWAttacks <= 0)
+                if(TimeBTWAttacks <= 0)
                 {
                     anim.SetTrigger("Melee");
-
+                    audioSource.PlayOneShot(monster_punch, audioSource.volume);
                     TimeBTWAttacks = startTimeBTWAttacks;
                 }
                 else
@@ -124,7 +125,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (timeBTWShots <= 0)
+                if(timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
 
@@ -158,13 +159,13 @@ public class MobAI : MonoBehaviour
                     transform.localScale = new Vector3(1, 1, 1);
                 }
 
-                if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
+                if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
                 {
                     anim.SetTrigger("DashMelee");
 
                     SwitchToRecoveringFromDash();
                 }
-                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing)
+                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing == true)
                 {
                     SwitchToRecoveringFromDash();
                     
@@ -199,7 +200,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (stunTime <= 0)
+                if(stunTime <= 0)
                 {
                     SwitchToChasing();
                     SwitchToIdling();
@@ -220,11 +221,11 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if (isOnTutorial)
+                if(isOnTutorial)
                 {
                     EnemyControlTutorial.Instance.KilledEnemy(gameObject);
                 }
-                else if (isOnFaseUm)
+                else if(isOnFaseUm)
                 {
                     EnemyControl.Instance.KilledEnemy(gameObject);
                 }
@@ -235,22 +236,10 @@ public class MobAI : MonoBehaviour
 
                 Destroy(gameObject, 1.5f);
                 break;
-
-            case State.Kalm:
-                rb.velocity = Vector2.zero;
-
-                anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);
-                break;
-        }
-
-        if (gameManager.GetComponent<GameManager>().isAlive == false)
-        {
-            state = State.Kalm;
         }
 
         //DASH
-        if (!isDashing)
+        if(isDashing == false)
         {
             dashTarget = target;
 
@@ -270,43 +259,43 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == false)    
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == false)    
         {
             state = State.Chasing;
         }
-        else if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == true)
+        else if(Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == true)
         {
             state = State.Chasing;
         }
     }
     void SwitchToIdling()
     {
-        if (Vector2.Distance(transform.position, target) > agroDistance && health > 0)
+        if(Vector2.Distance(transform.position, target) > agroDistance && health > 0)
         {
             state = State.Idling;
         }
     }
     void SwitchToAttacking()
     {
-        if (Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
+        if(Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
         {
             state = State.Attacking;
         }
     }
     void SwitchToShooting()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter)
+        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter == true)
         {
             state = State.Shooting;
         }
     }
     void SwitchToDashing()
     {
-        if (Vector2.Distance(transform.position, target) < canDashDistance && isADasher)
+        if(Vector2.Distance(transform.position, target) < canDashDistance && isADasher == true)
         {
             canDash = true;
         }
-        else if (Vector2.Distance(transform.position, target) >= canDashDistance && canDash && isADasher)
+        else if(Vector2.Distance(transform.position, target) >= canDashDistance && canDash == true && isADasher == true)
         {
             state = State.Dashing;
         }
@@ -317,8 +306,9 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToDead()
     {
-        if (health <= 0)
+        if(health <= 0)
         {
+            audioSource.PlayOneShot(monster_death, audioSource.volume);
             state = State.Dead;
         }
     }
@@ -326,11 +316,11 @@ public class MobAI : MonoBehaviour
     //MELEE
     void DamagePlayer()
     {
-        if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
+        if(Vector2.Distance(transform.position, target) <= meleeDistance && isDashing == false)
         {
             GameManager.instance.TakeDamage(5);
         }
-        else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
+        else if(Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
         {
             GameManager.instance.TakeDamage(10);
 
@@ -347,11 +337,11 @@ public class MobAI : MonoBehaviour
     //FLIP
     void Flip()
     {
-        if (target.x < transform.position.x && !isDashing)
+        if (target.x < transform.position.x && isDashing == false)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (target.x > transform.position.x && !isDashing)
+        else if (target.x > transform.position.x && isDashing == false)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -377,33 +367,32 @@ public class MobAI : MonoBehaviour
         }
 
         health -= damage;
-
+        audioSource.PlayOneShot(monster_hurt, audioSource.volume);
         state = State.Stunned;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
 
-        if (isADasher && isDashing)
+        if (isADasher == true && isDashing == true)
         {
-            if (collision.gameObject.CompareTag("PAREDE"))
+            if (collision.gameObject.tag == "PAREDE")
             {
-                isDashing = false;
-
                 state = State.RecoveringFromDash;
+
+                isDashing = false;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
+        if(collision.CompareTag("Player"))
             gameObject.GetComponent<Collider2D>().isTrigger = false;
-        }
     }
+
 }

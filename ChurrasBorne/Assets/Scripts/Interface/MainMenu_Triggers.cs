@@ -10,7 +10,6 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -23,6 +22,7 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
     {
         if (MainMenu_Manager.menu_selection_confirm == false)
         {
+            MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_move, MainMenu_Manager.instance.audioSource.volume);
             switch (gameObject.name)
             {
                 case "MENU_Start":
@@ -83,6 +83,7 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
         {
             MainMenu_Manager.menu_selection_confirm = true;
             Debug.Log("start");
+            MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_confirm, MainMenu_Manager.instance.audioSource.volume);
         }
             
     }
