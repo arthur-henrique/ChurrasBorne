@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TricksterSpikeDestroySelf : MonoBehaviour
+public class SpikeDestroySelf : MonoBehaviour
 {
     void Start()
     {
@@ -11,6 +11,6 @@ public class TricksterSpikeDestroySelf : MonoBehaviour
 
     void Update()
     {
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 5f);
     }
 }

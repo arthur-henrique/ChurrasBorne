@@ -8,6 +8,7 @@ public class MobAI : MonoBehaviour
     private enum State
     {
         Idling,
+        Kalm,
         Chasing,
         Attacking,
         Shooting,
@@ -27,6 +28,8 @@ public class MobAI : MonoBehaviour
     public Vector3 dashTarget;
 
     public GameObject projectile;
+
+    public GameObject gameManager;
 
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
@@ -50,6 +53,8 @@ public class MobAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         TimeBTWAttacks = 0.1f;
 
@@ -97,7 +102,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if(TimeBTWAttacks <= 0)
+                if (TimeBTWAttacks <= 0)
                 {
                     anim.SetTrigger("Melee");
 
@@ -119,7 +124,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if(timeBTWShots <= 0)
+                if (timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
 
@@ -153,13 +158,13 @@ public class MobAI : MonoBehaviour
                     transform.localScale = new Vector3(1, 1, 1);
                 }
 
-                if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
+                if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
                 {
                     anim.SetTrigger("DashMelee");
 
                     SwitchToRecoveringFromDash();
                 }
-                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing == true)
+                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing)
                 {
                     SwitchToRecoveringFromDash();
                     
@@ -194,7 +199,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if(stunTime <= 0)
+                if (stunTime <= 0)
                 {
                     SwitchToChasing();
                     SwitchToIdling();
@@ -215,11 +220,11 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if(isOnTutorial)
+                if (isOnTutorial)
                 {
                     EnemyControlTutorial.Instance.KilledEnemy(gameObject);
                 }
-                else if(isOnFaseUm)
+                else if (isOnFaseUm)
                 {
                     EnemyControl.Instance.KilledEnemy(gameObject);
                 }
@@ -230,10 +235,22 @@ public class MobAI : MonoBehaviour
 
                 Destroy(gameObject, 1.5f);
                 break;
+
+            case State.Kalm:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+                break;
+        }
+
+        if (gameManager.GetComponent<GameManager>().isAlive == false)
+        {
+            state = State.Kalm;
         }
 
         //DASH
-        if(isDashing == false)
+        if (!isDashing)
         {
             dashTarget = target;
 
@@ -253,43 +270,43 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == false)    
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == false)    
         {
             state = State.Chasing;
         }
-        else if(Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == true)
+        else if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter == true)
         {
             state = State.Chasing;
         }
     }
     void SwitchToIdling()
     {
-        if(Vector2.Distance(transform.position, target) > agroDistance && health > 0)
+        if (Vector2.Distance(transform.position, target) > agroDistance && health > 0)
         {
             state = State.Idling;
         }
     }
     void SwitchToAttacking()
     {
-        if(Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
+        if (Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
         {
             state = State.Attacking;
         }
     }
     void SwitchToShooting()
     {
-        if(Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter == true)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter)
         {
             state = State.Shooting;
         }
     }
     void SwitchToDashing()
     {
-        if(Vector2.Distance(transform.position, target) < canDashDistance && isADasher == true)
+        if (Vector2.Distance(transform.position, target) < canDashDistance && isADasher)
         {
             canDash = true;
         }
-        else if(Vector2.Distance(transform.position, target) >= canDashDistance && canDash == true && isADasher == true)
+        else if (Vector2.Distance(transform.position, target) >= canDashDistance && canDash && isADasher)
         {
             state = State.Dashing;
         }
@@ -300,7 +317,7 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToDead()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             state = State.Dead;
         }
@@ -309,11 +326,11 @@ public class MobAI : MonoBehaviour
     //MELEE
     void DamagePlayer()
     {
-        if(Vector2.Distance(transform.position, target) <= meleeDistance && isDashing == false)
+        if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
             GameManager.instance.TakeDamage(5);
         }
-        else if(Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing == true)
+        else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
             GameManager.instance.TakeDamage(10);
 
@@ -330,11 +347,11 @@ public class MobAI : MonoBehaviour
     //FLIP
     void Flip()
     {
-        if (target.x < transform.position.x && isDashing == false)
+        if (target.x < transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (target.x > transform.position.x && isDashing == false)
+        else if (target.x > transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -365,27 +382,28 @@ public class MobAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
 
-        if (isADasher == true && isDashing == true)
+        if (isADasher && isDashing)
         {
-            if (collision.gameObject.tag == "PAREDE")
+            if (collision.gameObject.CompareTag("PAREDE"))
             {
-                state = State.RecoveringFromDash;
-
                 isDashing = false;
+
+                state = State.RecoveringFromDash;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
+        {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
     }
-
 }

@@ -12,6 +12,7 @@ public class TricksterAI : MonoBehaviour
         Descendng,
         LongRange,
         CloseRange,
+        Idling,
         Dead
     }
 
@@ -20,10 +21,11 @@ public class TricksterAI : MonoBehaviour
     public Transform player;
 
     public Rigidbody2D rb;
-
     public Animator anim;
 
     public GameObject closeRangeSpikes, longRangeSpikes;
+
+    public GameObject gameManager;
 
     public int health;
 
@@ -42,6 +44,8 @@ public class TricksterAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         currentTimeBTWLRATKs = .5f;
 
@@ -110,7 +114,6 @@ public class TricksterAI : MonoBehaviour
 
                 SwitchToAscending();
                 SwitchToCloseRange();
-                SwitchToDead();
                 break;
 
             case State.CloseRange:
@@ -134,7 +137,6 @@ public class TricksterAI : MonoBehaviour
 
                 SwitchToLongRange();
                 SwitchToAscending();
-                SwitchToDead();
                 break;
 
             case State.Dead:
@@ -157,8 +159,20 @@ public class TricksterAI : MonoBehaviour
                     timeToDie -= Time.deltaTime;
                 }
                 break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
+                break;
         }
 
+        if (gameManager.GetComponent<GameManager>().isAlive == false)
+        {
+            state = State.Idling;
+        }
     }
 
     void Flip()
@@ -193,28 +207,28 @@ public class TricksterAI : MonoBehaviour
     }
     void SwitchToDescending()
     {
-        if(health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance)
+        if (health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance)
         {
             state = State.Descendng;
         }
     }
     void SwitchToLongRange()
     {
-        if(health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance && Vector2.Distance(transform.position, player.position) > closeRangeDistance)
+        if (health > 0 && Vector2.Distance(transform.position, player.position) <= chaseDistance && Vector2.Distance(transform.position, player.position) > closeRangeDistance)
         {
             state = State.LongRange;
         }
     }
     void SwitchToCloseRange()
     {
-        if(health > 0 && Vector2.Distance(transform.position, player.position) <= closeRangeDistance)
+        if (health > 0 && Vector2.Distance(transform.position, player.position) <= closeRangeDistance)
         {
             state = State.CloseRange;
         }
     }
     void SwitchToDead()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             state = State.Dead;
         }

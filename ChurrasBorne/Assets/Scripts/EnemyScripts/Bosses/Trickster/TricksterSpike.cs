@@ -13,7 +13,7 @@ public class TricksterSpike : MonoBehaviour
 
     void Update()
     {
-        if (trickster.gameObject.GetComponent<TricksterAI>().isAlive == false)
+        if (trickster.GetComponent<TricksterAI>().isAlive == false)
         {
             Destroy(gameObject);
         }
@@ -21,7 +21,7 @@ public class TricksterSpike : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
         }

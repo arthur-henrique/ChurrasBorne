@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public float healsLeft;
     public bool isTut;
     public float respawnCooldown;
-    private bool canTakeDamage, isAlive, hasJustDied;
+    private bool canTakeDamage, hasJustDied;
+    public bool isAlive;
 
     public string scene_detect;
     public int og_health;

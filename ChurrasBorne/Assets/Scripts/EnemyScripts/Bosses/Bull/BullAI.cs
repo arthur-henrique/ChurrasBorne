@@ -18,12 +18,12 @@ public class BullAI : MonoBehaviour
     private State state;
 
     public Transform player;
-
     public Rigidbody2D rb;
+    public Animator anim;
 
     public GameObject bullSpikes;
 
-    public Animator anim;
+    public GameObject gameManager;
 
     public int health;
 
@@ -44,6 +44,8 @@ public class BullAI : MonoBehaviour
     {
         //Para SPAWN, MOVEMENT, BASH, AXE
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         timeBTWMeleeATKs = .5f;
 
@@ -128,6 +130,8 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
@@ -139,41 +143,54 @@ public class BullAI : MonoBehaviour
                     timeToDie -= Time.deltaTime;    
                 }
                 break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
+                break;
+        }
+
+        if (gameManager.GetComponent<GameManager>().isAlive == false)
+        {
+            state = State.Idling;
         }
     }
 
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > rangedDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistance && health > 0)
         {
             state = State.Chasing;
         }
     }
     void SwitchToAxeATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= rangedDistance && Vector2.Distance(player.position, transform.position) > meleeDistance && health > 0)
+        if (Vector2.Distance(player.position, transform.position) <= rangedDistance && Vector2.Distance(player.position, transform.position) > meleeDistance && health > 0)
         {
             state = State.AxeSwing;
         }
     }
     void SwitchToBashATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= meleeDistance && health > 0)
+        if (Vector2.Distance(player.position, transform.position) <= meleeDistance && health > 0)
         {
             state = State.HeadBash;
         }
     }
     void SwitchToSummonATK()
     {
-        if(health == 40)
+        if (health == 40)
         {
             state = State.SpikeSummon;
         }
     }
     void SwitchToDead()
     {
-        if(health <= 0 && isAlive == true)
+        if (health <= 0 && isAlive)
         {
             state = State.Dead;
             if (isOnTut)
