@@ -28,6 +28,11 @@ public class MobAI : MonoBehaviour
 
     public GameObject projectile;
 
+    private AudioSource audioSource;
+    public AudioClip monster_death;
+    public AudioClip monster_hurt;
+    public AudioClip monster_punch;
+
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
 
@@ -50,6 +55,7 @@ public class MobAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        audioSource = GetComponent<AudioSource>();
 
         TimeBTWAttacks = 0.1f;
 
@@ -100,7 +106,7 @@ public class MobAI : MonoBehaviour
                 if(TimeBTWAttacks <= 0)
                 {
                     anim.SetTrigger("Melee");
-
+                    audioSource.PlayOneShot(monster_punch, audioSource.volume);
                     TimeBTWAttacks = startTimeBTWAttacks;
                 }
                 else
@@ -302,6 +308,7 @@ public class MobAI : MonoBehaviour
     {
         if(health <= 0)
         {
+            audioSource.PlayOneShot(monster_death, audioSource.volume);
             state = State.Dead;
         }
     }
@@ -360,7 +367,7 @@ public class MobAI : MonoBehaviour
         }
 
         health -= damage;
-
+        audioSource.PlayOneShot(monster_hurt, audioSource.volume);
         state = State.Stunned;
     }
     private void OnCollisionEnter2D(Collision2D collision)
