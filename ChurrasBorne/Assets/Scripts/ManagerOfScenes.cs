@@ -9,6 +9,7 @@ public class ManagerOfScenes : MonoBehaviour
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
+    public Animator portalDois;
 
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
@@ -47,6 +48,12 @@ public class ManagerOfScenes : MonoBehaviour
             if(!clearedUm && !clearedHalf)
             {
                 StartCoroutine(ShowChurras());
+            }
+
+            if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
+            {
+                GameManager.instance.SetHasSeenGateTwoAnim(true);
+                StartCoroutine(ShowSecondPath());
             }
         }
         
@@ -158,8 +165,10 @@ public class ManagerOfScenes : MonoBehaviour
     IEnumerator ShowSecondPath()
     {
         gate.transform.position = GateCamPos[1].transform.position;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
+        yield return new WaitForSeconds(1.5f);
+        portalDois.SetTrigger("ON");
     }
 
     IEnumerator ShowChurras()
