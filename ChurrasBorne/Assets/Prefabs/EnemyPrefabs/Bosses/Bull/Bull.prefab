@@ -156,14 +156,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   rb: {fileID: 2477395731989692587}
-  bullSpikes: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
   anim: {fileID: 2477395731989692585}
-  health: 100
+  bullSpikes: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
+  health: 500
   chasingSpeed: 7
   meleeDistance: 4
   startTimeBTWMeleeATKs: 2
   rangedDistance: 10
   startTimeBTWRangedATKs: 3
   isOnTut: 0
-  isOnFaseQuatro: 0
   isAlive: 1

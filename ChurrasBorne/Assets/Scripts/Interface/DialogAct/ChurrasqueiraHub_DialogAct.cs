@@ -8,6 +8,8 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     public GameObject dbox;
     PlayerController pc;
 
+    public Collider2D col;
+
     private void Awake()
     {
         pc = new PlayerController();
@@ -58,7 +60,13 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("isHoldingSword", true);
                     GameManager.instance.SetHeals(3, false, true);
+
+                    //
+                    col.enabled = true;
+
                     while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
+
+                    ManagerOfScenes.instance.ShowFirstPhase();
                 }
             }
 

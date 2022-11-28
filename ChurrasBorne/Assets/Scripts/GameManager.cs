@@ -306,6 +306,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isDead", false);
         if (isTut)
         {
+            yield return new WaitForSeconds(1f);
             canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 0, false, null);
         }
     }
