@@ -161,6 +161,16 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Healing:
                 StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
+                x = pc.Movimento.LesteOeste.ReadValue<float>();
+                y = pc.Movimento.NorteSul.ReadValue<float>();
+                direcao = new Vector2(x, y);
+                direcao.Normalize();
+                if (x != 0 || y != 0)
+                {
+                    lastMovedDirection = direcao;
+                    anim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                }
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
                 {
@@ -218,6 +228,7 @@ public class PlayerMovement : MonoBehaviour
                         takingDamage = true;
                     }
                 }
+                CantAttack();
                 break;
             case State.Dead:
                 anim.SetFloat("moveX", 0);

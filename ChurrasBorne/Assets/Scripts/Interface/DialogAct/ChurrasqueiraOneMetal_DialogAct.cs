@@ -54,10 +54,12 @@ public class ChurrasqueiraOneMetal_DialogAct : MonoBehaviour
                     if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 3)
                     {
                         GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") + 1);
+                        GameManager.instance.SetHeals(GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") + 1, false, true);
                     }
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;
+                    
                 }
             }
 
