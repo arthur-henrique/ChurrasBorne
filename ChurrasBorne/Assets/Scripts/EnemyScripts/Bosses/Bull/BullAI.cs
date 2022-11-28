@@ -14,7 +14,6 @@ public class BullAI : MonoBehaviour
         Idling,
         Dead
     }
-
     private State state;
 
     public Transform player;
@@ -25,7 +24,7 @@ public class BullAI : MonoBehaviour
 
     public int health;
 
-    public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistance, startTimeBTWRangedATKs;
+    public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
     private float timeBTWMeleeATKs, timeBTWRangedATKs, timeToDie;
 
     public bool isOnTut, isAlive = true;
@@ -153,14 +152,18 @@ public class BullAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, player.position) > rangedDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistanceII && health > 0)
+        {
+            state = State.Chasing;
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= rangedDistanceI && Vector2.Distance(transform.position, player.position) > meleeDistance)
         {
             state = State.Chasing;
         }
     }
     void SwitchToAxeATK()
     {
-        if (Vector2.Distance(player.position, transform.position) <= rangedDistance && Vector2.Distance(player.position, transform.position) > meleeDistance && health > 0)
+        if (Vector2.Distance(player.position, transform.position) <= rangedDistanceII && Vector2.Distance(player.position, transform.position) > rangedDistanceI && health > 0)
         {
             state = State.AxeSwing;
         }

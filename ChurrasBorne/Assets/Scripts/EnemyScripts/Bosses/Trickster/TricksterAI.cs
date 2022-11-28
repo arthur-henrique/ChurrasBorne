@@ -15,7 +15,6 @@ public class TricksterAI : MonoBehaviour
         Idling,
         Dead
     }
-
     private State state;
 
     public Transform player;

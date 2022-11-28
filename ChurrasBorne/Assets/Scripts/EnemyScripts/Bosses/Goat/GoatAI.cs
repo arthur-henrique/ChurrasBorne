@@ -16,6 +16,7 @@ public class GoatAI : MonoBehaviour
         Idling,
         Dead       
     }
+    private State state;
 
     public Transform player;
     private Vector2 dashTarget;
@@ -32,7 +33,6 @@ public class GoatAI : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
 
-    private State state;
 
     private void Awake()
     {

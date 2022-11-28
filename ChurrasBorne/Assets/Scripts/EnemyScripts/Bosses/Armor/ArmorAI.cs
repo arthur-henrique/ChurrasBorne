@@ -13,7 +13,6 @@ public class ArmorAI : MonoBehaviour
         Idling,
         Dead
     }
-
     private State state;
 
     public Transform player;
