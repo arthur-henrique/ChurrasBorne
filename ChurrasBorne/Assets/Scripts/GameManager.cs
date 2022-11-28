@@ -26,7 +26,8 @@ public class GameManager : MonoBehaviour
     public float healsLeft;
     public bool isTut;
     public float respawnCooldown;
-    private bool canTakeDamage, isAlive, hasJustDied;
+    private bool canTakeDamage, hasJustDied;
+    public bool isAlive;
 
     public string scene_detect;
     public int og_health;
@@ -305,7 +306,8 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isDead", false);
         if (isTut)
         {
-            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 3, true, null);
+            yield return new WaitForSeconds(1f);
+            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 0, false, null);
         }
     }
     IEnumerator CameraDelay()

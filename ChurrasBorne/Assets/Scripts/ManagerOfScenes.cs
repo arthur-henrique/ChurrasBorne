@@ -4,6 +4,7 @@ using UnityEngine;
 using Cinemachine;
 public class ManagerOfScenes : MonoBehaviour
 {
+    public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
@@ -11,6 +12,11 @@ public class ManagerOfScenes : MonoBehaviour
 
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         clearedUm = GameManager.instance.GetHasCleared(0);
@@ -21,6 +27,10 @@ public class ManagerOfScenes : MonoBehaviour
             GameManager.instance.GateCamSetter(gate);
 
         if (gameObject.CompareTag("Tutorial"))
+        {
+            GameManager.instance.SetHeals(-1f, true, false);
+        }
+        else if (gameObject.CompareTag("HUB") && !GameManager.instance.GetHasCleared(0))
         {
             GameManager.instance.SetHeals(-1f, true, false);
         }
@@ -36,7 +46,7 @@ public class ManagerOfScenes : MonoBehaviour
             gate.transform.position = GateCamPos[0].transform.position;
             if(!clearedUm && !clearedHalf)
             {
-                StartCoroutine(ShowFirstPath());
+                StartCoroutine(ShowChurras());
             }
         }
         
@@ -131,11 +141,19 @@ public class ManagerOfScenes : MonoBehaviour
         }
     }
 
+    public void ShowFirstPhase()
+    {
+        StartCoroutine(ShowFirstPath());
+    }
+
     IEnumerator ShowFirstPath()
     {
-        yield return new WaitForSeconds(2.5f);
+        PlayerMovement.DisableControl();
+        gate.transform.position = GateCamPos[0].transform.position;
+        yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
     }
+
 
     IEnumerator ShowSecondPath()
     {
@@ -146,8 +164,9 @@ public class ManagerOfScenes : MonoBehaviour
 
     IEnumerator ShowChurras()
     {
+        PlayerMovement.DisableControl();
         gate.transform.position = GateCamPos[2].transform.position;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
     }
 }

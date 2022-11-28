@@ -10,9 +10,9 @@ public class ArmorAI : MonoBehaviour
         Chasing,
         BladeSlash,
         BladeSpin,
+        Idling,
         Dead
     }
-
     private State state;
 
     public Transform player;
@@ -23,12 +23,13 @@ public class ArmorAI : MonoBehaviour
     public GameObject bladeWave;
     public GameObject waveSpawnPoint;
 
+    private bool isAlreadyDying = false;
+
     public int health;
 
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
-    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs;
+    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
 
-    public bool isOnTut;
     private void Awake()
     {
         state = State.Spawning;
@@ -38,8 +39,9 @@ public class ArmorAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentTimeBTWSlashATKs = 0.1f;
-        currentTimeBTWSpinATKs = 0.1f;
+        currentTimeBTWSlashATKs = .1f;
+        currentTimeBTWSpinATKs = .1f;
+        timeToDie = .1f;
     }
 
     void Update()
@@ -59,7 +61,6 @@ public class ArmorAI : MonoBehaviour
                 anim.SetBool("Idle", false);
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.BladeSlash:
@@ -83,7 +84,6 @@ public class ArmorAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToBladeSpin();
-                SwitchToDead();
                 break;
 
             case State.BladeSpin:
@@ -106,26 +106,41 @@ public class ArmorAI : MonoBehaviour
                 }
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.Dead:
-                anim.SetTrigger("Die");
+                rb.velocity = Vector2.zero;
+
+                isAlreadyDying = true;
 
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if (isOnTut)
+                if (timeToDie <= 0)
                 {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                    anim.SetTrigger("Die");
+
+                    timeToDie = 1000;
                 }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
+                }
+                break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
                 break;
         }
     }
 
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health > 50)
         {
             state = State.Chasing;
         }
@@ -136,7 +151,7 @@ public class ArmorAI : MonoBehaviour
     }
     void SwitchToBladeSlash()
     {
-        if(Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && Vector2.Distance(transform.position, player.position) > spinDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && Vector2.Distance(transform.position, player.position) > spinDistance && health > 50)
         {
             state = State.BladeSlash;
         }
@@ -147,7 +162,7 @@ public class ArmorAI : MonoBehaviour
     }
     void SwitchToBladeSpin()
     {
-        if(Vector2.Distance(transform.position,player.position) <= spinDistance && health > 0)
+        if (Vector2.Distance(transform.position,player.position) <= spinDistance && health > 0)
         {
             state = State.BladeSpin;
         }
@@ -169,11 +184,11 @@ public class ArmorAI : MonoBehaviour
 
     void SlashATK()
     {
-        if(Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 50)
         {
             GameManager.instance.TakeDamage(5);
         }
-        else if(Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 50 && health > 0)
+        else if (Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 50 && health > 0)
         {
             Instantiate(bladeWave, waveSpawnPoint.transform.position, Quaternion.identity);
         }
@@ -213,17 +228,28 @@ public class ArmorAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        int damage;
-
-        damage = 10;
-
+        int damage = 10;
         health -= damage;
+
+        if (!isAlreadyDying)
+        {
+            SwitchToDead();
+        }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }

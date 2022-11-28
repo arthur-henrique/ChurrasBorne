@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
-    private readonly int amountToHeal = 20;
+    private readonly int amountToHeal = 65;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private static Animator anim;
@@ -33,6 +33,13 @@ public class PlayerMovement : MonoBehaviour
     bool canAttack = true;
     private static State state;
     public static PlayerController pc;
+
+    private AudioSource audioSource;
+    public AudioClip player_dash;
+    public AudioClip player_punch;
+    public AudioClip player_swing;
+    public AudioClip player_eat;
+    public AudioClip player_hurt;
 
     private bool isOnIce, isOnWeb, isOnBossWeb;
     // Start is called before the first frame update
@@ -54,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -75,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
                             state = State.Rolling;
                             anim.SetTrigger("isRolling");
                             print("Rolei");
+                            audioSource.PlayOneShot(player_dash, audioSource.volume);
                             Dash_Manager.dash_fill_global -= 60;
                             Dash_Manager.dash_light_global = 0;
                         }
@@ -85,6 +94,14 @@ public class PlayerMovement : MonoBehaviour
                         canAttack = false;
                         state = State.Attacking;
                         anim.SetTrigger("isAttacking");
+                        if (anim.GetBool("isHoldingSword") == true)
+                        {
+                            audioSource.PlayOneShot(player_swing, audioSource.volume);
+                        } else
+                        {
+                            audioSource.PlayOneShot(player_punch, audioSource.volume);
+                        }
+                        
                     }
 
                     if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
@@ -92,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
                         healingAnimCd = 1f;
                         state = State.Healing;
                         anim.SetTrigger("isHealing");
+                        audioSource.PlayOneShot(player_eat, audioSource.volume);
                     }
                 }
                 
@@ -143,6 +161,16 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Healing:
                 StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
+                x = pc.Movimento.LesteOeste.ReadValue<float>();
+                y = pc.Movimento.NorteSul.ReadValue<float>();
+                direcao = new Vector2(x, y);
+                direcao.Normalize();
+                if (x != 0 || y != 0)
+                {
+                    lastMovedDirection = direcao;
+                    anim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                }
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
                 {
@@ -166,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
                 if (takingDamage)
                 {
                     timer = GameManager.instance.GetDamagetime();
+                    audioSource.PlayOneShot(player_hurt, audioSource.volume);
                     takingDamage = false;
                 }
                 timer -= Time.deltaTime;
@@ -199,6 +228,7 @@ public class PlayerMovement : MonoBehaviour
                         takingDamage = true;
                     }
                 }
+                CantAttack();
                 break;
             case State.Dead:
                 anim.SetFloat("moveX", 0);

@@ -14,25 +14,22 @@ public class BullAI : MonoBehaviour
         Idling,
         Dead
     }
+    private State state;
 
     public Transform player;
-
     public Rigidbody2D rb;
+    public Animator anim;
 
     public GameObject bullSpikes;
 
-    public Animator anim;
-
     public int health;
 
-    public float chasingSpeed, bashDistance, startTimeBTWBashATKs, axeDistance, startTimeBTWAxeATKs, startTimeToSummonSpikes;
-    private float timeBTWBashATKs, timeBTWAxeATKs, timeToSummonSpikes;
+    public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
+    private float timeBTWMeleeATKs, timeBTWRangedATKs, timeToDie;
 
-    public bool isOnTut, isOnFaseQuatro;
+    public bool isOnTut, isAlive = true;
 
-    private bool isAlive = true;
-
-    private State state;
+    private bool isAlreadyDying = false;
 
     private void Awake()
     {
@@ -45,9 +42,11 @@ public class BullAI : MonoBehaviour
         //Para SPAWN, MOVEMENT, BASH, AXE
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        timeBTWBashATKs = 0.5f;
+        timeBTWMeleeATKs = .5f;
 
-        timeBTWAxeATKs = 0.5f;
+        timeBTWRangedATKs = .5f;
+
+        timeToDie = .1f;
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
@@ -71,7 +70,6 @@ public class BullAI : MonoBehaviour
 
                 SwitchToAxeATK();
                 SwitchToBashATK();
-                SwitchToDead();
                 break;
 
             case State.HeadBash:
@@ -80,20 +78,19 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (timeBTWBashATKs <= 0)
+                if (timeBTWMeleeATKs <= 0)
                 {
                     anim.SetTrigger("Bash");
 
-                    timeBTWBashATKs = startTimeBTWBashATKs;
+                    timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
                 {
-                    timeBTWBashATKs -= Time.deltaTime;
+                    timeBTWMeleeATKs -= Time.deltaTime;
                 }
 
                 SwitchToChasing();
                 SwitchToAxeATK();
-                SwitchToDead();
                 break;
 
             case State.AxeSwing:
@@ -104,32 +101,50 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (timeBTWAxeATKs <= 0)
+                if (timeBTWRangedATKs <= 0)
                 {
                     anim.SetTrigger("Axe");
 
-                    timeBTWAxeATKs = startTimeBTWAxeATKs;
+                    timeBTWRangedATKs = startTimeBTWRangedATKs;
                 }
                 else
                 {
-                    timeBTWAxeATKs -= Time.deltaTime;
+                    timeBTWRangedATKs -= Time.deltaTime;
                 }
 
                 SwitchToBashATK();
                 SwitchToChasing();
-                SwitchToDead();
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
                 isAlive = false;
-
-                anim.SetTrigger("Die");
-                anim.SetBool("Idle", false);
+                isAlreadyDying = true;
+                
+                anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
+                if (timeToDie <= 0)
+                {
+                    anim.SetTrigger("Die");
+
+                    timeToDie = 10000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;    
+                }
+                break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
                 break;
         }
     }
@@ -137,35 +152,39 @@ public class BullAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > axeDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistanceII && health > 0)
+        {
+            state = State.Chasing;
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= rangedDistanceI && Vector2.Distance(transform.position, player.position) > meleeDistance)
         {
             state = State.Chasing;
         }
     }
     void SwitchToAxeATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= axeDistance && Vector2.Distance(player.position, transform.position) > bashDistance && health > 0)
+        if (Vector2.Distance(player.position, transform.position) <= rangedDistanceII && Vector2.Distance(player.position, transform.position) > rangedDistanceI && health > 0)
         {
             state = State.AxeSwing;
         }
     }
     void SwitchToBashATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= bashDistance && health > 0)
+        if (Vector2.Distance(player.position, transform.position) <= meleeDistance && health > 0)
         {
             state = State.HeadBash;
         }
     }
     void SwitchToSummonATK()
     {
-        if(health == 40)
+        if (health == 40)
         {
             state = State.SpikeSummon;
         }
     }
     void SwitchToDead()
     {
-        if(health <= 0 && isAlive == true)
+        if (health <= 0 && isAlive)
         {
             state = State.Dead;
             if (isOnTut)
@@ -203,7 +222,11 @@ public class BullAI : MonoBehaviour
     //MELEE
     public void DamagePlayer()
     {
-        if (Vector2.Distance(transform.position, player.position) <= bashDistance)
+        if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
+        {
+            GameManager.instance.TakeDamage(10);
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
             GameManager.instance.TakeDamage(5);
         }
@@ -218,14 +241,38 @@ public class BullAI : MonoBehaviour
     //HEALTH
     public void TakeDamage()
     {
-        int damage = 10;
-        health -= damage;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("AttackHit"))
+        int damage;
+
+        if (isOnTut)
         {
-            TakeDamage();
+            damage = 5;
+        }
+        else
+        {
+            damage = 10;
+        }
+
+        health -= damage;
+
+        if (!isAlreadyDying)
+        {
+            SwitchToDead();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }

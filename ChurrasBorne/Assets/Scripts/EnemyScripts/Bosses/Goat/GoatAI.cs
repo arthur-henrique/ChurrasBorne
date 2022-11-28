@@ -11,30 +11,28 @@ public class GoatAI : MonoBehaviour
         Chasing,
         Stomping,
         Dashing,
-        DashATK,
         RecoveringFromDash,
         SummoningSpikes,
         Idling,
         Dead       
     }
+    private State state;
 
     public Transform player;
     private Vector2 dashTarget;
 
-    public float chasingSpeed, dashingSpeed, stompDistance, dashDistance, dashATKDistance, canDashDistance;
+    public float chasingSpeed, dashingSpeed, meleeDistance, dashDistance, dashATKDistance, canDashDistance;
 
-    public float timeBTWStompATKs, startSpikeSpawnTime, startStopSummoningTime, dashRecoveryTime;
-    private float currentTimeBTWStompATKs, spikeSpawnTime, stopSummoningTime, currentDashRecoveryTime;
+    public float startTimeBTWMeleeATKs, startDashRecoveryTime;
+    private float timeBTWMeleeATKs, dashRecoveryTime, timeToDie;
 
-    private bool isDashing = false;
+    private bool isDashing = false, isAlreadyDying = false, isAlive = true;
 
     public int health;
 
     public Rigidbody2D rb;
-
     public Animator anim;
 
-    private static State state;
 
     private void Awake()
     {
@@ -45,13 +43,11 @@ public class GoatAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        timeBTWStompATKs = 0.5f;
+        timeBTWMeleeATKs = .5f;
 
-        spikeSpawnTime = startSpikeSpawnTime; 
+        timeToDie = .1f;
 
-        stopSummoningTime = startStopSummoningTime;
-
-        currentDashRecoveryTime = dashRecoveryTime;
+        dashRecoveryTime = startDashRecoveryTime;
     }
 
     void Update()
@@ -73,7 +69,6 @@ public class GoatAI : MonoBehaviour
 
                 SwitchToStomping();
                 SwitchToDashing();
-                SwitchToDead();
                 break;
 
             case State.Stomping:
@@ -85,24 +80,23 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
 
-                if(timeBTWStompATKs <= 0)
+                if(timeBTWMeleeATKs <= 0)
                 {
                     anim.SetTrigger("Stomp");
 
-                    timeBTWStompATKs = currentTimeBTWStompATKs;
+                    timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
                 {
-                    timeBTWStompATKs -= Time.deltaTime;
+                    timeBTWMeleeATKs -= Time.deltaTime;
                 }
 
                 SwitchToChasing();
                 SwitchToDashing();
-                SwitchToDead();
                 break;
 
             case State.Dashing:
-                isDashing = true;
+                isDashing = true;   
 
                 DashFlip();
 
@@ -112,58 +106,79 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
 
-                if (Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing == true)
+                if (Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing)
                 {
-                    state = State.DashATK;
-                }
-                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing == true)
-                {
+                    isDashing = false;
+
+                    anim.SetTrigger("DashATK");
+
                     state = State.RecoveringFromDash;
                 }
-                break;
-                
-            case State.DashATK:
-                rb.velocity = Vector2.zero;
+                else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing)
+                {
+                    isDashing = false;
 
-                anim.SetTrigger("DashATK");
+                    state = State.RecoveringFromDash;
+                }
                 break;
                 
             case State.RecoveringFromDash:
                 rb.velocity = Vector2.zero;
 
+                Debug.Log("rawr x3");
+
                 anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
 
-                isDashing = false;
-
-                if (currentDashRecoveryTime <= 0)
+                if (dashRecoveryTime <= 0)
                 {
+                    SwitchToStomping();
                     SwitchToChasing();
                     SwitchToDashing();
-                    SwitchToStomping();
-                    SwitchToDead();
 
-                    currentDashRecoveryTime = dashRecoveryTime;
+                    dashRecoveryTime = startDashRecoveryTime;
                 }
                 else
                 {
-                    currentDashRecoveryTime -= Time.deltaTime;
+                    dashRecoveryTime -= Time.deltaTime;
                 }
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                anim.SetTrigger("Die");
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
-                anim.SetBool("Idle", false);
+                isAlive = false;
+                isAlreadyDying = true;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
+
+                if (timeToDie <= 0)
+                {
+                    anim.SetTrigger("Die");
+
+                    timeToDie = 1000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
+                }
+                break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
         }
 
-        if (isDashing == false)
+        if (!isDashing)
         {
             dashTarget = player.transform.position;
 
@@ -177,32 +192,32 @@ public class GoatAI : MonoBehaviour
 
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > dashDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > dashDistance && health > 0)
         {
             state = State.Chasing;
         }
-        else if(Vector2.Distance(transform.position, player.position) <= canDashDistance && Vector2.Distance(transform.position, player.position) > stompDistance && health > 0)
+        else if (Vector2.Distance(transform.position, player.position) <= canDashDistance && Vector2.Distance(transform.position, player.position) > meleeDistance && health > 0)
         {
             state = State.Chasing;
         }
     }
     void SwitchToDashing()
     {
-        if(Vector2.Distance(transform.position, player.position) <= dashDistance && Vector2.Distance(transform.position, player.position) > canDashDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) <= dashDistance && Vector2.Distance(transform.position, player.position) > canDashDistance && health > 0)
         {
             state = State.Dashing;
         }
     }
     void SwitchToStomping()
     {
-        if(Vector2.Distance(transform.position, player.position) <= stompDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) <= meleeDistance && health > 0)
         {
             state = State.Stomping;
         }
     }
     void SwitchToDead()
     {
-        if(health <= 0)
+        if (health <= 0 && isAlive)
         {
             state = State.Dead;
         }
@@ -217,7 +232,7 @@ public class GoatAI : MonoBehaviour
 
     void StompDamage()
     {
-        if(Vector2.Distance(transform.position, player.position) <= stompDistance)
+        if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
         {
             GameManager.instance.TakeDamage(5);
         }
@@ -225,21 +240,19 @@ public class GoatAI : MonoBehaviour
 
     void DashDamage()
     {
-        if(Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing == true)
+        if (Vector2.Distance(transform.position, player.position) <= dashATKDistance)
         {
             GameManager.instance.TakeDamage(10);
         }
-
-        state = State.RecoveringFromDash;
     }
 
     void Flip()
     {
-        if (player.position.x < transform.position.x && isDashing == false)
+        if (player.position.x < transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (player.position.x > transform.position.x && isDashing == false)
+        else if (player.position.x > transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -256,19 +269,19 @@ public class GoatAI : MonoBehaviour
         }
     }
 
+    void DestroySelf()
+    {
+        Destroy(gameObject);    
+    }
+
     public void TakeDamage()
     {
-        int damage;
-
-        damage = 10;
-
+        int damage = 10;
         health -= damage;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
+
+        if (!isAlreadyDying)
         {
-            GameManager.instance.TakeDamage(5);
+            SwitchToDead();
         }
     }
 }

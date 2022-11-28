@@ -55,6 +55,11 @@ public class DoorPortal : MonoBehaviour
                 //    }
                 //}
             }
+
+            if (gameObject.CompareTag("PortaDois"))
+            {
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
+            }
         }
     }
 }

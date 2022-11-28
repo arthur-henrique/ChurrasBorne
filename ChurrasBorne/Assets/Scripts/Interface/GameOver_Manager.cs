@@ -18,6 +18,7 @@ public class GameOver_Manager : MonoBehaviour
 
     public static bool gover_selection_confirm = false;
     public static int gover_selection_position;
+    private int gover_col = -1;
 
     private GameObject gover_bg;
     private GameObject gover_lay;
@@ -38,7 +39,8 @@ public class GameOver_Manager : MonoBehaviour
     private float og_meat;
     private bool og_sword;
 
-    private float interactDelay = 1f;
+    private float interactDelay = 0.5f;
+    private bool lockInput = false;
 
     float ypos = 34.3f;
 
@@ -109,7 +111,7 @@ public class GameOver_Manager : MonoBehaviour
     {
         if (canChange == true)
         {
-            if (pc.Movimento.NorteSul.WasPressedThisFrame() && gover_selection_confirm == false)
+            if (pc.Movimento.NorteSul.WasPressedThisFrame() && gover_selection_confirm == false && lockInput == false)
             {
                 gover_selection_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
                 if (gover_selection_position > 2) { gover_selection_position = 0; }
@@ -123,35 +125,62 @@ public class GameOver_Manager : MonoBehaviour
                 case 2: ypos = -93f; break;
             }
 
-            switch (gover_selection_position)
+            if (gover_col == -1)
             {
-                case 0:
-                    gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
-                    gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    break;
+                switch (gover_selection_position)
+                {
+                    case 0:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        break;
 
-                case 1:
-                    gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
-                    gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    break;
+                    case 1:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        break;
 
-                case 2:
-                    gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
-                    gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
-                    break;
+                    case 2:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 1.0f, Time.unscaledDeltaTime * 5f));
+                        break;
+                }
+            } else
+            {
+                switch (gover_selection_position)
+                {
+                    case 0:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        break;
+
+                    case 1:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel3.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        break;
+
+                    case 2:
+                        gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel1.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, Mathf.Lerp(gover_sel2.GetComponent<TextMeshProUGUI>().color.a, 0.3f, Time.unscaledDeltaTime * 5f));
+                        gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
+                        break;
+                }
             }
+            
 
             gover_drop.GetComponent<RectTransform>().anchoredPosition =
                             Vector3.SmoothDamp(gover_drop.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, ypos, 0), ref velocity_drop_shadow, 5 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
 
-            if (interactDelay <= 0)
+            if (interactDelay <= 0 && lockInput == false)
             {
                 if (pc.Movimento.Attack.WasPressedThisFrame())
                 {
                     gover_selection_confirm = true;
+                    lockInput = true;
                 }
             } else
             {
@@ -168,6 +197,7 @@ public class GameOver_Manager : MonoBehaviour
                         gover_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
                         canvas.GetComponent<Transition_Manager>().RestartScene(SceneManager.GetActiveScene().name, GameManager.instance.og_health, GameManager.instance.og_meat, GameManager.instance.og_sword, gameObject);
                         gover_selection_confirm = false;
+                        gover_col = 0;
                         break;
 
                     case 1:
@@ -175,12 +205,14 @@ public class GameOver_Manager : MonoBehaviour
                         canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 3, true, gameObject);
                         //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
                         gover_selection_confirm = false;
+                        gover_col = 1;
                         break;
 
                     case 2:
                         gover_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
                         canvas.GetComponent<Transition_Manager>().TransitionToScene("MainMenu");
                         gover_selection_confirm = false;
+                        gover_col = 2;
                         break;
                 }
             }
@@ -190,7 +222,7 @@ public class GameOver_Manager : MonoBehaviour
 
     private IEnumerator Gover_Fade_In()
     {
-        for (int i = 0; i < 60 * 6; i++)
+        for (int i = 0; i < 60 * 4; i++)
         {
             dofComponent.focalLength.value = Mathf.Lerp(dofComponent.focalLength.value, 32, 2f * Time.unscaledDeltaTime);
 
