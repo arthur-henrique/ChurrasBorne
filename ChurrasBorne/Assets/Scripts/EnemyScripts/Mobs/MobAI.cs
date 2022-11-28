@@ -16,7 +16,6 @@ public class MobAI : MonoBehaviour
         RecoveringFromDash,
         Dead
     }
-
     private State state;
 
     public Rigidbody2D rb;
