@@ -19,6 +19,11 @@ public class FaseUmTriggerController : MonoBehaviour
         Instance = this;
     }
     // UpPathGates
+
+    private void Start()
+    {
+        SecondGateOpen();
+    }
     public void FirstGateTrigger()
     {
         for (int i = 0; i < upPathFirstGateIn.Length; i++)

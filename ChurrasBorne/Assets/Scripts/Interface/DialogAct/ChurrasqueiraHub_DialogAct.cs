@@ -9,6 +9,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     PlayerController pc;
 
     public Collider2D col;
+    private bool hasShownPath;
 
     private void Awake()
     {
@@ -63,14 +64,26 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
 
                     //
                     col.enabled = true;
+                    if(!hasShownPath)
+                    {
+                        hasShownPath = true;
+                        ManagerOfScenes.instance.ShowFirstPhase();
+                        StartCoroutine(ActivatePortal());
+                    }
+                    
 
                     while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
 
-                    ManagerOfScenes.instance.ShowFirstPhase();
                 }
             }
 
 
         }
+    }
+
+    IEnumerator ActivatePortal()
+    {
+        yield return new WaitForSeconds(1.5f);
+        col.gameObject.GetComponent<Animator>().SetTrigger("ON");
     }
 }

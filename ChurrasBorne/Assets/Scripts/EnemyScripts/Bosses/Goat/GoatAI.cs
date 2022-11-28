@@ -33,6 +33,8 @@ public class GoatAI : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
 
+    public bool isP1, isP2;
+    public Collider2D coll;
 
     private void Awake()
     {
@@ -167,6 +169,16 @@ public class GoatAI : MonoBehaviour
                 {
                     timeToDie -= Time.deltaTime;
                 }
+
+                if(isP1)
+                {
+                    GameManager.instance.SetHasCleared(0, true);
+                }
+                else if (isP2)
+                {
+                    GameManager.instance.SetHasCleared(1, true);
+                }
+                coll.enabled = true;
                 break;
 
             case State.Idling:
