@@ -49,6 +49,7 @@ public class ChurrasqueiraFullMetal_DialogAct : MonoBehaviour
                 GameManager.instance.currentHealth = 100;
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
                 while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
+                GameManager.instance.SetHeals(3, false, true);
             }
 
 
