@@ -24,8 +24,6 @@ public class ArmorAI : MonoBehaviour
     public GameObject bladeWave;
     public GameObject waveSpawnPoint;
 
-    public GameObject gameManager;
-
     private bool isAlreadyDying = false;
 
     public int health;
@@ -41,8 +39,6 @@ public class ArmorAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         currentTimeBTWSlashATKs = .1f;
         currentTimeBTWSpinATKs = .1f;
@@ -140,11 +136,6 @@ public class ArmorAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
-        }
-
-        if (gameManager.GetComponent<GameManager>().isAlive == false)
-        {
-            state = State.Idling;
         }
     }
 
@@ -246,11 +237,20 @@ public class ArmorAI : MonoBehaviour
             SwitchToDead();
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }

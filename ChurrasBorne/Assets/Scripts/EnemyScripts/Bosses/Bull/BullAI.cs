@@ -23,8 +23,6 @@ public class BullAI : MonoBehaviour
 
     public GameObject bullSpikes;
 
-    public GameObject gameManager;
-
     public int health;
 
     public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistance, startTimeBTWRangedATKs;
@@ -44,8 +42,6 @@ public class BullAI : MonoBehaviour
     {
         //Para SPAWN, MOVEMENT, BASH, AXE
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         timeBTWMeleeATKs = .5f;
 
@@ -151,11 +147,6 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
-        }
-
-        if (gameManager.GetComponent<GameManager>().isAlive == false)
-        {
-            state = State.Idling;
         }
     }
 
@@ -265,11 +256,20 @@ public class BullAI : MonoBehaviour
             SwitchToDead();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("AttackHit"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            TakeDamage();
+            GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 }

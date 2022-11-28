@@ -391,8 +391,10 @@ public class MobAI : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
+        {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
     }
 
 }

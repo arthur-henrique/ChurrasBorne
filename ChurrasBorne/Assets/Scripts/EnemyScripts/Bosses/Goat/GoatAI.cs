@@ -20,8 +20,6 @@ public class GoatAI : MonoBehaviour
     public Transform player;
     private Vector2 dashTarget;
 
-    public GameObject gameManager;
-
     public float chasingSpeed, dashingSpeed, meleeDistance, dashDistance, dashATKDistance, canDashDistance;
 
     public float startTimeBTWMeleeATKs, startDashRecoveryTime;
@@ -44,8 +42,6 @@ public class GoatAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         timeBTWMeleeATKs = .5f;
 
@@ -129,6 +125,8 @@ public class GoatAI : MonoBehaviour
             case State.RecoveringFromDash:
                 rb.velocity = Vector2.zero;
 
+                Debug.Log("rawr x3");
+
                 anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
@@ -189,11 +187,6 @@ public class GoatAI : MonoBehaviour
             dashTarget.x = player.position.x + fator.x * 2;
 
             dashTarget.y = player.position.y + fator.y * 2;
-        }
-
-        if (gameManager.GetComponent<GameManager>().isAlive == false)
-        {
-            state = State.Idling;
         }
     }
 

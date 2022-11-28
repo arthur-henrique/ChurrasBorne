@@ -25,8 +25,6 @@ public class TricksterAI : MonoBehaviour
 
     public GameObject closeRangeSpikes, longRangeSpikes;
 
-    public GameObject gameManager;
-
     public int health;
 
     public bool isAlive = true;
@@ -44,8 +42,6 @@ public class TricksterAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        gameManager = GameObject.FindGameObjectWithTag("GameManger");
 
         currentTimeBTWLRATKs = .5f;
 
@@ -168,11 +164,6 @@ public class TricksterAI : MonoBehaviour
                 anim.SetBool("Walk", false);
                 break;
         }
-
-        if (gameManager.GetComponent<GameManager>().isAlive == false)
-        {
-            state = State.Idling;
-        }
     }
 
     void Flip()
@@ -257,6 +248,22 @@ public class TricksterAI : MonoBehaviour
         if (!isAlreadyDying)
         {
             SwitchToDead();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
     }
 
