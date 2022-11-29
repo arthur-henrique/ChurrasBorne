@@ -179,6 +179,7 @@ public class GoatAI : MonoBehaviour
                     GameManager.instance.SetHasCleared(1, true);
                 }
                 coll.enabled = true;
+                coll.transform.GetChild(0).gameObject.SetActive(true);
                 break;
 
             case State.Idling:

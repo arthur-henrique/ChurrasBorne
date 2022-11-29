@@ -21,6 +21,7 @@ public class BullAI : MonoBehaviour
     public Animator anim;
 
     public GameObject bullSpikes;
+    public Collider2D portal;
 
     public int health;
 
@@ -190,6 +191,8 @@ public class BullAI : MonoBehaviour
             if (isOnTut)
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();
+                portal.enabled = true;
+                portal.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
     }
