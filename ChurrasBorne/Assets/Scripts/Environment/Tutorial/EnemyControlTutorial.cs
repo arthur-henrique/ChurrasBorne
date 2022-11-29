@@ -7,7 +7,7 @@ public class EnemyControlTutorial : MonoBehaviour
     public static EnemyControlTutorial Instance;
     private readonly List<GameObject> firstMob = new List<GameObject>();
     private readonly List<GameObject> secondMob = new List<GameObject>();
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip gate_open;
     private void Awake()
     {

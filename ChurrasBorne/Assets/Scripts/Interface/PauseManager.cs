@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+    public static PauseManager instance;
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     PlayerController pc;
 
@@ -33,6 +34,10 @@ public class PauseManager : MonoBehaviour
     Coroutine cr_pause_label;
     Coroutine cr_pause_sel;
 
+    public AudioSource audioSource;
+    public AudioClip ui_move;
+    public AudioClip ui_confirm;
+
     private bool canChange = false;
     public static bool isPaused = false;
     float ypos = 34.3f;
@@ -40,6 +45,7 @@ public class PauseManager : MonoBehaviour
     private void Awake()
     {
         pc = new PlayerController();
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnEnable()
     {
@@ -53,6 +59,7 @@ public class PauseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
 
         pause_bg = DialogSystem.getChildGameObject(gameObject, "PAUSE_Background");
@@ -91,6 +98,7 @@ public class PauseManager : MonoBehaviour
     {
         if (pc.UI.Pause.WasPressedThisFrame())
         {
+            audioSource.PlayOneShot(ui_confirm, audioSource.volume);
             if (isPaused && GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetBool("isDead") == false)
             {
                 Hide_Pause();
@@ -148,11 +156,13 @@ public class PauseManager : MonoBehaviour
                 selection_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
                 if (selection_position > 2) { selection_position = 0; }
                 if (selection_position < 0) { selection_position = 2; }
+                audioSource.PlayOneShot(ui_move, audioSource.volume);
             }
 
             if (pc.Movimento.Attack.WasPressedThisFrame())
             {
                 selection_confirm = true;
+                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
             }
 
             //StopCoroutine(cr_pause_drop_sh);
@@ -179,12 +189,17 @@ public class PauseManager : MonoBehaviour
                             canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 3, true, null);
                         }
                         selection_confirm = false;
+                        canChange = false;
+                        isPaused = false;
+                        Hide_Pause();
                         break;
 
                     case 2:
                         pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 0.7411765f, 0.4039216f, 1.0f);
                         canvas.GetComponent<Transition_Manager>().RestartScene("MainMenu", 100, 3, true, null);
                         selection_confirm = false;
+                        canChange = false;
+                        isPaused = false;
                         break;
                 }
             }

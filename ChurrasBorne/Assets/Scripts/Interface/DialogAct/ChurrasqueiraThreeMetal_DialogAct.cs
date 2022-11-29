@@ -48,7 +48,7 @@ public class ChurrasqueiraThreeMetal_DialogAct : MonoBehaviour
                     if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
                     {
                         dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
+                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
                     }
                     GameManager.instance.currentHealth = 100;
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);

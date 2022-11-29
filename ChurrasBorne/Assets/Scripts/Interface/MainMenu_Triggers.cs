@@ -81,9 +81,15 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
     {
         if (Time.fixedTime > 3)
         {
-            MainMenu_Manager.menu_selection_confirm = true;
-            Debug.Log("start");
-            MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_confirm, MainMenu_Manager.instance.audioSource.volume);
+            if (MainMenu_Manager.menu_submenu == true && (MainMenu_Manager.menu_position == 2 || MainMenu_Manager.menu_position == 3 || MainMenu_Manager.menu_position == 4))
+            {
+                
+            } else
+            {
+                MainMenu_Manager.menu_selection_confirm = true;
+                Debug.Log("start");
+                MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_confirm, MainMenu_Manager.instance.audioSource.volume);
+            }
         }
             
     }

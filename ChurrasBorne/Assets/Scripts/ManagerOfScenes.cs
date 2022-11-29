@@ -8,6 +8,7 @@ public class ManagerOfScenes : MonoBehaviour
     public GameObject passado, eclipse;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
+    public static bool hasSeenHubIntro;
     public CinemachineVirtualCamera gate;
 
     // Hub Cam Positions:
@@ -43,11 +44,16 @@ public class ManagerOfScenes : MonoBehaviour
         // HUB
         if (gameObject.CompareTag("HUB"))
         {
-            gate.transform.position = GateCamPos[0].transform.position;
-            if(!clearedUm && !clearedHalf)
+            if (!hasSeenHubIntro)
             {
-                StartCoroutine(ShowChurras());
+                gate.transform.position = GateCamPos[0].transform.position;
+                if (!clearedUm && !clearedHalf)
+                {
+                    StartCoroutine(ShowChurras());
+                    hasSeenHubIntro = true;
+                }
             }
+            
         }
         
 
@@ -133,7 +139,7 @@ public class ManagerOfScenes : MonoBehaviour
                 // Passa a animaÁ„o de morte
                 // ComeÁa a TransiÁ„o de tela escura
                 // ComeÁa a Cutscene de resgate
-                // H· a troca de tela (Hub)
+                // HÅEa troca de tela (Hub)
                 // Toca a Cutscene do salvador morto
                 // Frames do player pegando a espada
                 // Personagem fica jogavel novamente

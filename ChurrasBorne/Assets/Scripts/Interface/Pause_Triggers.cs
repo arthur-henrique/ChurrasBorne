@@ -8,7 +8,6 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -21,6 +20,7 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
     {
         if (PauseManager.selection_confirm == false)
         {
+            PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_move, PauseManager.instance.audioSource.volume);
             switch (gameObject.name)
             {
                 case "PAUSE_Continuar":
@@ -50,6 +50,7 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
             if (PauseManager.isPaused)
             {
                 PauseManager.selection_confirm = true;
+                PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_confirm, PauseManager.instance.audioSource.volume);
                 Debug.Log("start");
             }
             

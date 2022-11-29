@@ -111,6 +111,11 @@ public class PlayerMovement : MonoBehaviour
                         anim.SetTrigger("isHealing");
                         audioSource.PlayOneShot(player_eat, audioSource.volume);
                     }
+                } else
+                {
+                    direcao = new Vector2(0, 0);
+                    x = 0;
+                    y = 0;
                 }
                 
                 direcao = new Vector2(x, y);
