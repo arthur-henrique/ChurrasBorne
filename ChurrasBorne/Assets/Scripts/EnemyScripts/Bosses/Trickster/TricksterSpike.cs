@@ -23,7 +23,7 @@ public class TricksterSpike : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(15);
         }
     }
 

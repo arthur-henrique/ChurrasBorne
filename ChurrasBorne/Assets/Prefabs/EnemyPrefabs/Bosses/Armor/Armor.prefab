@@ -160,8 +160,8 @@ MonoBehaviour:
   anim: {fileID: 1712351523996777570}
   bladeWave: {fileID: 1541464949372905180, guid: 65a6f46ea6942264196e718dc57c9ee3, type: 3}
   waveSpawnPoint: {fileID: 5748991568278659421}
-  health: 100
-  chasingSpeed: 5
+  health: 200
+  chasingSpeed: 4
   timeBTWSlashATKs: 2
   slashMeleeDistance: 4
   slashRangedDistance: 20

@@ -155,6 +155,8 @@ MonoBehaviour:
   passado: {fileID: 0}
   eclipse: {fileID: 0}
   gate: {fileID: 0}
+  portalDois: {fileID: 0}
+  GateCamPos: []
 --- !u!4 &43474599
 Transform:
   m_ObjectHideFlags: 0
@@ -454,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1045178171, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1045178173, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.x
@@ -550,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1475002058, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.56
+      value: 4.32
       objectReference: {fileID: 0}
     - target: {fileID: 1475002060, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.x
@@ -598,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1830869712, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.56
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 1830869714, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.x
@@ -618,7 +620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.x
-      value: 1.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5215369623354428427, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_Size.y
@@ -718,7 +720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8306076693239287712, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.43
+      value: 2.07
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
@@ -765,7 +767,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 3.5, y: 1.5}
+  size: {x: 4.5, y: 2.5}
 --- !u!114 &601760235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +786,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 3.5, y: 1.5}
+  size: {x: 4.5, y: 2.5}
 --- !u!114 &601760236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,7 +805,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 1.5, y: 3.25}
+  size: {x: 2.5, y: 4.5}
 --- !u!114 &601760237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,7 +824,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 1.5, y: 3.25}
+  size: {x: 2.5, y: 4.5}
 --- !u!1001 &757716132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1110,6 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa99f79182709d4a965bf11a11a18f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   slider: {fileID: 1561382289}
   dft: {fileID: 189145003}
   death: {fileID: 223903018}
@@ -1121,6 +1124,7 @@ MonoBehaviour:
   healsLeft: 0
   isTut: 0
   respawnCooldown: 0
+  isAlive: 0
   scene_detect: 
   og_health: 0
   og_meat: 0
@@ -1453,6 +1457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79847eb0c54fc67458a7871b5f0a6db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gate_open: {fileID: 0}
 --- !u!1 &1514494211
 GameObject:
   m_ObjectHideFlags: 0

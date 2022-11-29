@@ -159,9 +159,9 @@ MonoBehaviour:
   anim: {fileID: 8237452544815953493}
   closeRangeSpikes: {fileID: 3754227328577833491, guid: 1167dc9b3a85ba04497571491c064f9a, type: 3}
   longRangeSpikes: {fileID: 5430003678534342496, guid: 140dea06f76e4774782f2b8afc6fb297, type: 3}
-  health: 100
+  health: 200
   isAlive: 1
-  chasingSpeed: 5
+  chasingSpeed: 6
   chaseDistance: 20
   timeBTWLRATKs: 2
   closeRangeDistance: 4

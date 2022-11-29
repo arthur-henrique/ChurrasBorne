@@ -47,7 +47,7 @@ public class ArmorBladeWave : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(15);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("TRONCO"))

@@ -36,7 +36,8 @@ public class GameManager : MonoBehaviour
 
     public static bool isInDialog = false;
 
-    public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half;
+    public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half, 2 - Fase Dois, 3 - Fase Dois Half;
+    private bool hasSeenGateTwo = false;
     private GameObject[] gameManagers; 
     private void Awake()
     {
@@ -265,6 +266,17 @@ public class GameManager : MonoBehaviour
     {
         return hasCleared[fase];
     }
+
+    public void SetHasSeenGateTwoAnim(bool hasIt)
+    {
+        hasSeenGateTwo = hasIt;
+    }
+
+    public bool GetHasSeenGateTwoAnim()
+    {
+        return hasSeenGateTwo;
+    }
+
 
     public void SwitchToDeathCam()
     {

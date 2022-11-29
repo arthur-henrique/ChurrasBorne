@@ -48,6 +48,15 @@ public class BullAI : MonoBehaviour
 
         timeToDie = .1f;
 
+        if (isOnTut)
+        {
+            health = 300;
+        }
+        else
+        {
+            health = 200;
+        }
+
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
     }
@@ -224,11 +233,11 @@ public class BullAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(15);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(10);
         }
     }
 
@@ -264,7 +273,6 @@ public class BullAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
     }

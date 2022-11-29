@@ -25,14 +25,14 @@ public class BullSpike : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, player.position) <= damageDistance)
             {
-                GameManager.instance.TakeDamage(10);
+                GameManager.instance.TakeDamage(15);
             }
         }
         if (canDamage == true && !isOnTut)
         {
             if (Vector2.Distance(transform.position, player.position) <= damageDistance)
             {
-                GameManager.instance.TakeDamage(5);
+                GameManager.instance.TakeDamage(10);
             }
         }
 

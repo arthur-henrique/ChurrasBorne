@@ -181,11 +181,11 @@ MonoBehaviour:
   monster_punch: {fileID: 0}
   agroDistance: 20
   meleeDistance: 2
-  canDashDistance: 8
+  canDashDistance: 10
   dashMeleeDistance: 2
   chaseDistance: 0
-  chasingSpeed: 5
-  dashingSpeed: 15
+  chasingSpeed: 6
+  dashingSpeed: 16
   startTimeBTWAttacks: 2
   startTimeBTWShots: 0
   startStunTime: 0.5

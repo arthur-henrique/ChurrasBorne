@@ -127,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 healsLeft = GameManager.instance.GetHeals();
-                
                 break;
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;

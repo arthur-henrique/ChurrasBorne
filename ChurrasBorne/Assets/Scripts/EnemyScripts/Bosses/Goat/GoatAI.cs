@@ -246,7 +246,7 @@ public class GoatAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(15);
         }
     }
 
@@ -254,7 +254,7 @@ public class GoatAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= dashATKDistance)
         {
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(15);
         }
     }
 
