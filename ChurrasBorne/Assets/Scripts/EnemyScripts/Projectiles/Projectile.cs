@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
         //DAMAGE
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            GameManager.instance.TakeDamage(10);
             Destroy(gameObject);
         }
         else if (collision.CompareTag("TRONCO"))

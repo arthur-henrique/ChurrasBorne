@@ -165,11 +165,11 @@ MonoBehaviour:
   monster_hurt: {fileID: 0}
   monster_punch: {fileID: 0}
   agroDistance: 20
-  meleeDistance: 2
+  meleeDistance: 3
   canDashDistance: 0
   dashMeleeDistance: 0
   chaseDistance: 0
-  chasingSpeed: 3
+  chasingSpeed: 6
   dashingSpeed: 0
   startTimeBTWAttacks: 1
   startTimeBTWShots: 0
