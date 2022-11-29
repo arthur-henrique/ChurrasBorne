@@ -10,6 +10,7 @@ public class SpiderMommyAI : MonoBehaviour
         Chasing,
         Teleporting,
         Shooting,
+        Slaping,
         Dead
     }
     
@@ -25,8 +26,8 @@ public class SpiderMommyAI : MonoBehaviour
 
     public int health;
 
-    public float chasingSpeed, shootingDistance, timeBTWShots;
-    private float currentTimeBTWShots;
+    public float chasingSpeed, rangedDistance, meleeDistance, timeBTWShots, timeBTWSlaps;
+    private float currentTimeBTWShots, currentTimeBTWSlaps;
 
     private void Awake()
     {
@@ -57,7 +58,6 @@ public class SpiderMommyAI : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
                 SwitchToShooting(); 
-                SwitchToDead();
                 break;
 
             case State.Shooting:
@@ -70,7 +70,7 @@ public class SpiderMommyAI : MonoBehaviour
 
                 if(currentTimeBTWShots <= 0)
                 {
-                    anim.SetTrigger("ShootWeb");
+                    anim.SetTrigger("Ranged");
 
                     currentTimeBTWShots = timeBTWShots;
                 }
@@ -80,7 +80,30 @@ public class SpiderMommyAI : MonoBehaviour
                 }
 
                 SwitchToChasing();
-                SwitchToDead();
+                SwitchToSlaping();
+                break;
+
+            case State.Slaping:
+                Flip();
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+
+                rb.velocity = Vector2.zero;
+
+                if (currentTimeBTWSlaps <= 0)
+                {
+                    anim.SetTrigger("Melee");
+
+                    currentTimeBTWSlaps = timeBTWSlaps;
+                }
+                else
+                {
+                    currentTimeBTWSlaps -= Time.deltaTime;
+                }
+
+                SwitchToChasing();
+                SwitchToSlaping();
                 break;
 
             case State.Dead:
@@ -101,16 +124,23 @@ public class SpiderMommyAI : MonoBehaviour
 
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > shootingDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistance && health > 0)
         {
             state = State.Chasing;
         }
     }
     void SwitchToShooting()
     {
-        if(Vector2.Distance(transform.position, player.position) <= shootingDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) <= rangedDistance && Vector2.Distance(transform.position, player.position) < meleeDistance && health > 0)
         {
             state = State.Shooting;
+        }
+    }
+    void SwitchToSlaping()
+    {
+        if (Vector2.Distance(transform.position, player.position) <= meleeDistance && health > 0)
+        {
+            state = State.Slaping;
         }
     }
     void SwitchToDead()
