@@ -8,6 +8,8 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     public GameObject dbox;
     PlayerController pc;
 
+    public GameObject tutboxmeat;
+
     public Collider2D col;
     private bool hasShownPath;
 
@@ -84,6 +86,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     IEnumerator ActivatePortal()
     {
         yield return new WaitForSeconds(1.5f);
+        Instantiate(tutboxmeat);
         col.transform.GetChild(0).gameObject.SetActive(true);
     }
 }
