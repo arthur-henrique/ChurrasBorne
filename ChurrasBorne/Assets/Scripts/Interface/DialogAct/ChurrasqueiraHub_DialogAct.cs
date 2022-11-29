@@ -66,7 +66,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
 
                     //
                     col.enabled = true;
-                    if(!hasShownPath)
+                    if(!hasShownPath && !GameManager.instance.GetHasCleared(0))
                     {
                         hasShownPath = true;
                         ManagerOfScenes.instance.ShowFirstPhase();
