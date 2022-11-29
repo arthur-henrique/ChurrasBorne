@@ -104,12 +104,12 @@ public class GameManager : MonoBehaviour
         //{
         //    SetHealth(maxHealth);
         //}
-        if (pc.Tester.TKey.WasPressedThisFrame())
-        {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
-            //TutorialTriggerController.Instance.SecondGateTriggerOut();
-        }
+        //if (pc.Tester.TKey.WasPressedThisFrame())
+        //{
+        //    NextLevelSetter(Vector2.zero);
+        //    UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+        //    //TutorialTriggerController.Instance.SecondGateTriggerOut();
+        //}
     }
 
     // Damage
