@@ -42,6 +42,7 @@ public class TutorialTriggerController : MonoBehaviour
         yield return new WaitForSeconds(2);
         portaoAnim.SetTrigger("OPENIT");
         SecondGateTrigger();
+        EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
 
     }
 }

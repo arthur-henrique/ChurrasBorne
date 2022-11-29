@@ -34,18 +34,6 @@ public class PlayerAttack : MonoBehaviour
         }
         Debug.Log("Attaquei, lek");
     }
-    void Start()
-    {
- 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -72,7 +72,7 @@ public class MainMenu_Manager : MonoBehaviour
     public static int menu_position = 0;
     private bool menu_transition = false;
     private bool stage_transition = false;
-    private bool menu_submenu = false;
+    public static bool menu_submenu = false;
     
     private int restable_opt = 0;
     private int[,] restable = { { 640, 360 },
@@ -325,8 +325,18 @@ public class MainMenu_Manager : MonoBehaviour
         {
             if (pc.Movimento.Attack.WasPressedThisFrame())
             {
-                menu_selection_confirm = true;
-                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                if (menu_submenu == true)
+                {
+                    if (menu_position != 2 && menu_position != 3 && menu_position != 4) {
+                        menu_selection_confirm = true;
+                        audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                    }
+                } else
+                {
+                    menu_selection_confirm = true;
+                    audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                }
+                
             }
         }
         else

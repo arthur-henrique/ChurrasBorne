@@ -99,21 +99,15 @@ public class GameManager : MonoBehaviour
         }
         SetHealth(currentHealth);
 
-        if (pc.Tester.LKey.WasPressedThisFrame())
-        {
-            FaseUmTriggerController.Instance.FirstGateOut();
-            FaseUmTriggerController.Instance.SecondGateOpen();
-        }
-        if (pc.Tester.PKey.WasPressedThisFrame())
-        {
-            SetHealth(maxHealth);
-            FaseUmTriggerController.Instance.SecondGateTrigger();
-            FaseUmTriggerController.Instance.FirstGateTrigger();
-        }
+
+        //if (pc.Tester.PKey.WasPressedThisFrame())
+        //{
+        //    SetHealth(maxHealth);
+        //}
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }

@@ -94,6 +94,7 @@ public class DialogSystem : MonoBehaviour
         }
 
         GameManager.isInDialog = false;
+        PlayerMovement.EnableControl();
         var selec = getChildGameObject(gameObject, "BalloonBox");
         if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
         {
@@ -111,12 +112,14 @@ public class DialogSystem : MonoBehaviour
     public void db_PullUP()
     {
         GameManager.isInDialog = true;
+        PlayerMovement.DisableControl();
         StartCoroutine(PullUp());
     }
 
     public void db_PullDOWN()
     {
         GameManager.isInDialog = false;
+        PlayerMovement.EnableControl();
         StartCoroutine(PullDown());
     }
     public void db_SetSceneSimple(int scene_number)

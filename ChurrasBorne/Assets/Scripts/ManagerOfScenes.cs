@@ -6,6 +6,7 @@ public class ManagerOfScenes : MonoBehaviour
 {
     public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
+    public GameObject particleEmmy;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
@@ -49,11 +50,16 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 StartCoroutine(ShowChurras());
             }
-
-            if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
+            else if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
             {
                 GameManager.instance.SetHasSeenGateTwoAnim(true);
                 StartCoroutine(ShowSecondPath());
+                particleEmmy.SetActive(true);
+            }
+            else
+            {
+                particleEmmy.SetActive(true);
+                portalDois.SetTrigger("ON");
             }
         }
         

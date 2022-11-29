@@ -16,6 +16,7 @@ public class BossGate : MonoBehaviour
             {
                 TutorialTriggerController.Instance.SecondGateTrigger();
                 gameObject.SetActive(false);
+                EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
                 GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
             }

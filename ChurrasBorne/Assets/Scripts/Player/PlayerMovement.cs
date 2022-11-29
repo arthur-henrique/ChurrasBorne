@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public float speed;
     float timer;
+    float canAttackChecker = 2.5f;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
@@ -111,6 +112,11 @@ public class PlayerMovement : MonoBehaviour
                         anim.SetTrigger("isHealing");
                         audioSource.PlayOneShot(player_eat, audioSource.volume);
                     }
+                } else
+                {
+                    direcao = new Vector2(0, 0);
+                    x = 0;
+                    y = 0;
                 }
                 
                 direcao = new Vector2(x, y);
@@ -267,6 +273,17 @@ public class PlayerMovement : MonoBehaviour
                 }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
+
+
+                if (canAttackChecker > 0 && !canAttack)
+                    canAttackChecker -= Time.deltaTime;
+                else if (canAttackChecker > 0 && canAttack)
+                    canAttackChecker = 2.5f;
+                else if (canAttackChecker <= 0)
+                {
+                    canAttack = true;
+                    canAttackChecker = 2.5f;
+                }
                 break;
             case State.Rolling:
                 if (isOnIce)
