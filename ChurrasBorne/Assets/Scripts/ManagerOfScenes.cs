@@ -6,10 +6,11 @@ public class ManagerOfScenes : MonoBehaviour
 {
     public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
+    public GameObject particleEmmy;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
-    public static bool hasSeenHubIntro;
     public CinemachineVirtualCamera gate;
+    public Animator portalDois;
 
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
@@ -44,16 +45,22 @@ public class ManagerOfScenes : MonoBehaviour
         // HUB
         if (gameObject.CompareTag("HUB"))
         {
-            if (!hasSeenHubIntro)
+            gate.transform.position = GateCamPos[0].transform.position;
+            if(!clearedUm && !clearedHalf)
             {
-                gate.transform.position = GateCamPos[0].transform.position;
-                if (!clearedUm && !clearedHalf)
-                {
-                    StartCoroutine(ShowChurras());
-                    hasSeenHubIntro = true;
-                }
+                StartCoroutine(ShowChurras());
             }
-            
+            else if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
+            {
+                GameManager.instance.SetHasSeenGateTwoAnim(true);
+                StartCoroutine(ShowSecondPath());
+                particleEmmy.SetActive(true);
+            }
+            else
+            {
+                particleEmmy.SetActive(true);
+                portalDois.SetTrigger("ON");
+            }
         }
         
 
@@ -139,7 +146,7 @@ public class ManagerOfScenes : MonoBehaviour
                 // Passa a animaÁ„o de morte
                 // ComeÁa a TransiÁ„o de tela escura
                 // ComeÁa a Cutscene de resgate
-                // HÅEa troca de tela (Hub)
+                // H· a troca de tela (Hub)
                 // Toca a Cutscene do salvador morto
                 // Frames do player pegando a espada
                 // Personagem fica jogavel novamente
@@ -164,8 +171,10 @@ public class ManagerOfScenes : MonoBehaviour
     IEnumerator ShowSecondPath()
     {
         gate.transform.position = GateCamPos[1].transform.position;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
+        yield return new WaitForSeconds(1.5f);
+        portalDois.SetTrigger("ON");
     }
 
     IEnumerator ShowChurras()
