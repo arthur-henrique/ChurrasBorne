@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 630772482395170652}
   - component: {fileID: 630772482395170655}
   - component: {fileID: 630772482395170654}
+  - component: {fileID: 6556354844385926337}
   m_Layer: 0
   m_Name: BigFloatingHead
   m_TagString: Untagged
@@ -119,3 +120,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6556354844385926337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630772482395170625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966112f8a75ec4b4f96df924381ebb56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  anim: {fileID: 630772482395170654}
+  startTimeBTWEyeLasers: 1
+  eyeLaserDistance: 16
+  startTimeBTWCrossLasers: 1
+  crossLaserDistance: 6
+  startTimeBTWScreams: 1
+  health: 500

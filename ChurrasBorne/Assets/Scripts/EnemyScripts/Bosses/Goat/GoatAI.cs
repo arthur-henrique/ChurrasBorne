@@ -297,4 +297,29 @@ public class GoatAI : MonoBehaviour
             SwitchToDead();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+
+        if (isDashing)
+        {
+            if (collision.gameObject.CompareTag("PAREDE"))
+            {
+                isDashing = false;
+
+                state = State.RecoveringFromDash;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
 }
