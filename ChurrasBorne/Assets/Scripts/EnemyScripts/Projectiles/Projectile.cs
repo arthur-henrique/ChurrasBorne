@@ -9,22 +9,24 @@ public class Projectile : MonoBehaviour
     public Transform player;
     private Vector2 target;
 
-    public int maxHealth;
-    int currentHealth;
+    public int health;
 
-    public Animator animator;
+    public Animator anim;
 
     public bool isOnTutorial;
 
+    private float yOffset = 1.6f;
 
     void Start()
     {
         //Para PROJECTILE MOVEMENT
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        target = player.position;
+        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
 
-        new Vector2(player.position.x, player.position.y);
+        //target = player.position;
+
+        //new Vector2(player.position.x, player.position.y);
 
         Vector3 fator = player.position - transform.position;
 
@@ -33,13 +35,19 @@ public class Projectile : MonoBehaviour
         target.y = player.position.y + fator.y * 3;
     }
 
-    
     //PROJECTILE MOVEMENT
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if (health > 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        }
+        else if (health <= 0)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
+        }
 
-        animator.SetBool("Flying", true);
+        anim.SetBool("Flying", true);
 
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
@@ -51,7 +59,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DAMAGE
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && health > 0)
         {
             GameManager.instance.TakeDamage(10);
             Destroy(gameObject);
@@ -68,14 +76,7 @@ public class Projectile : MonoBehaviour
         //HEALTH
         if (collision.CompareTag("AttackHit"))
         {
-            if (isOnTutorial)
-            {
-                TakeDamage(1);
-            }
-            else
-            {
-                TakeDamage(10);
-            }
+            TakeDamage();
         }
 
         //Vector2 difference = transform.position - collision.transform.position;
@@ -83,13 +84,19 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        currentHealth -= damage;
+        int damage;
 
-        if (currentHealth <= 0)
+        if (isOnTutorial)
         {
-            Destroy(gameObject);
+            damage = 5;
         }
+        else
+        {
+            damage = 10;
+        }
+
+        health -= damage;
     }
 }

@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
                         enemiesHit[i].transform.GetComponent<GoatAI>().TakeDamage();
                     else if (enemiesHit[i].transform.GetComponent<TricksterAI>() != null)
                         enemiesHit[i].transform.GetComponent<TricksterAI>().TakeDamage();
+                    else if (enemiesHit[i].transform.GetComponent<Projectile>() != null)
+                        enemiesHit[i].transform.GetComponent<Projectile>().TakeDamage();
                 }
             }
             hasRun = true;
