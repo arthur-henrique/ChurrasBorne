@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public float speed;
     float timer;
-    float canAttackChecker = 2.5f;
+    float canAttackChecker = 1.5f;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
@@ -278,11 +278,11 @@ public class PlayerMovement : MonoBehaviour
                 if (canAttackChecker > 0 && !canAttack)
                     canAttackChecker -= Time.deltaTime;
                 else if (canAttackChecker > 0 && canAttack)
-                    canAttackChecker = 2.5f;
+                    canAttackChecker = 1.5f;
                 else if (canAttackChecker <= 0)
                 {
                     canAttack = true;
-                    canAttackChecker = 2.5f;
+                    canAttackChecker = 1.5f;
                 }
                 break;
             case State.Rolling:

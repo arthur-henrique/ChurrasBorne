@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 0}
   eclipse: {fileID: 0}
+  particleEmmy: {fileID: 0}
   gate: {fileID: 0}
   portalDois: {fileID: 0}
   GateCamPos: []
@@ -1457,6 +1458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79847eb0c54fc67458a7871b5f0a6db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   gate_open: {fileID: 0}
 --- !u!1 &1514494211
 GameObject:

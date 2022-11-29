@@ -50,13 +50,13 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 StartCoroutine(ShowChurras());
             }
-            else if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
+            if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
             {
                 GameManager.instance.SetHasSeenGateTwoAnim(true);
                 StartCoroutine(ShowSecondPath());
                 particleEmmy.SetActive(true);
             }
-            else
+            else if (clearedUm && GameManager.instance.GetHasSeenGateTwoAnim())
             {
                 particleEmmy.SetActive(true);
                 portalDois.SetTrigger("ON");
