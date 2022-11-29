@@ -228,7 +228,7 @@ public class ArmorAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        int damage = 10;
+        int damage = 15;
         health -= damage;
 
         if (!isAlreadyDying)
@@ -241,7 +241,6 @@ public class ArmorAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
     }

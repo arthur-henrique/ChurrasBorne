@@ -232,8 +232,6 @@ public class MobAI : MonoBehaviour
                 {
                     EnemyControlFaseDois.Instance.KilledEnemy(gameObject);
                 }
-
-                Destroy(gameObject, 1.5f);
                 break;
         }
 
@@ -396,4 +394,8 @@ public class MobAI : MonoBehaviour
         }
     }
 
+    void DestroySelf()
+    {
+        Destroy(gameObject, 1.5f);
+    }
 }
