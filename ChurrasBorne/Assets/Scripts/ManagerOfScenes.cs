@@ -10,6 +10,7 @@ public class ManagerOfScenes : MonoBehaviour
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
+    public Collider2D portalUm;
     public Animator portalDois;
 
     // Hub Cam Positions:
@@ -54,11 +55,13 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 GameManager.instance.SetHasSeenGateTwoAnim(true);
                 StartCoroutine(ShowSecondPath());
+                portalUm.enabled = true;
                 particleEmmy.SetActive(true);
             }
             else if (clearedUm && GameManager.instance.GetHasSeenGateTwoAnim())
             {
                 particleEmmy.SetActive(true);
+                portalUm.enabled = true;
                 portalDois.SetTrigger("ON");
             }
         }

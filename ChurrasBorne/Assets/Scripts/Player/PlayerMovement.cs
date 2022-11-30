@@ -253,12 +253,12 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if(isOnWeb)
                 {
-                    moveVelocity *= 0.4f;
+                    moveVelocity *= 0.6f;
                     rb.velocity = moveVelocity;
                 }
                 else if (isOnBossWeb)
                 {
-                    moveVelocity *= 0.6f;
+                    moveVelocity *= 0.5f;
                     rb.velocity = moveVelocity;
                 }
                 else
@@ -292,11 +292,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (isOnWeb)
                 {
-                    rb.velocity = rollDirection * (rollSpeed * 0.4f);
+                    rb.velocity = rollDirection * (rollSpeed * 0.6f);
                 }
                 else if (isOnBossWeb)
                 {
-                    rb.velocity = rollDirection * (rollSpeed * 0.6f);
+                    rb.velocity = rollDirection * (rollSpeed * 0.5f);
                 }
                 else
                     rb.velocity = rollDirection * rollSpeed;
@@ -333,12 +333,12 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (isOnWeb)
                 {
-                    moveVelocity *= 0.4f;
+                    moveVelocity *= 0.6f;
                     rb.velocity = moveVelocity;
                 }
                 else if (isOnBossWeb)
                 {
-                    moveVelocity *= 0.6f;
+                    moveVelocity *= 0.5f;
                     rb.velocity = moveVelocity;
                 }
                 else

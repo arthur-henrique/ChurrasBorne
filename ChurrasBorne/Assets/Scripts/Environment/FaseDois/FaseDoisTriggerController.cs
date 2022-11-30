@@ -19,7 +19,6 @@ public class FaseDoisTriggerController : MonoBehaviour
     public Animator preBossAnimEc;
     public Animator bossAnimEc;
 
-    public GameObject portalToHub;
     private int salasTerminadas;
     // Start is called before the first frame update
     void Awake()
