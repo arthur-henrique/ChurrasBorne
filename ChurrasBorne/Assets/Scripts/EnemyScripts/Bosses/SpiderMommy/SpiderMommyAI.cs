@@ -10,6 +10,7 @@ public class SpiderMommyAI : MonoBehaviour
         Chasing,
         Teleporting,
         Shooting,
+        ShootingWeb,
         Slaping,
         Dead
     }
@@ -26,8 +27,12 @@ public class SpiderMommyAI : MonoBehaviour
 
     public int health;
 
-    public float chasingSpeed, rangedDistance, meleeDistance, timeBTWShots, timeBTWSlaps;
-    private float currentTimeBTWShots, currentTimeBTWSlaps;
+    public bool isSpiderGranny;
+
+    private bool isAlreadyDying = false;
+
+    public float chasingSpeed, rangedDistanceI, rangedDistanceII, meleeDistance, timeBTWShots, timeBTWWebShots, timeBTWSlaps;
+    private float currentTimeBTWShots, currentTimeBTWSlaps, currentTimeBTWWebShots;
 
     private void Awake()
     {
@@ -38,7 +43,9 @@ public class SpiderMommyAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        currentTimeBTWShots = 0.5f;
+        currentTimeBTWShots = .5f;
+        currentTimeBTWWebShots = .5f;
+        currentTimeBTWSlaps = .5f;
     }
 
     void Update()
@@ -57,7 +64,8 @@ public class SpiderMommyAI : MonoBehaviour
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
-                SwitchToShooting(); 
+                SwitchToShooting();
+                SwitchToSlaping();
                 break;
 
             case State.Shooting:
@@ -79,8 +87,32 @@ public class SpiderMommyAI : MonoBehaviour
                     currentTimeBTWShots -= Time.deltaTime;
                 }
 
+                if (currentTimeBTWWebShots <= 0)
+                {
+                    state = State.ShootingWeb;
+
+                    currentTimeBTWWebShots = timeBTWWebShots;
+                }
+                else
+                {
+                    currentTimeBTWWebShots -= Time.deltaTime;
+                }
+
                 SwitchToChasing();
                 SwitchToSlaping();
+                break;
+
+            case State.ShootingWeb:
+                Flip();
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetTrigger("WebShot");
+
+                state = State.Shooting;
                 break;
 
             case State.Slaping:
@@ -103,11 +135,12 @@ public class SpiderMommyAI : MonoBehaviour
                 }
 
                 SwitchToChasing();
-                SwitchToSlaping();
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
+
+                isAlreadyDying = true;
 
                 anim.SetTrigger("Die");
                 anim.SetBool("Walk", false);
@@ -124,14 +157,18 @@ public class SpiderMommyAI : MonoBehaviour
 
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, player.position) > rangedDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistanceII && health > 0)
+        {
+            state = State.Chasing;
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= rangedDistanceI && Vector2.Distance(transform.position, player.position) > meleeDistance)
         {
             state = State.Chasing;
         }
     }
     void SwitchToShooting()
     {
-        if (Vector2.Distance(transform.position, player.position) <= rangedDistance && Vector2.Distance(transform.position, player.position) < meleeDistance && health > 0)
+        if (Vector2.Distance(transform.position, player.position) <= rangedDistanceII && Vector2.Distance(transform.position, player.position) > rangedDistanceI && health > 0)
         {
             state = State.Shooting;
         }
@@ -172,10 +209,30 @@ public class SpiderMommyAI : MonoBehaviour
     {
         int damage = 10;
         health -= damage;
+
+        if (!isAlreadyDying)
+        {
+            SwitchToDead();
+        }
     }
 
     void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
     }
 }

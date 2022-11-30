@@ -159,6 +159,9 @@ MonoBehaviour:
   web: {fileID: 0}
   anim: {fileID: 2462432132875139324}
   health: 100
+  isSpiderGranny: 0
   chasingSpeed: 5
-  shootingDistance: 20
+  rangedDistance: 20
+  meleeDistance: 4
   timeBTWShots: 2
+  timeBTWSlaps: 2
