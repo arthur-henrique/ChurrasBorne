@@ -100,16 +100,16 @@ public class GameManager : MonoBehaviour
         SetHealth(currentHealth);
 
 
-        //if (pc.Tester.PKey.WasPressedThisFrame())
-        //{
-        //    SetHealth(maxHealth);
-        //}
-        //if (pc.Tester.TKey.WasPressedThisFrame())
-        //{
-        //    NextLevelSetter(Vector2.zero);
-        //    UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
-        //    //TutorialTriggerController.Instance.SecondGateTriggerOut();
-        //}
+        if (pc.Tester.PKey.WasPressedThisFrame())
+        {
+            FaseDoisTriggerController.Instance.GateOpener();
+        }
+        if (pc.Tester.TKey.WasPressedThisFrame())
+        {
+            NextLevelSetter(Vector2.zero);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //TutorialTriggerController.Instance.SecondGateTriggerOut();
+        }
     }
 
     // Damage

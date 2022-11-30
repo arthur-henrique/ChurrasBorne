@@ -7,7 +7,10 @@ public class BossGate : MonoBehaviour
     public GameObject boss;
     public bool isTutorial,
         isFaseUm,
-        isFaseUmHalf;
+        isFaseUmHalf,
+        isFaseDois,
+        isFaseDoisHalf;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -31,6 +34,22 @@ public class BossGate : MonoBehaviour
             {
                 FaseUmTriggerController.Instance.SideSecondGateTrigger();
                 gameObject.SetActive(false);
+                GameManager.instance.SwitchToBossCam();
+                boss.SetActive(true);
+            }
+            else if (isFaseDois)
+            {
+                FaseDoisTriggerController.Instance.CloseTheGates();
+                gameObject.SetActive(false);
+                GameManager.instance.SwitchToBossCam();
+                boss.SetActive(true);
+            }
+
+            else if (isFaseDoisHalf)
+            {
+                FaseDoisTriggerController.Instance.CloseTheGates();
+                gameObject.SetActive(false);
+                GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
             }
         }

@@ -105,6 +105,20 @@ public class FaseDoisTriggerController : MonoBehaviour
     {
         salasTerminadas = 4;
     }
+
+    public void CloseTheGates()
+    {
+        if (!GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnim.SetTrigger("CLOSEIT");
+            bossAnim.SetTrigger("CLOSEIT");
+        }
+        if (GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnimEc.SetTrigger("CLOSEIT");
+            bossAnimEc.SetTrigger("CLOSEIT");
+        }
+    }
     IEnumerator OpenTheGates()
     {
         yield return new WaitForSeconds(2);
