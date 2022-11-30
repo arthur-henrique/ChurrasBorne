@@ -31,6 +31,7 @@ public class MobAI : MonoBehaviour
     public AudioClip monster_death;
     public AudioClip monster_hurt;
     public AudioClip monster_punch;
+    public AudioClip monster_spit;
 
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
@@ -125,7 +126,7 @@ public class MobAI : MonoBehaviour
                 if (timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
-
+                    audioSource.PlayOneShot(monster_spit, audioSource.volume);
                     timeBTWShots = startTimeBTWShots;
                 }
                 else

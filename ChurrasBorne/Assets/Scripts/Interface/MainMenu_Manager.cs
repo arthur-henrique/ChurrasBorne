@@ -67,7 +67,7 @@ public class MainMenu_Manager : MonoBehaviour
     Coroutine mn_drop_shadow = null;
     Coroutine mn_selections = null;
 
-    private float interactDelay = 3.5f;
+    public float interactDelay = 3.5f;
     public static bool menu_selection_confirm = false;
     public static int menu_position = 0;
     private bool menu_transition = false;

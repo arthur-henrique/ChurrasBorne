@@ -176,9 +176,9 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   dashTarget: {x: 0, y: 0, z: 0}
   projectile: {fileID: 0}
-  monster_death: {fileID: 0}
-  monster_hurt: {fileID: 0}
-  monster_punch: {fileID: 0}
+  monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
+  monster_hurt: {fileID: 8300000, guid: 945b6d2820ffd674f84b760b3df6c902, type: 3}
+  monster_punch: {fileID: 8300000, guid: 8c85da8e2e29d874aaca0ccef7600fd1, type: 3}
   agroDistance: 20
   meleeDistance: 2
   canDashDistance: 10

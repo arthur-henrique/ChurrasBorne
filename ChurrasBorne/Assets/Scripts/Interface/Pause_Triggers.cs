@@ -20,7 +20,11 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
     {
         if (PauseManager.selection_confirm == false)
         {
-            PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_move, PauseManager.instance.audioSource.volume);
+            if (PauseManager.isPaused == true)
+            {
+                PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_move, PauseManager.instance.audioSource.volume);
+            }
+            
             switch (gameObject.name)
             {
                 case "PAUSE_Continuar":

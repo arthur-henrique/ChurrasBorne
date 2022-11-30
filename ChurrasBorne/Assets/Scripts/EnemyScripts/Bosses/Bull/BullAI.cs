@@ -23,6 +23,13 @@ public class BullAI : MonoBehaviour
     public GameObject bullSpikes;
     public Collider2D portal;
 
+    public AudioSource audioSource;
+    public AudioClip bull_attack;
+    public AudioClip bull_charge;
+    public AudioClip bull_death;
+    public AudioClip bull_roar;
+    public AudioClip bull_hurt;
+
     public int health;
 
     public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
@@ -40,6 +47,7 @@ public class BullAI : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         //Para SPAWN, MOVEMENT, BASH, AXE
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -57,7 +65,7 @@ public class BullAI : MonoBehaviour
         {
             health = 200;
         }
-
+        audioSource.PlayOneShot(bull_roar, audioSource.volume);
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
     }
@@ -91,7 +99,7 @@ public class BullAI : MonoBehaviour
                 if (timeBTWMeleeATKs <= 0)
                 {
                     anim.SetTrigger("Bash");
-
+                    audioSource.PlayOneShot(bull_attack, audioSource.volume);
                     timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
@@ -114,7 +122,7 @@ public class BullAI : MonoBehaviour
                 if (timeBTWRangedATKs <= 0)
                 {
                     anim.SetTrigger("Axe");
-
+                    audioSource.PlayOneShot(bull_charge, audioSource.volume);
                     timeBTWRangedATKs = startTimeBTWRangedATKs;
                 }
                 else
@@ -140,7 +148,7 @@ public class BullAI : MonoBehaviour
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
-
+                    audioSource.PlayOneShot(bull_death, audioSource.volume);
                     timeToDie = 10000;
                 }
                 else
@@ -265,6 +273,7 @@ public class BullAI : MonoBehaviour
         }
 
         health -= damage;
+        audioSource.PlayOneShot(bull_hurt, audioSource.volume);
 
         if (!isAlreadyDying)
         {

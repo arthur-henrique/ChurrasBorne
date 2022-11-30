@@ -22,7 +22,10 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
     {
         if (MainMenu_Manager.menu_selection_confirm == false)
         {
-            MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_move, MainMenu_Manager.instance.audioSource.volume);
+            if (Time.fixedTime > 3 && MainMenu_Manager.instance.interactDelay <= 0)
+            {
+                MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_move, MainMenu_Manager.instance.audioSource.volume);
+            }
             switch (gameObject.name)
             {
                 case "MENU_Start":
