@@ -19,6 +19,7 @@ public class FaseDoisTriggerController : MonoBehaviour
     public Animator preBossAnimEc;
     public Animator bossAnimEc;
 
+    public GameObject portalToHub;
     private int salasTerminadas;
     // Start is called before the first frame update
     void Awake()
@@ -111,11 +112,13 @@ public class FaseDoisTriggerController : MonoBehaviour
         {
             preBossAnim.SetTrigger("CLOSEIT");
             bossAnim.SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
         if (GameManager.instance.GetHasCleared(2))
         {
             preBossAnimEc.SetTrigger("CLOSEIT");
             bossAnimEc.SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
     IEnumerator OpenTheGates()
@@ -125,11 +128,13 @@ public class FaseDoisTriggerController : MonoBehaviour
         {
             preBossAnim.SetTrigger("OPENIT");
             bossAnim.SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
         if (GameManager.instance.GetHasCleared(2))
         {
             preBossAnimEc.SetTrigger("OPENIT");
             bossAnimEc.SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }       
     }
 }

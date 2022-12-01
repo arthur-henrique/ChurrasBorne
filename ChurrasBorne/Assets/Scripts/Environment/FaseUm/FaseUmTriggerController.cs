@@ -29,6 +29,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
             upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
             print("PortãoAberto");
         }
     }
@@ -38,6 +39,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
             upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
         for (int i = 0; i < upPathFirstGateOut.Length; i++)
         {
@@ -50,6 +52,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
             upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
 
@@ -58,6 +61,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
             upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
 
@@ -75,6 +79,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
             sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
 
@@ -83,6 +88,7 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
             sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
 

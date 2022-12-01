@@ -46,6 +46,9 @@ public class SpiderMommyAI : MonoBehaviour
         currentTimeBTWShots = .5f;
         currentTimeBTWWebShots = .5f;
         currentTimeBTWSlaps = .5f;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()

@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public Slider slider;
     public CinemachineVirtualCamera dft, death, gate, boss;
     public GameObject gameOverPrefab;
+    public AudioSource audioSource;
+    public AudioClip gateOpen;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
         damageCDCounter = DamageCD;
@@ -102,12 +105,12 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            FaseDoisTriggerController.Instance.GateOpener();
+            //FaseDoisTriggerController.Instance.GateOpener();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //NextLevelSetter(Vector2.zero);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
