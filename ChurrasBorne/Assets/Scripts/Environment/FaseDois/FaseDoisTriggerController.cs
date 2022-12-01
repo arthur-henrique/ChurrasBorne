@@ -103,7 +103,7 @@ public class FaseDoisTriggerController : MonoBehaviour
 
     public void GateOpener()
     {
-        salasTerminadas = 4;
+        StartCoroutine(OpenTheGates());
     }
 
     public void CloseTheGates()
