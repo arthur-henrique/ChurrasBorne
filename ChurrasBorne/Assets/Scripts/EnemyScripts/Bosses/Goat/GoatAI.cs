@@ -159,6 +159,8 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
 
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");

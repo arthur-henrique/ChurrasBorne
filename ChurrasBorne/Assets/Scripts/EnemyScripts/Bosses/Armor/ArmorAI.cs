@@ -113,8 +113,10 @@ public class ArmorAI : MonoBehaviour
 
                 isAlreadyDying = true;
 
-                anim.SetBool("Idle", false);
+                anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
+
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
                 if (timeToDie <= 0)
                 {
@@ -184,11 +186,11 @@ public class ArmorAI : MonoBehaviour
 
     void SlashATK()
     {
-        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 90)
         {
             GameManager.instance.TakeDamage(5);
         }
-        else if (Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 50 && health > 0)
+        else if (Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 90 && health > 0)
         {
             Instantiate(bladeWave, waveSpawnPoint.transform.position, Quaternion.identity);
         }
