@@ -60,8 +60,6 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
                         }
                     }
                     GameManager.instance.currentHealth = 100;
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetBool("isHoldingSword", true);
                     GameManager.instance.SetHeals(3, false, true);
 
                     //

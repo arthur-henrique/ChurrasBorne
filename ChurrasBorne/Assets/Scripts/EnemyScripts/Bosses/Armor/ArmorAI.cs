@@ -23,6 +23,12 @@ public class ArmorAI : MonoBehaviour
     public GameObject bladeWave;
     public GameObject waveSpawnPoint;
 
+    public AudioSource audioSource;
+    public AudioClip armor_slash;
+    public AudioClip armor_death;
+    public AudioClip armor_hurt;
+    public AudioClip armor_bladespin;
+
     private bool isAlreadyDying = false;
 
     public int health;
@@ -37,11 +43,15 @@ public class ArmorAI : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         currentTimeBTWSlashATKs = .1f;
         currentTimeBTWSpinATKs = .1f;
         timeToDie = .1f;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()
@@ -74,7 +84,7 @@ public class ArmorAI : MonoBehaviour
                 if(currentTimeBTWSlashATKs <= 0)
                 {
                     anim.SetTrigger("BladeSlash");
-
+                    audioSource.PlayOneShot(armor_slash, audioSource.volume);
                     currentTimeBTWSlashATKs = timeBTWSlashATKs;
                 }
                 else
@@ -97,7 +107,7 @@ public class ArmorAI : MonoBehaviour
                 if (currentTimeBTWSpinATKs <= 0)
                 {
                     anim.SetTrigger("BladeSpin");
-
+                    audioSource.PlayOneShot(armor_bladespin, audioSource.volume);
                     currentTimeBTWSpinATKs = timeBTWSpinATKs;
                 }
                 else
@@ -119,7 +129,7 @@ public class ArmorAI : MonoBehaviour
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
-
+                    audioSource.PlayOneShot(armor_death, audioSource.volume);
                     timeToDie = 1000;
                 }
                 else
@@ -230,7 +240,7 @@ public class ArmorAI : MonoBehaviour
     {
         int damage = 15;
         health -= damage;
-
+        audioSource.PlayOneShot(armor_hurt, audioSource.volume);
         if (!isAlreadyDying)
         {
             SwitchToDead();

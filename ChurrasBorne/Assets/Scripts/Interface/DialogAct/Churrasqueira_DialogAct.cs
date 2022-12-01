@@ -54,7 +54,7 @@ public class Churrasqueira_DialogAct : MonoBehaviour
                         dbox.GetComponent<DialogSystem>().db_PullUP();
                         dbox.GetComponent<DialogSystem>().db_SetSceneSimple(1);
                     }
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
+                    GameManager.instance.SetHeals(3, false, true);
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;

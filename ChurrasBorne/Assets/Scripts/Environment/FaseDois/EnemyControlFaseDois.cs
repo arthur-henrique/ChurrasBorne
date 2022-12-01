@@ -148,7 +148,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     {
         eigthMob.ForEach(x => x.SetActive(true));
     }
-    // Fazer quando lista est· vazia:
+    // Fazer quando lista estÅEvazia:
     public void IsFirstMobCleared()
     {
         if (firstMob.Count <= 0)

@@ -112,11 +112,13 @@ public class FaseDoisTriggerController : MonoBehaviour
         {
             preBossAnim.SetTrigger("CLOSEIT");
             bossAnim.SetTrigger("CLOSEIT");
+            EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
         }
         if (GameManager.instance.GetHasCleared(2))
         {
             preBossAnimEc.SetTrigger("CLOSEIT");
             bossAnimEc.SetTrigger("CLOSEIT");
+            EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
         }
     }
     IEnumerator OpenTheGates()
@@ -126,11 +128,13 @@ public class FaseDoisTriggerController : MonoBehaviour
         {
             preBossAnim.SetTrigger("OPENIT");
             bossAnim.SetTrigger("OPENIT");
+            EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
         }
         if (GameManager.instance.GetHasCleared(2))
         {
             preBossAnimEc.SetTrigger("OPENIT");
             bossAnimEc.SetTrigger("OPENIT");
+            EnemyControlTutorial.Instance.audioSource.PlayOneShot(EnemyControlTutorial.Instance.gate_open, EnemyControlTutorial.Instance.audioSource.volume);
         }       
     }
 }
