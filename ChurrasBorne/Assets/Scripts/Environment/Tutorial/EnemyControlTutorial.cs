@@ -9,6 +9,7 @@ public class EnemyControlTutorial : MonoBehaviour
     private readonly List<GameObject> secondMob = new List<GameObject>();
     public AudioSource audioSource;
     public AudioClip gate_open;
+    public GameObject tutboxchurras;
     private void Awake()
     {
         Instance = this;
@@ -60,6 +61,7 @@ public class EnemyControlTutorial : MonoBehaviour
         {
             audioSource.PlayOneShot(gate_open, audioSource.volume);
             TutorialTriggerController.Instance.FirstGateTrigger();
+            Instantiate(tutboxchurras);
         }
     }
 }

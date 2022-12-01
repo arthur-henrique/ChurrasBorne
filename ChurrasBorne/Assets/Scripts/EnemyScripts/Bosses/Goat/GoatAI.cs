@@ -50,6 +50,9 @@ public class GoatAI : MonoBehaviour
         timeToDie = .1f;
 
         dashRecoveryTime = startDashRecoveryTime;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()
