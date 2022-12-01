@@ -156,6 +156,7 @@ MonoBehaviour:
   eclipse: {fileID: 0}
   particleEmmy: {fileID: 0}
   gate: {fileID: 0}
+  portalUm: {fileID: 0}
   portalDois: {fileID: 0}
   GateCamPos: []
 --- !u!4 &43474599
@@ -1122,7 +1123,7 @@ MonoBehaviour:
   boss: {fileID: 1724782216}
   gameOverPrefab: {fileID: 1214597544727120186, guid: 3068dd6c7bdf1f24c9f61567078f30db, type: 3}
   audioSource: {fileID: 0}
-  gateOpen: {fileID: 0}
+  gateOpen: {fileID: 8300000, guid: 1c7a82c093e8928499f3f05f5e44354e, type: 3}
   maxHealth: 100
   currentHealth: 0
   healsLeft: 0
