@@ -208,7 +208,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TROUBLED
+    m_ConditionEvent: PLEASED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8392865243579024443}
@@ -233,7 +233,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: AFRAID
+    m_ConditionEvent: BLUSH
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8834367601082551163}
@@ -308,7 +308,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IDLEX
+    m_ConditionEvent: IDLEMAGIC
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6462423047834311960}
@@ -355,16 +355,16 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ChurrasChad
+  m_Name: Bruxa
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: TROUBLED
+  - m_Name: PLEASED
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: TELEPORT
+  - m_Name: DOOR
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -382,7 +382,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: AFRAID
+  - m_Name: BLUSH
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -394,7 +394,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IDLEX
+  - m_Name: IDLEMAGIC
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -472,7 +472,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TELEPORT
+    m_ConditionEvent: DOOR
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4278206228634162506}

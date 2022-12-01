@@ -1,0 +1,864 @@
+fileFormatVersion: 2
+guid: d8cc26b584126464d958b30146363141
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7650582710748175515
+    second: Bruxa_OpenDoor_Spritesheet_0
+  - first:
+      213: 3906397287390426127
+    second: Bruxa_OpenDoor_Spritesheet_1
+  - first:
+      213: -3324174666610381951
+    second: Bruxa_OpenDoor_Spritesheet_2
+  - first:
+      213: 5991437593655284150
+    second: Bruxa_OpenDoor_Spritesheet_3
+  - first:
+      213: 4128488622860594193
+    second: Bruxa_OpenDoor_Spritesheet_4
+  - first:
+      213: -2402307413477171141
+    second: Bruxa_OpenDoor_Spritesheet_5
+  - first:
+      213: -6460703229102444143
+    second: Bruxa_OpenDoor_Spritesheet_6
+  - first:
+      213: 3630958244147830230
+    second: Bruxa_OpenDoor_Spritesheet_7
+  - first:
+      213: 6106113514086393732
+    second: Bruxa_OpenDoor_Spritesheet_8
+  - first:
+      213: 6300106422861073260
+    second: Bruxa_OpenDoor_Spritesheet_9
+  - first:
+      213: 2714201025081230916
+    second: Bruxa_OpenDoor_Spritesheet_10
+  - first:
+      213: 8283170634514134291
+    second: Bruxa_OpenDoor_Spritesheet_11
+  - first:
+      213: -1094032758117552782
+    second: Bruxa_OpenDoor_Spritesheet_12
+  - first:
+      213: 3030993228478376916
+    second: Bruxa_OpenDoor_Spritesheet_13
+  - first:
+      213: 9167153532796111165
+    second: Bruxa_OpenDoor_Spritesheet_14
+  - first:
+      213: -7383799801821967775
+    second: Bruxa_OpenDoor_Spritesheet_15
+  - first:
+      213: 8705172089989520999
+    second: Bruxa_OpenDoor_Spritesheet_16
+  - first:
+      213: -338161778332056881
+    second: Bruxa_OpenDoor_Spritesheet_17
+  - first:
+      213: -6007844016231922515
+    second: Bruxa_OpenDoor_Spritesheet_18
+  - first:
+      213: 6932458792039689355
+    second: Bruxa_OpenDoor_Spritesheet_19
+  - first:
+      213: -2993028381785823003
+    second: Bruxa_OpenDoor_Spritesheet_20
+  - first:
+      213: -7278633380949820736
+    second: Bruxa_OpenDoor_Spritesheet_21
+  - first:
+      213: 5099916173781463971
+    second: Bruxa_OpenDoor_Spritesheet_22
+  - first:
+      213: -306645331024012838
+    second: Bruxa_OpenDoor_Spritesheet_23
+  - first:
+      213: -491698412328595394
+    second: Bruxa_OpenDoor_Spritesheet_24
+  - first:
+      213: -706982031502775083
+    second: Bruxa_OpenDoor_Spritesheet_25
+  - first:
+      213: 3107514956879697766
+    second: Bruxa_OpenDoor_Spritesheet_26
+  - first:
+      213: 6112467976366941052
+    second: Bruxa_OpenDoor_Spritesheet_27
+  - first:
+      213: -6156396881398076704
+    second: Bruxa_OpenDoor_Spritesheet_28
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Lumin
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9cd3eed0745c2a60800000000000000
+      internalID: 7650582710748175515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04b47ac2af463630800000000000000
+      internalID: 3906397287390426127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18be551c0c82ed1d0800000000000000
+      internalID: -3324174666610381951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b19eb75fbcd52350800000000000000
+      internalID: 5991437593655284150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11ce8d067865b4930800000000000000
+      internalID: 4128488622860594193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b30e76aa22a49aed0800000000000000
+      internalID: -2402307413477171141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1913126b4a8f656a0800000000000000
+      internalID: -6460703229102444143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dd15b01941c36230800000000000000
+      internalID: 3630958244147830230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487e455b3e54db450800000000000000
+      internalID: 6106113514086393732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1173
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b8ac589697e6750800000000000000
+      internalID: 6300106422861073260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 446c7fca377caa520800000000000000
+      internalID: 2714201025081230916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1429
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31579245ecbb3f270800000000000000
+      internalID: 8283170634514134291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27d23cfb00731d0f0800000000000000
+      internalID: -1094032758117552782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db611c4840401a20800000000000000
+      internalID: 3030993228478376916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 1813
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3987c38195483f70800000000000000
+      internalID: 9167153532796111165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a4dc78339778990800000000000000
+      internalID: -7383799801821967775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 2069
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e5874d4ebfec870800000000000000
+      internalID: 8705172089989520999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 2197
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc247ed77ab9e4bf0800000000000000
+      internalID: -338161778332056881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 2325
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da44a8ab2b9df9ca0800000000000000
+      internalID: -6007844016231922515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 2453
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8c2f87aa8a053060800000000000000
+      internalID: 6932458792039689355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 2581
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e86ef46b80a676d0800000000000000
+      internalID: -2993028381785823003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 2709
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca7f2ef0891dfa90800000000000000
+      internalID: -7278633380949820736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 2837
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a373825dba86c640800000000000000
+      internalID: 5099916173781463971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 2965
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad9184432b39ebbf0800000000000000
+      internalID: -306645331024012838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 3093
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e30d78c26e22d29f0800000000000000
+      internalID: -491698412328595394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 3221
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dc61bd869b4036f0800000000000000
+      internalID: -706982031502775083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 3349
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6671703936c102b20800000000000000
+      internalID: 3107514956879697766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 3477
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c736d404d39d3d450800000000000000
+      internalID: 6112467976366941052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bruxa_OpenDoor_Spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 3605
+        y: 0
+        width: 98
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eae1f387a5109aa0800000000000000
+      internalID: -6156396881398076704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
