@@ -105,12 +105,12 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            FaseDoisTriggerController.Instance.GateOpener();
+            //FaseDoisTriggerController.Instance.GateOpener();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //NextLevelSetter(Vector2.zero);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }

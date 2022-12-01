@@ -36,6 +36,13 @@ public class GoatAI : MonoBehaviour
     public bool isP1, isP2;
     public Collider2D coll;
 
+    public AudioSource audioSource;
+    public AudioClip goat_roar;
+    public AudioClip goat_stomp;
+    public AudioClip goat_death;
+    public AudioClip goat_dashattack;
+    public AudioClip goat_hurt;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -44,6 +51,7 @@ public class GoatAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = GetComponent<AudioSource>();
 
         timeBTWMeleeATKs = .5f;
 
@@ -53,6 +61,8 @@ public class GoatAI : MonoBehaviour
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
+
+        audioSource.PlayOneShot(goat_roar, audioSource.volume);
     }
 
     void Update()
@@ -88,7 +98,7 @@ public class GoatAI : MonoBehaviour
                 if(timeBTWMeleeATKs <= 0)
                 {
                     anim.SetTrigger("Stomp");
-
+                    audioSource.PlayOneShot(goat_stomp, audioSource.volume);
                     timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
@@ -116,7 +126,7 @@ public class GoatAI : MonoBehaviour
                     isDashing = false;
 
                     anim.SetTrigger("DashATK");
-
+                    audioSource.PlayOneShot(goat_dashattack, audioSource.volume);
                     state = State.RecoveringFromDash;
                 }
                 else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing)
@@ -162,10 +172,12 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
 
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
-
+                    audioSource.PlayOneShot(goat_death, audioSource.volume);
                     timeToDie = 1000;
                 }
                 else
@@ -294,7 +306,7 @@ public class GoatAI : MonoBehaviour
     {
         int damage = 10;
         health -= damage;
-
+        audioSource.PlayOneShot(goat_hurt, audioSource.volume);
         if (!isAlreadyDying)
         {
             SwitchToDead();
