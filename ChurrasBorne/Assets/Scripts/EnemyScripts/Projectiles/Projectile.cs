@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     public Transform APTP;
     private Vector2 target;
 
-    public GameObject mommyWeb;
+    public GameObject mommyWeb, grannyWeb;
 
     public int health;
 

@@ -21,7 +21,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    public GameObject web, spike, shootPoint;
+    public GameObject web, spike, spiders, shootPoint;
 
     public Animator anim;
 
@@ -29,7 +29,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public bool isSpiderGranny;
 
-    private bool isAlreadyDying = false;
+    private bool isAlreadyDying = false, isSpawningSpiders = false;
 
     public float speed, startStunTime, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot;
     private float stunTime, timeBTWWebShots;
@@ -191,6 +191,10 @@ public class CEOofSpidersAI : MonoBehaviour
     void ShootWeb()
     {
         Instantiate(web, shootPoint.transform.position, Quaternion.identity);
+    }
+    void SpawnSpiders()
+    {
+        Instantiate(spiders, transform.position, Quaternion.identity);
     }
 
     public void TakeDamage()
