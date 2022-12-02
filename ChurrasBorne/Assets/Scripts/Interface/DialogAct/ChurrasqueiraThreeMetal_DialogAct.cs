@@ -42,7 +42,7 @@ public class ChurrasqueiraThreeMetal_DialogAct : MonoBehaviour
 
             if (GetComponent<Animator>().GetBool("APAGAR") == false)
             {
-                if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 6)
+                if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                 {
                     var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
                     if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
