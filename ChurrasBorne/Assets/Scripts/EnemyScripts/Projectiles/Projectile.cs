@@ -6,33 +6,32 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
 
-    public Transform player;
+    public Transform APTP;
     private Vector2 target;
+
+    public GameObject mommyWeb;
 
     public int health;
 
-    public Animator anim;
-
-    public bool isOnTutorial;
-
-    private float yOffset = 1.6f;
+    public bool isOnTutorial, isAWeb;
 
     void Start()
     {
         //Para PROJECTILE MOVEMENT
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        APTP = GameObject.FindGameObjectWithTag("NYA").transform;
 
-        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        target = APTP.position;
 
-        //target = player.position;
+        new Vector2(APTP.position.x, APTP.position.y);
 
-        //new Vector2(player.position.x, player.position.y);
+        if (!isAWeb)
+        {
+            Vector3 fator = APTP.position - transform.position;
 
-        Vector3 fator = player.position - transform.position;
+            target.x = APTP.position.x + fator.x * 3;
 
-        target.x = player.position.x + fator.x * 3;
-
-        target.y = player.position.y + fator.y * 3;
+            target.y = APTP.position.y + fator.y * 3;
+        }
     }
 
     //PROJECTILE MOVEMENT
@@ -47,11 +46,18 @@ public class Projectile : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
         }
 
-        anim.SetBool("Flying", true);
-
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
-            Destroy(gameObject);
+            if (!isAWeb)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+
+                Destroy(gameObject, .1f);
+            }
         }
     }
 

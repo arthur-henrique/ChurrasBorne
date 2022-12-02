@@ -31,7 +31,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.773501, y: -1.3921677, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1587166640220705986}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,8 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   rb: {fileID: 3173209745659878059}
-  web: {fileID: 0}
-  spike: {fileID: 0}
+  web: {fileID: 4995753880148382735, guid: 391c67dfb117fc447bf7d9636d040011, type: 3}
+  spike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
+  shootPoint: {fileID: 5254078576648270915}
   anim: {fileID: 2223503110792180030}
   health: 250
   isSpiderGranny: 0
@@ -166,3 +168,33 @@ MonoBehaviour:
   rangedDistanceI: 5
   rangedDistanceII: 20
   startTimeBTWWebShot: 4
+--- !u!1 &5254078576648270915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1587166640220705986}
+  m_Layer: 8
+  m_Name: NYYYAAAAAAAA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1587166640220705986
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5254078576648270915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.46, y: 2.94, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 495486129843499368}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

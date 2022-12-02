@@ -21,7 +21,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    public GameObject web, spike;
+    public GameObject web, spike, shootPoint;
 
     public Animator anim;
 
@@ -66,7 +66,6 @@ public class CEOofSpidersAI : MonoBehaviour
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
-                SwitchToRunning();
                 SwitchToShooting();
                 break;
 
@@ -101,6 +100,7 @@ public class CEOofSpidersAI : MonoBehaviour
                 }
 
                 SwitchToRunning();
+                SwitchToChasing();
                 break;
 
             case State.WasHit:
@@ -186,11 +186,11 @@ public class CEOofSpidersAI : MonoBehaviour
 
     void ShootSpike()
     {
-        Instantiate(spike, transform.position, Quaternion.identity);
+        Instantiate(spike, shootPoint.transform.position, Quaternion.identity);
     }
     void ShootWeb()
     {
-        Instantiate(web, transform.position, Quaternion.identity);
+        Instantiate(web, shootPoint.transform.position, Quaternion.identity);
     }
 
     public void TakeDamage()
