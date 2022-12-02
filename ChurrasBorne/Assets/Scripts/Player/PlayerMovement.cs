@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public float speed;
     float timer;
-    float canAttackChecker = 0.5f;
+    float canAttackChecker = 0.9f;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
@@ -278,11 +278,11 @@ public class PlayerMovement : MonoBehaviour
                 if (canAttackChecker > 0 && !canAttack)
                     canAttackChecker -= Time.deltaTime;
                 else if (canAttackChecker > 0 && canAttack)
-                    canAttackChecker = 0.5f;
+                    canAttackChecker = 0.9f;
                 else if (canAttackChecker <= 0)
                 {
                     canAttack = true;
-                    canAttackChecker = 0.5f;
+                    canAttackChecker = 0.9f;
                 }
                 break;
             case State.Rolling:
@@ -423,7 +423,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StupidAttackCD()
     {
         yield return new WaitForSeconds(0.035f);
-        canAttackChecker = 0.6f;
+        canAttackChecker = 0.9f;
         canAttack = true;
     }
 }

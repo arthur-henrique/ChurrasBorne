@@ -256,7 +256,8 @@ public class ArmorAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        int damage = 15;
+        gameObject.GetComponent<ColorChanger>().ChangeColor();
+        int damage = 10;
         health -= damage;
         audioSource.PlayOneShot(armor_hurt, audioSource.volume);
         if (!isAlreadyDying)

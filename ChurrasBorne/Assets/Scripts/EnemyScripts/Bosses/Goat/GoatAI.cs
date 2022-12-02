@@ -302,6 +302,7 @@ public class GoatAI : MonoBehaviour
 
     public void TakeDamage()
     {
+        gameObject.GetComponent<ColorChanger>().ChangeColor();
         int damage = 10;
         health -= damage;
         audioSource.PlayOneShot(goat_hurt, audioSource.volume);

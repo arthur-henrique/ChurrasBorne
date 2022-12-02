@@ -262,6 +262,7 @@ public class BullAI : MonoBehaviour
     //HEALTH
     public void TakeDamage()
     {
+        gameObject.GetComponent<ColorChanger>().ChangeColor();
         int damage;
 
         if (isOnTut)

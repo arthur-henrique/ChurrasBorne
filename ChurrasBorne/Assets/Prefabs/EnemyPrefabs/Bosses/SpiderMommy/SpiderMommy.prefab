@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4301185506671688929}
   - component: {fileID: 2223503110792180030}
   - component: {fileID: 5744708209312202447}
+  - component: {fileID: 606707126023672171}
   m_Layer: 8
   m_Name: SpiderMommy
   m_TagString: Untagged
@@ -159,6 +160,7 @@ MonoBehaviour:
   rb: {fileID: 3173209745659878059}
   web: {fileID: 4995753880148382735, guid: 391c67dfb117fc447bf7d9636d040011, type: 3}
   spike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
+  spiders: {fileID: 0}
   shootPoint: {fileID: 5254078576648270915}
   anim: {fileID: 2223503110792180030}
   health: 250
@@ -168,6 +170,21 @@ MonoBehaviour:
   rangedDistanceI: 5
   rangedDistanceII: 20
   startTimeBTWWebShot: 4
+--- !u!114 &606707126023672171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415856850659395811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5
 --- !u!1 &5254078576648270915
 GameObject:
   m_ObjectHideFlags: 0
