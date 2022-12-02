@@ -5,6 +5,7 @@ using UnityEngine;
 public class FaseUmTriggerController : MonoBehaviour
 {
     public static FaseUmTriggerController Instance;
+    public GameObject[] waveTwoGates;
     public GameObject[] upPathFirstGateIn;
     public GameObject[] upPathSecondGateIn;
     public GameObject[] upPathFirstGateOut;
@@ -23,6 +24,15 @@ public class FaseUmTriggerController : MonoBehaviour
     private void Start()
     {
         SecondGateOpen();
+    }
+    public void secondWaveCleared()
+    {
+        for (int i = 0; i < upPathFirstGateIn.Length; i++)
+        {
+            waveTwoGates[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+            print("PortãoAberto");
+        }
     }
     public void FirstGateTrigger()
     {

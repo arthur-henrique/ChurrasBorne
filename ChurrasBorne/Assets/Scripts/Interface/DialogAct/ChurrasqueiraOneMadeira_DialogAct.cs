@@ -50,7 +50,7 @@ public class ChurrasqueiraOneMadeira_DialogAct : MonoBehaviour
                         dbox.GetComponent<DialogSystem>().db_PullUP();
                         dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
                     }
-                    GameManager.instance.currentHealth = 100;
+                    GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;

@@ -12,7 +12,7 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
     private readonly List<GameObject> sixthMob = new List<GameObject>();
-    public GameObject troncoP1, troncoP2, troncosHalf;
+    public GameObject troncosHalf;
     private bool clearedUm, clearedHalf;
     private int randomTL;
 
@@ -156,12 +156,13 @@ public class EnemyControl : MonoBehaviour
     {
         if(secondMob.Count <= 0)
         {
-            troncoP1.SetActive(false);
+            // abre o portão da wave
+            FaseUmTriggerController.Instance.secondWaveCleared();
             if (!clearedUm)
                 SpawnThirdMob();
             if(clearedUm)
             {
-                troncoP2.SetActive(false);
+                // abre o portão da wave
                 troncosHalf.SetActive(true);
                 FaseUmTriggerController.Instance.SideFirstGateTrigger();
             }

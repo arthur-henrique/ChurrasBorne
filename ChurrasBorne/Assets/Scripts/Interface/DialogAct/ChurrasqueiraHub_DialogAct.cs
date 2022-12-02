@@ -59,7 +59,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
                             dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
                         }
                     }
-                    GameManager.instance.currentHealth = 100;
+                    GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                     GameManager.instance.SetHeals(3, false, true);
 
                     //
@@ -83,8 +83,8 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
 
     IEnumerator ActivatePortal()
     {
-        yield return new WaitForSeconds(1.5f);
-        Instantiate(tutboxmeat);
         col.transform.GetChild(0).gameObject.SetActive(true);
+        yield return new WaitForSeconds(8f);
+        Instantiate(tutboxmeat);
     }
 }
