@@ -35,6 +35,8 @@ public class CEOofSpidersAI : MonoBehaviour
     public float speed, startStunTime, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders;
     private float stunTime, timeBTWWebShots, timeToSpawnSpiders;
 
+    public Animator faseDois, faseDoisHalf;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -212,6 +214,18 @@ public class CEOofSpidersAI : MonoBehaviour
         if(health <= 0)
         {
             state = State.Dead;
+            if (!isSpiderGranny)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDois.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(2, true);
+            }
+            else if (isSpiderGranny)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDoisHalf.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(3, true);
+            }
         }
     }
 
