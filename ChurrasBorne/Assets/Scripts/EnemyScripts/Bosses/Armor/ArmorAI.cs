@@ -36,6 +36,10 @@ public class ArmorAI : MonoBehaviour
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
     private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
 
+    // to remove
+    public bool isOnFaseDois, isOnFaseDoisHalf;
+    public Animator faseDois, faseDoisHalf;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -184,6 +188,18 @@ public class ArmorAI : MonoBehaviour
         if(health <= 0)
         {
             state = State.Dead;
+            if (isOnFaseDois)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDois.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(2, true);
+            }
+            else if (isOnFaseDoisHalf)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDoisHalf.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(3, true);
+            }
         }
     }
 
