@@ -36,6 +36,9 @@ public class ArmorAI : MonoBehaviour
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
     private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
 
+    private float knockbackDuration1 = 0.75f, knockbackPower1 = 75f;
+    private float knockbackDuration2 = 1.5f, knockbackPower2 = 125f;
+
     // to remove
     public bool isOnFaseDois, isOnFaseDoisHalf;
     public Animator faseDois, faseDoisHalf;
@@ -226,6 +229,7 @@ public class ArmorAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, player.position) <= spinDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration1, knockbackPower1, this.transform));
             GameManager.instance.TakeDamage(5);
         }
     }
@@ -233,6 +237,7 @@ public class ArmorAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= spinDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration2, knockbackPower2, this.transform));
             GameManager.instance.TakeDamage(10);
         }
     }

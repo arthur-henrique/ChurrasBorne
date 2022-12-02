@@ -39,6 +39,8 @@ public class BullAI : MonoBehaviour
 
     private bool isAlreadyDying = false;
 
+    private float knockbackDuration = 1.5f, knockbackPower = 150f;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -245,10 +247,12 @@ public class BullAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(15);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(10);
         }
     }

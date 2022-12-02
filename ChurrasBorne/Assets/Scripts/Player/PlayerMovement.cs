@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     private enum State
     {
         Normal,
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         state = State.Normal;
         pc = new PlayerController();
+        instance = this;
     }
     private void OnEnable()
     {
@@ -425,5 +427,19 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.035f);
         canAttackChecker = 0.9f;
         canAttack = true;
+    }
+
+    public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
+    {
+        float timer = 0;
+        while (kbDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
+                this.transform.position.z);
+            Vector2 direction = (obj.transform.position - pos).normalized;
+            rb.AddForce(-direction * kbPower);
+        }
+        yield return 0;
     }
 }

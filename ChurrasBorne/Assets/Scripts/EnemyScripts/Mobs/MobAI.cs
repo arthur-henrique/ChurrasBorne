@@ -43,7 +43,9 @@ public class MobAI : MonoBehaviour
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
 
-    private float yOffset = 1.6f;
+    private float yOffset = 1.7f;
+    private float knockbackDuration = 1f;
+    private float knockbackPower = 50f;
 
     private void Awake()
     {
@@ -314,10 +316,12 @@ public class MobAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(10);
 
             isDashing = false;
@@ -370,6 +374,7 @@ public class MobAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }

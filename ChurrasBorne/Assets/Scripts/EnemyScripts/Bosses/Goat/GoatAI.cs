@@ -43,6 +43,8 @@ public class GoatAI : MonoBehaviour
     public AudioClip goat_dashattack;
     public AudioClip goat_hurt;
 
+    private float knockbackDuration = 1.0f, knockbackPower = 100f;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -260,6 +262,7 @@ public class GoatAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(15);
         }
     }
@@ -268,6 +271,7 @@ public class GoatAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= dashATKDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(15);
         }
     }
