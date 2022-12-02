@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1712351523996777570}
   - component: {fileID: 1712351523996777571}
   - component: {fileID: 5063045253736509631}
+  - component: {fileID: 1750945041854158652}
   m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
@@ -173,6 +174,10 @@ MonoBehaviour:
   slashRangedDistance: 20
   timeBTWSpinATKs: 2
   spinDistance: 3
+  isOnFaseDois: 0
+  isOnFaseDoisHalf: 0
+  faseDois: {fileID: 0}
+  faseDoisHalf: {fileID: 0}
 --- !u!82 &5063045253736509631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -269,6 +274,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1750945041854158652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712351523996777568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5
 --- !u!1 &5748991568278659421
 GameObject:
   m_ObjectHideFlags: 0

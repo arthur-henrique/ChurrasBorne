@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9160456545418378528}
   - component: {fileID: 8211048663312776286}
   - component: {fileID: 5325384035217847443}
+  - component: {fileID: -4303711405590160919}
   m_Layer: 8
   m_Name: Goat
   m_TagString: Untagged
@@ -272,3 +273,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4303711405590160919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555616963489609874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     private enum State
     {
         Normal,
@@ -15,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public float speed;
     float timer;
-    float canAttackChecker = 0.5f;
+    float canAttackChecker = 0.9f;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
@@ -48,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     {
         state = State.Normal;
         pc = new PlayerController();
+        instance = this;
     }
     private void OnEnable()
     {
@@ -233,7 +235,6 @@ public class PlayerMovement : MonoBehaviour
                         takingDamage = true;
                     }
                 }
-                CantAttack();
                 break;
             case State.Dead:
                 anim.SetFloat("moveX", 0);
@@ -278,11 +279,11 @@ public class PlayerMovement : MonoBehaviour
                 if (canAttackChecker > 0 && !canAttack)
                     canAttackChecker -= Time.deltaTime;
                 else if (canAttackChecker > 0 && canAttack)
-                    canAttackChecker = 0.5f;
+                    canAttackChecker = 0.9f;
                 else if (canAttackChecker <= 0)
                 {
                     canAttack = true;
-                    canAttackChecker = 0.5f;
+                    canAttackChecker = 0.9f;
                 }
                 break;
             case State.Rolling:
@@ -423,7 +424,21 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StupidAttackCD()
     {
         yield return new WaitForSeconds(0.035f);
-        canAttackChecker = 0.6f;
+        canAttackChecker = 0.9f;
         canAttack = true;
+    }
+
+    public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
+    {
+        float timer = 0;
+        while (kbDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
+                this.transform.position.z);
+            Vector2 direction = (obj.transform.position - pos).normalized;
+            rb.AddForce(-direction * kbPower);
+        }
+        yield return 0;
     }
 }

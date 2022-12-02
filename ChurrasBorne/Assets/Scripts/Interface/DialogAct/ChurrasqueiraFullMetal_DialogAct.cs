@@ -38,7 +38,7 @@ public class ChurrasqueiraFullMetal_DialogAct : MonoBehaviour
             float dist = Vector3.Distance(target.transform.position, transform.position);
             //print("Distance to other: " + dist);
 
-            if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 6)
+            if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
             {
                 var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
                 if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)

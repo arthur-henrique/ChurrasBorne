@@ -256,6 +256,7 @@ public class HealthBar_Manager : MonoBehaviour
                         refreshBoss = false;
                     }
                     break;
+
                 case "Goat":
                     realHealthBoss = boss.GetComponent<GoatAI>().health;
                     if (refreshBoss)
@@ -282,7 +283,7 @@ public class HealthBar_Manager : MonoBehaviour
             var monsterovline = MONSTER_OverlayLines.GetComponent<Image>().color;
             monsterovline = new Color(monsterovline.r, monsterovline.g, monsterovline.b, Mathf.Lerp(monsterovline.a, 1f, Time.deltaTime * 4f));
             MONSTER_OverlayLines.GetComponent<Image>().color = monsterovline;
-        } 
+        }
         else
         {
             var monsterovcol = MONSTER_OverlayColor.GetComponent<Image>().color;

@@ -44,7 +44,10 @@ public class MobAI : MonoBehaviour
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
 
-    private float yOffset = 1.6f;
+    private float yOffset = 1.7f;
+    private float knockbackDuration = 1f;
+    private float knockbackPower = 100f;
+
 
     private void Awake()
     {
@@ -86,8 +89,10 @@ public class MobAI : MonoBehaviour
 
             case State.Chasing:
                 Flip();
-
-                transform.position = Vector2.MoveTowards(transform.position, target, chasingSpeed * Time.deltaTime);
+                Vector2 direcao = (target - this.transform.position).normalized;
+                rb.velocity = direcao * chasingSpeed;
+                
+                //transform.position = Vector2.MoveTowards(transform.position, target, chasingSpeed * Time.deltaTime);
 
                 anim.SetBool("Walk", true);
                 anim.SetBool("Idle", false);
@@ -327,10 +332,12 @@ public class MobAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*2, this.transform));
             GameManager.instance.TakeDamage(10);
 
             isDashing = false;
@@ -362,6 +369,7 @@ public class MobAI : MonoBehaviour
         if (health >= 0)
         {
             anim.SetTrigger("Hit");
+            KnockBackSide();
         }
 
         int damage;
@@ -383,6 +391,7 @@ public class MobAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
@@ -409,5 +418,34 @@ public class MobAI : MonoBehaviour
     void DestroySelf()
     {
         Destroy(gameObject, 1.5f);
+    }
+
+    void KnockBackSide()
+    {
+        StartCoroutine(Knockback(knockbackDuration/2, 150f, player));
+        //int randomPos = Random.Range(0, 3);
+        //if (kbSide[randomPos].gameObject.activeSelf == true)
+        //{
+            
+        //}
+        //    this.transform.position = kbSide[randomPos].position;
+        //else
+        //{ }
+    }
+
+    public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
+    {
+        float timer = 0;
+        rb.velocity = Vector2.zero;
+        while (kbDuration > timer)
+        {
+            timer += Time.deltaTime;
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+            //Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
+            //this.transform.position.z);
+            Vector2 direction = (obj.transform.position - this.transform.position).normalized;
+            rb.AddForce(-direction * kbPower);
+        }
+        yield return 0;
     }
 }
