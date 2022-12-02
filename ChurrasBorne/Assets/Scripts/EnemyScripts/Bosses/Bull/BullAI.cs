@@ -208,6 +208,7 @@ public class BullAI : MonoBehaviour
             if (isOnTut)
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();
+                GameManager.instance.maxHealth = 175;
                 portal.enabled = true;
                 portal.transform.GetChild(0).gameObject.SetActive(true);
             }

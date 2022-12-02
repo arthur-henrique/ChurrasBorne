@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3059333531883429573}
   - component: {fileID: 1307689429699787452}
   - component: {fileID: 3072094278385774964}
+  - component: {fileID: 5739700775374244342}
   m_Layer: 8
   m_Name: Spitter
   m_TagString: Untagged
@@ -277,3 +278,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5739700775374244342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350248437054539928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 0

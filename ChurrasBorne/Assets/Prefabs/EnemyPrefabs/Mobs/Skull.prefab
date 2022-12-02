@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2836564491944049884}
   - component: {fileID: 7118775276587849981}
   - component: {fileID: 104732389356124469}
+  - component: {fileID: 7656422410026809970}
   m_Layer: 8
   m_Name: Skull
   m_TagString: Untagged
@@ -163,6 +164,7 @@ MonoBehaviour:
   monster_death: {fileID: 0}
   monster_hurt: {fileID: 0}
   monster_punch: {fileID: 0}
+  monster_spit: {fileID: 0}
   agroDistance: 20
   meleeDistance: 3
   canDashDistance: 0
@@ -276,3 +278,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7656422410026809970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836564491944049885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 0
