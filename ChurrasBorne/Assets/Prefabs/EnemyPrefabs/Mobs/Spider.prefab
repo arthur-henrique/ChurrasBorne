@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1155876717615048490
 CapsuleCollider2D:
@@ -182,6 +182,10 @@ MonoBehaviour:
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
+  kbSide:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &-6535169719040685427
 MonoBehaviour:
   m_ObjectHideFlags: 0

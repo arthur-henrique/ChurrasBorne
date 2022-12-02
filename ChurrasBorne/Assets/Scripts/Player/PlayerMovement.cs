@@ -235,7 +235,6 @@ public class PlayerMovement : MonoBehaviour
                         takingDamage = true;
                     }
                 }
-                CantAttack();
                 break;
             case State.Dead:
                 anim.SetFloat("moveX", 0);

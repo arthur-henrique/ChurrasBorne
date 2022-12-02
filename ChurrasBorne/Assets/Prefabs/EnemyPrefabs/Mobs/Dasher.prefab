@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &5054337974537831557
 CapsuleCollider2D:
@@ -179,6 +179,7 @@ MonoBehaviour:
   monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
   monster_hurt: {fileID: 8300000, guid: 945b6d2820ffd674f84b760b3df6c902, type: 3}
   monster_punch: {fileID: 8300000, guid: 8c85da8e2e29d874aaca0ccef7600fd1, type: 3}
+  monster_spit: {fileID: 0}
   agroDistance: 20
   meleeDistance: 2
   canDashDistance: 10
@@ -196,6 +197,10 @@ MonoBehaviour:
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
+  kbSide:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!82 &8221106615309470292
 AudioSource:
   m_ObjectHideFlags: 0
