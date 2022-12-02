@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6355398410879957294}
   - component: {fileID: 6355398410879957293}
   - component: {fileID: 6355398410879957292}
+  - component: {fileID: -5296133006840630459}
   m_Layer: 0
   m_Name: ChurrasChad
   m_TagString: Untagged
@@ -102,3 +103,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5296133006840630459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6355398410879957283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 5000
+  offset: 1
+  runOnlyOnce: 1

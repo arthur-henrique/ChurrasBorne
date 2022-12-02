@@ -423,6 +423,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StupidAttackCD()
     {
         yield return new WaitForSeconds(0.035f);
+        canAttackChecker = 0.6f;
         canAttack = true;
     }
 }
