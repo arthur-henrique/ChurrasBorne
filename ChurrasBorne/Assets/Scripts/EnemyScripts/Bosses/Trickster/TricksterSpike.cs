@@ -13,7 +13,7 @@ public class TricksterSpike : MonoBehaviour
 
     void Update()
     {
-        if (trickster.GetComponent<TricksterAI>().isAlive == false)
+        if (trickster.GetComponent<TricksterAI>().isBreathing == false)
         {
             Destroy(gameObject);
         }

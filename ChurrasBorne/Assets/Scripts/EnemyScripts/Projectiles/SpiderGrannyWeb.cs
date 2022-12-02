@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class SpiderGrannyWeb : MonoBehaviour
 {
     public float speed;
 
     public Transform APTP;
     private Vector2 target;
 
-    public GameObject mommyWeb;
+    public GameObject grannyWeb;
 
     public int health;
 
@@ -54,14 +54,14 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                Instantiate(grannyWeb, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }
         }
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DAMAGE

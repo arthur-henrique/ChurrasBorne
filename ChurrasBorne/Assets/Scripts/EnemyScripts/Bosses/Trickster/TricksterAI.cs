@@ -26,9 +26,9 @@ public class TricksterAI : MonoBehaviour
 
     public int health;
 
-    public bool isAlive = true;
-
     private bool isAlreadyDying = false;
+
+    public bool isBreathing;
 
     public float chasingSpeed, chaseDistance, timeBTWLRATKs, closeRangeDistance, timeBTWCRATKs;
     private float currentTimeBTWLRATKs, currentTimeBTWCRATKs, timeToDie;
@@ -137,7 +137,7 @@ public class TricksterAI : MonoBehaviour
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                isAlive = false;
+                isBreathing = false;
                 isAlreadyDying = true;
 
                 anim.SetBool("Idle", true);
@@ -145,7 +145,7 @@ public class TricksterAI : MonoBehaviour
 
                 if (timeToDie <= 0)
                 {
-                    anim.SetTrigger("DIe");
+                    anim.SetTrigger("Die");
 
                     timeToDie = 1000;
                 }
@@ -227,6 +227,7 @@ public class TricksterAI : MonoBehaviour
     void ToAscendOrToBeatPlayerUp()
     {
         SwitchToAscending();
+        SwitchToCloseRange();
         SwitchToLongRange();
     }
 
@@ -254,7 +255,6 @@ public class TricksterAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
     }

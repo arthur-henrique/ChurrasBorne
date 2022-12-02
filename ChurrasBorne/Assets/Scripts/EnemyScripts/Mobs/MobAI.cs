@@ -7,6 +7,7 @@ public class MobAI : MonoBehaviour
 {
     private enum State
     {
+        Spawning,
         Idling,
         Chasing,
         Attacking,
@@ -47,7 +48,7 @@ public class MobAI : MonoBehaviour
 
     private void Awake()
     {
-        state = State.Idling;
+        state = State.Spawning;
     }
 
     void Start()
@@ -69,6 +70,10 @@ public class MobAI : MonoBehaviour
     {
         switch(state)
         {
+            case State.Spawning:
+                Flip();
+                break;
+            
             case State.Idling:
                 rb.velocity = Vector2.zero;
 
@@ -250,6 +255,14 @@ public class MobAI : MonoBehaviour
     private void FixedUpdate()
     {
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+    }
+
+    void BeginCombat()
+    {
+        SwitchToIdling();
+        SwitchToChasing();
+        SwitchToAttacking();
+        SwitchToShooting();
     }
 
     //STATES
