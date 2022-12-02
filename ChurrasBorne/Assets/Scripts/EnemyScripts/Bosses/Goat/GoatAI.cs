@@ -163,8 +163,6 @@ public class GoatAI : MonoBehaviour
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-
                 isAlive = false;
                 isAlreadyDying = true;
 
