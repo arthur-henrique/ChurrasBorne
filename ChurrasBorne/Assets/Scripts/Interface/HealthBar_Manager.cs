@@ -283,6 +283,15 @@ public class HealthBar_Manager : MonoBehaviour
                         refreshBoss = false;
                     }
                     break;
+
+                case "SpiderMommy":
+                    realHealthBoss = boss.GetComponent<CEOofSpidersAI>().health;
+                    if (refreshBoss)
+                    {
+                        maxHealthBoss = boss.GetComponent<CEOofSpidersAI>().health;
+                        refreshBoss = false;
+                    }
+                    break;
             }
 
             convertHealthBoss = realHealthBoss / maxHealthBoss;

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPrefab;
     public AudioSource audioSource;
     public AudioClip gateOpen;
+    public GameObject clearGamePrefab;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     public bool og_sword;
 
     public static bool isInDialog = false;
+    public bool clearGame = false;
 
     public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half, 2 - Fase Dois, 3 - Fase Dois Half;
     private bool hasSeenGateTwo = false;
@@ -102,7 +104,27 @@ public class GameManager : MonoBehaviour
                     churrasTio.SetActive(true);
                 }
             }
-            
+
+            var bruxinhaKawaii = GameObject.Find("Bruxa");
+            if (bruxinhaKawaii)
+            {
+                if (GetHasCleared(2) == false)
+                {
+                    bruxinhaKawaii.SetActive(false);
+                }
+                else
+                {
+                    bruxinhaKawaii.SetActive(true);
+                }
+            }
+
+            if (GetHasCleared(3) == true && clearGame == false)
+            {
+                Instantiate(clearGamePrefab);
+                PlayerMovement.DisableControl();
+                clearGame = true;
+            }
+
         }
         //print("GAME_MANAGER: " + currentHealth);
 
@@ -125,7 +147,7 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
             TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
@@ -154,6 +176,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    
     public void SetDamagetime(float time)
     {
         damagetime = time;
@@ -318,6 +342,11 @@ public class GameManager : MonoBehaviour
     {
         dft.Priority = 1;
         boss.Priority = 0;
+    }
+
+    public void EndTheGame()
+    {
+        canvas.GetComponent<Transition_Manager>().TransitionToScene("MainMenu");
     }
 
     public void GateCamSetter(CinemachineVirtualCamera gateCam)

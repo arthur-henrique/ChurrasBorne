@@ -37,6 +37,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public Animator faseDois, faseDoisHalf;
 
+    public static bool spider_boss_died = false;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -159,6 +161,7 @@ public class CEOofSpidersAI : MonoBehaviour
                 anim.SetTrigger("Die");
 
                 isAlreadyDying = true;
+                spider_boss_died = true;
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 break;

@@ -50,7 +50,42 @@ public class DialogBank : MonoBehaviour
             "...",
             "Ah, sim, você pode investigar isso, mas talvez seja um pouco mais difícil do que naquela época...",
             "",
+        },
+
+        { // 3 - Bruxinha, primeiro encontro
+            "Uaaaaaahhh, uaaaaaahhhh-",
+            "...",
+            "uaaaaaahhhhhhh-",
+            "...",
+            "",
+            "",
+            "",
+            "",
+        },
+
+        { // 4 - Bruxinha, segundo encontro
+            "Abuh, buuuh...",
+            "...",
+            "^u^",
+            "...",
+            "",
+            "",
+            "",
+            "",
+        },
+
+        { // 5 - Bruxinha, hub
+            "Oi onii-chan owo!!",
+            "...",
+            "Ooown, você não lembra de mim, onii-chan? ÓwÒ, isso é cruel demais úmù!! Eu sou a bruxinha que você salvou na caverna de gelo assustadora ( >×<)",
+            "...",
+            "Como eu estou vocalizando essas expressões? Não se preocupe com isso, Onii-chan! O que importa é que você me salvou! >w< ♡♡♡",
+            "Enfim, estou muito agradecida! Arigatô onii-chan!! Se precisar de magia eu estou aqui! UwU!!!",
+            "Inclusive, você deveria olhar como está aquela caverna hoje em dia, está um terror que só >.>",
+            "",
         }
+
+
     };
 
 }
