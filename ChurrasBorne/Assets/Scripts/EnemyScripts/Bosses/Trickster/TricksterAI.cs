@@ -140,6 +140,8 @@ public class TricksterAI : MonoBehaviour
                 isBreathing = false;
                 isAlreadyDying = true;
 
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;   
+
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 

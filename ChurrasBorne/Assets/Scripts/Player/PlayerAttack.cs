@@ -32,6 +32,8 @@ public class PlayerAttack : MonoBehaviour
                         enemiesHit[i].transform.GetComponent<Projectile>().TakeDamage();
                     else if (enemiesHit[i].transform.GetComponent<CEOofSpidersAI>() != null)
                         enemiesHit[i].transform.GetComponent<CEOofSpidersAI>().TakeDamage();
+                    else if (enemiesHit[i].transform.GetComponent<FinalBossF1AI>() != null)
+                        enemiesHit[i].transform.GetComponent<FinalBossF1AI>().TakeDamage();
                 }
             }
             hasRun = true;

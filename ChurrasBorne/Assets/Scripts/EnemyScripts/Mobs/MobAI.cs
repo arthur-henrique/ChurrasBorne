@@ -28,6 +28,8 @@ public class MobAI : MonoBehaviour
 
     public GameObject projectile;
 
+    public GameObject gameManager;
+
     private AudioSource audioSource;
     public AudioClip monster_death;
     public AudioClip monster_hurt;
@@ -57,6 +59,7 @@ public class MobAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
         audioSource = GetComponent<AudioSource>();
 
@@ -255,6 +258,11 @@ public class MobAI : MonoBehaviour
 
             dashTarget.y = target.y + fator.y * 2;
         }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
+        }
     }
 
     private void FixedUpdate()
@@ -273,11 +281,11 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter)    
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
-        else if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter)
+        else if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
@@ -291,14 +299,14 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToAttacking()
     {
-        if (Vector2.Distance(transform.position, target) <= meleeDistance && health > 0)
+        if (Vector2.Distance(transform.position, target) <= meleeDistance && health > 0 && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Attacking;
         }
     }
     void SwitchToShooting()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Shooting;
         }
