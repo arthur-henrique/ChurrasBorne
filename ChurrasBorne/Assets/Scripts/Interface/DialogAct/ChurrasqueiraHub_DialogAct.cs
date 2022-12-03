@@ -40,7 +40,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     {
         if (target)
         {
-            float dist = Vector3.Distance(target.transform.position, transform.position);
+            float dist = Vector2.Distance(target.transform.position, transform.position);
             //print("Distance to other: " + dist);
 
             if (GetComponent<Animator>().GetBool("APAGAR") == false)

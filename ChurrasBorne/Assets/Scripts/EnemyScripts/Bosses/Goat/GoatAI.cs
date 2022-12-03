@@ -29,6 +29,7 @@ public class GoatAI : MonoBehaviour
     private bool isDashing = false, isAlreadyDying = false, isAlive = true;
 
     public int health;
+    public static bool goat_boss_died = false;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -178,6 +179,7 @@ public class GoatAI : MonoBehaviour
                 {
                     anim.SetTrigger("Die");
                     audioSource.PlayOneShot(goat_death, audioSource.volume);
+                    goat_boss_died = true;
                     timeToDie = 1000;
                 }
                 else

@@ -265,6 +265,24 @@ public class HealthBar_Manager : MonoBehaviour
                         refreshBoss = false;
                     }
                     break;
+
+                case "Armor":
+                    realHealthBoss = boss.GetComponent<ArmorAI>().health;
+                    if (refreshBoss)
+                    {
+                        maxHealthBoss = boss.GetComponent<ArmorAI>().health;
+                        refreshBoss = false;
+                    }
+                    break;
+
+                case "SpiderGranny":
+                    realHealthBoss = boss.GetComponent<CEOofSpidersAI>().health;
+                    if (refreshBoss)
+                    {
+                        maxHealthBoss = boss.GetComponent<CEOofSpidersAI>().health;
+                        refreshBoss = false;
+                    }
+                    break;
             }
 
             convertHealthBoss = realHealthBoss / maxHealthBoss;
