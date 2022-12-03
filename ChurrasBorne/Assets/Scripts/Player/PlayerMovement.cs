@@ -65,6 +65,9 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        isOnIce = false;
+        isOnWeb = false;
+        isOnBossWeb = false;
     }
     // Update is called once per frame
     void Update()
@@ -433,11 +436,20 @@ public class PlayerMovement : MonoBehaviour
         float timer = 0;
         while (kbDuration > timer)
         {
+            if (isOnIce)
+            {
+
+            }
             timer += Time.deltaTime;
             Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
                 this.transform.position.z);
             Vector2 direction = (obj.transform.position - pos).normalized;
-            rb.AddForce(-direction * kbPower);
+            if (isOnIce)
+            {
+                rb.AddForce(-direction * kbPower / 3);
+            }
+            else
+                rb.AddForce(-direction * kbPower);
         }
         yield return 0;
     }
