@@ -88,7 +88,22 @@ public class GameManager : MonoBehaviour
             scene_detect = SceneManager.GetActiveScene().name;
             //print("OG HEALTH" + og_health);
         }
-
+        if (SceneManager.GetActiveScene().name == "Hub")
+        {
+            var churrasTio = GameObject.Find("ChurrasTio");
+            if (churrasTio)
+            {
+                if (GetHasCleared(0) == false)
+                {
+                    churrasTio.SetActive(false);
+                }
+                else
+                {
+                    churrasTio.SetActive(true);
+                }
+            }
+            
+        }
         //print("GAME_MANAGER: " + currentHealth);
 
         if (damageCDCounter > 0f)
@@ -109,9 +124,9 @@ public class GameManager : MonoBehaviour
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            //NextLevelSetter(Vector2.zero);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
-            //TutorialTriggerController.Instance.SecondGateTriggerOut();
+            NextLevelSetter(Vector2.zero);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseUm");
+            TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
 

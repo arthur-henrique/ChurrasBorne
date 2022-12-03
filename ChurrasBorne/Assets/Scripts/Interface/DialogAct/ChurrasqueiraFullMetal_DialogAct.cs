@@ -35,7 +35,7 @@ public class ChurrasqueiraFullMetal_DialogAct : MonoBehaviour
     {
         if (target)
         {
-            float dist = Vector3.Distance(target.transform.position, transform.position);
+            float dist = Vector2.Distance(target.transform.position, transform.position);
             //print("Distance to other: " + dist);
 
             if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
