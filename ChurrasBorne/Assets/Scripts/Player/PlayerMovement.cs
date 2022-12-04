@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 moveVelocity = direcao * speed;
                 if(isOnIce)
                 {
-                    rb.AddForce(moveVelocity, ForceMode2D.Force);
+                    rb.AddForce(moveVelocity * 0.7f, ForceMode2D.Force);
                 }
                 else if(isOnWeb)
                 {
@@ -292,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
             case State.Rolling:
                 if (isOnIce)
                 {
-                    rb.velocity = rollDirection * (rollSpeed * 1.8f);
+                    rb.velocity = rollDirection * (rollSpeed * 1.3f);
                 }
                 else if (isOnWeb)
                 {
@@ -436,10 +436,6 @@ public class PlayerMovement : MonoBehaviour
         float timer = 0;
         while (kbDuration > timer)
         {
-            if (isOnIce)
-            {
-
-            }
             timer += Time.deltaTime;
             Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
                 this.transform.position.z);
