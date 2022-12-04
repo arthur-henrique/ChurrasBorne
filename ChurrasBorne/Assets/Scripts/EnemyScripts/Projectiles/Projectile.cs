@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     public int health;
 
-    public bool isOnTutorial, isAWeb, hasBeenParried;
+    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried;
 
     void Start()
     {
@@ -75,7 +75,12 @@ public class Projectile : MonoBehaviour
         //DAMAGE
         if (collision.CompareTag("Player") && health > 0)
         {
-            if (!isAWeb)
+            if (!isAWeb && !isFromBoss)
+            {
+                GameManager.instance.TakeDamage(7);
+                Destroy(gameObject);
+            }
+            else if (!isAWeb && isFromBoss)
             {
                 GameManager.instance.TakeDamage(15);
                 Destroy(gameObject);

@@ -146,9 +146,9 @@ public class GameManager : MonoBehaviour
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
-            TutorialTriggerController.Instance.SecondGateTriggerOut();
+            //NextLevelSetter(Vector2.zero);
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
 

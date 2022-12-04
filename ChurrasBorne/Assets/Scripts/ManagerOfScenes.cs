@@ -140,22 +140,6 @@ public class ManagerOfScenes : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        if (!GameManager.instance.GetAlive())
-        {
-            if (gameObject.CompareTag("Tutorial"))
-            {
-                // Passa a animaÁ„o de morte
-                // ComeÁa a TransiÁ„o de tela escura
-                // ComeÁa a Cutscene de resgate
-                // HÅEa troca de tela (Hub)
-                // Toca a Cutscene do salvador morto
-                // Frames do player pegando a espada
-                // Personagem fica jogavel novamente
-            }
-        }
-    }
 
     public void ShowFirstPhase()
     {

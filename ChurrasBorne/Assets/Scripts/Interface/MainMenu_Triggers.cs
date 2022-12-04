@@ -90,7 +90,7 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
             } else
             {
                 MainMenu_Manager.menu_selection_confirm = true;
-                Debug.Log("start");
+                //Debug.Log("start");
                 MainMenu_Manager.instance.audioSource.PlayOneShot(MainMenu_Manager.instance.ui_confirm, MainMenu_Manager.instance.audioSource.volume);
             }
         }

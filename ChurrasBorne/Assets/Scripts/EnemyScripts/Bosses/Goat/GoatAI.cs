@@ -192,10 +192,12 @@ public class GoatAI : MonoBehaviour
                 if(isP1)
                 {
                     GameManager.instance.SetHasCleared(0, true);
+                    FaseUmTriggerController.Instance.SecondGateOpen();
                 }
                 else if (isP2)
                 {
                     GameManager.instance.SetHasCleared(1, true);
+                    FaseUmTriggerController.Instance.SecondGateOpen();
                 }
                 coll.enabled = true;
                 coll.transform.GetChild(0).gameObject.SetActive(true);

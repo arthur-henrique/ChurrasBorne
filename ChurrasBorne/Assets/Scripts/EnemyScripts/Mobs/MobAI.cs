@@ -350,8 +350,8 @@ public class MobAI : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
-            if (GameManager.instance.canTakeDamage)
-                StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
+            //if (GameManager.instance.canTakeDamage)
+                //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
             GameManager.instance.TakeDamage(10);
 
             isDashing = false;
@@ -457,7 +457,7 @@ public class MobAI : MonoBehaviour
         if (canBeKbed)
         {
             canBeKbed = false;
-            StartCoroutine(Knockback(knockbackDuration/2, 150f, player));
+            StartCoroutine(Knockback(knockbackDuration/2, 100f, player));
         }
     }
 

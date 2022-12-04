@@ -108,8 +108,8 @@ public class MainMenu_Manager : MonoBehaviour
         var fullscreen_mode = PlayerPrefs.GetInt("FULLSCREEN_MODE", 0);
         restable_opt = resolution_size;
         fs_mode_opt = fullscreen_mode;
-        Debug.Log(resolution_size);
-        Debug.Log(fullscreen_mode);
+        //Debug.Log(resolution_size);
+        //Debug.Log(fullscreen_mode);
         Screen.SetResolution(restable[restable_opt, 0], restable[restable_opt, 1], fs_mode_out[fs_mode_opt]);
 
 
@@ -343,7 +343,7 @@ public class MainMenu_Manager : MonoBehaviour
         {
             interactDelay -= Time.deltaTime;
         }
-        print(interactDelay);
+        //print(interactDelay);
 
 
         if (Time.fixedTime > 3)

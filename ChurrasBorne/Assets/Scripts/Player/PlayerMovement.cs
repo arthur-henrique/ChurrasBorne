@@ -406,6 +406,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnBossWeb = true;
         }
+        else if (other.CompareTag("CLEANSER"))
+        {
+            isOnIce = false;
+            isOnWeb = false;
+            isOnBossWeb = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -442,7 +448,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 direction = (obj.transform.position - pos).normalized;
             if (isOnIce)
             {
-                rb.AddForce(-direction * kbPower / 3);
+                rb.AddForce(-direction * kbPower / 5f);
             }
             else
                 rb.AddForce(-direction * kbPower);
