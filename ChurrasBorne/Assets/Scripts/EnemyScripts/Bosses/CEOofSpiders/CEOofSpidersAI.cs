@@ -41,6 +41,14 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public static bool spider_boss_died = false;
 
+    public AudioSource audioSource;
+    public AudioClip spider_hurt;
+    public AudioClip spider_intro;
+    public AudioClip spider_attack_1;
+    public AudioClip spider_attack_2;
+    public AudioClip spider_attack_3;
+    public AudioClip spider_death;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -48,6 +56,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
@@ -59,6 +68,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
+
+        audioSource.PlayOneShot(spider_intro, audioSource.volume);
     }
 
     void Update()
@@ -91,6 +102,7 @@ public class CEOofSpidersAI : MonoBehaviour
                     if (runningTime <= 0)
                     {
                         anim.SetTrigger("ATK3");
+                        audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
                         runningTime = startRunningTime;
                     }
                     else
@@ -113,12 +125,13 @@ public class CEOofSpidersAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("ATK1", true);
+                //audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
                 anim.SetBool("Walk", false);
 
                 if(timeBTWWebShots <= 0)
                 {
                     anim.SetTrigger("ATK2");
-
+                    audioSource.PlayOneShot(spider_attack_2, audioSource.volume);
                     timeBTWWebShots = startTimeBTWWebShot;
                 }
                 else
@@ -138,11 +151,12 @@ public class CEOofSpidersAI : MonoBehaviour
 
                 anim.SetBool("ATK1", true);
                 anim.SetBool("Walk", false);
+                //audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
 
                 if (!isAlreadySpawningSpiders)
                 {
                     anim.SetTrigger("ATK3");
-
+                    audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
                     isAlreadySpawningSpiders = true;    
                 }
                 break;
@@ -156,6 +170,7 @@ public class CEOofSpidersAI : MonoBehaviour
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
+                    audioSource.PlayOneShot(spider_death, audioSource.volume);
                     timeToDie = 10000;
                 }
                 else
@@ -262,15 +277,17 @@ public class CEOofSpidersAI : MonoBehaviour
     void ShootSpike()
     {
         Instantiate(spike, shootPoint.transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(spider_attack_2, audioSource.volume);
     }
     void ShootWeb()
     {
         Instantiate(web, shootPoint.transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
     }
     void SpawnSpiders()
     {
         Instantiate(spiders, transform.position, Quaternion.identity);
-
+        audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
         isAlreadySpawningSpiders = false;
 
         SwitchToChasing();
@@ -284,7 +301,7 @@ public class CEOofSpidersAI : MonoBehaviour
         gameObject.GetComponent<ColorChanger>().ChangeColor();
         int damage = 10;
         health -= damage;
-
+        audioSource.PlayOneShot(spider_hurt, audioSource.volume);
         anim.SetTrigger("Hit");
 
         if (!isAlreadyDying)

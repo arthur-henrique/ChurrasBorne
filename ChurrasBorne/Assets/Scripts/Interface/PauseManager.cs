@@ -389,6 +389,14 @@ public class PauseManager : MonoBehaviour
         pause_sel1.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 34.3f + 24, 0);
         pause_sel2.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -15.7f + 24, 0);
         pause_sel3.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -82.5f + 24, 0);
+
+        Color psel1cB = pause_sel1.GetComponent<TextMeshProUGUI>().color;
+        Color psel2cB = pause_sel2.GetComponent<TextMeshProUGUI>().color;
+        Color psel3cB = pause_sel3.GetComponent<TextMeshProUGUI>().color;
+
+        pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(psel1cB.r, psel1cB.g, psel1cB.b, 0.0f);
+        pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(psel2cB.r, psel2cB.g, psel2cB.b, 0.0f);
+        pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(psel3cB.r, psel3cB.g, psel3cB.b, 0.0f);
     }
     #endregion
 }

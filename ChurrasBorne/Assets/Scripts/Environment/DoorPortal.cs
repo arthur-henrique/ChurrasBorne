@@ -16,16 +16,19 @@ public class DoorPortal : MonoBehaviour
             if (gameObject.CompareTag("Tester"))
             {
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("Tutorial");
+                PlayerMovement.DisableControl();
             }
 
             if (gameObject.CompareTag("ParaHub"))
             {
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+                PlayerMovement.DisableControl();
             }
 
             if (gameObject.CompareTag("PortaUm"))
             {
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
+                PlayerMovement.DisableControl();
                 //if (!GameManager.instance.hasCleared[0])
                 //{
                 //    GameManager.instance.NextLevelSetter(Vector2.zero);
@@ -59,6 +62,7 @@ public class DoorPortal : MonoBehaviour
             if (gameObject.CompareTag("PortaDois"))
             {
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
+                PlayerMovement.DisableControl();
             }
         }
     }

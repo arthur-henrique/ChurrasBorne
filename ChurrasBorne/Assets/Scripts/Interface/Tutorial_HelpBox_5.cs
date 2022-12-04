@@ -11,7 +11,6 @@ public class Tutorial_HelpBox_5 : MonoBehaviour
     float heal_amount = 0f;
     bool transLock = false;
     PlayerController pc;
-
     private void OnEnable()
     {
         pc.Enable();
@@ -50,7 +49,7 @@ public class Tutorial_HelpBox_5 : MonoBehaviour
     }
     private IEnumerator Fade_In()
     {
-        for (int i = 0; i < 60 * 2; i++)
+        for (int i = 0; heal_amount < 1; i++)
         {
             var tutbgsc = TUT_BG.GetComponent<RectTransform>().localScale;
             tutbgsc.x = Mathf.Lerp(tutbgsc.x, 1, 6f * Time.deltaTime);
@@ -61,7 +60,7 @@ public class Tutorial_HelpBox_5 : MonoBehaviour
 
     private IEnumerator Fade_Out()
     {
-        for (int i = 0; i < 60 * 2; i++)
+        for (int i = 0; TUT_BG.GetComponent<RectTransform>().localScale.x != 0; i++)
         {
             var tutbgsc = TUT_BG.GetComponent<RectTransform>().localScale;
             tutbgsc.x = Mathf.Lerp(tutbgsc.x, 0, 8f * Time.deltaTime);

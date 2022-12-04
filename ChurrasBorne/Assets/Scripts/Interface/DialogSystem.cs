@@ -7,6 +7,9 @@ using TMPro;
 public class DialogSystem : MonoBehaviour
 {
     PlayerController pc;
+    private Vector3 velocity_box = Vector3.zero;
+    Coroutine cr_up;
+    Coroutine cr_down;
 
     [SerializeField]
     private TMP_Text _title;
@@ -27,7 +30,8 @@ public class DialogSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cr_up = StartCoroutine(voidTask());
+        cr_down = StartCoroutine(voidTask());
     }
 
     // Update is called once per frame
@@ -57,14 +61,20 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator PullUp()
     {
         var selec = getChildGameObject(gameObject, "BalloonBox");
-        if (selec.GetComponent<RectTransform>().anchoredPosition.y >= -173.99f)
-        {
-            StopCoroutine(PullUp());
-        }
+        //if (selec.GetComponent<RectTransform>().anchoredPosition.y >= -173.99f)
+        //{
+        //    StopCoroutine(PullUp());
+        //}
         for (int i = 0; i < 120; i++)
         {
-            selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -174, 0), 25f * Time.fixedDeltaTime);
+            //selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -174, 0), 25f * Time.fixedDeltaTime);
+
+            selec.GetComponent<RectTransform>().anchoredPosition =
+                            Vector3.SmoothDamp(selec.GetComponent<RectTransform>().anchoredPosition,
+                            new Vector3(0, -174, 0), ref velocity_box, 8 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
+
+            if (GameManager.isInDialog == false) { yield break; }
+
             yield return null;
         }
     }
@@ -72,14 +82,20 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator PullDown()
     {
         var selec = getChildGameObject(gameObject, "BalloonBox");
-        if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-        {
-            StopCoroutine(PullDown());
-        }
+        //if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
+        //{
+        //    StopCoroutine(PullDown());
+        //}
         for (int i = 0; i < 120; i++)
         {
-            selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+            //selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+
+            selec.GetComponent<RectTransform>().anchoredPosition =
+                            Vector3.SmoothDamp(selec.GetComponent<RectTransform>().anchoredPosition,
+                            new Vector3(0, -334, 0), ref velocity_box, 8 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
+
+            if (GameManager.isInDialog == true) { yield break; }
+
             yield return null;
         }
     }
@@ -102,8 +118,14 @@ public class DialogSystem : MonoBehaviour
         }
         for (int i = 0; i < 120; i++)
         {
-            selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+            //selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+
+            selec.GetComponent<RectTransform>().anchoredPosition =
+                            Vector3.SmoothDamp(selec.GetComponent<RectTransform>().anchoredPosition,
+                            new Vector3(0, -334, 0), ref velocity_box, 8 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
+
+            if (GameManager.isInDialog == true) { yield break; }
+
             yield return null;
         }
         
@@ -132,25 +154,39 @@ public class DialogSystem : MonoBehaviour
         }
         for (int i = 0; i < 120; i++)
         {
-            selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition,
-                                                               new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+            //selec.GetComponent<RectTransform>().anchoredPosition = Vector3.Lerp(selec.GetComponent<RectTransform>().anchoredPosition, new Vector3(0, -334, 0), 25f * Time.fixedDeltaTime);
+
+            selec.GetComponent<RectTransform>().anchoredPosition =
+                            Vector3.SmoothDamp(selec.GetComponent<RectTransform>().anchoredPosition,
+                            new Vector3(0, -334, 0), ref velocity_box, 8 * Time.unscaledDeltaTime, 999, Time.unscaledDeltaTime);
+
+            if (GameManager.isInDialog == true) { yield break; }
+
             yield return null;
         }
 
     }
 
+    public IEnumerator voidTask()
+    {
+        yield return null;
+    }
+
+
     public void db_PullUP()
     {
         GameManager.isInDialog = true;
         PlayerMovement.DisableControl();
-        StartCoroutine(PullUp());
+        StopCoroutine(cr_down);
+        cr_up = StartCoroutine(PullUp());
     }
 
     public void db_PullDOWN()
     {
         GameManager.isInDialog = false;
         PlayerMovement.EnableControl();
-        StartCoroutine(PullDown());
+        StopCoroutine(cr_up);
+        cr_down = StartCoroutine(PullDown());
     }
     public void db_SetSceneSimple(int scene_number)
     {

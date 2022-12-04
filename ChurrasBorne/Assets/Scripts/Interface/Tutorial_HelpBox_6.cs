@@ -53,7 +53,7 @@ public class Tutorial_HelpBox_6 : MonoBehaviour
     }
     private IEnumerator Fade_In()
     {
-        for (int i = 0; i < 60 * 2; i++)
+        for (int i = 0; heal_amount < 1; i++)
         {
             var tutbgsc = TUT_BG.GetComponent<RectTransform>().localScale;
             tutbgsc.x = Mathf.Lerp(tutbgsc.x, 1, 6f * Time.deltaTime);

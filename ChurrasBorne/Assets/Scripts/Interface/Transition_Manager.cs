@@ -137,6 +137,7 @@ public class Transition_Manager : MonoBehaviour
                 Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
+        PlayerMovement.EnableControl();
 
         //ReturnOriginalPosition();
 
@@ -278,6 +279,9 @@ public class Transition_Manager : MonoBehaviour
             scene_text_display.GetComponent<TextMeshProUGUI>().color = txt_col;
             yield return null;
         }
+        var txt_colb = scene_text_display.GetComponent<TextMeshProUGUI>().color;
+        txt_colb.a = 0.0f;
+        scene_text_display.GetComponent<TextMeshProUGUI>().color = txt_colb;
     }
 
     private void ReturnOriginalPosition()

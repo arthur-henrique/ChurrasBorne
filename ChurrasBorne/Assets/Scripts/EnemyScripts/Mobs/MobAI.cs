@@ -48,7 +48,7 @@ public class MobAI : MonoBehaviour
 
     private float yOffset = 1.7f;
     private float knockbackDuration = 1f;
-    private float knockbackPower = 100f;
+    private float knockbackPower = 25f;
 
     private bool canBeKbed = true;
 
@@ -385,7 +385,7 @@ public class MobAI : MonoBehaviour
             anim.SetTrigger("Hit");
             if (!isProjectile)
             {
-                KnockBackSide();
+                //KnockBackSide();
             }
         }
 
@@ -457,7 +457,7 @@ public class MobAI : MonoBehaviour
         if (canBeKbed)
         {
             canBeKbed = false;
-            StartCoroutine(Knockback(knockbackDuration/2, 100f, player));
+            StartCoroutine(Knockback(knockbackDuration/2, 25f, player));
         }
     }
 
