@@ -50,6 +50,8 @@ public class MobAI : MonoBehaviour
     private float knockbackDuration = 1f;
     private float knockbackPower = 100f;
 
+    private bool canBeKbed = true;
+
 
     private void Awake()
     {
@@ -342,12 +344,14 @@ public class MobAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            if (GameManager.instance.canTakeDamage)
+                StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
-            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*2, this.transform));
+            if (GameManager.instance.canTakeDamage)
+                StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
             GameManager.instance.TakeDamage(10);
 
             isDashing = false;
@@ -450,7 +454,11 @@ public class MobAI : MonoBehaviour
 
     void KnockBackSide()
     {
-        StartCoroutine(Knockback(knockbackDuration/2, 150f, player));
+        if (canBeKbed)
+        {
+            canBeKbed = false;
+            StartCoroutine(Knockback(knockbackDuration/2, 150f, player));
+        }
     }
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
@@ -466,6 +474,7 @@ public class MobAI : MonoBehaviour
             Vector2 direction = (obj.transform.position - this.transform.position).normalized;
             rb.AddForce(-direction * kbPower);
         }
+        canBeKbed = true;
         yield return 0;
     }
 }
