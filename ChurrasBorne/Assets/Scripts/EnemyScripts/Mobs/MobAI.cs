@@ -405,7 +405,12 @@ public class MobAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameManager.instance.TakeDamage(5);
-            gameObject.GetComponent<Collider2D>().isTrigger = true;
+
+            if (!isDashing)
+            {
+                gameObject.GetComponent<Collider2D>().isTrigger = true;
+            }
+
         }
 
         if (isADasher && isDashing)
