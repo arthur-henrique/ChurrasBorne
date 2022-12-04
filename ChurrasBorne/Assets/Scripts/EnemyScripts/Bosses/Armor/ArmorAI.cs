@@ -44,6 +44,8 @@ public class ArmorAI : MonoBehaviour
     public bool isOnFaseDois, isOnFaseDoisHalf;
     public Animator faseDois, faseDoisHalf;
 
+    public static bool armor_boss_died = false;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -139,6 +141,7 @@ public class ArmorAI : MonoBehaviour
 
                 if (timeToDie <= 0)
                 {
+                    armor_boss_died = true;
                     anim.SetTrigger("Die");
                     audioSource.PlayOneShot(armor_death, audioSource.volume);
                     timeToDie = 1000;

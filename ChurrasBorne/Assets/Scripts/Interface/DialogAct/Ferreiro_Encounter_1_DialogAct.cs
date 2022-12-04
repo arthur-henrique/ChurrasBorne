@@ -36,8 +36,11 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
         {
             ferreiro_encounter_2_occurred = false;
         }
+        if (GameManager.instance.GetHasCleared(0) == true)
+        {
+            gameObject.SetActive(false);
+        }
         target = GameObject.FindGameObjectWithTag("Player");
-        GetComponent<Animator>().SetBool("APAGAR", false);
         dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 

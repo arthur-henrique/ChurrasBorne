@@ -1124,6 +1124,7 @@ MonoBehaviour:
   gameOverPrefab: {fileID: 1214597544727120186, guid: 3068dd6c7bdf1f24c9f61567078f30db, type: 3}
   audioSource: {fileID: 0}
   gateOpen: {fileID: 8300000, guid: 1c7a82c093e8928499f3f05f5e44354e, type: 3}
+  clearGamePrefab: {fileID: 6623422329809284682, guid: a772241e84bf84d4c89f68d8efaac744, type: 3}
   maxHealth: 100
   currentHealth: 0
   healsLeft: 0
@@ -1134,6 +1135,7 @@ MonoBehaviour:
   og_health: 0
   og_meat: 0
   og_sword: 0
+  clearGame: 0
   hasCleared: 00000000
 --- !u!4 &1098553892
 Transform:

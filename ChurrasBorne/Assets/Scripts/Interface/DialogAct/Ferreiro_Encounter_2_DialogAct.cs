@@ -32,7 +32,6 @@ public class Ferreiro_Encounter_2_DialogAct : MonoBehaviour
             ferreiro_encounter_3_occurred = false;
         }
         target = GameObject.FindGameObjectWithTag("Player");
-        GetComponent<Animator>().SetBool("APAGAR", false);
         dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 
