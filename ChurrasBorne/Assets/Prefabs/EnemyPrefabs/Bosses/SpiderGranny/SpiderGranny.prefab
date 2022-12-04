@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7805047216728662606}
   - component: {fileID: 2904159234976617138}
   - component: {fileID: 1697492546533258711}
-  - component: {fileID: 8398414835520306878}
+  - component: {fileID: 5099703609207020552}
   m_Layer: 8
   m_Name: SpiderGranny
   m_TagString: Untagged
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  gameManager: {fileID: 0}
   rb: {fileID: 9200263015534780179}
   web: {fileID: 8398305742426787942, guid: a315dfd3d7f7413468edf47e09af1328, type: 3}
   spike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
@@ -166,14 +167,13 @@ MonoBehaviour:
   health: 350
   isSpiderGranny: 1
   speed: 6
-  startStunTime: 0.5
   rangedDistanceI: 6
   rangedDistanceII: 20
   startTimeBTWWebShot: 4
   startTimeToSpawnSpiders: 15
   faseDois: {fileID: 0}
   faseDoisHalf: {fileID: 0}
---- !u!114 &8398414835520306878
+--- !u!114 &5099703609207020552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startColor: {r: 0, g: 0, b: 0, a: 0}
-  endColor: {r: 0, g: 0, b: 0, a: 0}
-  speed: 0
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5
 --- !u!1 &4332951157426702839
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,8 +34,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
     private bool isAlreadyDying = false, isAlreadySpawningSpiders = false;
 
-    public float speed, startStunTime, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders;
-    private float stunTime, timeBTWWebShots, timeToSpawnSpiders;
+    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders;
+    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie;
 
     public Animator faseDois, faseDoisHalf;
 
@@ -51,7 +51,8 @@ public class CEOofSpidersAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-        stunTime = startStunTime;
+        timeToDie = .1f;
+
         timeBTWWebShots = startTimeBTWWebShot;
         timeToSpawnSpiders = startTimeToSpawnSpiders;
 
@@ -132,36 +133,21 @@ public class CEOofSpidersAI : MonoBehaviour
                 }
                 break;
 
-            case State.WasHit:
-                rb.velocity = Vector2.zero;
-
-                anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);
-
-                if (stunTime <= 0)
-                { 
-                    if (!isAlreadyDying)
-                    {
-                        SwitchToDead();
-                    }
-
-                    SwitchToChasing();
-                    SwitchToRunning();
-                    SwitchToShooting();
-                    SwitchToSpawningSpiders();
-
-                    stunTime = startStunTime;
-                }
-                else
-                {
-                    stunTime -= Time.deltaTime;
-                }
-                break;
-
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                anim.SetTrigger("Die");
+                anim.SetBool("ATK1", true);
+                anim.SetBool("Walk", false);
+
+                if (timeToDie <= 0)
+                {
+                    anim.SetTrigger("Die");
+                    timeToDie = 10000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
+                }
 
                 isAlreadyDying = true;
                 spider_boss_died = true;
