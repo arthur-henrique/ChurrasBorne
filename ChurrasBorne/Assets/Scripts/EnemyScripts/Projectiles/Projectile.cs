@@ -75,8 +75,17 @@ public class Projectile : MonoBehaviour
         //DAMAGE
         if (collision.CompareTag("Player") && health > 0)
         {
-            GameManager.instance.TakeDamage(10);
-            Destroy(gameObject);
+            if (!isAWeb)
+            {
+                GameManager.instance.TakeDamage(15);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+
+                Destroy(gameObject);
+            }
         }
         else if (collision.CompareTag("TRONCO"))
         {

@@ -67,8 +67,17 @@ public class SpiderGrannyWeb : MonoBehaviour
         //DAMAGE
         if (collision.CompareTag("Player") && health > 0)
         {
-            GameManager.instance.TakeDamage(10);
-            Destroy(gameObject);
+            if (!isAWeb)
+            {
+                GameManager.instance.TakeDamage(1);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instantiate(grannyWeb, transform.position, Quaternion.identity);
+                Debug.Log("lmao");
+                Destroy(gameObject);
+            }
         }
         else if (collision.CompareTag("TRONCO"))
         {

@@ -34,8 +34,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
     private bool isAlreadyDying = false, isAlreadySpawningSpiders = false;
 
-    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders;
-    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie;
+    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders, startRunningTime;
+    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie, runningTime;
 
     public Animator faseDois, faseDoisHalf;
 
@@ -52,6 +52,7 @@ public class CEOofSpidersAI : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         timeToDie = .1f;
+        runningTime = startRunningTime;
 
         timeBTWWebShots = startTimeBTWWebShot;
         timeToSpawnSpiders = startTimeToSpawnSpiders;
@@ -84,6 +85,19 @@ public class CEOofSpidersAI : MonoBehaviour
                 Flip();
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+
+                if (isSpiderGranny)
+                {
+                    if (runningTime <= 0)
+                    {
+                        anim.SetTrigger("ATK3");
+                        runningTime = startRunningTime;
+                    }
+                    else
+                    {
+                        runningTime -= Time.deltaTime;
+                    }
+                }
 
                 anim.SetBool("Walk", true);
                 anim.SetBool("ATK1", false);
