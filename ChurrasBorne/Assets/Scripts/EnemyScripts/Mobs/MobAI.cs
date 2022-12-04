@@ -347,7 +347,7 @@ public class MobAI : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*2, this.transform));
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*2, this.transform));
             GameManager.instance.TakeDamage(10);
 
             isDashing = false;
