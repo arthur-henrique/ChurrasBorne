@@ -16,6 +16,7 @@ public class BullAI : MonoBehaviour
     }
     private State state;
 
+    public GameObject gameManager;
     public Transform player;
     public Rigidbody2D rb;
     public Animator anim;
@@ -52,6 +53,7 @@ public class BullAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         //Para SPAWN, MOVEMENT, BASH, AXE
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         timeBTWMeleeATKs = .5f;
 
@@ -166,6 +168,11 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
     }
 

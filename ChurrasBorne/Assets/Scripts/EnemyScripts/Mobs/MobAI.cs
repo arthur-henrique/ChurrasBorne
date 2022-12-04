@@ -136,6 +136,8 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
+                //print(state);
+
                 if (timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
@@ -211,8 +213,13 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
+                //print(state);
+
+                
+
                 if (stunTime <= 0)
                 {
+                    print(state);
                     SwitchToChasing();
                     SwitchToIdling();
                     SwitchToAttacking();
@@ -220,6 +227,7 @@ public class MobAI : MonoBehaviour
                 }
                 else
                 {
+                    print(stunTime);
                     stunTime -= Time.deltaTime; 
                 }
                 break;
@@ -372,12 +380,15 @@ public class MobAI : MonoBehaviour
     }
 
     //HEALTH
-    public void TakeDamage()
+    public void TakeDamage(bool isProjectile = false)
     {
         if (health >= 0)
         {
             anim.SetTrigger("Hit");
-            KnockBackSide();
+            if (!isProjectile)
+            {
+                KnockBackSide();
+            }
         }
 
         int damage;
@@ -399,7 +410,6 @@ public class MobAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(5);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
@@ -423,6 +433,18 @@ public class MobAI : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PROJECTILE"))
+        {
+            if (collision.transform.GetComponent<Projectile>().hasBeenParried)
+            {
+                TakeDamage(true);
+                Destroy(projectile);
+            }
+        }
+    }
+
     void DestroySelf()
     {
         Destroy(gameObject, 1.5f);
@@ -431,14 +453,6 @@ public class MobAI : MonoBehaviour
     void KnockBackSide()
     {
         StartCoroutine(Knockback(knockbackDuration/2, 150f, player));
-        //int randomPos = Random.Range(0, 3);
-        //if (kbSide[randomPos].gameObject.activeSelf == true)
-        //{
-            
-        //}
-        //    this.transform.position = kbSide[randomPos].position;
-        //else
-        //{ }
     }
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)

@@ -18,6 +18,7 @@ public class GoatAI : MonoBehaviour
     }
     private State state;
 
+    public GameObject gameManager;
     public Transform player;
     private Vector2 dashTarget;
 
@@ -54,6 +55,7 @@ public class GoatAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
         audioSource = GetComponent<AudioSource>();
 
         timeBTWMeleeATKs = .5f;
@@ -206,6 +208,11 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
 
         if (!isDashing)

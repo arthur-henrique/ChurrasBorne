@@ -13,12 +13,14 @@ public class CEOofSpidersAI : MonoBehaviour
         Shooting,
         SpawningSpiders,
         WasHit,
+        Idling,
         Dead
     }
     
     private State state;
 
     public Transform player;
+    public GameObject gameManager;
 
     public Rigidbody2D rb;
 
@@ -45,6 +47,7 @@ public class CEOofSpidersAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         stunTime = startStunTime;
         timeBTWWebShots = startTimeBTWWebShot;
@@ -162,6 +165,18 @@ public class CEOofSpidersAI : MonoBehaviour
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Walk", true);
+                anim.SetBool("ATK1", false);
+                break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
     }
 

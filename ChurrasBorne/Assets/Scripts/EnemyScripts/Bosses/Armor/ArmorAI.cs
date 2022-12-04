@@ -16,6 +16,7 @@ public class ArmorAI : MonoBehaviour
     private State state;
 
     public Transform player;
+    public GameObject gameManager;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -52,6 +53,7 @@ public class ArmorAI : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
         currentTimeBTWSlashATKs = .1f;
         currentTimeBTWSpinATKs = .1f;
@@ -154,6 +156,11 @@ public class ArmorAI : MonoBehaviour
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
     }
 

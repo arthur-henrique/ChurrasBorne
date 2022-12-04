@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6631505782237336678}
   m_Layer: 8
   m_Name: SpitterProjectile
-  m_TagString: Untagged
+  m_TagString: PROJECTILE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,9 +121,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.005579233, y: -0.03347546}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.360519
 --- !u!114 &1683887513110611984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,10 +137,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  APTP: {fileID: 0}
+  mommyWeb: {fileID: 0}
+  spitter: {fileID: 0}
   health: 10
-  anim: {fileID: 6631505782237336678}
   isOnTutorial: 0
+  isAWeb: 0
+  hasBeenParried: 0
 --- !u!95 &6631505782237336678
 Animator:
   serializedVersion: 3

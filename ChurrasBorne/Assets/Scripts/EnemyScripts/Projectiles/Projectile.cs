@@ -11,9 +11,11 @@ public class Projectile : MonoBehaviour
 
     public GameObject mommyWeb;
 
+    public GameObject spitter;
+
     public int health;
 
-    public bool isOnTutorial, isAWeb;
+    public bool isOnTutorial, isAWeb, hasBeenParried;
 
     void Start()
     {
@@ -32,6 +34,8 @@ public class Projectile : MonoBehaviour
 
             target.y = APTP.position.y + fator.y * 3;
         }
+
+        hasBeenParried = false;
     }
 
     //PROJECTILE MOVEMENT
@@ -44,6 +48,8 @@ public class Projectile : MonoBehaviour
         else if (health <= 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
+
+            hasBeenParried = true;
         }
 
         if (transform.position.x == target.x && transform.position.y == target.y)
@@ -59,6 +65,8 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        Destroy(gameObject, 7f);
     }
 
     
