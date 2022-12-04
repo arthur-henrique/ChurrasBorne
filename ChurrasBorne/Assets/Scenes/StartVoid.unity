@@ -1130,6 +1130,8 @@ MonoBehaviour:
   healsLeft: 0
   isTut: 0
   respawnCooldown: 0
+  canTakeDamage: 0
+  hasJustDied: 0
   isAlive: 0
   scene_detect: 
   og_health: 0

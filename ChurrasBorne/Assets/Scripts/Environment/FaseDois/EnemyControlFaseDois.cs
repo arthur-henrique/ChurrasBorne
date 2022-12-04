@@ -106,12 +106,12 @@ public class EnemyControlFaseDois : MonoBehaviour
         }
         if (seventhMob.Contains(enemy))
         {
-            firstMob.Remove(enemy);
+            seventhMob.Remove(enemy);
             IsSeventhMobCleared();
         }
         if (eigthMob.Contains(enemy))
         {
-            firstMob.Remove(enemy);
+            eigthMob.Remove(enemy);
             IsEigthMobCleared();
         }
     }
