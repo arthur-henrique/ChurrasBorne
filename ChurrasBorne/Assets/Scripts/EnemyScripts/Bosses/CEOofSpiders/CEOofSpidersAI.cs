@@ -265,7 +265,7 @@ public class CEOofSpidersAI : MonoBehaviour
         SwitchToSpawningSpiders();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(bool isProjectile = false)
     {
         gameObject.GetComponent<ColorChanger>().ChangeColor();
         int damage = 10;
@@ -296,6 +296,17 @@ public class CEOofSpidersAI : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PROJECTILE"))
+        {
+            if (collision.transform.GetComponent<Projectile>().hasBeenParried)
+            {
+                TakeDamage(true);
+            }
         }
     }
 }

@@ -136,8 +136,6 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                //print(state);
-
                 if (timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
@@ -211,18 +209,14 @@ public class MobAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);
-
-                //print(state);
-
-                
+                anim.SetBool("Walk", false);               
 
                 if (stunTime <= 0)
                 {
-                    print(state);
                     SwitchToChasing();
                     SwitchToIdling();
                     SwitchToAttacking();
+                    SwitchToShooting();
                     SwitchToDead();
                 }
                 else
@@ -440,7 +434,6 @@ public class MobAI : MonoBehaviour
             if (collision.transform.GetComponent<Projectile>().hasBeenParried)
             {
                 TakeDamage(true);
-                Destroy(projectile);
             }
         }
     }

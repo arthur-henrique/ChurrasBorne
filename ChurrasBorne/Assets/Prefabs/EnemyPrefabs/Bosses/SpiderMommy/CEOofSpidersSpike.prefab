@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7666718932049446701}
   m_Layer: 8
   m_Name: CEOofSpidersSpike
-  m_TagString: Projectile
+  m_TagString: PROJECTILE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,3 +161,4 @@ MonoBehaviour:
   health: 10
   isOnTutorial: 0
   isAWeb: 0
+  hasBeenParried: 0
