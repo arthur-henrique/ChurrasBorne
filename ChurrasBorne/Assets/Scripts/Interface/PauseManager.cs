@@ -98,14 +98,18 @@ public class PauseManager : MonoBehaviour
     {
         if (pc.UI.Pause.WasPressedThisFrame())
         {
-            audioSource.PlayOneShot(ui_confirm, audioSource.volume);
-            if (isPaused && GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetBool("isDead") == false)
+            if (GameManager.instance.GetAlive() == true)
             {
-                Hide_Pause();
-            } else
-            {
-                canChange = false;
-                Show_Pause();
+                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                if (isPaused && GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetBool("isDead") == false)
+                {
+                    Hide_Pause();
+                }
+                else
+                {
+                    canChange = false;
+                    Show_Pause();
+                }
             }
             
         }
