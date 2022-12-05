@@ -156,16 +156,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb065329e6f8a114aa3f29f09ac99a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   chasingSpeed: 6
-  dashingSpeed: 16
-  meleeDistance: 4
+  dashingSpeed: 20
+  meleeDistance: 7
   dashDistance: 18
-  dashATKDistance: 4
+  dashATKDistance: 5
   canDashDistance: 12
-  startTimeBTWMeleeATKs: 2
-  startDashRecoveryTime: 2
-  health: 200
+  startTimeBTWMeleeATKs: 1.5
+  startDashRecoveryTime: 1
+  health: 350
   rb: {fileID: 8446388628132816272}
   anim: {fileID: 9160456545418378528}
   isP1: 0

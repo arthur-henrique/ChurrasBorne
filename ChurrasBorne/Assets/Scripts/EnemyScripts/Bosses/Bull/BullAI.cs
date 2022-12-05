@@ -165,7 +165,6 @@ public class BullAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
-                anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
                 break;
         }

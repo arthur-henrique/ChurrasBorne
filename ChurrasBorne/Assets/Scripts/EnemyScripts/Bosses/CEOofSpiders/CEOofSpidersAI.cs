@@ -14,6 +14,7 @@ public class CEOofSpidersAI : MonoBehaviour
         SpawningSpiders,
         WasHit,
         Idling,
+        Repositioning,
         Dead
     }
     
@@ -26,6 +27,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public GameObject web, spike, spiders, shootPoint;
 
+    public GameObject[] tbPoints;
+
     public Animator anim;
 
     public int health;
@@ -34,8 +37,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
     private bool isAlreadyDying = false, isAlreadySpawningSpiders = false;
 
-    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders, startRunningTime;
-    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie, runningTime;
+    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders, startRunningTime, startTimeToReposition;
+    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie, runningTime, timeToReposition;
 
     public Animator faseDois, faseDoisHalf;
 
@@ -65,6 +68,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
         timeBTWWebShots = startTimeBTWWebShot;
         timeToSpawnSpiders = startTimeToSpawnSpiders;
+        timeToReposition = startTimeToReposition;
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
@@ -111,12 +115,36 @@ public class CEOofSpidersAI : MonoBehaviour
                     }
                 }
 
+                if (!isSpiderGranny)
+                {
+                    if (timeToReposition <= 0)
+                    {
+                        state = State.Repositioning;
+
+                        timeToReposition = startTimeToReposition;
+                    }
+                    else
+                    {
+                        timeToReposition -= Time.deltaTime;
+                    }
+                }
                 anim.SetBool("Walk", true);
                 anim.SetBool("ATK1", false);
 
                 SwitchToChasing();
                 SwitchToShooting();
                 SwitchToSpawningSpiders();
+                break;
+
+            case State.Repositioning:
+                Flip();
+
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Walk", true);
+                anim.SetBool("ATK1", false);
+
+                anim.SetTrigger("Disappear");
                 break;
 
             case State.Shooting:
@@ -128,7 +156,7 @@ public class CEOofSpidersAI : MonoBehaviour
                 //audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
                 anim.SetBool("Walk", false);
 
-                if(timeBTWWebShots <= 0)
+                if (timeBTWWebShots <= 0)
                 {
                     anim.SetTrigger("ATK2");
                     audioSource.PlayOneShot(spider_attack_2, audioSource.volume);
@@ -166,6 +194,8 @@ public class CEOofSpidersAI : MonoBehaviour
 
                 anim.SetBool("ATK1", true);
                 anim.SetBool("Walk", false);
+
+                timeToReposition = startTimeToReposition;
 
                 if (timeToDie <= 0)
                 {
@@ -294,6 +324,21 @@ public class CEOofSpidersAI : MonoBehaviour
         SwitchToRunning();
         SwitchToShooting();
         SwitchToSpawningSpiders();
+    }
+    void HasDisappeared()
+    {
+        int rand = Random.Range(0, 6);
+
+        transform.position = tbPoints[rand].transform.position;
+
+        anim.SetTrigger("Reappear");
+    }
+
+    void HasReappeared()
+    {
+        SwitchToChasing();
+        SwitchToRunning();
+        SwitchToShooting();
     }
 
     public void TakeDamage(bool isProjectile = false)

@@ -13,9 +13,11 @@ public class Projectile : MonoBehaviour
 
     public GameObject spitter;
 
+    private GameObject faseDois;
+
     public int health;
 
-    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried;
+    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois;
 
     void Start()
     {
@@ -35,7 +37,16 @@ public class Projectile : MonoBehaviour
             target.y = APTP.position.y + fator.y * 3;
         }
 
+        isOnFaseDois = false;
+
         hasBeenParried = false;
+
+        faseDois = GameObject.FindGameObjectWithTag("FASEDOIS");
+
+        if (faseDois != null)
+        {
+            isOnFaseDois = true;
+        }
     }
 
     //PROJECTILE MOVEMENT
@@ -96,7 +107,7 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (collision.CompareTag("PAREDE"))
+        else if (collision.CompareTag("PAREDE") && !isOnFaseDois)
         {
             Destroy(gameObject);
         }

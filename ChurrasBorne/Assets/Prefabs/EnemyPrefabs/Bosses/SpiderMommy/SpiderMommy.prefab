@@ -164,6 +164,7 @@ MonoBehaviour:
   spike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
   spiders: {fileID: 0}
   shootPoint: {fileID: 5254078576648270915}
+  tbPoint: {fileID: 0}
   anim: {fileID: 2223503110792180030}
   health: 250
   isSpiderGranny: 0
@@ -173,6 +174,7 @@ MonoBehaviour:
   startTimeBTWWebShot: 4
   startTimeToSpawnSpiders: 0
   startRunningTime: 0
+  startTimeToReposition: 2
   faseDois: {fileID: 0}
   faseDoisHalf: {fileID: 0}
   audioSource: {fileID: 0}
