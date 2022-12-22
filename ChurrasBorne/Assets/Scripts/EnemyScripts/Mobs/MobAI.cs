@@ -51,6 +51,7 @@ public class MobAI : MonoBehaviour
     private float knockbackPower = 25f;
 
     private bool canBeKbed = true;
+    private bool canTakeDamage = true;
 
 
     private void Awake()
@@ -380,29 +381,31 @@ public class MobAI : MonoBehaviour
     //HEALTH
     public void TakeDamage(bool isProjectile = false)
     {
-        if (health >= 0)
+        if (canTakeDamage)
         {
-            anim.SetTrigger("Hit");
-            if (!isProjectile)
+            canTakeDamage = false;
+            StartCoroutine(CanTakeDamageCD());
+            if (health >= 0)
+                anim.SetTrigger("Hit");
+
+            int damage;
+
+            if (isOnTutorial)
             {
-                //KnockBackSide();
+                damage = 5;
             }
+            else
+            {
+                damage = 10;
+            }
+            health -= damage;
+            audioSource.PlayOneShot(monster_hurt, audioSource.volume);
+            state = State.Stunned;
         }
 
-        int damage;
+        
 
-        if(isOnTutorial)
-        {
-            damage = 5;
-        }
-        else
-        {
-            damage = 10;    
-        }
-
-        health -= damage;
-        audioSource.PlayOneShot(monster_hurt, audioSource.volume);
-        state = State.Stunned;
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -459,6 +462,12 @@ public class MobAI : MonoBehaviour
             canBeKbed = false;
             StartCoroutine(Knockback(knockbackDuration/2, 25f, player));
         }
+    }
+
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)

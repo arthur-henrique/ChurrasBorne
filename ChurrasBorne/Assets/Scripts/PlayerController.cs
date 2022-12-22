@@ -80,6 +80,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interagir"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f09ddbe-b25f-469f-8183-6d2f7776b2b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -371,6 +380,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d350e25e-3577-42bd-a69a-ff60596fa9db"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rolar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2a28d1d7-af53-4467-9e54-c9951d377f5f"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
@@ -383,7 +403,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8861326a-86e1-4baf-a82f-d2cf68574a72"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -395,6 +415,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f633cbdf-a6a0-42fc-b9c9-e6d505d3a3e0"",
                     ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7affcb02-ab89-49a2-aed9-1535e53be035"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -432,6 +463,39 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c752c798-e3b9-4f5c-857e-da3928f81376"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66aa0df9-89a4-4fd6-8e26-7381db33ca33"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interagir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acbb6ec8-b088-4593-ac5b-4173145ae398"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interagir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -555,6 +619,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_MousePosition = m_Movimento.FindAction("MousePosition", throwIfNotFound: true);
         m_Movimento_Attack = m_Movimento.FindAction("Attack", throwIfNotFound: true);
         m_Movimento_Curar = m_Movimento.FindAction("Curar", throwIfNotFound: true);
+        m_Movimento_Interagir = m_Movimento.FindAction("Interagir", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -628,6 +693,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_MousePosition;
     private readonly InputAction m_Movimento_Attack;
     private readonly InputAction m_Movimento_Curar;
+    private readonly InputAction m_Movimento_Interagir;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -638,6 +704,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_Movimento_MousePosition;
         public InputAction @Attack => m_Wrapper.m_Movimento_Attack;
         public InputAction @Curar => m_Wrapper.m_Movimento_Curar;
+        public InputAction @Interagir => m_Wrapper.m_Movimento_Interagir;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -665,6 +732,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Curar.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
                 @Curar.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
                 @Curar.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
+                @Interagir.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
+                @Interagir.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
+                @Interagir.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -687,6 +757,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Curar.started += instance.OnCurar;
                 @Curar.performed += instance.OnCurar;
                 @Curar.canceled += instance.OnCurar;
+                @Interagir.started += instance.OnInteragir;
+                @Interagir.performed += instance.OnInteragir;
+                @Interagir.canceled += instance.OnInteragir;
             }
         }
     }
@@ -781,6 +854,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnCurar(InputAction.CallbackContext context);
+        void OnInteragir(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
