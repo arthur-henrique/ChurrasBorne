@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Attacking:
                 anim.SetBool("attackIsPlaying", true);
-                state = State.Normal;
+                StartCoroutine(ReturnToNormal());
                 anim.SetBool("attackIsPlaying", false);
                 attackPressed = false;
                 break;
@@ -306,6 +306,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
+                rb.velocity = Vector2.zero;
                 break;
             case State.Healing:
                 moveVelocity = 0.8f * speed * direcao;
@@ -392,6 +393,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("GELO"))
@@ -436,6 +438,13 @@ public class PlayerMovement : MonoBehaviour
         canAttackChecker = 0.9f;
         canAttack = true;
     }
+    IEnumerator ReturnToNormal()
+    {
+        yield return new WaitForSeconds(0.15f);
+        if(state == State.Attacking && state != State.Dead)
+            state = State.Normal;
+    }
+
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
     { /*
