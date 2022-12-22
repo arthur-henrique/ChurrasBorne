@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         isOnIce = false;
         isOnWeb = false;
         isOnBossWeb = false;
+        speed = 10f;
     }
     // Update is called once per frame
     void Update()
@@ -414,6 +415,10 @@ public class PlayerMovement : MonoBehaviour
             isOnWeb = false;
             isOnBossWeb = false;
         }
+        else if (other.CompareTag("Fish"))
+        {
+            gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -429,6 +434,10 @@ public class PlayerMovement : MonoBehaviour
         else if (other.CompareTag("TEIABOSS"))
         {
             isOnBossWeb = false;
+        }
+        else if (other.CompareTag("Fish"))
+        {
+            other.enabled = false;
         }
     }
 
