@@ -201,6 +201,7 @@ public class ArmorAI : MonoBehaviour
         if(health <= 0)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
             if (isOnFaseDois)
             {
                 FaseDoisTriggerController.Instance.GateOpener();

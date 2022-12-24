@@ -230,6 +230,7 @@ public class TricksterAI : MonoBehaviour
         if (health <= 0)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
         }
     }
 

@@ -213,6 +213,7 @@ public class BullAI : MonoBehaviour
         if (health <= 0 && isAlive)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
             if (isOnTut)
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();

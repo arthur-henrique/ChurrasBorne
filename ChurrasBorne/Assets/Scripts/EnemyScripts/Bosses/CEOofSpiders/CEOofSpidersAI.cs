@@ -277,6 +277,7 @@ public class CEOofSpidersAI : MonoBehaviour
         if(health <= 0)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
             if (!isSpiderGranny)
             {
                 FaseDoisTriggerController.Instance.GateOpener();

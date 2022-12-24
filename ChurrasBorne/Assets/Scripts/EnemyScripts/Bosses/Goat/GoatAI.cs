@@ -259,6 +259,7 @@ public class GoatAI : MonoBehaviour
         if (health <= 0 && isAlive)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
         }
     }
 
