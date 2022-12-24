@@ -330,6 +330,7 @@ public class GameManager : MonoBehaviour
     {
         dft.Priority = 1;
         gate.Priority = 0;
+        boss.Priority = 0;
     }
 
     public void SwitchToBossCam()
