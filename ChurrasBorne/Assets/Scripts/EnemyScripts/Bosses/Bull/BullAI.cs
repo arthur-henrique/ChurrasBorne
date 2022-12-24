@@ -41,6 +41,7 @@ public class BullAI : MonoBehaviour
     private bool isAlreadyDying = false;
 
     private float knockbackDuration = 1.5f, knockbackPower = 150f;
+    private bool canTakeDamage = true;
 
     private void Awake()
     {
@@ -273,24 +274,30 @@ public class BullAI : MonoBehaviour
     //HEALTH
     public void TakeDamage()
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage;
-
-        if (isOnTut)
+        if (canTakeDamage)
         {
-            damage = 5;
-        }
-        else
-        {
-            damage = 10;
-        }
+            canTakeDamage = false;
+            StartCoroutine(CanTakeDamageCD());
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage;
 
-        health -= damage;
-        audioSource.PlayOneShot(bull_hurt, audioSource.volume);
+            if (isOnTut)
+            {
+                damage = 5;
+            }
+            else
+            {
+                damage = 10;
+            }
 
-        if (!isAlreadyDying)
-        {
-            SwitchToDead();
+            health -= damage;
+            audioSource.PlayOneShot(bull_hurt, audioSource.volume);
+
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
+
         }
     }
 
@@ -307,5 +314,10 @@ public class BullAI : MonoBehaviour
         {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

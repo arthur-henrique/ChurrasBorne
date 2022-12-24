@@ -33,6 +33,7 @@ public class TricksterAI : MonoBehaviour
 
     public float chasingSpeed, chaseDistance, timeBTWLRATKs, closeRangeDistance, timeBTWCRATKs;
     private float currentTimeBTWLRATKs, currentTimeBTWCRATKs, timeToDie;
+    private bool canTakeDamage = true;
 
     private void Awake()
     {
@@ -252,13 +253,17 @@ public class TricksterAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage = 10;
-        health -= damage;
-
-        if (!isAlreadyDying)
+        if (canTakeDamage)
         {
-            SwitchToDead();
+            canTakeDamage = false;
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage = 10;
+            health -= damage;
+
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
         }
     }
 
@@ -280,5 +285,10 @@ public class TricksterAI : MonoBehaviour
     void DestroySelf()
     {
         Destroy(gameObject);
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

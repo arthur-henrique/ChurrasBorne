@@ -46,6 +46,7 @@ public class GoatAI : MonoBehaviour
     public AudioClip goat_hurt;
 
     private float knockbackDuration = 1.0f, knockbackPower = 100f;
+    private bool canTakeDamage = true;
 
     private void Awake()
     {
@@ -318,13 +319,17 @@ public class GoatAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage = 10;
-        health -= damage;
-        audioSource.PlayOneShot(goat_hurt, audioSource.volume);
-        if (!isAlreadyDying)
+        if (canTakeDamage)
         {
-            SwitchToDead();
+            canTakeDamage = false;
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage = 10;
+            health -= damage;
+            audioSource.PlayOneShot(goat_hurt, audioSource.volume);
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
         }
     }
 
@@ -351,5 +356,10 @@ public class GoatAI : MonoBehaviour
         {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

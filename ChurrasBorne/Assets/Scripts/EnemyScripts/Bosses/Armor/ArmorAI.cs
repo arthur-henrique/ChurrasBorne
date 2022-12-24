@@ -39,6 +39,7 @@ public class ArmorAI : MonoBehaviour
 
     private float knockbackDuration1 = 0.75f, knockbackPower1 = 75f;
     private float knockbackDuration2 = 1.5f, knockbackPower2 = 125f;
+    private bool canTakeDamage = true;
 
     // to remove
     public bool isOnFaseDois, isOnFaseDoisHalf;
@@ -272,13 +273,17 @@ public class ArmorAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage = 10;
-        health -= damage;
-        audioSource.PlayOneShot(armor_hurt, audioSource.volume);
-        if (!isAlreadyDying)
+        if (canTakeDamage)
         {
-            SwitchToDead();
+            canTakeDamage = false;
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage = 10;
+            health -= damage;
+            audioSource.PlayOneShot(armor_hurt, audioSource.volume);
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
         }
     }
 
@@ -295,5 +300,10 @@ public class ArmorAI : MonoBehaviour
         {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

@@ -51,6 +51,7 @@ public class CEOofSpidersAI : MonoBehaviour
     public AudioClip spider_attack_2;
     public AudioClip spider_attack_3;
     public AudioClip spider_death;
+    private bool canTakeDamage = true;
 
     private void Awake()
     {
@@ -344,15 +345,19 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public void TakeDamage(bool isProjectile = false)
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage = 10;
-        health -= damage;
-        audioSource.PlayOneShot(spider_hurt, audioSource.volume);
-        anim.SetTrigger("Hit");
-
-        if (!isAlreadyDying)
+        if (canTakeDamage)
         {
-            SwitchToDead();
+            canTakeDamage = false;
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage = 10;
+            health -= damage;
+            audioSource.PlayOneShot(spider_hurt, audioSource.volume);
+            anim.SetTrigger("Hit");
+
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
         }
     }
 
@@ -370,5 +375,10 @@ public class CEOofSpidersAI : MonoBehaviour
                 TakeDamage(true);
             }
         }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }
