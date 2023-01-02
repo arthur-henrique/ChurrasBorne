@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         pc = new PlayerController();
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnimator = player.GetComponent<Animator>();
+        SetHasCleared();
     }
     private void OnEnable()
     {
@@ -142,12 +143,13 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            //FaseDoisTriggerController.Instance.GateOpener();
+            SaveGame();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            //NextLevelSetter(Vector2.zero);
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            LoadGame();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
@@ -391,6 +393,31 @@ public class GameManager : MonoBehaviour
         SwitchFromGateCam();
         yield return new WaitForSeconds(1.5f);
         PlayerMovement.EnableControl();
+    }
+
+    // Teste, favor remover
+    public void SaveGame()
+    {
+        SaveSystem.SavePlayer(GameManager.instance);
+    }
+    public void LoadGame()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        hasCleared[0] = data.clearedPhaseOne;
+        hasCleared[1] = data.clearedPhaseOneHalf;
+        hasCleared[2] = data.clearedPhaseTwo;
+        hasCleared[3] = data.clearedPhaseTwoHalf;
+        maxHealth = data.maxHealth;
+        hasSeenGateTwo= data.hasSeenGateTwo;
+        player.transform.position = new Vector2(0, 0);
+    }
+
+    private void SetHasCleared()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            hasCleared[i] = false;
+        }
     }
 }
 
