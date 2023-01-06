@@ -41,12 +41,12 @@ public class Churrasqueira_DialogAct : MonoBehaviour
     {
         if (target)
         {
-            float dist = Vector3.Distance(target.transform.position, transform.position);
+            float dist = Vector2.Distance(target.transform.position, transform.position);
             //print("Distance to other: " + dist);
 
             if (GetComponent<Animator>().GetBool("APAGAR") == false)
             {
-                if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 6)
+                if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                 {
                     var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
                     if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
@@ -54,7 +54,7 @@ public class Churrasqueira_DialogAct : MonoBehaviour
                         dbox.GetComponent<DialogSystem>().db_PullUP();
                         dbox.GetComponent<DialogSystem>().db_SetSceneSimple(1);
                     }
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().SetFloat("numberOfMeat", 3);
+                    GameManager.instance.SetHeals(3, false, true);
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;

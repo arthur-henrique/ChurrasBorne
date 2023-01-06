@@ -14,6 +14,11 @@ public class FaseDoisTriggerController : MonoBehaviour
     public GameObject[] salaSeteLock;
     public GameObject[] salaOitoLock;
 
+    public Animator preBossAnim;
+    public Animator bossAnim;
+    public Animator preBossAnimEc;
+    public Animator bossAnimEc;
+
     public GameObject portalToHub;
     private int salasTerminadas;
     // Start is called before the first frame update
@@ -83,5 +88,53 @@ public class FaseDoisTriggerController : MonoBehaviour
     public void ContadorDeSalasTerminadas()
     {
         salasTerminadas++;
+    }
+
+    private void FixedUpdate()
+    {
+        if(salasTerminadas > 3)
+        {
+            salasTerminadas = 0;
+            GameManager.instance.GateCAM();
+            StartCoroutine(OpenTheGates());
+
+        }
+    }
+
+    public void GateOpener()
+    {
+        StartCoroutine(OpenTheGates());
+    }
+
+    public void CloseTheGates()
+    {
+        if (!GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnim.SetTrigger("CLOSEIT");
+            bossAnim.SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        if (GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnimEc.SetTrigger("CLOSEIT");
+            bossAnimEc.SetTrigger("CLOSEIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+    }
+    IEnumerator OpenTheGates()
+    {
+        yield return new WaitForSeconds(2);
+        if(!GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnim.SetTrigger("OPENIT");
+            bossAnim.SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        if (GameManager.instance.GetHasCleared(2))
+        {
+            preBossAnimEc.SetTrigger("OPENIT");
+            bossAnimEc.SetTrigger("OPENIT");
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }       
     }
 }

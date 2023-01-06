@@ -14,27 +14,34 @@ public class BullAI : MonoBehaviour
         Idling,
         Dead
     }
+    private State state;
 
+    public GameObject gameManager;
     public Transform player;
-    public Transform spawnPoint;
-
     public Rigidbody2D rb;
-
-    public GameObject bullSpike;
-    public GameObject spikeSummoner;
-
     public Animator anim;
 
-    public int maxHealth;
-    int currentHealth;
+    public GameObject bullSpikes;
+    public Collider2D portal;
 
-    public float chasingSpeed, bashDistance, startTimeBTWBashATKs, axeDistance, startTimeBTWAxeATKs, startTimeToSpawn, startTimeToSummonSpikes;
-    private float timeBTWBashATKs, timeBTWAxeATKs, timeToSpawn, timeToSummonSpikes;
+    public AudioSource audioSource;
+    public AudioClip bull_attack;
+    public AudioClip bull_charge;
+    public AudioClip bull_death;
+    public AudioClip bull_roar;
+    public AudioClip bull_hurt;
 
-    public bool isOnTut, isOnFaseQuatro;
+    public int health;
 
-    private static State state;
+    public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
+    private float timeBTWMeleeATKs, timeBTWRangedATKs, timeToDie;
 
+    public bool isOnTut, isAlive = true;
+
+    private bool isAlreadyDying = false;
+
+    private float knockbackDuration = 1.5f, knockbackPower = 150f;
+    private bool canTakeDamage = true;
 
     private void Awake()
     {
@@ -44,22 +51,28 @@ public class BullAI : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         //Para SPAWN, MOVEMENT, BASH, AXE
-        spawnPoint = GameObject.FindGameObjectWithTag("BullSpawnPoint").transform;
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-        timeToSpawn = startTimeToSpawn;
+        timeBTWMeleeATKs = .5f;
 
-        timeBTWBashATKs = startTimeBTWBashATKs;
+        timeBTWRangedATKs = .5f;
 
-        timeBTWAxeATKs = startTimeBTWAxeATKs;
+        timeToDie = .1f;
 
-        //Para HEALTH
-        currentHealth = maxHealth;
-
-        //Para ON CONTACT
-        rb = GetComponent<Rigidbody2D>();
+        if (isOnTut)
+        {
+            health = 300;
+        }
+        else
+        {
+            health = 200;
+        }
+        audioSource.PlayOneShot(bull_roar, audioSource.volume);
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()
@@ -68,29 +81,13 @@ public class BullAI : MonoBehaviour
         {
             case State.Spawning:
                 Flip();
-                
-                anim.SetTrigger("Spawn");
-
-                anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);
-
-                if (timeToSpawn <= 0)
-                {
-                    SwitchToChasing();
-                    SwitchToAxeATK();
-                    SwitchToBashATK();
-                }
-                else
-                {
-                    timeToSpawn -= Time.deltaTime;
-                }
                 break;
 
             case State.Chasing:
                 Flip();
 
-                anim.SetBool("Idle", false);
                 anim.SetBool("Walk", true);
+                anim.SetBool("Idle", false);
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, chasingSpeed * Time.deltaTime);
 
@@ -104,20 +101,19 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (timeBTWBashATKs <= 0)
+                if (timeBTWMeleeATKs <= 0)
                 {
                     anim.SetTrigger("Bash");
-
-                    timeBTWBashATKs = startTimeBTWBashATKs;
+                    audioSource.PlayOneShot(bull_attack, audioSource.volume);
+                    timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
                 {
-                    timeBTWBashATKs -= Time.deltaTime;
+                    timeBTWMeleeATKs -= Time.deltaTime;
                 }
 
                 SwitchToChasing();
                 SwitchToAxeATK();
-                SwitchToDead();
                 break;
 
             case State.AxeSwing:
@@ -128,111 +124,117 @@ public class BullAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (timeBTWAxeATKs <= 0)
+                if (timeBTWRangedATKs <= 0)
                 {
                     anim.SetTrigger("Axe");
-
-                    timeBTWAxeATKs = startTimeBTWAxeATKs;
+                    audioSource.PlayOneShot(bull_charge, audioSource.volume);
+                    timeBTWRangedATKs = startTimeBTWRangedATKs;
                 }
                 else
                 {
-                    timeBTWAxeATKs -= Time.deltaTime;
+                    timeBTWRangedATKs -= Time.deltaTime;
                 }
 
                 SwitchToBashATK();
                 SwitchToChasing();
-                SwitchToDead();
-                break;
-
-            case State.SpikeSummon:
-                Flip();
-
-                transform.position = spawnPoint.position;
-
-                rb.velocity = Vector2.zero;
-
-                anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);
-
-                timeToSpawn -= Time.deltaTime;
-
-                if(timeToSummonSpikes == 15)
-                {
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().firstSpikePattern = true;
-                }
-                else if(timeToSummonSpikes == 10)
-                {
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().firstSpikePattern = false;
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().secondSpikePattern = true;
-                }
-                else if(timeToSummonSpikes == 5)
-                {
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().secondSpikePattern = false;
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().thirdSpikePattern = true;
-                }
-                else if(timeToSummonSpikes == 0)
-                {
-                    spikeSummoner.GetComponent<BullSpikeSummoner>().thirdSpikePattern = false;
-
-                    SwitchToChasing();
-                    SwitchToAxeATK();
-                    SwitchToBashATK();
-                }
-
-                SwitchToDead();
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                anim.SetTrigger("Die");
-                anim.SetBool("Idle", false);
+                isAlive = false;
+                isAlreadyDying = true;
+                
+                anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if(isOnTut)
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
+                if (timeToDie <= 0)
                 {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                    anim.SetTrigger("Die");
+                    audioSource.PlayOneShot(bull_death, audioSource.volume);
+                    timeToDie = 10000;
                 }
-                Destroy(gameObject, 1.5f);
+                else
+                {
+                    timeToDie -= Time.deltaTime;    
+                }
                 break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+                break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
     }
 
     //STATES
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > axeDistance && currentHealth > 0)
+        if (Vector2.Distance(transform.position, player.position) > rangedDistanceII && health > 0)
+        {
+            state = State.Chasing;
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= rangedDistanceI && Vector2.Distance(transform.position, player.position) > meleeDistance)
         {
             state = State.Chasing;
         }
     }
     void SwitchToAxeATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= axeDistance && Vector2.Distance(player.position, transform.position) > bashDistance && currentHealth > 0)
+        if (Vector2.Distance(player.position, transform.position) <= rangedDistanceII && Vector2.Distance(player.position, transform.position) > rangedDistanceI && health > 0)
         {
             state = State.AxeSwing;
         }
     }
     void SwitchToBashATK()
     {
-        if(Vector2.Distance(player.position, transform.position) <= bashDistance && currentHealth > 0)
+        if (Vector2.Distance(player.position, transform.position) <= meleeDistance && health > 0)
         {
             state = State.HeadBash;
         }
     }
     void SwitchToSummonATK()
     {
-        if(currentHealth == 40)
+        if (health == 40)
         {
             state = State.SpikeSummon;
         }
     }
     void SwitchToDead()
     {
-        if(currentHealth <= 0)
+        if (health <= 0 && isAlive)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
+            if (isOnTut)
+            {
+                TutorialTriggerController.Instance.SecondGateTriggerOut();
+                GameManager.instance.maxHealth = 135;
+                portal.enabled = true;
+                portal.transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
+    }
+
+    void DestroySelf()
+    {
+        Destroy(gameObject);    
+    }
+
+    void BeginCombat()
+    {
+        SwitchToChasing();
+        SwitchToAxeATK();
+        SwitchToBashATK();
     }
 
     //FLIP
@@ -251,29 +253,71 @@ public class BullAI : MonoBehaviour
     //MELEE
     public void DamagePlayer()
     {
-        if (Vector2.Distance(transform.position, player.position) <= bashDistance)
+        if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
-            GameManager.instance.TakeDamage(5);
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            GameManager.instance.TakeDamage(15);
+        }
+        else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
+        {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            GameManager.instance.TakeDamage(10);
         }
     }
 
     //SPIKES
     public void SummonSpike()
     {
-        Instantiate(bullSpike, transform.position, Quaternion.identity);
+        Instantiate(bullSpikes, player.position, Quaternion.identity);
     }
 
     //HEALTH
     public void TakeDamage()
     {
-        int damage = 10;
-        currentHealth -= damage;
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("AttackHit"))
+        if (canTakeDamage)
         {
-            TakeDamage();
+            canTakeDamage = false;
+            StartCoroutine(CanTakeDamageCD());
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage;
+
+            if (isOnTut)
+            {
+                damage = 5;
+            }
+            else
+            {
+                damage = 10;
+            }
+
+            health -= damage;
+            audioSource.PlayOneShot(bull_hurt, audioSource.volume);
+
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
+
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

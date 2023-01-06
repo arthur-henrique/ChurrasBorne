@@ -80,6 +80,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interagir"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f09ddbe-b25f-469f-8183-6d2f7776b2b5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -175,6 +184,39 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""0ce1967e-2ae9-46f4-9d4d-e6d679c9ade8"",
                     ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Norte/Sul"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Setas Controle"",
+                    ""id"": ""3fdcf3f8-c8e3-4dc1-8278-060e341dbad2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Norte/Sul"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""6042b4c2-e844-4ab3-a1da-19a60f80aef1"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Norte/Sul"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""08e5aba1-1a28-435c-972e-b29f986cae5f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -282,6 +324,39 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Setas Controle"",
+                    ""id"": ""f452eda6-3375-4aff-b60f-0e7881b31a9c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Leste / Oeste"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""35e34ecc-bcb6-4fa3-a1d1-85e19bb8a745"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Leste / Oeste"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e29ba960-26e0-47a6-a229-a0e51258ec91"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Leste / Oeste"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""33995b0a-3d06-4ebd-95d5-d75baa19ef0d"",
                     ""path"": ""<Keyboard>/space"",
@@ -305,6 +380,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d350e25e-3577-42bd-a69a-ff60596fa9db"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rolar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2a28d1d7-af53-4467-9e54-c9951d377f5f"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
@@ -317,7 +403,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8861326a-86e1-4baf-a82f-d2cf68574a72"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -338,8 +424,19 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7affcb02-ab89-49a2-aed9-1535e53be035"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""cedf5a18-4849-469d-95ab-fe5605cf8116"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -366,6 +463,39 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c752c798-e3b9-4f5c-857e-da3928f81376"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Curar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66aa0df9-89a4-4fd6-8e26-7381db33ca33"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interagir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acbb6ec8-b088-4593-ac5b-4173145ae398"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interagir"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -489,6 +619,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_MousePosition = m_Movimento.FindAction("MousePosition", throwIfNotFound: true);
         m_Movimento_Attack = m_Movimento.FindAction("Attack", throwIfNotFound: true);
         m_Movimento_Curar = m_Movimento.FindAction("Curar", throwIfNotFound: true);
+        m_Movimento_Interagir = m_Movimento.FindAction("Interagir", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -562,6 +693,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_MousePosition;
     private readonly InputAction m_Movimento_Attack;
     private readonly InputAction m_Movimento_Curar;
+    private readonly InputAction m_Movimento_Interagir;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -572,6 +704,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_Movimento_MousePosition;
         public InputAction @Attack => m_Wrapper.m_Movimento_Attack;
         public InputAction @Curar => m_Wrapper.m_Movimento_Curar;
+        public InputAction @Interagir => m_Wrapper.m_Movimento_Interagir;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -599,6 +732,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Curar.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
                 @Curar.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
                 @Curar.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnCurar;
+                @Interagir.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
+                @Interagir.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
+                @Interagir.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -621,6 +757,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Curar.started += instance.OnCurar;
                 @Curar.performed += instance.OnCurar;
                 @Curar.canceled += instance.OnCurar;
+                @Interagir.started += instance.OnInteragir;
+                @Interagir.performed += instance.OnInteragir;
+                @Interagir.canceled += instance.OnInteragir;
             }
         }
     }
@@ -715,6 +854,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnCurar(InputAction.CallbackContext context);
+        void OnInteragir(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

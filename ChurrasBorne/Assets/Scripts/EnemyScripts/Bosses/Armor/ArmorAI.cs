@@ -10,12 +10,13 @@ public class ArmorAI : MonoBehaviour
         Chasing,
         BladeSlash,
         BladeSpin,
+        Idling,
         Dead
     }
-
     private State state;
 
     public Transform player;
+    public GameObject gameManager;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -23,12 +24,29 @@ public class ArmorAI : MonoBehaviour
     public GameObject bladeWave;
     public GameObject waveSpawnPoint;
 
+    public AudioSource audioSource;
+    public AudioClip armor_slash;
+    public AudioClip armor_death;
+    public AudioClip armor_hurt;
+    public AudioClip armor_bladespin;
+
+    private bool isAlreadyDying = false;
+
     public int health;
 
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
-    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs;
+    private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
 
-    public bool isOnTut;
+    private float knockbackDuration1 = 0.75f, knockbackPower1 = 75f;
+    private float knockbackDuration2 = 1.5f, knockbackPower2 = 125f;
+    private bool canTakeDamage = true;
+
+    // to remove
+    public bool isOnFaseDois, isOnFaseDoisHalf;
+    public Animator faseDois, faseDoisHalf;
+
+    public static bool armor_boss_died = false;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -36,10 +54,16 @@ public class ArmorAI : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-        currentTimeBTWSlashATKs = 0.1f;
-        currentTimeBTWSpinATKs = 0.1f;
+        currentTimeBTWSlashATKs = .1f;
+        currentTimeBTWSpinATKs = .1f;
+        timeToDie = .1f;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()
@@ -59,7 +83,6 @@ public class ArmorAI : MonoBehaviour
                 anim.SetBool("Idle", false);
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.BladeSlash:
@@ -73,7 +96,7 @@ public class ArmorAI : MonoBehaviour
                 if(currentTimeBTWSlashATKs <= 0)
                 {
                     anim.SetTrigger("BladeSlash");
-
+                    audioSource.PlayOneShot(armor_slash, audioSource.volume);
                     currentTimeBTWSlashATKs = timeBTWSlashATKs;
                 }
                 else
@@ -83,7 +106,6 @@ public class ArmorAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToBladeSpin();
-                SwitchToDead();
                 break;
 
             case State.BladeSpin:
@@ -97,7 +119,7 @@ public class ArmorAI : MonoBehaviour
                 if (currentTimeBTWSpinATKs <= 0)
                 {
                     anim.SetTrigger("BladeSpin");
-
+                    audioSource.PlayOneShot(armor_bladespin, audioSource.volume);
                     currentTimeBTWSpinATKs = timeBTWSpinATKs;
                 }
                 else
@@ -106,26 +128,49 @@ public class ArmorAI : MonoBehaviour
                 }
 
                 SwitchToBladeSlash();
-                SwitchToDead();
                 break;
 
             case State.Dead:
-                anim.SetTrigger("Die");
+                rb.velocity = Vector2.zero;
 
-                anim.SetBool("Idle", false);
+                isAlreadyDying = true;
+
+                anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (isOnTut)
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+
+                if (timeToDie <= 0)
                 {
-                    TutorialTriggerController.Instance.SecondGateTriggerOut();
+                    armor_boss_died = true;
+                    anim.SetTrigger("Die");
+                    audioSource.PlayOneShot(armor_death, audioSource.volume);
+                    timeToDie = 1000;
+                }
+                else
+                {
+                    timeToDie -= Time.deltaTime;
                 }
                 break;
+
+            case State.Idling:
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Dash", false);
+                anim.SetBool("Walk", false);
+                break;
+        }
+
+        if (!gameManager.GetComponent<GameManager>().isAlive)
+        {
+            state = State.Idling;
         }
     }
 
     void SwitchToChasing()
     {
-        if(Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health > 50)
         {
             state = State.Chasing;
         }
@@ -136,7 +181,7 @@ public class ArmorAI : MonoBehaviour
     }
     void SwitchToBladeSlash()
     {
-        if(Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && Vector2.Distance(transform.position, player.position) > spinDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && Vector2.Distance(transform.position, player.position) > spinDistance && health > 50)
         {
             state = State.BladeSlash;
         }
@@ -147,7 +192,7 @@ public class ArmorAI : MonoBehaviour
     }
     void SwitchToBladeSpin()
     {
-        if(Vector2.Distance(transform.position,player.position) <= spinDistance && health > 0)
+        if (Vector2.Distance(transform.position,player.position) <= spinDistance && health > 0)
         {
             state = State.BladeSpin;
         }
@@ -157,6 +202,19 @@ public class ArmorAI : MonoBehaviour
         if(health <= 0)
         {
             state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
+            if (isOnFaseDois)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDois.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(2, true);
+            }
+            else if (isOnFaseDoisHalf)
+            {
+                FaseDoisTriggerController.Instance.GateOpener();
+                faseDoisHalf.SetTrigger("ON");
+                GameManager.instance.SetHasCleared(3, true);
+            }
         }
     }
 
@@ -169,11 +227,11 @@ public class ArmorAI : MonoBehaviour
 
     void SlashATK()
     {
-        if(Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 50)
+        if (Vector2.Distance(transform.position, player.position) <= slashMeleeDistance && health > 90)
         {
             GameManager.instance.TakeDamage(5);
         }
-        else if(Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 50 && health > 0)
+        else if (Vector2.Distance(transform.position, player.position) <= slashRangedDistance && Vector2.Distance(transform.position, player.position) > slashMeleeDistance && health <= 90 && health > 0)
         {
             Instantiate(bladeWave, waveSpawnPoint.transform.position, Quaternion.identity);
         }
@@ -183,6 +241,7 @@ public class ArmorAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, player.position) <= spinDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration1, knockbackPower1, this.transform));
             GameManager.instance.TakeDamage(5);
         }
     }
@@ -190,6 +249,7 @@ public class ArmorAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= spinDistance)
         {
+            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration2, knockbackPower2, this.transform));
             GameManager.instance.TakeDamage(10);
         }
     }
@@ -213,17 +273,37 @@ public class ArmorAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        int damage;
-
-        damage = 10;
-
-        health -= damage;
+        if (canTakeDamage)
+        {
+            canTakeDamage = false;
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            int damage = 10;
+            health -= damage;
+            audioSource.PlayOneShot(armor_hurt, audioSource.volume);
+            if (!isAlreadyDying)
+            {
+                SwitchToDead();
+            }
+        }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = false;
+        }
+    }
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }

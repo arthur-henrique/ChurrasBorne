@@ -1,0 +1,444 @@
+fileFormatVersion: 2
+guid: a4b1923d169bfaf449dc833bdf7ac66a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8501340633076001626
+    second: ChurrasChad_Walk_Spritesheet_0
+  - first:
+      213: -1283780543775337591
+    second: ChurrasChad_Walk_Spritesheet_1
+  - first:
+      213: 8574353337322170698
+    second: ChurrasChad_Walk_Spritesheet_2
+  - first:
+      213: 6021717284824098102
+    second: ChurrasChad_Walk_Spritesheet_3
+  - first:
+      213: -332027280904546348
+    second: ChurrasChad_Walk_Spritesheet_4
+  - first:
+      213: 661065663843929983
+    second: ChurrasChad_Walk_Spritesheet_5
+  - first:
+      213: 6872628155798898599
+    second: ChurrasChad_Walk_Spritesheet_6
+  - first:
+      213: -4084972213304801131
+    second: ChurrasChad_Walk_Spritesheet_7
+  - first:
+      213: 6738138850945375577
+    second: ChurrasChad_Walk_Spritesheet_8
+  - first:
+      213: 7984329056703978789
+    second: ChurrasChad_Walk_Spritesheet_9
+  - first:
+      213: -1410062434530254562
+    second: ChurrasChad_Walk_Spritesheet_10
+  - first:
+      213: 2602129895027148989
+    second: ChurrasChad_Walk_Spritesheet_11
+  - first:
+      213: 5706957142037752571
+    second: ChurrasChad_Walk_Spritesheet_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5be6158344daf570800000000000000
+      internalID: 8501340633076001626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98396bea5681f2ee0800000000000000
+      internalID: -1283780543775337591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a49e5c17ee83ef670800000000000000
+      internalID: 8574353337322170698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63525c357ff619350800000000000000
+      internalID: 6021717284824098102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d712f972f6646bf0800000000000000
+      internalID: -332027280904546348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7f00a208b39c2900800000000000000
+      internalID: 661065663843929983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7cdbb15ea706f50800000000000000
+      internalID: 6872628155798898599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59840a44a634f47c0800000000000000
+      internalID: -4084972213304801131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d9bd1b59da28d50800000000000000
+      internalID: 6738138850945375577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 11
+        width: 66
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d9baa69f80ece60800000000000000
+      internalID: 7984329056703978789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 1309
+        y: 11
+        width: 70
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e11a3b6cfa37e6ce0800000000000000
+      internalID: -1410062434530254562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 11
+        width: 66
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db884845a5f9c1420800000000000000
+      internalID: 2602129895027148989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChurrasChad_Walk_Spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 1569
+        y: 11
+        width: 62
+        height: 113
+      alignment: 9
+      pivot: {x: 0.52471274, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfae98fa84f233f40800000000000000
+      internalID: 5706957142037752571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

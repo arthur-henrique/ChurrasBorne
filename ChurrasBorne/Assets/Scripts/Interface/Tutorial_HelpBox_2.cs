@@ -56,18 +56,19 @@ public class Tutorial_HelpBox_2 : MonoBehaviour
 
     private IEnumerator Fade_In()
     {
-        for (int i = 0; i < 60 * 2; i++)
+        for (int i = 0; roll_amount < 1; i++)
         {
             var tutbgsc = TUT_BG.GetComponent<RectTransform>().localScale;
             tutbgsc.x = Mathf.Lerp(tutbgsc.x, 1, 6f * Time.deltaTime);
             TUT_BG.GetComponent<RectTransform>().localScale = tutbgsc;
+            if (roll_amount >= 1) { yield break; }
             yield return null;
         }
     }
 
     private IEnumerator Fade_Out()
     {
-        for (int i = 0; i < 60 * 2; i++)
+        for (int i = 0; TUT_BG.GetComponent<RectTransform>().localScale.x != 0; i++)
         {
             var tutbgsc = TUT_BG.GetComponent<RectTransform>().localScale;
             tutbgsc.x = Mathf.Lerp(tutbgsc.x, 0, 8f * Time.deltaTime);

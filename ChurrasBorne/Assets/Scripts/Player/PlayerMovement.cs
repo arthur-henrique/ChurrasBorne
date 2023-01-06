@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
     private enum State
     {
         Normal,
@@ -15,11 +16,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public float speed;
     float timer;
+    float canAttackChecker = 0.9f;
     private float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
-    private readonly int amountToHeal = 20;
+    private readonly int amountToHeal = 65;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private static Animator anim;
@@ -32,14 +34,22 @@ public class PlayerMovement : MonoBehaviour
     bool takingDamage = false;
     bool canAttack = true;
     private static State state;
-    PlayerController pc;
+    public static PlayerController pc;
 
-    private bool isOnIce;
+    private AudioSource audioSource;
+    public AudioClip player_dash;
+    public AudioClip player_punch;
+    public AudioClip player_swing;
+    public AudioClip player_eat;
+    public AudioClip player_hurt;
+
+    private bool isOnIce, isOnWeb, isOnBossWeb;
     // Start is called before the first frame update
     private void Awake()
     {
         state = State.Normal;
         pc = new PlayerController();
+        instance = this;
     }
     private void OnEnable()
     {
@@ -54,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        isOnIce = false;
+        isOnWeb = false;
+        isOnBossWeb = false;
+        speed = 10f;
     }
     // Update is called once per frame
     void Update()
@@ -61,8 +76,55 @@ public class PlayerMovement : MonoBehaviour
         switch (state)
         {
             case State.Normal:
-                x = pc.Movimento.LesteOeste.ReadValue<float>();
-                y = pc.Movimento.NorteSul.ReadValue<float>();
+                if (!GameManager.isInDialog)
+                {
+                    x = pc.Movimento.LesteOeste.ReadValue<float>();
+                    y = pc.Movimento.NorteSul.ReadValue<float>();
+
+                    if (pc.Movimento.Rolar.WasPressedThisFrame())
+                    {
+                        if (Dash_Manager.dash_fill_global >= 60)
+                        {
+                            rollDirection = lastMovedDirection;
+                            rollSpeed = 70f;
+                            state = State.Rolling;
+                            anim.SetTrigger("isRolling");
+                            print("Rolei");
+                            audioSource.PlayOneShot(player_dash, audioSource.volume);
+                            Dash_Manager.dash_fill_global -= 60;
+                            Dash_Manager.dash_light_global = 0;
+                        }
+                    }
+
+                    if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
+                    {
+                        canAttack = false;
+                        state = State.Attacking;
+                        anim.SetTrigger("isAttacking");
+                        if (anim.GetBool("isHoldingSword") == true)
+                        {
+                            audioSource.PlayOneShot(player_swing, audioSource.volume);
+                        } else
+                        {
+                            audioSource.PlayOneShot(player_punch, audioSource.volume);
+                        }
+                        
+                    }
+
+                    if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
+                    {
+                        healingAnimCd = 1f;
+                        state = State.Healing;
+                        anim.SetTrigger("isHealing");
+                        audioSource.PlayOneShot(player_eat, audioSource.volume);
+                    }
+                } else
+                {
+                    direcao = new Vector2(0, 0);
+                    x = 0;
+                    y = 0;
+                }
+                
                 direcao = new Vector2(x, y);
                 direcao.Normalize();
                 if (x != 0 || y != 0)
@@ -72,31 +134,6 @@ public class PlayerMovement : MonoBehaviour
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 healsLeft = GameManager.instance.GetHeals();
-                if (pc.Movimento.Rolar.WasPressedThisFrame())
-                {
-                    if (Dash_Manager.dash_fill_global >= 60)
-                    {
-                        rollDirection = lastMovedDirection;
-                        rollSpeed = 70f;
-                        state = State.Rolling;
-                        anim.SetTrigger("isRolling");
-                        print("Rolei");
-                        Dash_Manager.dash_fill_global -= 60;
-                        Dash_Manager.dash_light_global = 0;
-                    }
-                }
-                if (pc.Movimento.Attack.WasPressedThisFrame() && canAttack)
-                {
-                    canAttack = false;
-                    state = State.Attacking;
-                    anim.SetTrigger("isAttacking");
-                }
-                if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
-                {
-                    healingAnimCd = 1f;
-                    state = State.Healing;
-                    anim.SetTrigger("isHealing");
-                }
                 break;
             case State.Rolling:
                 float rollSpeedMultiplier = 5f;
@@ -129,12 +166,22 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Attacking:
                 anim.SetBool("attackIsPlaying", true);
-                state = State.Normal;
+                StartCoroutine(ReturnToNormal());
                 anim.SetBool("attackIsPlaying", false);
                 attackPressed = false;
                 break;
             case State.Healing:
                 StartCoroutine(HealthBar_Manager.Alpha_Control_Enable());
+                x = pc.Movimento.LesteOeste.ReadValue<float>();
+                y = pc.Movimento.NorteSul.ReadValue<float>();
+                direcao = new Vector2(x, y);
+                direcao.Normalize();
+                if (x != 0 || y != 0)
+                {
+                    lastMovedDirection = direcao;
+                    anim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                }
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
                 {
@@ -158,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
                 if (takingDamage)
                 {
                     timer = GameManager.instance.GetDamagetime();
+                    audioSource.PlayOneShot(player_hurt, audioSource.volume);
                     takingDamage = false;
                 }
                 timer -= Time.deltaTime;
@@ -206,7 +254,17 @@ public class PlayerMovement : MonoBehaviour
                 moveVelocity = direcao * speed;
                 if(isOnIce)
                 {
-                    rb.AddForce(moveVelocity, ForceMode2D.Force);
+                    rb.AddForce(moveVelocity * 0.7f, ForceMode2D.Force);
+                }
+                else if(isOnWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
+                }
+                else if (isOnBossWeb)
+                {
+                    moveVelocity *= 0.5f;
+                    rb.velocity = moveVelocity;
                 }
                 else
                     rb.velocity = moveVelocity;
@@ -220,17 +278,47 @@ public class PlayerMovement : MonoBehaviour
                 }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
+
+
+                if (canAttackChecker > 0 && !canAttack)
+                    canAttackChecker -= Time.deltaTime;
+                else if (canAttackChecker > 0 && canAttack)
+                    canAttackChecker = 0.9f;
+                else if (canAttackChecker <= 0)
+                {
+                    canAttack = true;
+                    canAttackChecker = 0.9f;
+                }
                 break;
             case State.Rolling:
-                rb.velocity = rollDirection * rollSpeed;
+                if (isOnIce)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 1.3f);
+                }
+                else if (isOnWeb)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 0.6f);
+                }
+                else if (isOnBossWeb)
+                {
+                    rb.velocity = rollDirection * (rollSpeed * 0.5f);
+                }
+                else
+                    rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
+                rb.velocity = Vector2.zero;
                 break;
             case State.Healing:
                 moveVelocity = 0.8f * speed * direcao;
                 if (isOnIce)
                 {
                     rb.AddForce(moveVelocity, ForceMode2D.Force);
+                }
+                else if (isOnWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
                 }
                 else
                     rb.velocity = moveVelocity;
@@ -249,6 +337,16 @@ public class PlayerMovement : MonoBehaviour
                 {
                     rb.AddForce(moveVelocity, ForceMode2D.Force);
                 }
+                else if (isOnWeb)
+                {
+                    moveVelocity *= 0.6f;
+                    rb.velocity = moveVelocity;
+                }
+                else if (isOnBossWeb)
+                {
+                    moveVelocity *= 0.5f;
+                    rb.velocity = moveVelocity;
+                }
                 else
                     rb.velocity = moveVelocity;
                 if (rb.velocity.x < 0)
@@ -266,6 +364,16 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 break;
         }
+    }
+
+    public static void DisableControl()
+    {
+        pc.Movimento.Disable();
+    }
+
+    public static void EnableControl()
+    {
+        pc.Movimento.Enable();
     }
     public static void SetDamageState()
     {
@@ -286,11 +394,31 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("GELO"))
         {
             isOnIce = true;
+        }
+        else if(other.CompareTag("TEIA"))
+        {
+            isOnWeb = true;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = true;
+        }
+        else if (other.CompareTag("CLEANSER"))
+        {
+            isOnIce = false;
+            isOnWeb = false;
+            isOnBossWeb = false;
+            GameManager.instance.SwitchToDefaultCam();
+        }
+        else if (other.CompareTag("Fish"))
+        {
+            gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
         }
     }
 
@@ -300,11 +428,51 @@ public class PlayerMovement : MonoBehaviour
         {
             isOnIce = false;
         }
+        else if (other.CompareTag("TEIA"))
+        {
+            isOnWeb = false;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = false;
+        }
+        else if (other.CompareTag("Fish"))
+        {
+            other.enabled = false;
+        }
     }
 
     IEnumerator StupidAttackCD()
     {
         yield return new WaitForSeconds(0.035f);
+        canAttackChecker = 0.9f;
         canAttack = true;
+    }
+    IEnumerator ReturnToNormal()
+    {
+        yield return new WaitForSeconds(0.15f);
+        if(state == State.Attacking && state != State.Dead)
+            state = State.Normal;
+    }
+
+
+    public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
+    { /*
+        float timer = 0;
+        while (kbDuration > timer)
+        {
+            timer += Time.deltaTime;
+            Vector3 pos = new Vector3(this.transform.position.x, this.transform.position.y + 1.7f,
+                this.transform.position.z);
+            Vector2 direction = (obj.transform.position - pos).normalized;
+            if (isOnIce)
+            {
+                rb.AddForce(-direction * kbPower / 5f);
+            }
+            else
+                rb.AddForce(-direction * kbPower);
+        }
+        yield return 0;*/
+        yield return null;
     }
 }

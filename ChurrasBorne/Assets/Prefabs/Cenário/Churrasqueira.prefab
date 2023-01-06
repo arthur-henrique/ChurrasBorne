@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4268313785057141117}
   - component: {fileID: 8581850011947925731}
-  - component: {fileID: 6678516778197712077}
-  - component: {fileID: 6608986782802137793}
+  - component: {fileID: 5475679573963790479}
+  - component: {fileID: 552961862707165961}
+  - component: {fileID: -1843195107641424885}
   m_Layer: 0
   m_Name: Churrasqueira
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2681351680721278026, guid: d903c274c4a176c49866542de40686e4, type: 3}
+  m_Sprite: {fileID: -557915257197170975, guid: fc9efafec396a894a8ad509abc0d2cb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +86,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6678516778197712077
+--- !u!114 &5475679573963790479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589170179843077211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6eeae5a3d983d248bea5da742496cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  dbox: {fileID: 0}
+  churrasmorta: {fileID: -1691742863151823293, guid: b8b87b8a327125b4daea0200454dff98, type: 3}
+--- !u!95 &552961862707165961
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -95,7 +111,7 @@ Animator:
   m_GameObject: {fileID: 6589170179843077211}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 33927c23f04d83d478a665891baf147d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 79552d0c83ccce34d81d04ad3107dd43, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -104,7 +120,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6608986782802137793
+--- !u!114 &-1843195107641424885
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,13 +129,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6589170179843077211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56576035fc3047b4884bc9d4963f7798, type: 3}
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  dbox: {fileID: 0}
-  churrasmorta: {fileID: 21300000, guid: d45c938f295715d43bce8ed4c9c21ff2, type: 3}
-  _title: {fileID: 0}
+  sortingOrderBase: 5000
+  offset: 0
+  runOnlyOnce: 1
 --- !u!1 &7092403876406493618
 GameObject:
   m_ObjectHideFlags: 0

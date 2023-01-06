@@ -8,14 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
     private GameObject player;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
     private PlayerController pc; 
     public Slider slider;
-    public CinemachineVirtualCamera dft, death, boss;
+    public CinemachineVirtualCamera dft, death, gate, boss;
     public GameObject gameOverPrefab;
+    public AudioSource audioSource;
+    public AudioClip gateOpen;
+    public GameObject clearGamePrefab;
 
     // Health and Stuff
     public int maxHealth, currentHealth;
@@ -25,14 +29,19 @@ public class GameManager : MonoBehaviour
     public float healsLeft;
     public bool isTut;
     public float respawnCooldown;
-    private bool canTakeDamage, isAlive, hasJustDied;
+    public bool canTakeDamage, hasJustDied;
+    public bool isAlive;
 
     public string scene_detect;
     public int og_health;
     public float og_meat;
     public bool og_sword;
 
-    public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half;
+    public static bool isInDialog = false;
+    public bool clearGame = false;
+
+    public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half, 2 - Fase Dois, 3 - Fase Dois Half;
+    private bool hasSeenGateTwo = false;
     private GameObject[] gameManagers; 
     private void Awake()
     {
@@ -41,6 +50,7 @@ public class GameManager : MonoBehaviour
         pc = new PlayerController();
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnimator = player.GetComponent<Animator>();
+        SetHasCleared();
     }
     private void OnEnable()
     {
@@ -52,6 +62,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
+        audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
         SetMaxHealth(maxHealth);
         damageCDCounter = DamageCD;
@@ -63,6 +75,14 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            foreach (Transform child in transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            Destroy(gameObject);
+        }
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
             og_health = GameManager.instance.currentHealth;
@@ -71,7 +91,42 @@ public class GameManager : MonoBehaviour
             scene_detect = SceneManager.GetActiveScene().name;
             //print("OG HEALTH" + og_health);
         }
+        if (SceneManager.GetActiveScene().name == "Hub")
+        {
+            var churrasTio = GameObject.Find("ChurrasTio");
+            if (churrasTio)
+            {
+                if (GetHasCleared(0) == false)
+                {
+                    churrasTio.SetActive(false);
+                }
+                else
+                {
+                    churrasTio.SetActive(true);
+                }
+            }
 
+            var bruxinhaKawaii = GameObject.Find("Bruxa");
+            if (bruxinhaKawaii)
+            {
+                if (GetHasCleared(2) == false)
+                {
+                    bruxinhaKawaii.SetActive(false);
+                }
+                else
+                {
+                    bruxinhaKawaii.SetActive(true);
+                }
+            }
+
+            if (GetHasCleared(3) == true && clearGame == false)
+            {
+                Instantiate(clearGamePrefab);
+                PlayerMovement.DisableControl();
+                clearGame = true;
+            }
+
+        }
         //print("GAME_MANAGER: " + currentHealth);
 
         if (damageCDCounter > 0f)
@@ -85,16 +140,16 @@ public class GameManager : MonoBehaviour
         }
         SetHealth(currentHealth);
 
-        if (pc.Tester.LKey.WasPressedThisFrame())
-            TakeDamage(3);
+
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            currentHealth = maxHealth;
+            SaveGame();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            NextLevelSetter(Vector2.zero);
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            LoadGame();
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
     }
@@ -123,6 +178,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    
     public void SetDamagetime(float time)
     {
         damagetime = time;
@@ -168,8 +225,11 @@ public class GameManager : MonoBehaviour
     }
     public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
-        playerAnimator.SetFloat("numberOfMeat", heals);
-        playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+        if (playerAnimator)
+        {
+            playerAnimator.SetFloat("numberOfMeat", heals);
+            playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+        }
         healsLeft = heals;
         isTut = isTutorial;
     }
@@ -245,10 +305,34 @@ public class GameManager : MonoBehaviour
         return hasCleared[fase];
     }
 
+    public void SetHasSeenGateTwoAnim(bool hasIt)
+    {
+        hasSeenGateTwo = hasIt;
+    }
+
+    public bool GetHasSeenGateTwoAnim()
+    {
+        return hasSeenGateTwo;
+    }
+
+
     public void SwitchToDeathCam()
     {
         dft.Priority = 0;
         death.Priority = 1;
+    }
+
+    public void SwitchToGateCam()
+    {
+        dft.Priority = 0;
+        gate.Priority = 1;
+    }
+
+    public void SwitchFromGateCam()
+    {
+        dft.Priority = 1;
+        gate.Priority = 0;
+        boss.Priority = 0;
     }
 
     public void SwitchToBossCam()
@@ -262,10 +346,25 @@ public class GameManager : MonoBehaviour
         dft.Priority = 1;
         boss.Priority = 0;
     }
+
+    public void EndTheGame()
+    {
+        canvas.GetComponent<Transition_Manager>().TransitionToScene("MainMenu");
+    }
+
+    public void GateCamSetter(CinemachineVirtualCamera gateCam)
+    {
+        gate = gateCam;
+    }
     IEnumerator DeadCounter()
     {
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
+        if (isTut)
+        {
+            yield return new WaitForSeconds(1f);
+            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 0, false, null);
+        }
     }
     IEnumerator CameraDelay()
     {
@@ -273,7 +372,52 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
         playerAnimator.SetBool("isDied", true);
-        Instantiate(gameOverPrefab);
+        if (!isTut)
+        {
+            Instantiate(gameOverPrefab);
+        }
+    }
+
+    // Mudar para a gate CAM
+    public void GateCAM()
+    {
+        PlayerMovement.DisableControl();
+        SwitchToGateCam();
+        StartCoroutine(ReturnFromGateCam());
+
+    }
+
+    IEnumerator ReturnFromGateCam()
+    {
+        yield return new WaitForSeconds(6);
+        SwitchFromGateCam();
+        yield return new WaitForSeconds(1.5f);
+        PlayerMovement.EnableControl();
+    }
+
+    // Teste, favor remover
+    public void SaveGame()
+    {
+        SaveSystem.SavePlayer(GameManager.instance);
+    }
+    public void LoadGame()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+        hasCleared[0] = data.clearedPhaseOne;
+        hasCleared[1] = data.clearedPhaseOneHalf;
+        hasCleared[2] = data.clearedPhaseTwo;
+        hasCleared[3] = data.clearedPhaseTwoHalf;
+        maxHealth = data.maxHealth;
+        hasSeenGateTwo= data.hasSeenGateTwo;
+        player.transform.position = new Vector2(0, 0);
+    }
+
+    private void SetHasCleared()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            hasCleared[i] = false;
+        }
     }
 }
 

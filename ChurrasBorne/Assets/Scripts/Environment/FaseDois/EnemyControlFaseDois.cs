@@ -106,12 +106,12 @@ public class EnemyControlFaseDois : MonoBehaviour
         }
         if (seventhMob.Contains(enemy))
         {
-            firstMob.Remove(enemy);
+            seventhMob.Remove(enemy);
             IsSeventhMobCleared();
         }
         if (eigthMob.Contains(enemy))
         {
-            firstMob.Remove(enemy);
+            eigthMob.Remove(enemy);
             IsEigthMobCleared();
         }
     }
@@ -148,7 +148,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     {
         eigthMob.ForEach(x => x.SetActive(true));
     }
-    // Fazer quando lista est· vazia:
+    // Fazer quando lista estÅEvazia:
     public void IsFirstMobCleared()
     {
         if (firstMob.Count <= 0)

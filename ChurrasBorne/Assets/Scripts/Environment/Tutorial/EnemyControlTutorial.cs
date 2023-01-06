@@ -7,12 +7,16 @@ public class EnemyControlTutorial : MonoBehaviour
     public static EnemyControlTutorial Instance;
     private readonly List<GameObject> firstMob = new List<GameObject>();
     private readonly List<GameObject> secondMob = new List<GameObject>();
+    public AudioSource audioSource;
+    public AudioClip gate_open;
+    public GameObject tutboxchurras;
     private void Awake()
     {
         Instance = this;
     }
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         firstMob.AddRange(GameObject.FindGameObjectsWithTag("TUTORIAL_SALAUMMOB"));
         secondMob.AddRange(GameObject.FindGameObjectsWithTag("TUTORIAL_SALAUMMOBDOIS"));
         for (int i = 0; i < secondMob.Count; i++)
@@ -55,7 +59,9 @@ public class EnemyControlTutorial : MonoBehaviour
     {
         if (secondMob.Count <= 0)
         {
+            audioSource.PlayOneShot(gate_open, audioSource.volume);
             TutorialTriggerController.Instance.FirstGateTrigger();
+            Instantiate(tutboxchurras);
         }
     }
 }
