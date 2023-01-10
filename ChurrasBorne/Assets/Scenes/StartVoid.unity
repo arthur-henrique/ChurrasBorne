@@ -184,7 +184,6 @@ GameObject:
   m_Component:
   - component: {fileID: 189145002}
   - component: {fileID: 189145003}
-  - component: {fileID: 189145004}
   m_Layer: 9
   m_Name: Default Camera
   m_TagString: Untagged
@@ -242,23 +241,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1871295434}
---- !u!114 &189145004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189145001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FocusTracksTarget: 0
-  m_FocusTracking: 0
-  m_FocusTarget: {fileID: 0}
-  m_FocusOffset: 0
-  m_Profile: {fileID: 11400000, guid: d55615be14b5ee54ca62477237c51393, type: 2}
 --- !u!1 &223903016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1021,7 @@ MonoBehaviour:
   death: {fileID: 223903018}
   gate: {fileID: 0}
   boss: {fileID: 1724782216}
+  vignette: {fileID: 0}
   gameOverPrefab: {fileID: 1214597544727120186, guid: 3068dd6c7bdf1f24c9f61567078f30db, type: 3}
   audioSource: {fileID: 0}
   gateOpen: {fileID: 8300000, guid: 1c7a82c093e8928499f3f05f5e44354e, type: 3}

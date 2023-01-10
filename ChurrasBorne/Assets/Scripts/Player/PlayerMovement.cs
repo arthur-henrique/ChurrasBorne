@@ -152,16 +152,21 @@ public class PlayerMovement : MonoBehaviour
                 }
                 float rollSpeedMinimun = 10f;
                 if (rollSpeed < rollSpeedMinimun)
+                {
                     state = State.Normal;
+                    PostProcessingControl.Instance.TurnOffLens();
+                }
                 if (rollSpeed < rollSpeedMinimun && attackPressed)
                 {
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
+                    PostProcessingControl.Instance.TurnOffLens();
                 }
                 if (rollSpeed < rollSpeedMinimun && healingPressed)
                 {
                     state = State.Healing;
                     anim.SetTrigger("isHealing");
+                    PostProcessingControl.Instance.TurnOffLens();
                 }
                 break;
             case State.Attacking:

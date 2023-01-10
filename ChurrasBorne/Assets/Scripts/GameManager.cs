@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using Cinemachine.PostFX;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     private PlayerController pc; 
     public Slider slider;
     public CinemachineVirtualCamera dft, death, gate, boss;
+    public Cinemachine.PostFX.CinemachineVolumeSettings vignette;
     public GameObject gameOverPrefab;
     public AudioSource audioSource;
     public AudioClip gateOpen;
@@ -143,12 +146,14 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            SaveGame();
+            PostProcessingControl.Instance.TurnOnVignette();
+            //SaveGame();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            LoadGame();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+            PostProcessingControl.Instance.TurnOffVignette();
+            //LoadGame();
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
 
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
@@ -161,6 +166,7 @@ public class GameManager : MonoBehaviour
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
+            PostProcessingControl.Instance.TurnOnCA();
             damageCDCounter = damageTime;
             SetDamagetime(damageTime);
             PlayerMovement.SetDamageState();
@@ -222,6 +228,7 @@ public class GameManager : MonoBehaviour
     {
         damageCDCounter = rollDmgCd;
         canTakeDamage = false;
+        PostProcessingControl.Instance.TurnOnLens();
     }
     public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
@@ -418,6 +425,12 @@ public class GameManager : MonoBehaviour
         {
             hasCleared[i] = false;
         }
+    }
+
+    // Cameras Post Processing
+    public void TurnVignetteOn()
+    {
+        PostProcessingControl.Instance.TurnOnVignette();
     }
 }
 
