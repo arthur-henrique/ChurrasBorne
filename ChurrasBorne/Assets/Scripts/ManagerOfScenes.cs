@@ -46,6 +46,7 @@ public class ManagerOfScenes : MonoBehaviour
         // HUB
         if (gameObject.CompareTag("HUB"))
         {
+            PostProcessingControl.Instance.TurnOffVignette();
             gate.transform.position = GateCamPos[0].transform.position;
             if(!clearedUm && !clearedHalf)
             {
@@ -70,7 +71,8 @@ public class ManagerOfScenes : MonoBehaviour
         // Fase Um
         if(gameObject.CompareTag("FASEUM"))
         {
-            if(!clearedUm && !clearedHalf)
+            PostProcessingControl.Instance.TurnOffVignette();
+            if (!clearedUm && !clearedHalf)
             {
                 eclipse.SetActive(false);
             }
@@ -97,6 +99,7 @@ public class ManagerOfScenes : MonoBehaviour
 
         if (gameObject.CompareTag("FASEDOIS"))
         {
+            PostProcessingControl.Instance.TurnOnVignette();
             if (!clearedDois && !clearedDoisHalf)
             {
                 eclipse.SetActive(false);

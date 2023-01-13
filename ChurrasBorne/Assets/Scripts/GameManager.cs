@@ -146,12 +146,12 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            PostProcessingControl.Instance.TurnOnVignette();
+            
             //SaveGame();
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            PostProcessingControl.Instance.TurnOffVignette();
+            
             //LoadGame();
             //UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
 
