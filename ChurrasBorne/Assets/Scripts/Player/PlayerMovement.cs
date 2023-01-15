@@ -36,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     private static State state;
     public static PlayerController pc;
 
+    public ParticleSystem particles, dashParticlesOne, dashParticlesTwo;
+    private ParticleSystem.EmissionModule particleEmission;
+
     private AudioSource audioSource;
     public AudioClip player_dash;
     public AudioClip player_punch;
@@ -69,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
         isOnWeb = false;
         isOnBossWeb = false;
         speed = 10f;
+
+        particleEmission = particles.emission;
     }
     // Update is called once per frame
     void Update()
@@ -81,6 +86,15 @@ public class PlayerMovement : MonoBehaviour
                     x = pc.Movimento.LesteOeste.ReadValue<float>();
                     y = pc.Movimento.NorteSul.ReadValue<float>();
 
+                    if (x != 0 || y != 0)
+                    {
+                        particleEmission.rateOverTime = 25f;
+                    }
+                    else
+                    {
+                        particleEmission.rateOverTime = 0f;
+                    }
+
                     if (pc.Movimento.Rolar.WasPressedThisFrame())
                     {
                         if (Dash_Manager.dash_fill_global >= 60)
@@ -90,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
                             state = State.Rolling;
                             anim.SetTrigger("isRolling");
                             print("Rolei");
+                            StartCoroutine(DustWait());
                             audioSource.PlayOneShot(player_dash, audioSource.volume);
                             Dash_Manager.dash_fill_global -= 60;
                             Dash_Manager.dash_light_global = 0;
@@ -151,22 +166,28 @@ public class PlayerMovement : MonoBehaviour
                     attackPressed = false;
                 }
                 float rollSpeedMinimun = 10f;
+                
                 if (rollSpeed < rollSpeedMinimun)
                 {
                     state = State.Normal;
                     PostProcessingControl.Instance.TurnOffLens();
+                    PlayDashParticlesEnd();
                 }
                 if (rollSpeed < rollSpeedMinimun && attackPressed)
                 {
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
                     PostProcessingControl.Instance.TurnOffLens();
+                    PlayDashParticlesEnd();
+
                 }
                 if (rollSpeed < rollSpeedMinimun && healingPressed)
                 {
                     state = State.Healing;
                     anim.SetTrigger("isHealing");
                     PostProcessingControl.Instance.TurnOffLens();
+                    PlayDashParticlesEnd();
+
                 }
                 break;
             case State.Attacking:
@@ -447,6 +468,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void PlayDashParticlesStart()
+    {
+        dashParticlesOne.gameObject.SetActive(true);
+        dashParticlesOne.Stop();
+        dashParticlesOne.Play();
+    }
+    private void PlayDashParticlesEnd()
+    {
+        dashParticlesTwo.gameObject.SetActive(true);
+        dashParticlesTwo.Stop();
+        dashParticlesTwo.Play();
+    }
+
     IEnumerator StupidAttackCD()
     {
         yield return new WaitForSeconds(0.035f);
@@ -480,4 +514,10 @@ public class PlayerMovement : MonoBehaviour
         yield return 0;*/
         yield return null;
     }
+    private IEnumerator DustWait()
+    {
+        yield return new WaitForSeconds(0.15f);
+        PlayDashParticlesStart();
+    }
+
 }
