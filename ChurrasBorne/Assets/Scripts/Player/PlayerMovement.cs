@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public ParticleSystem particles, dashParticlesOne, dashParticlesTwo;
     private ParticleSystem.EmissionModule particleEmission;
+    public float particleRate;
 
     private AudioSource audioSource;
     public AudioClip player_dash;
@@ -88,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
                     if (x != 0 || y != 0)
                     {
-                        particleEmission.rateOverTime = 25f;
+                        particleEmission.rateOverTime = particleRate;
                     }
                     else
                     {
