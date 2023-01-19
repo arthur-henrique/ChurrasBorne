@@ -53,7 +53,8 @@ public class MobAI : MonoBehaviour
     private bool canBeKbed = true;
     private bool canTakeDamage = true;
 
-
+    public ParticleSystem bloodSpatter;
+    private ParticleSystemRenderer psr;
     private void Awake()
     {
         state = State.Spawning;
@@ -73,6 +74,7 @@ public class MobAI : MonoBehaviour
         stunTime = startStunTime;
 
         dashRecoveryTime = startDashRecoveryTime;
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
     }
 
     void Update()
@@ -371,10 +373,12 @@ public class MobAI : MonoBehaviour
         if (target.x < transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            psr.flip = new Vector3(0, 0, 0);
         }
         else if (target.x > transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            psr.flip = new Vector3(1, 0, 0);
         }
     }
 
@@ -386,7 +390,10 @@ public class MobAI : MonoBehaviour
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
             if (health >= 0)
+            {
                 anim.SetTrigger("Hit");
+                DrawBlood();
+            }
 
             int damage;
 
@@ -462,6 +469,13 @@ public class MobAI : MonoBehaviour
             canBeKbed = false;
             StartCoroutine(Knockback(knockbackDuration/2, 25f, player));
         }
+    }
+
+    private void DrawBlood()
+    {
+        bloodSpatter.gameObject.SetActive(true);
+        bloodSpatter.Stop();
+        bloodSpatter.Play();
     }
 
     private IEnumerator CanTakeDamageCD()
