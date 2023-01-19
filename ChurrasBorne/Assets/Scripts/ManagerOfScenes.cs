@@ -100,6 +100,8 @@ public class ManagerOfScenes : MonoBehaviour
         if (gameObject.CompareTag("FASEDOIS"))
         {
             PostProcessingControl.Instance.TurnOnVignette();
+            PlayerMovement.instance.EnterSnowParticles();
+            PlayerMovement.instance.SetFaseDois();
             if (!clearedDois && !clearedDoisHalf)
             {
                 eclipse.SetActive(false);

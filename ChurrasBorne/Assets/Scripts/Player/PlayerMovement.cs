@@ -33,11 +33,12 @@ public class PlayerMovement : MonoBehaviour
     bool healingPressed = false;
     bool takingDamage = false;
     bool canAttack = true;
+    bool isOnFaseDois = false;
     private static State state;
     public static PlayerController pc;
 
-    public ParticleSystem particles, dashParticlesOne, dashParticlesTwo;
-    private ParticleSystem.EmissionModule particleEmission;
+    public ParticleSystem walkParticles, snowWalkParticles, dashParticlesOne, dashParticlesTwo, snowDashParticlesOne, snowDashParticlesTwo;
+    private ParticleSystem.EmissionModule particleEmission, snowParticleEmission;
     public float particleRate;
 
     private AudioSource audioSource;
@@ -74,7 +75,8 @@ public class PlayerMovement : MonoBehaviour
         isOnBossWeb = false;
         speed = 10f;
 
-        particleEmission = particles.emission;
+        particleEmission = walkParticles.emission;
+        snowParticleEmission = snowWalkParticles.emission;
     }
     // Update is called once per frame
     void Update()
@@ -90,10 +92,12 @@ public class PlayerMovement : MonoBehaviour
                     if (x != 0 || y != 0)
                     {
                         particleEmission.rateOverTime = particleRate;
+                        snowParticleEmission.rateOverTime = particleRate;
                     }
                     else
                     {
                         particleEmission.rateOverTime = 0f;
+                        snowParticleEmission.rateOverTime = 0f;
                     }
 
                     if (pc.Movimento.Rolar.WasPressedThisFrame())
@@ -441,7 +445,9 @@ public class PlayerMovement : MonoBehaviour
             isOnIce = false;
             isOnWeb = false;
             isOnBossWeb = false;
+            isOnFaseDois = false;
             GameManager.instance.SwitchToDefaultCam();
+            ExitSnowParticles();
         }
         else if (other.CompareTag("Fish"))
         {
@@ -471,15 +477,49 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayDashParticlesStart()
     {
-        dashParticlesOne.gameObject.SetActive(true);
-        dashParticlesOne.Stop();
-        dashParticlesOne.Play();
+        if (!isOnFaseDois)
+        {
+            dashParticlesOne.gameObject.SetActive(true);
+            dashParticlesOne.Stop();
+            dashParticlesOne.Play();
+        }
+        else
+        {
+            snowDashParticlesOne.gameObject.SetActive(true);
+            snowDashParticlesOne.Stop();
+            snowDashParticlesOne.Play();
+        }
     }
     private void PlayDashParticlesEnd()
     {
-        dashParticlesTwo.gameObject.SetActive(true);
-        dashParticlesTwo.Stop();
-        dashParticlesTwo.Play();
+        if (!isOnFaseDois)
+        {
+            dashParticlesTwo.gameObject.SetActive(true);
+            dashParticlesTwo.Stop();
+            dashParticlesTwo.Play();
+        }
+        else
+        {
+            snowDashParticlesTwo.gameObject.SetActive(true);
+            snowDashParticlesTwo.Stop();
+            snowDashParticlesTwo.Play();
+        }
+    }
+
+    public void SetFaseDois()
+    {
+        isOnFaseDois = true;
+    }
+
+    public void EnterSnowParticles()
+    {
+        walkParticles.gameObject.SetActive(false);
+        snowWalkParticles.gameObject.SetActive(true);
+    }
+    public void ExitSnowParticles()
+    {
+        walkParticles.gameObject.SetActive(true);
+        snowWalkParticles.gameObject.SetActive(false);
     }
 
     IEnumerator StupidAttackCD()

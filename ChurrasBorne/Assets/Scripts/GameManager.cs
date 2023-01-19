@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         {
             
             //LoadGame();
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("HUB");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
 
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
