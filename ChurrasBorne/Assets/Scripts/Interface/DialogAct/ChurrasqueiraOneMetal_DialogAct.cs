@@ -9,6 +9,8 @@ public class ChurrasqueiraOneMetal_DialogAct : MonoBehaviour
     PlayerController pc;
 
     public Sprite churrasmorta;
+    public ParticleSystem ps;
+    private ParticleSystem.EmissionModule emission;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class ChurrasqueiraOneMetal_DialogAct : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Animator>().SetBool("APAGAR", false);
         dbox.GetComponent<DialogSystem>().db_PullDOWN();
+        emission = ps.emission;
     }
 
     // Update is called once per frame
@@ -56,6 +59,7 @@ public class ChurrasqueiraOneMetal_DialogAct : MonoBehaviour
                         GameManager.instance.SetHeals(GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") + 1, false, true);
                     }
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
+                    emission.rateOverTime = 1f;
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;
                     

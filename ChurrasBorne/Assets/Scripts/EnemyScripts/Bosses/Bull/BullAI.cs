@@ -43,6 +43,9 @@ public class BullAI : MonoBehaviour
     private float knockbackDuration = 1.5f, knockbackPower = 150f;
     private bool canTakeDamage = true;
 
+    public ParticleSystem bloodSpatter;
+    private ParticleSystemRenderer psr;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -73,6 +76,8 @@ public class BullAI : MonoBehaviour
         audioSource.PlayOneShot(bull_roar, audioSource.volume);
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
+
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
     }
 
     void Update()
@@ -243,10 +248,12 @@ public class BullAI : MonoBehaviour
         if (player.position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            psr.flip = new Vector3(0, 0, 0);
         }
         else if (player.position.x > transform.position.x)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            psr.flip = new Vector3(1, 0, 0);
         }
     }
 
@@ -279,6 +286,7 @@ public class BullAI : MonoBehaviour
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
+            DrawBlood();
             int damage;
 
             if (isOnTut)
@@ -299,6 +307,13 @@ public class BullAI : MonoBehaviour
             }
 
         }
+    }
+
+    private void DrawBlood()
+    {
+        bloodSpatter.gameObject.SetActive(true);
+        bloodSpatter.Stop();
+        bloodSpatter.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

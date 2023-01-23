@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class GoatAI : MonoBehaviour
 {
@@ -48,6 +49,9 @@ public class GoatAI : MonoBehaviour
     private float knockbackDuration = 1.0f, knockbackPower = 100f;
     private bool canTakeDamage = true;
 
+    public ParticleSystem bloodSpatter;
+    private ParticleSystemRenderer psr;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -69,6 +73,7 @@ public class GoatAI : MonoBehaviour
         HealthBar_Manager.instance.refreshBoss = true;
 
         audioSource.PlayOneShot(goat_roar, audioSource.volume);
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
     }
 
     void Update()
@@ -294,10 +299,12 @@ public class GoatAI : MonoBehaviour
         if (player.position.x < transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            psr.flip = new Vector3(0, 0, 0);
         }
         else if (player.position.x > transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            psr.flip = new Vector3(1, 0, 0);
         }
     }
     void DashFlip()
@@ -305,10 +312,12 @@ public class GoatAI : MonoBehaviour
         if (dashTarget.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            psr.flip = new Vector3(0, 0, 0);
         }
         else if (dashTarget.x > transform.position.x)
         {
             transform.localScale = new Vector3(1, 1, 1);
+            psr.flip = new Vector3(1, 0, 0);
         }
     }
 
@@ -322,7 +331,9 @@ public class GoatAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
+            StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
+            DrawBlood();
             int damage = 10;
             health -= damage;
             audioSource.PlayOneShot(goat_hurt, audioSource.volume);
@@ -331,6 +342,13 @@ public class GoatAI : MonoBehaviour
                 SwitchToDead();
             }
         }
+    }
+
+    private void DrawBlood()
+    {
+        bloodSpatter.gameObject.SetActive(true);
+        bloodSpatter.Stop();
+        bloodSpatter.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

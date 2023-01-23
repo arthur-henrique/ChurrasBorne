@@ -9,6 +9,8 @@ public class ChurrasqueiraThreeMetal_DialogAct : MonoBehaviour
     PlayerController pc;
 
     public Sprite churrasmorta;
+    public ParticleSystem ps;
+    private ParticleSystem.EmissionModule emission;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class ChurrasqueiraThreeMetal_DialogAct : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Animator>().SetBool("APAGAR", false);
         dbox.GetComponent<DialogSystem>().db_PullDOWN();
+        emission = ps.emission;
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class ChurrasqueiraThreeMetal_DialogAct : MonoBehaviour
                     }
                     GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
+                    emission.rateOverTime = 1f;
                     GetComponent<Animator>().SetBool("APAGAR", true);
                     GetComponent<SpriteRenderer>().sprite = churrasmorta;
                     GameManager.instance.SetHeals(3, false, true);
