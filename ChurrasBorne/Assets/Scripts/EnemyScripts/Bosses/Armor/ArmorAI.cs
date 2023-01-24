@@ -276,6 +276,7 @@ public class ArmorAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
+            CanTakeDamageCD();
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             int damage = 10;
             health -= damage;

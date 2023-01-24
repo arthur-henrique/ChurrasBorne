@@ -256,6 +256,7 @@ public class TricksterAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
+            CanTakeDamageCD();
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             int damage = 10;
             health -= damage;

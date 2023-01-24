@@ -226,7 +226,7 @@ public class MobAI : MonoBehaviour
                 }
                 else
                 {
-                    print(stunTime);
+                    //print(stunTime);
                     stunTime -= Time.deltaTime; 
                 }
                 break;
