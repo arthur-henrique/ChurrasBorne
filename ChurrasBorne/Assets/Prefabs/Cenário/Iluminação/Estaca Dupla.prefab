@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LuzUm
       objectReference: {fileID: 0}
+    - target: {fileID: 7623257996429826976, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368a900abd520ec4397bff51e6650820, type: 3}
 --- !u!4 &1173162821974369521 stripped
@@ -161,6 +165,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6433988147405538305}
     m_Modifications:
+    - target: {fileID: 1573932899240633078, guid: 8723b0041a4f64b498c87f4371a1e347, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2034512450704280210, guid: 8723b0041a4f64b498c87f4371a1e347, type: 3}
       propertyPath: m_SortingLayer
       value: 0

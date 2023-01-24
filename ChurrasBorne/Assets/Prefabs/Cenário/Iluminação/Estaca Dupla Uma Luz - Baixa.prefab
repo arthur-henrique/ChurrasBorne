@@ -90,6 +90,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 596206288073315287}
     m_Modifications:
+    - target: {fileID: 1573932899240633078, guid: 8723b0041a4f64b498c87f4371a1e347, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2034512450704280210, guid: 8723b0041a4f64b498c87f4371a1e347, type: 3}
       propertyPath: m_SortingLayer
       value: 0

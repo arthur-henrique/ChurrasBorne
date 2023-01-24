@@ -146,6 +146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LuzUm
       objectReference: {fileID: 0}
+    - target: {fileID: 7623257996429826976, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368a900abd520ec4397bff51e6650820, type: 3}
 --- !u!4 &167331908711187054 stripped

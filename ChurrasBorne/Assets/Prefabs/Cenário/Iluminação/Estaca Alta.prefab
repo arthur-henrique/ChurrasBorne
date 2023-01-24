@@ -91,6 +91,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4666720427411856582}
     m_Modifications:
     - target: {fileID: 5826006857661116145, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
+      propertyPath: m_UseNormalMap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826006857661116145, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
       propertyPath: m_PointLightInnerRadius
       value: 1.2
       objectReference: {fileID: 0}
