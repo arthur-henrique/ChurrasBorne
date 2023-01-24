@@ -110,6 +110,7 @@ public class BullAI : MonoBehaviour
                 {
                     anim.SetTrigger("Bash");
                     audioSource.PlayOneShot(bull_attack, audioSource.volume);
+                    startTimeBTWMeleeATKs = Random.Range(1.5f, 2.5f);
                     timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
@@ -133,6 +134,7 @@ public class BullAI : MonoBehaviour
                 {
                     anim.SetTrigger("Axe");
                     audioSource.PlayOneShot(bull_charge, audioSource.volume);
+                    startTimeBTWRangedATKs = Random.Range(1.5f, 2.5f);
                     timeBTWRangedATKs = startTimeBTWRangedATKs;
                 }
                 else

@@ -272,7 +272,7 @@ public class GameManager : MonoBehaviour
     public void NextLevelSetter(Vector2 spawn)
     {
         player.transform.position = spawn;
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
     }
 
     public void SetPlayerPosition(Vector2 position)
@@ -370,7 +370,7 @@ public class GameManager : MonoBehaviour
         if (isTut)
         {
             yield return new WaitForSeconds(1f);
-            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 0, false, null);
+            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", 100, 0, false, null);
         }
     }
     IEnumerator CameraDelay()
