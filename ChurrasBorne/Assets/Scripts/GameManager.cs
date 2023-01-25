@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
+    public Animator reflAnim;
     private PlayerController pc; 
     public Slider slider;
     public CinemachineVirtualCamera dft, death, gate, boss;
@@ -166,6 +167,7 @@ public class GameManager : MonoBehaviour
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
+            reflAnim.SetTrigger("isHit");
             PostProcessingControl.Instance.TurnOnCA();
             damageCDCounter = damageTime;
             SetDamagetime(damageTime);
@@ -210,6 +212,7 @@ public class GameManager : MonoBehaviour
             else if (!isTut && healsLeft < 0)
                 healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
+            reflAnim.SetFloat("numberOfMeat", healsLeft);
             print(playerAnimator.GetFloat("numberOfMeat"));
             SetHealth(currentHealth);
         }
@@ -236,6 +239,8 @@ public class GameManager : MonoBehaviour
         {
             playerAnimator.SetFloat("numberOfMeat", heals);
             playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+            reflAnim.SetFloat("numberOfMeat", heals);
+            reflAnim.SetBool("isHoldingSword", isHoldingSword);
         }
         healsLeft = heals;
         isTut = isTutorial;
@@ -298,6 +303,8 @@ public class GameManager : MonoBehaviour
     {
         playerAnimator.SetBool("isDead", false);
         playerAnimator.SetBool("isDied", false);
+        reflAnim.SetBool("isDead", false);
+        reflAnim.SetBool("isDied", false);
         isAlive = true;
         PlayerMovement.SetStateAlive();
     }
@@ -367,6 +374,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
+        reflAnim.SetBool("isDead", false);
         if (isTut)
         {
             yield return new WaitForSeconds(1f);
@@ -379,6 +387,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
         playerAnimator.SetBool("isDied", true);
+        reflAnim.SetBool("isDead", true);
+        reflAnim.SetBool("isDied", true);
         if (!isTut)
         {
             Instantiate(gameOverPrefab);
