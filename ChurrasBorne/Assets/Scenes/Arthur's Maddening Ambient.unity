@@ -357,6 +357,17 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &334737959 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 554155425}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &342452015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2583,6 +2594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &1562642228 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 303343852217620431, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 554155425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1604553939 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1604553939, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
@@ -2781,6 +2797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  ltd: {fileID: 334737959}
   reflAnim: {fileID: 1604553939}
   slider: {fileID: 946190146}
   dft: {fileID: 676646593}
@@ -2806,6 +2823,7 @@ MonoBehaviour:
   og_sword: 0
   clearGame: 0
   hasCleared: 000000000000000000
+  poison: {fileID: 1562642228}
 --- !u!4 &1748823649
 Transform:
   m_ObjectHideFlags: 0

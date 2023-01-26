@@ -379,6 +379,22 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1604553939, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   m_PrefabInstance: {fileID: 601760228}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &601760231 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 303343852217620431, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &601760232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &757716132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -668,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  ltd: {fileID: 601760232}
   reflAnim: {fileID: 601760230}
   slider: {fileID: 1561382289}
   dft: {fileID: 189145003}
@@ -693,6 +710,7 @@ MonoBehaviour:
   og_sword: 0
   clearGame: 0
   hasCleared: 000000000000000000
+  poison: {fileID: 601760231}
 --- !u!4 &1098553892
 Transform:
   m_ObjectHideFlags: 0

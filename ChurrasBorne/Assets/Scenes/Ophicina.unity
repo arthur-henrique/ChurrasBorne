@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &16857642 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 303343852217620431, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 1528876031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &32938165
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  ltd: {fileID: 851750612}
+  reflAnim: {fileID: 231956162}
   slider: {fileID: 1116096203}
   dft: {fileID: 1347713032}
   death: {fileID: 2135620229}
@@ -274,6 +281,7 @@ MonoBehaviour:
   og_sword: 0
   clearGame: 0
   hasCleared: 000000000000000000
+  poison: {fileID: 16857642}
 --- !u!4 &32938168
 Transform:
   m_ObjectHideFlags: 0
@@ -323,6 +331,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &231956162 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1604553939, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 1528876031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &255237194
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +655,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af15a0b1a63d51c489a7f1f2efa41812, type: 3}
+--- !u!114 &851750612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 1528876031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920725035
 GameObject:
   m_ObjectHideFlags: 0

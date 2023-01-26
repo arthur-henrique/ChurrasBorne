@@ -21,6 +21,7 @@ public class MobAI : MonoBehaviour
 
     public Rigidbody2D rb;
     public Animator anim;
+    private SpriteRenderer sr;
 
     public Transform player;
     private Vector3 target;
@@ -41,7 +42,7 @@ public class MobAI : MonoBehaviour
 
     public int health;
 
-    public bool isASpitter, isADasher;
+    public bool isASpitter, isADasher, isASpider, isAPoisonSpider;
     private bool canDash = false, isDashing = false;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
@@ -64,6 +65,7 @@ public class MobAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        sr = gameObject.GetComponent<SpriteRenderer>();
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
         audioSource = GetComponent<AudioSource>();
 
@@ -75,6 +77,20 @@ public class MobAI : MonoBehaviour
 
         dashRecoveryTime = startDashRecoveryTime;
         psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+
+        if (isASpider)
+        {
+            int poisonChance = Random.Range(0, 4);
+            if(poisonChance > 2)
+            {
+                isAPoisonSpider = true;
+            }
+
+            if (isAPoisonSpider)
+            {
+                sr.color = new Color(0.1792207f, 0.5943396f, 0.1031684f, 1f);
+            }
+        }
     }
 
     void Update()
@@ -347,9 +363,17 @@ public class MobAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
-            if (GameManager.instance.canTakeDamage)
-                StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(5);
+            //if (GameManager.instance.canTakeDamage)
+            //    StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            if(isAPoisonSpider)
+            {
+                GameManager.instance.TakeDamage(3);
+                GameManager.instance.Poison(1f);
+            }
+            else
+            {
+                GameManager.instance.TakeDamage(5);
+            }
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {

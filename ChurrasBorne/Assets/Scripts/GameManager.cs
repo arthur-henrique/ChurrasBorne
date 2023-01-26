@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
     private GameObject player;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
     public Animator reflAnim;
@@ -46,7 +47,13 @@ public class GameManager : MonoBehaviour
 
     public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half, 2 - Fase Dois, 3 - Fase Dois Half;
     private bool hasSeenGateTwo = false;
-    private GameObject[] gameManagers; 
+    private GameObject[] gameManagers;
+    private bool isPoisoned = false;
+    private bool isPoisonTicking = false;
+    private float poisonTime;
+    public ParticleSystem poison;
+    private ParticleSystem.EmissionModule poisonEm;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -76,6 +83,8 @@ public class GameManager : MonoBehaviour
         dft.Priority = 1;
         death.Priority = 0;
         boss.Priority = 0;
+
+        poisonEm = poison.emission;
     }
     private void Update()
     {
@@ -147,16 +156,42 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            
+
             //SaveGame();
+            Poison(1f);
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             
             //LoadGame();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
 
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
+        }
+
+        if (poisonTime > 0)
+        {
+            isPoisoned = true;
+            if (!isPoisonTicking)
+            {
+                isPoisonTicking = true;
+                StartCoroutine(PoisonTick());
+            }
+        }
+        if (isPoisoned)
+        {
+            ltd.color = new Color(0.3517012f, 0.8679245f, 0.2571021f, 1f);
+            poisonEm.rateOverTime = 7;
+            poisonTime -= Time.deltaTime;
+            if (poisonTime <= 0)
+                isPoisoned= false;
+
+        }
+        if (!isPoisoned)
+        {
+            ltd.color = new Color(0.7745855f, 0.7125668f, 0.9056604f, 1f);
+            poisonEm.rateOverTime = 0;
+            isPoisonTicking = false;
         }
     }
 
@@ -185,6 +220,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PoisonBurn()
+    {
+        currentHealth -= 2;
+        SetHealth(currentHealth);
+    }
+
+    public void Poison(float poisonT)
+    {
+        poisonTime += poisonT;
     }
 
     
@@ -381,6 +427,15 @@ public class GameManager : MonoBehaviour
             canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", 100, 0, false, null);
         }
     }
+
+    IEnumerator PoisonTick()
+    {
+        while (poisonTime > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            PoisonBurn();
+        }
+    }
     IEnumerator CameraDelay()
     {
         SwitchToDeathCam();
@@ -411,6 +466,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         PlayerMovement.EnableControl();
     }
+
 
     // Teste, favor remover
     public void SaveGame()
