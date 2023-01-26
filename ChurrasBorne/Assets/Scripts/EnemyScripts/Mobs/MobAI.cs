@@ -54,10 +54,11 @@ public class MobAI : MonoBehaviour
     private bool canBeKbed = true;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter;
+    public ParticleSystem bloodSpatter, stepDust;
     private ParticleSystemRenderer psr;
     private void Awake()
     {
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
         state = State.Spawning;
     }
 
@@ -76,7 +77,7 @@ public class MobAI : MonoBehaviour
         stunTime = startStunTime;
 
         dashRecoveryTime = startDashRecoveryTime;
-        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+        
 
         if (isASpider)
         {
@@ -437,6 +438,13 @@ public class MobAI : MonoBehaviour
         
 
         
+    }
+
+    private void PlayStepDust()
+    {
+        stepDust.gameObject.SetActive(true);
+        stepDust.Stop();
+        stepDust.Play();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

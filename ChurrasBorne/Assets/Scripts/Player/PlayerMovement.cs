@@ -559,7 +559,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
-    { /*
+    { 
         float timer = 0;
         while (kbDuration > timer)
         {
@@ -574,8 +574,8 @@ public class PlayerMovement : MonoBehaviour
             else
                 rb.AddForce(-direction * kbPower);
         }
-        yield return 0;*/
-        yield return null;
+        yield return 0;
+        
     }
     private IEnumerator DustWait()
     {

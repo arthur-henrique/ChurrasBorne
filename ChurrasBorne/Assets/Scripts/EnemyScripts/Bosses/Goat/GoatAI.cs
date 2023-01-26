@@ -46,14 +46,16 @@ public class GoatAI : MonoBehaviour
     public AudioClip goat_dashattack;
     public AudioClip goat_hurt;
 
-    private float knockbackDuration = 1.0f, knockbackPower = 100f;
+
+    private float knockbackDuration = 1.0f, knockbackPower = 30f;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter;
+    public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
 
     private void Awake()
     {
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
         state = State.Spawning;
     }
 
@@ -73,7 +75,7 @@ public class GoatAI : MonoBehaviour
         HealthBar_Manager.instance.refreshBoss = true;
 
         audioSource.PlayOneShot(goat_roar, audioSource.volume);
-        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+        
     }
 
     void Update()
@@ -280,7 +282,7 @@ public class GoatAI : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(15);
         }
     }
@@ -349,6 +351,20 @@ public class GoatAI : MonoBehaviour
         bloodSpatter.gameObject.SetActive(true);
         bloodSpatter.Stop();
         bloodSpatter.Play();
+    }
+
+    private void PlayStompDust()
+    {
+        stompDust.gameObject.SetActive(true);
+        stompDust.Stop();
+        stompDust.Play();
+    }
+
+    private void PlayStepDust()
+    {
+        stepDust.gameObject.SetActive(true);
+        stepDust.Stop();
+        stepDust.Play();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

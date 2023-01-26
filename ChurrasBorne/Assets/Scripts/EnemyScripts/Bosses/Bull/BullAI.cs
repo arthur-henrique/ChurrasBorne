@@ -40,14 +40,15 @@ public class BullAI : MonoBehaviour
 
     private bool isAlreadyDying = false;
 
-    private float knockbackDuration = 1.5f, knockbackPower = 150f;
+    private float knockbackDuration = 1.5f, knockbackPower = 50f;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter;
+    public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
 
     private void Awake()
     {
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
         state = State.Spawning;
     }
 
@@ -77,7 +78,7 @@ public class BullAI : MonoBehaviour
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
 
-        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+        
     }
 
     void Update()
@@ -265,7 +266,7 @@ public class BullAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(15);
+            GameManager.instance.TakeDamage(10);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
@@ -317,7 +318,19 @@ public class BullAI : MonoBehaviour
         bloodSpatter.Stop();
         bloodSpatter.Play();
     }
+    private void PlayStompDust()
+    {
+        stompDust.gameObject.SetActive(true);
+        stompDust.Stop();
+        stompDust.Play();
+    }
 
+    private void PlayStepDust()
+    {
+        stepDust.gameObject.SetActive(true);
+        stepDust.Stop();
+        stepDust.Play();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
