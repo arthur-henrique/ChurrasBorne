@@ -30,7 +30,7 @@ public class GoatAI : MonoBehaviour
 
     private bool isDashing = false, isAlreadyDying = false, isAlive = true;
 
-    public int health;
+    public float health;
     public static bool goat_boss_died = false;
 
     public Rigidbody2D rb;
@@ -52,6 +52,8 @@ public class GoatAI : MonoBehaviour
 
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
+
+    private float armor;
 
     private void Awake()
     {
@@ -75,7 +77,7 @@ public class GoatAI : MonoBehaviour
         HealthBar_Manager.instance.refreshBoss = true;
 
         audioSource.PlayOneShot(goat_roar, audioSource.volume);
-        
+        armor = 1f;
     }
 
     void Update()
@@ -283,7 +285,7 @@ public class GoatAI : MonoBehaviour
         if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
         {
             //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(15);
+            GameManager.instance.TakeDamage(30);
         }
     }
 
@@ -292,7 +294,7 @@ public class GoatAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= dashATKDistance)
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(25);
+            GameManager.instance.TakeDamage(40);
         }
     }
 
@@ -336,7 +338,7 @@ public class GoatAI : MonoBehaviour
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             DrawBlood();
-            int damage = 10;
+            float damage = GameManager.instance.GetDamage() / armor;
             health -= damage;
             audioSource.PlayOneShot(goat_hurt, audioSource.volume);
             if (!isAlreadyDying)

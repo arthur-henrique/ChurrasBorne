@@ -31,7 +31,7 @@ public class BullAI : MonoBehaviour
     public AudioClip bull_roar;
     public AudioClip bull_hurt;
 
-    public int health;
+    public float health;
 
     public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
     private float timeBTWMeleeATKs, timeBTWRangedATKs, timeToDie;
@@ -45,6 +45,7 @@ public class BullAI : MonoBehaviour
 
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
+    private float armor;
 
     private void Awake()
     {
@@ -68,7 +69,7 @@ public class BullAI : MonoBehaviour
 
         if (isOnTut)
         {
-            health = 300;
+            health = 400;
         }
         else
         {
@@ -78,7 +79,7 @@ public class BullAI : MonoBehaviour
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
 
-        
+        armor = 1f;
     }
 
     void Update()
@@ -226,7 +227,6 @@ public class BullAI : MonoBehaviour
             if (isOnTut)
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();
-                GameManager.instance.maxHealth = 135;
                 portal.enabled = true;
                 portal.transform.GetChild(0).gameObject.SetActive(true);
             }
@@ -266,12 +266,12 @@ public class BullAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(35);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(35);
         }
     }
 
@@ -290,17 +290,9 @@ public class BullAI : MonoBehaviour
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             DrawBlood();
-            int damage;
+            float damage = GameManager.instance.GetDamage() / armor;
 
-            if (isOnTut)
-            {
-                damage = 5;
-            }
-            else
-            {
-                damage = 10;
-            }
-
+            
             health -= damage;
             audioSource.PlayOneShot(bull_hurt, audioSource.volume);
 

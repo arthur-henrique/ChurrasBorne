@@ -469,9 +469,15 @@ public class MobAI : MonoBehaviour
                 anim.SetTrigger("Hit");
                 DrawBlood();
             }
-
-            float damage = GameManager.instance.GetDamage() / armor;
-
+            if(GameManager.instance.GetMeat() >= 0)
+            {
+                float damage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 20) / armor;
+            }
+            else
+            {
+                float damage = GameManager.instance.GetDamage() / armor;
+            }
+            print(damage);
             health -= damage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
             state = State.Stunned;

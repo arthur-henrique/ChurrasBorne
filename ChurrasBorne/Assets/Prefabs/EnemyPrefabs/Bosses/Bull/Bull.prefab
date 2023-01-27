@@ -24,7 +24,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2477395731989692589
 Transform:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   bull_death: {fileID: 8300000, guid: c99d5f6b3f699074ebfa5a59ddc5d0b7, type: 3}
   bull_roar: {fileID: 8300000, guid: edc14e4259cb661428bbf259e925f5f9, type: 3}
   bull_hurt: {fileID: 8300000, guid: fa19f876216f2d047a95fba92443ff56, type: 3}
-  health: 200
+  health: 400
   chasingSpeed: 6
   meleeDistance: 6
   startTimeBTWMeleeATKs: 2

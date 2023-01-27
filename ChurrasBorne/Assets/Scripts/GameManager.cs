@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     private ParticleSystem.EmissionModule poisonEm;
 
     private float playerDamage, playerArmor;
+    public bool hasBetterSword = false;
+    private float swordDamage = 15f, betterSwordDamage = 25f;
 
     private void Awake()
     {
@@ -292,6 +294,12 @@ public class GameManager : MonoBehaviour
             reflAnim.SetFloat("numberOfMeat", heals);
             reflAnim.SetBool("isHoldingSword", isHoldingSword);
         }
+        if (isHoldingSword)
+            HasSword();
+        if(hasBetterSword)
+        {
+            HasBetterSword();
+        }
         healsLeft = heals;
         isTut = isTutorial;
     }
@@ -388,6 +396,18 @@ public class GameManager : MonoBehaviour
     public float GetDamage()
     {
         return playerDamage;
+    }
+    public void HasSword()
+    {
+        playerDamage = swordDamage;
+    }
+    public void SetHasBetterSword()
+    {
+        hasBetterSword = true;
+    }
+    public void HasBetterSword()
+    {
+        playerDamage= betterSwordDamage;
     }
     public float GetArmor()
     {
