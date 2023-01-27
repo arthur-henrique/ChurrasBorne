@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject clearGamePrefab;
 
     // Health and Stuff
-    public int maxHealth, currentHealth;
+    public float maxHealth, currentHealth;
     private float damageCDCounter, damagetime;
     private const float DamageCD = .5f;
     private readonly float rollDmgCd = 0.3f;
@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     private float poisonTime;
     public ParticleSystem poison;
     private ParticleSystem.EmissionModule poisonEm;
+
+    private float playerDamage, playerArmor;
 
     private void Awake()
     {
@@ -85,6 +87,8 @@ public class GameManager : MonoBehaviour
         boss.Priority = 0;
 
         poisonEm = poison.emission;
+        playerArmor = 1f;
+        playerDamage = 10f;
     }
     private void Update()
     {
@@ -98,7 +102,7 @@ public class GameManager : MonoBehaviour
         }
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
-            og_health = GameManager.instance.currentHealth;
+            og_health = (int)GameManager.instance.currentHealth;
             og_meat = GameManager.instance.GetMeat();
             og_sword = GameManager.instance.GetSword();
             scene_detect = SceneManager.GetActiveScene().name;
@@ -197,7 +201,7 @@ public class GameManager : MonoBehaviour
 
     // Damage
 
-    public void TakeDamage(int damage, float damageTime = DamageCD)
+    public void TakeDamage(float damage, float damageTime = DamageCD)
     {
         if (canTakeDamage && isAlive)
         {
@@ -224,7 +228,7 @@ public class GameManager : MonoBehaviour
 
     public void PoisonBurn()
     {
-        currentHealth -= 2;
+        currentHealth -= 3;
         SetHealth(currentHealth);
     }
 
@@ -297,12 +301,12 @@ public class GameManager : MonoBehaviour
         return healsLeft;
     }
     // HealthBarFunctions
-    public void SetMaxHealth(int maxHealth)
+    public void SetMaxHealth(float maxHealth)
     {
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
     }
-    public void SetHealth(int health)
+    public void SetHealth(float health)
     {
         slider.value = health;
     }
@@ -381,6 +385,15 @@ public class GameManager : MonoBehaviour
         dft.Priority = 0;
         death.Priority = 1;
     }
+    public float GetDamage()
+    {
+        return playerDamage;
+    }
+    public float GetArmor()
+    {
+        return playerArmor;
+    }
+
 
     public void SwitchToGateCam()
     {
@@ -432,7 +445,7 @@ public class GameManager : MonoBehaviour
     {
         while (poisonTime > 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
             PoisonBurn();
         }
     }

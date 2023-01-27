@@ -40,9 +40,16 @@ public class MobAI : MonoBehaviour
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
 
-    public int health;
+    
 
-    public bool isASpitter, isADasher, isASpider, isAPoisonSpider;
+    public bool isASpitter,
+        isADasher,
+        isASpider,
+        isAPoisonSpider,
+        isATebas,
+        isAGeletebas,
+        isAShatebas,
+        isAGigantebas;
     private bool canDash = false, isDashing = false;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
@@ -54,8 +61,12 @@ public class MobAI : MonoBehaviour
     private bool canBeKbed = true;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter, stepDust;
+    public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
+
+    // Controle de dano:
+    private float damage, armor, health;
+    
     private void Awake()
     {
         psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
@@ -78,19 +89,58 @@ public class MobAI : MonoBehaviour
 
         dashRecoveryTime = startDashRecoveryTime;
         
-
-        if (isASpider)
+        if(isASpitter)
         {
-            int poisonChance = Random.Range(0, 4);
-            if(poisonChance > 2)
-            {
-                isAPoisonSpider = true;
-            }
+            health = 50f;
+            damage = 15f;
+            armor = 1f;
+        }
+        else if(isADasher)
+        {
+            health = 50f;
+            damage = 30f;
+            armor = 1f;
+        }
+        else if (isASpider)
+        {
+            health = 75f;
+            damage = 5f;
+            armor = 1f;
+            isAPoisonSpider = true;
+            //int poisonChance = Random.Range(0, 4);
+            //if(poisonChance > 2)
+            //{
+            //    isAPoisonSpider = true;
+            //}
 
-            if (isAPoisonSpider)
-            {
-                sr.color = new Color(0.1792207f, 0.5943396f, 0.1031684f, 1f);
-            }
+            //if (isAPoisonSpider)
+            //{
+            //    sr.color = new Color(0.1792207f, 0.5943396f, 0.1031684f, 1f);
+            //}
+        }
+        else if(isATebas)
+        {
+            health = 100f;
+            damage = 10f;
+            armor = 1f;
+        }
+        else if(isAGeletebas)
+        {
+            health = 100f;
+            damage = 10f;
+            armor = 1.25f;
+        }
+        else if(isAShatebas)
+        {
+            health = 100f;
+            damage = 25f;
+            armor = 0.75f;
+        }
+        else if(isAGigantebas)
+        {
+            health = 200f;
+            damage = 25f;
+            armor = 1.5f;
         }
     }
 
@@ -373,14 +423,14 @@ public class MobAI : MonoBehaviour
             }
             else
             {
-                GameManager.instance.TakeDamage(5);
+                GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor());
             }
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
             //if (GameManager.instance.canTakeDamage)
                 //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(damage * 1.15f / GameManager.instance.GetArmor());
 
             isDashing = false;
         }
@@ -420,16 +470,8 @@ public class MobAI : MonoBehaviour
                 DrawBlood();
             }
 
-            int damage;
+            float damage = GameManager.instance.GetDamage() / armor;
 
-            if (isOnTutorial)
-            {
-                damage = 5;
-            }
-            else
-            {
-                damage = 10;
-            }
             health -= damage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
             state = State.Stunned;
@@ -445,6 +487,12 @@ public class MobAI : MonoBehaviour
         stepDust.gameObject.SetActive(true);
         stepDust.Stop();
         stepDust.Play();
+    }
+    private void PlayStompDust()
+    {
+        stompDust.gameObject.SetActive(true);
+        stompDust.Stop();
+        stompDust.Play();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
