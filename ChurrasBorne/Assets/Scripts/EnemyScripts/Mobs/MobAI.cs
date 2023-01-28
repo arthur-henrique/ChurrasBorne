@@ -66,6 +66,7 @@ public class MobAI : MonoBehaviour
 
     // Controle de dano:
     private float damage, armor, health;
+    private float playerDamage;
     
     private void Awake()
     {
@@ -471,14 +472,14 @@ public class MobAI : MonoBehaviour
             }
             if(GameManager.instance.GetMeat() >= 0)
             {
-                float damage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 20) / armor;
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
             }
             else
             {
-                float damage = GameManager.instance.GetDamage() / armor;
+                playerDamage = GameManager.instance.GetDamage() / armor;
             }
-            print(damage);
-            health -= damage;
+            print(playerDamage);
+            health -= playerDamage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
             state = State.Stunned;
         }

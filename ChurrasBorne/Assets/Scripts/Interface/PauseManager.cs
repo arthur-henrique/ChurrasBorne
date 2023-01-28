@@ -212,6 +212,7 @@ public class PauseManager : MonoBehaviour
 
     private void Show_Pause()
     {
+        PlayerMovement.DisableControl();
         pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, pause_sel1.GetComponent<TextMeshProUGUI>().color.a);
         pause_sel2.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, pause_sel2.GetComponent<TextMeshProUGUI>().color.a);
         pause_sel3.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, pause_sel3.GetComponent<TextMeshProUGUI>().color.a);
@@ -255,6 +256,7 @@ public class PauseManager : MonoBehaviour
         cr_pause_drop_sh = StartCoroutine(Pause_Drop_Shadow_Fade_Out());
         cr_pause_label = StartCoroutine(Pause_Label_Fade_Out());
         cr_pause_sel = StartCoroutine(Pause_Selections_Fade_Out());
+        PlayerMovement.EnableControl();
         Time.timeScale = 1;
     }
 

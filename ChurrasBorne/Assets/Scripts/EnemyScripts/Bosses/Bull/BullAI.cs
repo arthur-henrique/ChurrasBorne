@@ -45,7 +45,7 @@ public class BullAI : MonoBehaviour
 
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
-    private float armor;
+    private float armor, playerDamage;
 
     private void Awake()
     {
@@ -292,8 +292,16 @@ public class BullAI : MonoBehaviour
             DrawBlood();
             float damage = GameManager.instance.GetDamage() / armor;
 
-            
-            health -= damage;
+
+            if (GameManager.instance.GetMeat() >= 0)
+            {
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+            }
+            else
+            {
+                playerDamage = GameManager.instance.GetDamage() / armor;
+            }
+            health -= playerDamage;
             audioSource.PlayOneShot(bull_hurt, audioSource.volume);
 
             if (!isAlreadyDying)
