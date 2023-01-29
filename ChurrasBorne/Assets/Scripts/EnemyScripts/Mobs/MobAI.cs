@@ -158,6 +158,7 @@ public class MobAI : MonoBehaviour
 
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 SwitchToChasing();
                 SwitchToShooting();
@@ -172,6 +173,7 @@ public class MobAI : MonoBehaviour
 
                 anim.SetBool("Walk", true);
                 anim.SetBool("Idle", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 SwitchToIdling();
                 SwitchToAttacking();
@@ -222,6 +224,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToIdling();
                 SwitchToChasing();
+                TimeBTWAttacks -= Time.deltaTime;
                 break;
 
             case State.Dashing:
@@ -233,6 +236,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Dash", true);
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 if (dashTarget.x < transform.position.x)
                 {
@@ -505,7 +509,7 @@ public class MobAI : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            //GameManager.instance.TakeDamage(5);
 
             if (!isDashing)
             {

@@ -285,6 +285,11 @@ public class GameManager : MonoBehaviour
         canTakeDamage = false;
         PostProcessingControl.Instance.TurnOnLens();
     }
+
+    public bool GetCanTakeDamage()
+    {
+        return canTakeDamage;
+    }
     public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
         if (playerAnimator)

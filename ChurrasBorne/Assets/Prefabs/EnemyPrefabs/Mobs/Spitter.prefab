@@ -4906,6 +4906,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7744726967826577216}
+  - {fileID: 1983983019621457601}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5049,13 +5050,20 @@ MonoBehaviour:
   startTimeBTWShots: 1.5
   startStunTime: 0.5
   startDashRecoveryTime: 0
-  health: 30
   isASpitter: 1
   isADasher: 0
+  isASpider: 0
+  isAPoisonSpider: 0
+  isATebas: 0
+  isAGeletebas: 0
+  isAShatebas: 0
+  isAGigantebas: 0
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
   bloodSpatter: {fileID: 6237569116874862402}
+  stepDust: {fileID: 0}
+  stompDust: {fileID: 0}
 --- !u!82 &3072094278385774964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5167,3 +5175,54 @@ MonoBehaviour:
   sortingOrderBase: 5000
   offset: 1
   runOnlyOnce: 0
+--- !u!1 &6823362405902052555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983983019621457601}
+  - component: {fileID: 2380835715842908198}
+  m_Layer: 0
+  m_Name: TebasAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1983983019621457601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823362405902052555}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.58, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3349108995056041357}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2380835715842908198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6823362405902052555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c274f04e1972c84d9d5d3ec5002b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  canKnockback: 0
+  squareHitBox: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  size: {x: 3.5, y: 6}
+  radius: 0

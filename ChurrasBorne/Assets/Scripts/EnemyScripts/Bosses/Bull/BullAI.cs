@@ -46,6 +46,7 @@ public class BullAI : MonoBehaviour
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
     private float armor, playerDamage;
+    public float damage = 35f;
 
     private void Awake()
     {
@@ -265,13 +266,13 @@ public class BullAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(35);
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //GameManager.instance.TakeDamage(35);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(35);
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //GameManager.instance.TakeDamage(35);
         }
     }
 
