@@ -13,8 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
     private GameObject player;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
+    public Animator reflAnim;
     private PlayerController pc; 
     public Slider slider;
     public CinemachineVirtualCamera dft, death, gate, boss;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject clearGamePrefab;
 
     // Health and Stuff
-    public int maxHealth, currentHealth;
+    public float maxHealth, currentHealth;
     private float damageCDCounter, damagetime;
     private const float DamageCD = .5f;
     private readonly float rollDmgCd = 0.3f;
@@ -45,7 +47,17 @@ public class GameManager : MonoBehaviour
 
     public bool[] hasCleared; // 0 - Fase Um, 1 - Fase Um Half, 2 - Fase Dois, 3 - Fase Dois Half;
     private bool hasSeenGateTwo = false;
-    private GameObject[] gameManagers; 
+    private GameObject[] gameManagers;
+    private bool isPoisoned = false;
+    private bool isPoisonTicking = false;
+    private float poisonTime;
+    public ParticleSystem poison;
+    private ParticleSystem.EmissionModule poisonEm;
+
+    private float playerDamage, playerArmor;
+    public bool hasBetterSword = false;
+    private float swordDamage = 15f, betterSwordDamage = 25f;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -75,6 +87,10 @@ public class GameManager : MonoBehaviour
         dft.Priority = 1;
         death.Priority = 0;
         boss.Priority = 0;
+
+        poisonEm = poison.emission;
+        playerArmor = 1f;
+        playerDamage = 10f;
     }
     private void Update()
     {
@@ -88,7 +104,7 @@ public class GameManager : MonoBehaviour
         }
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
-            og_health = GameManager.instance.currentHealth;
+            og_health = (int)GameManager.instance.currentHealth;
             og_meat = GameManager.instance.GetMeat();
             og_sword = GameManager.instance.GetSword();
             scene_detect = SceneManager.GetActiveScene().name;
@@ -146,26 +162,53 @@ public class GameManager : MonoBehaviour
 
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            
+
             //SaveGame();
+            Poison(1f);
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
             
             //LoadGame();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
 
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
+        }
+
+        if (poisonTime > 0)
+        {
+            isPoisoned = true;
+            if (!isPoisonTicking)
+            {
+                isPoisonTicking = true;
+                StartCoroutine(PoisonTick());
+            }
+        }
+        if (isPoisoned)
+        {
+            ltd.color = new Color(0.3517012f, 0.8679245f, 0.2571021f, 1f);
+            poisonEm.rateOverTime = 7;
+            poisonTime -= Time.deltaTime;
+            if (poisonTime <= 0)
+                isPoisoned= false;
+
+        }
+        if (!isPoisoned)
+        {
+            ltd.color = new Color(0.7745855f, 0.7125668f, 0.9056604f, 1f);
+            poisonEm.rateOverTime = 0;
+            isPoisonTicking = false;
         }
     }
 
     // Damage
 
-    public void TakeDamage(int damage, float damageTime = DamageCD)
+    public void TakeDamage(float damage, float damageTime = DamageCD)
     {
         if (canTakeDamage && isAlive)
         {
             playerAnimator.SetTrigger("isHit");
+            reflAnim.SetTrigger("isHit");
             PostProcessingControl.Instance.TurnOnCA();
             damageCDCounter = damageTime;
             SetDamagetime(damageTime);
@@ -183,6 +226,17 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void PoisonBurn()
+    {
+        currentHealth -= 3;
+        SetHealth(currentHealth);
+    }
+
+    public void Poison(float poisonT)
+    {
+        poisonTime += poisonT;
     }
 
     
@@ -210,6 +264,7 @@ public class GameManager : MonoBehaviour
             else if (!isTut && healsLeft < 0)
                 healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
+            reflAnim.SetFloat("numberOfMeat", healsLeft);
             print(playerAnimator.GetFloat("numberOfMeat"));
             SetHealth(currentHealth);
         }
@@ -230,12 +285,25 @@ public class GameManager : MonoBehaviour
         canTakeDamage = false;
         PostProcessingControl.Instance.TurnOnLens();
     }
+
+    public bool GetCanTakeDamage()
+    {
+        return canTakeDamage;
+    }
     public void SetHeals(float heals, bool isTutorial, bool isHoldingSword)
     {
         if (playerAnimator)
         {
             playerAnimator.SetFloat("numberOfMeat", heals);
             playerAnimator.SetBool("isHoldingSword", isHoldingSword);
+            reflAnim.SetFloat("numberOfMeat", heals);
+            reflAnim.SetBool("isHoldingSword", isHoldingSword);
+        }
+        if (isHoldingSword)
+            HasSword();
+        if(hasBetterSword)
+        {
+            HasBetterSword();
         }
         healsLeft = heals;
         isTut = isTutorial;
@@ -246,12 +314,12 @@ public class GameManager : MonoBehaviour
         return healsLeft;
     }
     // HealthBarFunctions
-    public void SetMaxHealth(int maxHealth)
+    public void SetMaxHealth(float maxHealth)
     {
         slider.maxValue = maxHealth;
         slider.value = maxHealth;
     }
-    public void SetHealth(int health)
+    public void SetHealth(float health)
     {
         slider.value = health;
     }
@@ -272,7 +340,7 @@ public class GameManager : MonoBehaviour
     public void NextLevelSetter(Vector2 spawn)
     {
         player.transform.position = spawn;
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
     }
 
     public void SetPlayerPosition(Vector2 position)
@@ -298,6 +366,8 @@ public class GameManager : MonoBehaviour
     {
         playerAnimator.SetBool("isDead", false);
         playerAnimator.SetBool("isDied", false);
+        reflAnim.SetBool("isDead", false);
+        reflAnim.SetBool("isDied", false);
         isAlive = true;
         PlayerMovement.SetStateAlive();
     }
@@ -328,6 +398,27 @@ public class GameManager : MonoBehaviour
         dft.Priority = 0;
         death.Priority = 1;
     }
+    public float GetDamage()
+    {
+        return playerDamage;
+    }
+    public void HasSword()
+    {
+        playerDamage = swordDamage;
+    }
+    public void SetHasBetterSword()
+    {
+        hasBetterSword = true;
+    }
+    public void HasBetterSword()
+    {
+        playerDamage= betterSwordDamage;
+    }
+    public float GetArmor()
+    {
+        return playerArmor;
+    }
+
 
     public void SwitchToGateCam()
     {
@@ -351,6 +442,7 @@ public class GameManager : MonoBehaviour
     public void SwitchToDefaultCam()
     {
         dft.Priority = 1;
+        death.Priority = 0;
         boss.Priority = 0;
     }
 
@@ -367,10 +459,21 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
+        reflAnim.SetBool("isDead", false);
         if (isTut)
         {
             yield return new WaitForSeconds(1f);
-            canvas.GetComponent<Transition_Manager>().RestartScene("Hub", 100, 0, false, null);
+            SwitchToDefaultCam();
+            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", maxHealth, 0, false, null);
+        }
+    }
+
+    IEnumerator PoisonTick()
+    {
+        while (poisonTime > 0)
+        {
+            yield return new WaitForSeconds(0.25f);
+            PoisonBurn();
         }
     }
     IEnumerator CameraDelay()
@@ -379,6 +482,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerAnimator.SetBool("isDead", true);
         playerAnimator.SetBool("isDied", true);
+        reflAnim.SetBool("isDead", true);
+        reflAnim.SetBool("isDied", true);
         if (!isTut)
         {
             Instantiate(gameOverPrefab);
@@ -401,6 +506,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         PlayerMovement.EnableControl();
     }
+
 
     // Teste, favor remover
     public void SaveGame()

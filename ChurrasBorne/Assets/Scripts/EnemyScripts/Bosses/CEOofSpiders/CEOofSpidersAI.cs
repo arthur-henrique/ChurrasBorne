@@ -161,6 +161,7 @@ public class CEOofSpidersAI : MonoBehaviour
                 {
                     anim.SetTrigger("ATK2");
                     audioSource.PlayOneShot(spider_attack_2, audioSource.volume);
+                    startTimeBTWWebShot = Random.Range(3f, 5f);
                     timeBTWWebShots = startTimeBTWWebShot;
                 }
                 else
@@ -348,6 +349,7 @@ public class CEOofSpidersAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
+            StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             int damage = 10;
             health -= damage;

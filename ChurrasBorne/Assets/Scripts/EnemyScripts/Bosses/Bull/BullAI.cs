@@ -31,7 +31,7 @@ public class BullAI : MonoBehaviour
     public AudioClip bull_roar;
     public AudioClip bull_hurt;
 
-    public int health;
+    public float health;
 
     public float chasingSpeed, meleeDistance, startTimeBTWMeleeATKs, rangedDistanceI, rangedDistanceII, startTimeBTWRangedATKs;
     private float timeBTWMeleeATKs, timeBTWRangedATKs, timeToDie;
@@ -40,14 +40,17 @@ public class BullAI : MonoBehaviour
 
     private bool isAlreadyDying = false;
 
-    private float knockbackDuration = 1.5f, knockbackPower = 150f;
+    private float knockbackDuration = 1.5f, knockbackPower = 50f;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter;
+    public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
+    private float armor, playerDamage;
+    public float damage = 35f;
 
     private void Awake()
     {
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
         state = State.Spawning;
     }
 
@@ -67,7 +70,7 @@ public class BullAI : MonoBehaviour
 
         if (isOnTut)
         {
-            health = 300;
+            health = 400;
         }
         else
         {
@@ -77,7 +80,7 @@ public class BullAI : MonoBehaviour
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
 
-        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+        armor = 1f;
     }
 
     void Update()
@@ -110,6 +113,7 @@ public class BullAI : MonoBehaviour
                 {
                     anim.SetTrigger("Bash");
                     audioSource.PlayOneShot(bull_attack, audioSource.volume);
+                    startTimeBTWMeleeATKs = Random.Range(1.5f, 2.5f);
                     timeBTWMeleeATKs = startTimeBTWMeleeATKs;
                 }
                 else
@@ -133,6 +137,7 @@ public class BullAI : MonoBehaviour
                 {
                     anim.SetTrigger("Axe");
                     audioSource.PlayOneShot(bull_charge, audioSource.volume);
+                    startTimeBTWRangedATKs = Random.Range(1.5f, 2.5f);
                     timeBTWRangedATKs = startTimeBTWRangedATKs;
                 }
                 else
@@ -223,7 +228,6 @@ public class BullAI : MonoBehaviour
             if (isOnTut)
             {
                 TutorialTriggerController.Instance.SecondGateTriggerOut();
-                GameManager.instance.maxHealth = 135;
                 portal.enabled = true;
                 portal.transform.GetChild(0).gameObject.SetActive(true);
             }
@@ -262,13 +266,13 @@ public class BullAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) <= meleeDistance && isOnTut)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(15);
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //GameManager.instance.TakeDamage(35);
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
-            StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(10);
+            //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            //GameManager.instance.TakeDamage(35);
         }
     }
 
@@ -287,18 +291,18 @@ public class BullAI : MonoBehaviour
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             DrawBlood();
-            int damage;
+            float damage = GameManager.instance.GetDamage() / armor;
 
-            if (isOnTut)
+
+            if (GameManager.instance.GetMeat() >= 0)
             {
-                damage = 5;
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
             }
             else
             {
-                damage = 10;
+                playerDamage = GameManager.instance.GetDamage() / armor;
             }
-
-            health -= damage;
+            health -= playerDamage;
             audioSource.PlayOneShot(bull_hurt, audioSource.volume);
 
             if (!isAlreadyDying)
@@ -315,7 +319,19 @@ public class BullAI : MonoBehaviour
         bloodSpatter.Stop();
         bloodSpatter.Play();
     }
+    private void PlayStompDust()
+    {
+        stompDust.gameObject.SetActive(true);
+        stompDust.Stop();
+        stompDust.Play();
+    }
 
+    private void PlayStepDust()
+    {
+        stepDust.gameObject.SetActive(true);
+        stepDust.Stop();
+        stepDust.Play();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

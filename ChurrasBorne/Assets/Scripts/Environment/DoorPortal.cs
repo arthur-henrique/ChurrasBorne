@@ -7,9 +7,14 @@ public class DoorPortal : MonoBehaviour
 {
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
 
         if (collision.CompareTag("Player"))
         {

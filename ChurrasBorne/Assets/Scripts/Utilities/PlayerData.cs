@@ -11,7 +11,7 @@ public class PlayerData
         clearedPhaseTwo,
         clearedPhaseTwoHalf;
     public bool hasSeenGateTwo;
-    public int maxHealth;
+    public float maxHealth;
 
     public PlayerData(GameManager gameManager)
     {

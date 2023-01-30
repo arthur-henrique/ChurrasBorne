@@ -21,6 +21,7 @@ public class MobAI : MonoBehaviour
 
     public Rigidbody2D rb;
     public Animator anim;
+    private SpriteRenderer sr;
 
     public Transform player;
     private Vector3 target;
@@ -39,9 +40,16 @@ public class MobAI : MonoBehaviour
     public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
     private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
 
-    public int health;
+    
 
-    public bool isASpitter, isADasher;
+    public bool isASpitter,
+        isADasher,
+        isASpider,
+        isAPoisonSpider,
+        isATebas,
+        isAGeletebas,
+        isAShatebas,
+        isAGigantebas;
     private bool canDash = false, isDashing = false;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
@@ -53,10 +61,16 @@ public class MobAI : MonoBehaviour
     private bool canBeKbed = true;
     private bool canTakeDamage = true;
 
-    public ParticleSystem bloodSpatter;
+    public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
+
+    // Controle de dano:
+    private float damage, armor, health;
+    private float playerDamage;
+    
     private void Awake()
     {
+        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
         state = State.Spawning;
     }
 
@@ -64,6 +78,7 @@ public class MobAI : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        sr = gameObject.GetComponent<SpriteRenderer>();
         target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
         audioSource = GetComponent<AudioSource>();
 
@@ -74,7 +89,60 @@ public class MobAI : MonoBehaviour
         stunTime = startStunTime;
 
         dashRecoveryTime = startDashRecoveryTime;
-        psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
+        
+        if(isASpitter)
+        {
+            health = 50f;
+            damage = 15f;
+            armor = 1f;
+        }
+        else if(isADasher)
+        {
+            health = 50f;
+            damage = 30f;
+            armor = 1f;
+        }
+        else if (isASpider)
+        {
+            health = 75f;
+            damage = 5f;
+            armor = 1f;
+            isAPoisonSpider = true;
+            //int poisonChance = Random.Range(0, 4);
+            //if(poisonChance > 2)
+            //{
+            //    isAPoisonSpider = true;
+            //}
+
+            //if (isAPoisonSpider)
+            //{
+            //    sr.color = new Color(0.1792207f, 0.5943396f, 0.1031684f, 1f);
+            //}
+        }
+        else if(isATebas)
+        {
+            health = 100f;
+            damage = 10f;
+            armor = 1f;
+        }
+        else if(isAGeletebas)
+        {
+            health = 100f;
+            damage = 10f;
+            armor = 1.25f;
+        }
+        else if(isAShatebas)
+        {
+            health = 100f;
+            damage = 25f;
+            armor = 0.75f;
+        }
+        else if(isAGigantebas)
+        {
+            health = 200f;
+            damage = 25f;
+            armor = 1.5f;
+        }
     }
 
     void Update()
@@ -90,6 +158,7 @@ public class MobAI : MonoBehaviour
 
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 SwitchToChasing();
                 SwitchToShooting();
@@ -104,6 +173,7 @@ public class MobAI : MonoBehaviour
 
                 anim.SetBool("Walk", true);
                 anim.SetBool("Idle", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 SwitchToIdling();
                 SwitchToAttacking();
@@ -122,7 +192,7 @@ public class MobAI : MonoBehaviour
                 if (TimeBTWAttacks <= 0)
                 {
                     anim.SetTrigger("Melee");
-                    audioSource.PlayOneShot(monster_punch, audioSource.volume);
+                    //audioSource.PlayOneShot(monster_punch, audioSource.volume);
                     TimeBTWAttacks = startTimeBTWAttacks;
                 }
                 else
@@ -154,6 +224,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToIdling();
                 SwitchToChasing();
+                TimeBTWAttacks -= Time.deltaTime;
                 break;
 
             case State.Dashing:
@@ -165,6 +236,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Dash", true);
                 anim.SetBool("Idle", false);
                 anim.SetBool("Walk", false);
+                TimeBTWAttacks -= Time.deltaTime;
 
                 if (dashTarget.x < transform.position.x)
                 {
@@ -226,7 +298,7 @@ public class MobAI : MonoBehaviour
                 }
                 else
                 {
-                    print(stunTime);
+                    //print(stunTime);
                     stunTime -= Time.deltaTime; 
                 }
                 break;
@@ -347,15 +419,23 @@ public class MobAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, target) <= meleeDistance && !isDashing)
         {
-            if (GameManager.instance.canTakeDamage)
-                StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(5);
+            //if (GameManager.instance.canTakeDamage)
+            //    StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
+            if(isAPoisonSpider)
+            {
+                GameManager.instance.TakeDamage(3);
+                GameManager.instance.Poison(1f);
+            }
+            else
+            {
+                GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor());
+            }
         }
         else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
             //if (GameManager.instance.canTakeDamage)
                 //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
-            GameManager.instance.TakeDamage(10);
+            GameManager.instance.TakeDamage(damage * 1.15f / GameManager.instance.GetArmor());
 
             isDashing = false;
         }
@@ -394,18 +474,16 @@ public class MobAI : MonoBehaviour
                 anim.SetTrigger("Hit");
                 DrawBlood();
             }
-
-            int damage;
-
-            if (isOnTutorial)
+            if(GameManager.instance.GetMeat() >= 0)
             {
-                damage = 5;
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
             }
             else
             {
-                damage = 10;
+                playerDamage = GameManager.instance.GetDamage() / armor;
             }
-            health -= damage;
+            print(playerDamage);
+            health -= playerDamage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
             state = State.Stunned;
         }
@@ -414,11 +492,24 @@ public class MobAI : MonoBehaviour
 
         
     }
+
+    private void PlayStepDust()
+    {
+        stepDust.gameObject.SetActive(true);
+        stepDust.Stop();
+        stepDust.Play();
+    }
+    private void PlayStompDust()
+    {
+        stompDust.gameObject.SetActive(true);
+        stompDust.Stop();
+        stompDust.Play();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(5);
+            //GameManager.instance.TakeDamage(5);
 
             if (!isDashing)
             {
@@ -499,5 +590,10 @@ public class MobAI : MonoBehaviour
         }
         canBeKbed = true;
         yield return 0;
+    }
+
+    public void PlayThePunchAudio()
+    {
+        audioSource.PlayOneShot(monster_punch, audioSource.volume);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class BullSpike : MonoBehaviour
@@ -13,6 +14,8 @@ public class BullSpike : MonoBehaviour
     public bool canDamage = false, isOnTut;
 
     public Animator anim;
+    public ParticleSystem boomSpikeUp, boomSpikeDown;
+    public bool isCenterSpike;
     
     void Start()
     {
@@ -25,14 +28,14 @@ public class BullSpike : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, player.position) <= damageDistance)
             {
-                GameManager.instance.TakeDamage(15);
+                GameManager.instance.TakeDamage(5, 0.25f);
             }
         }
         if (canDamage == true && !isOnTut)
         {
             if (Vector2.Distance(transform.position, player.position) <= damageDistance)
             {
-                GameManager.instance.TakeDamage(10);
+                GameManager.instance.TakeDamage(10, 0.25f);
             }
         }
 
@@ -54,5 +57,22 @@ public class BullSpike : MonoBehaviour
     public void DamagePlayerOff()
     {
         canDamage = false;
+    }
+
+    private void PlayParticles()
+    {
+        if (!isCenterSpike)
+        {
+            return;
+        }
+        if (isCenterSpike)
+        {
+            boomSpikeUp.gameObject.SetActive(true);
+            boomSpikeDown.gameObject.SetActive(true);
+            boomSpikeUp.Stop();
+            boomSpikeDown.Stop();
+            boomSpikeUp.Play();
+            boomSpikeDown.Play();
+        }
     }
 }

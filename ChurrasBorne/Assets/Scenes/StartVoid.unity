@@ -315,6 +315,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1098553892}
     m_Modifications:
+    - target: {fileID: 1045178170, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6612484893806398908, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+      propertyPath: smoothInputSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -374,6 +382,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   m_PrefabInstance: {fileID: 601760228}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &601760230 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1604553939, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &601760231 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 303343852217620431, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &601760232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1349391854, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &757716132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -663,6 +692,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  ltd: {fileID: 601760232}
+  reflAnim: {fileID: 601760230}
   slider: {fileID: 1561382289}
   dft: {fileID: 189145003}
   death: {fileID: 223903018}
@@ -673,7 +704,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   gateOpen: {fileID: 8300000, guid: 1c7a82c093e8928499f3f05f5e44354e, type: 3}
   clearGamePrefab: {fileID: 6623422329809284682, guid: a772241e84bf84d4c89f68d8efaac744, type: 3}
-  maxHealth: 100
+  maxHealth: 200
   currentHealth: 0
   healsLeft: 0
   isTut: 0
@@ -687,6 +718,8 @@ MonoBehaviour:
   og_sword: 0
   clearGame: 0
   hasCleared: 000000000000000000
+  poison: {fileID: 601760231}
+  hasBetterSword: 0
 --- !u!4 &1098553892
 Transform:
   m_ObjectHideFlags: 0
@@ -977,7 +1010,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1

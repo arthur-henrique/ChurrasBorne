@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class Projectile : MonoBehaviour
 {
@@ -18,11 +19,16 @@ public class Projectile : MonoBehaviour
     public int health;
 
     public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois;
+    private bool canBeParried = true;
+    private SpriteRenderer sr;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
+    public GameObject normalTrail, unparryTrail;
 
     void Start()
     {
         //Para PROJECTILE MOVEMENT
         APTP = GameObject.FindGameObjectWithTag("NYA").transform;
+        sr = gameObject.GetComponent<SpriteRenderer>();
 
         target = APTP.position;
 
@@ -46,6 +52,18 @@ public class Projectile : MonoBehaviour
         if (faseDois != null)
         {
             isOnFaseDois = true;
+        }
+
+        // Manages if the project may or not be parried
+        int diceroll = Random.Range(0, 4);
+        print(diceroll);
+        if (diceroll > 2)
+        {
+            canBeParried = false;
+            normalTrail.SetActive(false);
+            unparryTrail.SetActive(true);
+            sr.color = new Color(0.7423134f, 0f, 1f, 1f);
+            ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
         }
     }
 
@@ -93,7 +111,7 @@ public class Projectile : MonoBehaviour
             }
             else if (!isAWeb && isFromBoss)
             {
-                GameManager.instance.TakeDamage(15);
+                GameManager.instance.TakeDamage(12);
                 Destroy(gameObject);
             }
             else
@@ -135,7 +153,9 @@ public class Projectile : MonoBehaviour
         {
             damage = 10;
         }
-
-        health -= damage;
+        if(canBeParried)
+        {
+            health -= damage;
+        }
     }
 }

@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private static Animator anim;
+    public Animator reflAnim;
     private Vector3 rollDirection;
     public Vector3 lastMovedDirection;
     private Vector2 direcao;
@@ -108,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
                             rollSpeed = 70f;
                             state = State.Rolling;
                             anim.SetTrigger("isRolling");
+                            reflAnim.SetTrigger("isRolling");
                             print("Rolei");
                             StartCoroutine(DustWait());
                             audioSource.PlayOneShot(player_dash, audioSource.volume);
@@ -121,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
                         canAttack = false;
                         state = State.Attacking;
                         anim.SetTrigger("isAttacking");
+                        reflAnim.SetTrigger("isAttacking");
                         if (anim.GetBool("isHoldingSword") == true)
                         {
                             audioSource.PlayOneShot(player_swing, audioSource.volume);
@@ -136,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
                         healingAnimCd = 1f;
                         state = State.Healing;
                         anim.SetTrigger("isHealing");
+                        reflAnim.SetTrigger("isHealing");
                         audioSource.PlayOneShot(player_eat, audioSource.volume);
                     }
                 } else
@@ -152,6 +156,8 @@ public class PlayerMovement : MonoBehaviour
                     lastMovedDirection = direcao;
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                    reflAnim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    reflAnim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 healsLeft = GameManager.instance.GetHeals();
                 break;
@@ -182,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     state = State.Attacking;
                     anim.SetTrigger("isAttacking");
+                    reflAnim.SetTrigger("isAttacking");
                     PostProcessingControl.Instance.TurnOffLens();
                     PlayDashParticlesEnd();
 
@@ -190,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     state = State.Healing;
                     anim.SetTrigger("isHealing");
+                    reflAnim.SetTrigger("isHealing");
                     PostProcessingControl.Instance.TurnOffLens();
                     PlayDashParticlesEnd();
 
@@ -197,8 +205,10 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case State.Attacking:
                 anim.SetBool("attackIsPlaying", true);
+                reflAnim.SetBool("attackIsPlaying", true);
                 StartCoroutine(ReturnToNormal());
                 anim.SetBool("attackIsPlaying", false);
+                reflAnim.SetBool("attackIsPlaying", false);
                 attackPressed = false;
                 break;
             case State.Healing:
@@ -212,6 +222,8 @@ public class PlayerMovement : MonoBehaviour
                     lastMovedDirection = direcao;
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                    reflAnim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    reflAnim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 healingAnimCd -= Time.deltaTime;
                 if (healingAnimCd <= 0f)
@@ -232,6 +244,8 @@ public class PlayerMovement : MonoBehaviour
                     lastMovedDirection = direcao;
                     anim.SetFloat("lastMoveX", lastMovedDirection.x);
                     anim.SetFloat("lastMoveY", lastMovedDirection.y);
+                    reflAnim.SetFloat("lastMoveX", lastMovedDirection.x);
+                    reflAnim.SetFloat("lastMoveY", lastMovedDirection.y);
                 }
                 if (takingDamage)
                 {
@@ -256,12 +270,14 @@ public class PlayerMovement : MonoBehaviour
                     {
                         state = State.Attacking;
                         anim.SetTrigger("isAttacking");
+                        reflAnim.SetTrigger("isAttacking");
                         takingDamage = true;
                     }
                     else if (healingPressed)
                     {
                         state = State.Healing;
                         anim.SetTrigger("isHealing");
+                        reflAnim.SetTrigger("isHealing");
                         takingDamage = true;
                     }
                     else
@@ -272,8 +288,12 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Dead:
+                particleEmission.rateOverTime = 0f;
+                snowParticleEmission.rateOverTime = 0f;
                 anim.SetFloat("moveX", 0);
                 anim.SetFloat("moveY", 0);
+                reflAnim.SetFloat("moveX", 0);
+                reflAnim.SetFloat("moveY", 0);
                 break;
         }
     }
@@ -309,6 +329,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
+                reflAnim.SetFloat("moveX", rb.velocity.x);
+                reflAnim.SetFloat("moveY", rb.velocity.y);
 
 
                 if (canAttackChecker > 0 && !canAttack)
@@ -390,6 +412,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 anim.SetFloat("moveX", rb.velocity.x);
                 anim.SetFloat("moveY", rb.velocity.y);
+                reflAnim.SetFloat("moveX", rb.velocity.x);
+                reflAnim.SetFloat("moveY", rb.velocity.y);
                 break;
             case State.Dead:
                 rb.velocity = Vector2.zero;
@@ -537,7 +561,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public IEnumerator Knockback(float kbDuration, float kbPower, Transform obj)
-    { /*
+    { 
         float timer = 0;
         while (kbDuration > timer)
         {
@@ -552,8 +576,8 @@ public class PlayerMovement : MonoBehaviour
             else
                 rb.AddForce(-direction * kbPower);
         }
-        yield return 0;*/
-        yield return null;
+        yield return 0;
+        
     }
     private IEnumerator DustWait()
     {
