@@ -288,6 +288,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Dead:
+                particleEmission.rateOverTime = 0f;
+                snowParticleEmission.rateOverTime = 0f;
                 anim.SetFloat("moveX", 0);
                 anim.SetFloat("moveY", 0);
                 reflAnim.SetFloat("moveX", 0);

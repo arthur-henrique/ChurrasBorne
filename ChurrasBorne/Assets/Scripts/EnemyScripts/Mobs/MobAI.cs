@@ -192,7 +192,7 @@ public class MobAI : MonoBehaviour
                 if (TimeBTWAttacks <= 0)
                 {
                     anim.SetTrigger("Melee");
-                    audioSource.PlayOneShot(monster_punch, audioSource.volume);
+                    //audioSource.PlayOneShot(monster_punch, audioSource.volume);
                     TimeBTWAttacks = startTimeBTWAttacks;
                 }
                 else
@@ -590,5 +590,10 @@ public class MobAI : MonoBehaviour
         }
         canBeKbed = true;
         yield return 0;
+    }
+
+    public void PlayThePunchAudio()
+    {
+        audioSource.PlayOneShot(monster_punch, audioSource.volume);
     }
 }

@@ -51,7 +51,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BullAttack
+    path: GoatAttack
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -90,7 +90,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4178387898
+      path: 3925796713
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -170,7 +170,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: BullAttack
+    path: GoatAttack
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []

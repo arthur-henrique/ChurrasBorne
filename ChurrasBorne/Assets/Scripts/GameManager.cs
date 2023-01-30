@@ -442,6 +442,7 @@ public class GameManager : MonoBehaviour
     public void SwitchToDefaultCam()
     {
         dft.Priority = 1;
+        death.Priority = 0;
         boss.Priority = 0;
     }
 
@@ -462,7 +463,8 @@ public class GameManager : MonoBehaviour
         if (isTut)
         {
             yield return new WaitForSeconds(1f);
-            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", 100, 0, false, null);
+            SwitchToDefaultCam();
+            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", maxHealth, 0, false, null);
         }
     }
 
