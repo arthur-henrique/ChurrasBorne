@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DialogBank : MonoBehaviour
 {
-
     public static string[] portuguese_bank =
     {
         "",                                                     /* 0 */
@@ -85,7 +84,17 @@ public class DialogBank : MonoBehaviour
             "",
         }
 
+    };
 
+    public static string[,,] portuguese_dialog_bank_new =
+    {
+        { // 0 - Ferreiro, primeiro encontro
+            { "right", "Ferreira", "Ferreira_1", "beat the h*mophobe the game we fuckinG STAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN HOLY SHIT i LOVE cibele oh my god this theme makes me go W*T AS F*CK OOOOOOOOOOOOOOOOOOOOOOOOOH but LIKE OOOOOOOOOOH her design HER DESIGN EHVYWG9HOJBG oooooO23Y801789#&*#)@*$&) and her theme uaup AUU[P.... god i wish she was a real len'en oh my fucking god OOH GOD oh god GODgod GoDS............................. oahefwrhpdjlsnkbhiposejkfdl"},
+            { "left" , "Sabet", "Sabet_1", "bom saber chapa"},
+            { "left" , "Sabet", "Sabet_1", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
+            { "right", "Ferreira", "Ferreira_1", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto"},
+            { "", "", "", ""}
+        },
     };
 
 }

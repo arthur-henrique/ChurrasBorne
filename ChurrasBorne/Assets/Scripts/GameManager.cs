@@ -170,9 +170,9 @@ public class GameManager : MonoBehaviour
         {
             
             //LoadGame();
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+            SceneManager.LoadScene("FaseUm");
 
-            //TutorialTriggerController.Instance.SecondGateTriggerOut();
+            TutorialTriggerController.Instance.SecondGateTriggerOut();
         }
 
         if (poisonTime > 0)

@@ -27,7 +27,6 @@ public class ChurrasqueiraFullMetal_DialogAct : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Animator>().SetBool("APAGAR", false);
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 
     // Update is called once per frame
@@ -40,12 +39,7 @@ public class ChurrasqueiraFullMetal_DialogAct : MonoBehaviour
 
             if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
             {
-                var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                {
-                    dbox.GetComponent<DialogSystem>().db_PullUP();
-                    dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
-                }
+                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
                 GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                 GameManager.instance.SetHeals(3, false, true);
                 while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
