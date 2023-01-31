@@ -32,7 +32,6 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
             bruxinha_encounter_3_occurred = false;
         }
         target = GameObject.FindGameObjectWithTag("Player");
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 
     // Update is called once per frame
@@ -46,13 +45,8 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                    {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneComplex(5);
-                        bruxinha_encounter_3_occurred = true;
-                    }
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(5);
+                    bruxinha_encounter_3_occurred = true;
                 }
             }
 

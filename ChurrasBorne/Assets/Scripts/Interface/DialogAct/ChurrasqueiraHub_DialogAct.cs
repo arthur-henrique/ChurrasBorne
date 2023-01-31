@@ -32,7 +32,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Animator>().SetBool("APAGAR", false);
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
+
     }
 
     // Update is called once per frame
@@ -47,17 +47,13 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
             {
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                 {
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
+                    if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 0)
                     {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 0)
-                        {
-                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
-                        } else
-                        {
-                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
-                        }
+                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
+                    }
+                    else
+                    {
+                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
                     }
                     GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                     GameManager.instance.SetHeals(3, false, true);

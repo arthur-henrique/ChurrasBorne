@@ -42,12 +42,7 @@ public class ObjectName_DialogAct : MonoBehaviour
 
             if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
             {
-                var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                {
-                    dbox.GetComponent<DialogSystem>().db_PullUP();
-                    dbox.GetComponent<DialogSystem>().db_SetSceneSimple(1);
-                }
+                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(1);
             }
             
         }
