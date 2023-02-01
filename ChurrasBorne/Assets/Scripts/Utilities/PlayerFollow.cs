@@ -36,7 +36,7 @@ public class PlayerFollow : MonoBehaviour
 
     private void MoveTheImage()
     {
-        targetPosition = (player.position + gameObj.transform.position) / 5f;
+        targetPosition = (player.position / 2 + gameObj.transform.position) / 2f;
 
 
         targetPosition.x = Mathf.Clamp(targetPosition.x, -thresholdFar + gameObj.transform.position.x, thresholdFar + gameObj.transform.position.x);
