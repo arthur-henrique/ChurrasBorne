@@ -303,15 +303,19 @@ public class PlayerMovement : MonoBehaviour
         {
             case State.Normal:
                 moveVelocity = direcao * speed;
-                if(isOnIce)
+                if(isOnIce && !isOnWeb)
                 {
                     rb.AddForce(moveVelocity * 0.7f, ForceMode2D.Force);
                 }
-                else if(isOnWeb)
+                else if(isOnWeb && !isOnIce)
                 {
                     moveVelocity *= 0.6f;
                     rb.velocity = moveVelocity;
                 }
+                else if(isOnIce && isOnWeb)
+                    {
+                        rb.AddForce(moveVelocity * 0.5f, ForceMode2D.Force);
+                    }
                 else if (isOnBossWeb)
                 {
                     moveVelocity *= 0.5f;
@@ -360,7 +364,9 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
+                moveVelocity *= 0.6f;
+                rb.velocity = moveVelocity;
                 break;
             case State.Healing:
                 moveVelocity = 0.8f * speed * direcao;
