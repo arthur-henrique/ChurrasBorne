@@ -12,9 +12,11 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
     private readonly List<GameObject> sixthMob = new List<GameObject>();
+    private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     public GameObject troncosHalf;
     private bool clearedUm, clearedHalf;
     private int randomTL;
+    //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
     {
@@ -22,6 +24,21 @@ public class EnemyControl : MonoBehaviour
     }
     void Start()
     {
+        ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Global)
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i <ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
         randomTL = ManagerOfScenes.randomTimeline;
@@ -30,11 +47,13 @@ public class EnemyControl : MonoBehaviour
         {
             p1.SetActive(true);
             p2.SetActive(false);
+            ltds.ForEach(x => x.intensity = 7f);
         }
         else if (clearedUm && !clearedHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
+            ltds.ForEach(x => x.intensity = 3f);
         }
         else if (clearedUm && clearedHalf)
         {
@@ -42,11 +61,13 @@ public class EnemyControl : MonoBehaviour
             {
                 p1.SetActive(true);
                 p2.SetActive(false);
+                ltds.ForEach(x => x.intensity = 7f);
             }
             else if (randomTL == 2)
             {
                 p1.SetActive(false);
                 p2.SetActive(true);
+                ltds.ForEach(x => x.intensity = 7f);
             }
         }
 

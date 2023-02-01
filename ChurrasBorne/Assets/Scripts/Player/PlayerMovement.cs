@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                             state = State.Rolling;
                             anim.SetTrigger("isRolling");
                             reflAnim.SetTrigger("isRolling");
-                            print("Rolei");
+                            //print("Rolei");
                             StartCoroutine(DustWait());
                             audioSource.PlayOneShot(player_dash, audioSource.volume);
                             Dash_Manager.dash_fill_global -= 60;
@@ -364,9 +364,9 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                //rb.velocity = Vector2.zero;
-                moveVelocity *= 0.6f;
-                rb.velocity = moveVelocity;
+                if(!isOnIce)
+                    rb.velocity = Vector2.zero;
+                
                 break;
             case State.Healing:
                 moveVelocity = 0.8f * speed * direcao;

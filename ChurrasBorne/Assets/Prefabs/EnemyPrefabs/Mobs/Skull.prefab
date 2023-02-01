@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1844687291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 84a84832cd9ca0d49a21088bef57ad60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -177,13 +177,20 @@ MonoBehaviour:
   startTimeBTWShots: 0
   startStunTime: 0.5
   startDashRecoveryTime: 0
-  health: 40
   isASpitter: 0
   isADasher: 0
+  isASpider: 0
+  isAPoisonSpider: 0
+  isATebas: 0
+  isAGeletebas: 0
+  isAShatebas: 0
+  isAGigantebas: 0
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
   bloodSpatter: {fileID: 0}
+  stepDust: {fileID: 0}
+  stompDust: {fileID: 0}
 --- !u!82 &104732389356124469
 AudioSource:
   m_ObjectHideFlags: 0

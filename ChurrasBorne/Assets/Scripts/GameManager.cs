@@ -164,7 +164,8 @@ public class GameManager : MonoBehaviour
         {
 
             //SaveGame();
-            Poison(1f);
+            //Poison(1f);
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
@@ -267,7 +268,7 @@ public class GameManager : MonoBehaviour
                 healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
             reflAnim.SetFloat("numberOfMeat", healsLeft);
-            print(playerAnimator.GetFloat("numberOfMeat"));
+            //print(playerAnimator.GetFloat("numberOfMeat"));
             SetHealth(currentHealth);
         }
     }
