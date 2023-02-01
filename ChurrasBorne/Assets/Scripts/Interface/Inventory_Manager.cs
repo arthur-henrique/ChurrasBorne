@@ -273,9 +273,9 @@ public class Inventory_Manager : MonoBehaviour
             }
         }
 
-        Debug.Log("itemStorage.Count: " + itemStorage.Count);
-        Debug.Log("sel_pos: " + sel_pos);
-        Debug.Log("sel_pos_highlight: " + sel_pos_highlight);
-        Debug.Log("sel_pos_real: " + sel_pos_real);
+        //Debug.Log("itemStorage.Count: " + itemStorage.Count);
+        //Debug.Log("sel_pos: " + sel_pos);
+        //Debug.Log("sel_pos_highlight: " + sel_pos_highlight);
+        //Debug.Log("sel_pos_real: " + sel_pos_real);
     }
 }

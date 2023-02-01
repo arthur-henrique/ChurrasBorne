@@ -31,7 +31,7 @@ public class ChurrasqueiraOneMadeira_DialogAct : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player");
         GetComponent<Animator>().SetBool("APAGAR", false);
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
+
         emission = ps.emission;
     }
 
@@ -47,12 +47,7 @@ public class ChurrasqueiraOneMadeira_DialogAct : MonoBehaviour
             {
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                 {
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                    {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
-                    }
+                    dbox.GetComponent<DialogSystem>().db_SetSceneSimple(3);
                     GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     emission.rateOverTime = 1f;

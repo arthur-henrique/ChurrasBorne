@@ -10,6 +10,7 @@ public class Dash_Manager : MonoBehaviour
     GameObject DASH_Bar_1;
     GameObject DASH_Bar_2;
     GameObject DASH_Bar_3;
+    GameObject DASH_Bar_New;
 
     public static float dash_fill_global = 60*3;
     public static float dash_light_global = 0.6f;
@@ -18,11 +19,13 @@ public class Dash_Manager : MonoBehaviour
     void Start()
     {
 
-        DASH_Base = DialogSystem.getChildGameObject(gameObject, "DASH_Base");
+        //DASH_Base = DialogSystem.getChildGameObject(gameObject, "DASH_Base");
 
-        DASH_Bar_1 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_1");
-        DASH_Bar_2 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_2");
-        DASH_Bar_3 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_3");
+        //DASH_Bar_1 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_1");
+        //DASH_Bar_2 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_2");
+        //DASH_Bar_3 = DialogSystem.getChildGameObject(gameObject, "DASH_Bar_3");
+
+        DASH_Bar_New = DialogSystem.getChildGameObject(gameObject, "DASH_OverlayColor");
 
     }
 
@@ -33,13 +36,19 @@ public class Dash_Manager : MonoBehaviour
         dash_fill_global = Mathf.Clamp(dash_fill_global, 0, 60 * 3);
         //Debug.Log(dash_fill_global);
 
-        dash_light_global = Mathf.Lerp(dash_light_global, 0.6f, Time.deltaTime * 2f);
+        dash_light_global = Mathf.Lerp(dash_light_global, 0.6f, Time.deltaTime * 0.5f);
         var dlg = dash_light_global;
 
-        var dbase_col = DASH_Base.GetComponent<Image>().color;
-        dbase_col.a = Mathf.Lerp(dbase_col.a, 1f - dlg, Time.deltaTime * 4f);
-        DASH_Base.GetComponent<Image>().color = dbase_col;
+        //var dbase_col = DASH_Base.GetComponent<Image>().color;
+        //dbase_col.a = Mathf.Lerp(dbase_col.a, 1f - dlg, Time.deltaTime * 4f);
+        //DASH_Base.GetComponent<Image>().color = dbase_col;
 
+        DASH_Bar_New.GetComponent<Image>().fillAmount = Mathf.Lerp(DASH_Bar_New.GetComponent<Image>().fillAmount, dash_fill_global / 180, Time.deltaTime * 4f);
+        var dbar_col = DASH_Bar_New.GetComponent<Image>().color;
+        dbar_col.a = Mathf.Lerp(dbar_col.a, 0.6f - dlg / 2, Time.deltaTime * 8f);
+        DASH_Bar_New.GetComponent<Image>().color = dbar_col;
+
+        /*
         // DASH BAR 1
         if (dash_fill_global <= 60)
         {
@@ -94,6 +103,7 @@ public class Dash_Manager : MonoBehaviour
 
             var dbar_3_col = DASH_Bar_3.GetComponent<Image>().color; dbar_3_col.a = Mathf.Lerp(dbar_3_col.a, 0.6f - dlg/2, Time.deltaTime * 4f); DASH_Bar_3.GetComponent<Image>().color = dbar_3_col;
         }
+        */
 
     }
 }
