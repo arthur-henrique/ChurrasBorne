@@ -168,11 +168,13 @@ public class GameManager : MonoBehaviour
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            
-            //LoadGame();
-            SceneManager.LoadScene("FaseUm");
 
-            TutorialTriggerController.Instance.SecondGateTriggerOut();
+            //LoadGame();
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
+
+            //TutorialTriggerController.Instance.SecondGateTriggerOut();
+
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
         }
 
         if (poisonTime > 0)
