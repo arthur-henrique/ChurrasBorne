@@ -51,6 +51,7 @@ public class BossGate : MonoBehaviour
                 gameObject.SetActive(false);
                 GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
+                EnemyControlFaseDois.Instance.SpawnBossMob();
             }
         }
         
