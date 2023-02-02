@@ -54,6 +54,10 @@ public class Projectile : MonoBehaviour
             isOnFaseDois = true;
         }
 
+        if (isFromBoss)
+        {
+            normalTrail = null; unparryTrail = null;
+        }
         // Manages if the project may or not be parried
         int diceroll = Random.Range(0, 4);
         print(diceroll);
@@ -112,12 +116,13 @@ public class Projectile : MonoBehaviour
             else if (!isAWeb && isFromBoss)
             {
                 GameManager.instance.TakeDamage(12);
+                canBeParried = false;
                 Destroy(gameObject);
             }
             else
             {
+                canBeParried = false;
                 Instantiate(mommyWeb, transform.position, Quaternion.identity);
-
                 Destroy(gameObject);
             }
         }
