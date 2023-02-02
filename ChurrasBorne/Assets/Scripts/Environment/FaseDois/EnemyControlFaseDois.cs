@@ -14,6 +14,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     private readonly List<GameObject> sixthMob = new List<GameObject>();
     private readonly List<GameObject> seventhMob = new List<GameObject>();
     private readonly List<GameObject> eigthMob = new List<GameObject>();
+    private readonly List<GameObject> bossMob = new List<GameObject>();
     private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     private bool clearedDois, clearedHalf;
     private int randomTL;
@@ -81,6 +82,7 @@ public class EnemyControlFaseDois : MonoBehaviour
         sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
         seventhMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSETE"));
         eigthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBOITO"));
+        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
 
         firstMob.ForEach(x => x.SetActive(false));
         secondMob.ForEach(x => x.SetActive(false));
@@ -90,6 +92,8 @@ public class EnemyControlFaseDois : MonoBehaviour
         sixthMob.ForEach(x => x.SetActive(false));
         seventhMob.ForEach(x => x.SetActive(false));
         eigthMob.ForEach(x => x.SetActive(false));
+        bossMob.ForEach(x => x.SetActive(false));
+
     }
 
     // FunÁ„o de checagem de morte
@@ -135,6 +139,11 @@ public class EnemyControlFaseDois : MonoBehaviour
             eigthMob.Remove(enemy);
             IsEigthMobCleared();
         }
+        if (bossMob.Contains(enemy))
+        {
+            bossMob.Remove(enemy);
+            IsBossMobCleared();
+        }
     }
     // Spawnar Mobs
     public void SpawnFistMob()
@@ -168,6 +177,11 @@ public class EnemyControlFaseDois : MonoBehaviour
     public void SpawnEigthMob()
     {
         eigthMob.ForEach(x => x.SetActive(true));
+    }
+
+    public void SpawnBossMob()
+    {
+        bossMob.ForEach(x => x.SetActive(true));
     }
     // Fazer quando lista estÅEvazia:
     public void IsFirstMobCleared()
@@ -232,6 +246,14 @@ public class EnemyControlFaseDois : MonoBehaviour
         {
             FaseDoisTriggerController.Instance.SalaOitoTrigger();
             FaseDoisTriggerController.Instance.ContadorDeSalasTerminadas();
+        }
+    }
+
+    public void IsBossMobCleared()
+    {
+        if (bossMob.Count <= 0)
+        {
+            GateChecker.Instance.MobsDied();
         }
     }
 }
