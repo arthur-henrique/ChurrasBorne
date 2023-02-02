@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PathControllerFaseDois : MonoBehaviour
 {
+    public GameObject[] triggerUm, triggerDois;
+    private void Start()
+    {
+        triggerUm = GameObject.FindGameObjectsWithTag("FASEDOISSALAUM");
+        triggerDois = GameObject.FindGameObjectsWithTag("FASEDOISSALADOIS");
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
@@ -12,13 +18,21 @@ public class PathControllerFaseDois : MonoBehaviour
             {
                 FaseDoisTriggerController.Instance.SalaUmTrigger();
                 EnemyControlFaseDois.Instance.SpawnFistMob();
-                gameObject.SetActive(false);
+                
+                for (int i = 0; i < triggerUm.Length; i++)
+                {
+                    triggerUm[i].SetActive(false);
+                }
             }
             else if(gameObject.CompareTag("FASEDOISSALADOIS"))
             {
                 FaseDoisTriggerController.Instance.SalaDoisTrigger();
                 EnemyControlFaseDois.Instance.SpawnSecondMob();
-                gameObject.SetActive(false);
+                
+                for (int i = 0; i < triggerDois.Length; i++)
+                {
+                    triggerDois[i].SetActive(false);
+                }
             }
             else if(gameObject.CompareTag("FASEDOISSALATRES"))
             {

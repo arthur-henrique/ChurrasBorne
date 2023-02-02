@@ -485,6 +485,35 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("GELO"))
+        {
+            isOnIce = true;
+        }
+        else if (other.CompareTag("TEIA"))
+        {
+            isOnWeb = true;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = true;
+        }
+        else if (other.CompareTag("CLEANSER"))
+        {
+            isOnIce = false;
+            isOnWeb = false;
+            isOnBossWeb = false;
+            isOnFaseDois = false;
+            GameManager.instance.SwitchToDefaultCam();
+            ExitSnowParticles();
+        }
+        else if (other.CompareTag("Fish"))
+        {
+            gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.CompareTag("GELO"))
