@@ -495,15 +495,21 @@ public class MobAI : MonoBehaviour
 
     private void PlayStepDust()
     {
-        stepDust.gameObject.SetActive(true);
-        stepDust.Stop();
-        stepDust.Play();
+        if(stepDust != null)
+        {
+            stepDust.gameObject.SetActive(true);
+            stepDust.Stop();
+            stepDust.Play();
+        } 
     }
     private void PlayStompDust()
     {
-        stompDust.gameObject.SetActive(true);
-        stompDust.Stop();
-        stompDust.Play();
+        if(stompDust != null)
+        {
+            stompDust.gameObject.SetActive(true);
+            stompDust.Stop();
+            stompDust.Play();
+        } 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

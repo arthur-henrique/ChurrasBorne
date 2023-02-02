@@ -104,6 +104,7 @@ public class BullAI : MonoBehaviour
                 break;
 
             case State.HeadBash:
+                Flip();
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
