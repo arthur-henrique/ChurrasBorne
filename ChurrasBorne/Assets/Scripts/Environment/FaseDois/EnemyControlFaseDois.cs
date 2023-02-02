@@ -14,6 +14,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     private readonly List<GameObject> sixthMob = new List<GameObject>();
     private readonly List<GameObject> seventhMob = new List<GameObject>();
     private readonly List<GameObject> eigthMob = new List<GameObject>();
+    private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     private bool clearedDois, clearedHalf;
     private int randomTL;
 
@@ -24,6 +25,21 @@ public class EnemyControlFaseDois : MonoBehaviour
 
     private void Start()
     {
+        ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Global)
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
         clearedDois = GameManager.instance.GetHasCleared(2);
         clearedHalf = GameManager.instance.GetHasCleared(3);
         randomTL = ManagerOfScenes.randomTimeline;
@@ -32,11 +48,13 @@ public class EnemyControlFaseDois : MonoBehaviour
         {
             p1.SetActive(true);
             p2.SetActive(false);
+            ltds.ForEach(x => x.intensity = 7f);
         }
         else if (clearedDois && !clearedHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
+            ltds.ForEach(x => x.intensity = 3f);
         }
         else if (clearedDois && clearedHalf)
         {
@@ -44,11 +62,14 @@ public class EnemyControlFaseDois : MonoBehaviour
             {
                 p1.SetActive(true);
                 p2.SetActive(false);
+                ltds.ForEach(x => x.intensity = 7f);
             }
             else if (randomTL == 2)
             {
                 p1.SetActive(false);
                 p2.SetActive(true);
+                ltds.ForEach(x => x.intensity = 3f);
+
             }
         }
 
