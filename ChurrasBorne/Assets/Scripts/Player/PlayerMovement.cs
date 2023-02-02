@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip player_eat;
     public AudioClip player_hurt;
 
-    private bool isOnIce, isOnWeb, isOnBossWeb;
+    public bool isOnIce, isOnWeb, isOnBossWeb;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -619,5 +619,10 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         PlayDashParticlesStart();
     }
+
+    //private IEnumerator IsOnWeb()
+    //{
+
+    //}
 
 }
