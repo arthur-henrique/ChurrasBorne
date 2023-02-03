@@ -173,15 +173,15 @@ public class GameManager : MonoBehaviour
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
 
-            //LoadGame();
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
-
-            //TutorialTriggerController.Instance.SecondGateTriggerOut();
-
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
         }
+        if (pc.Tester.YKey.WasPressedThisFrame())
+        {
 
-        if (poisonTime > 0)
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
+        }
+
+            if (poisonTime > 0)
         {
             isPoisoned = true;
             if (!isPoisonTicking)
