@@ -36,6 +36,7 @@ public class BossGate : MonoBehaviour
                 gameObject.SetActive(false);
                 GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
+                EnemyControl.Instance.SpawnBossMob();
             }
             else if (isFaseDois)
             {
@@ -51,6 +52,7 @@ public class BossGate : MonoBehaviour
                 gameObject.SetActive(false);
                 GameManager.instance.SwitchToBossCam();
                 boss.SetActive(true);
+                EnemyControlFaseDois.Instance.SpawnBossMob();
             }
         }
         

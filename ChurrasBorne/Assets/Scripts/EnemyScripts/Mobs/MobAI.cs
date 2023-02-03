@@ -52,7 +52,7 @@ public class MobAI : MonoBehaviour
         isAGigantebas;
     private bool canDash = false, isDashing = false;
 
-    public bool isOnTutorial, isOnFaseUm, isOnFaseDois;
+    public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
 
     private float yOffset = 1.7f;
     private float knockbackDuration = 1f;
@@ -92,7 +92,7 @@ public class MobAI : MonoBehaviour
         
         if(isASpitter)
         {
-            health = 50f;
+            health = 45f;
             damage = 15f;
             armor = 1f;
         }
@@ -133,7 +133,7 @@ public class MobAI : MonoBehaviour
         }
         else if(isAShatebas)
         {
-            health = 100f;
+            health = 50f;
             damage = 25f;
             armor = 0.75f;
         }
@@ -323,6 +323,10 @@ public class MobAI : MonoBehaviour
                 {
                     EnemyControlFaseDois.Instance.KilledEnemy(gameObject);
                 }
+                else if(isOnFaseTres)
+                {
+                    // More code to come;
+                }
                 break;
         }
 
@@ -495,15 +499,21 @@ public class MobAI : MonoBehaviour
 
     private void PlayStepDust()
     {
-        stepDust.gameObject.SetActive(true);
-        stepDust.Stop();
-        stepDust.Play();
+        if(stepDust != null)
+        {
+            stepDust.gameObject.SetActive(true);
+            stepDust.Stop();
+            stepDust.Play();
+        } 
     }
     private void PlayStompDust()
     {
-        stompDust.gameObject.SetActive(true);
-        stompDust.Stop();
-        stompDust.Play();
+        if(stompDust != null)
+        {
+            stompDust.gameObject.SetActive(true);
+            stompDust.Stop();
+            stompDust.Play();
+        } 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
