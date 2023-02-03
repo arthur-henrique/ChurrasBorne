@@ -24,6 +24,7 @@ public class HealthBar_Manager : MonoBehaviour
     //GameObject HP_Meat;
     GameObject HP_OverlayColor;
     GameObject HP_OverlayLines;
+    GameObject HP_Avatar;
 
     GameObject MONSTER_Base;
     GameObject MONSTER_OverlayColor;
@@ -72,6 +73,7 @@ public class HealthBar_Manager : MonoBehaviour
         //HP_Meat = DialogSystem.getChildGameObject(gameObject, "HP_Meat");
         HP_OverlayColor = DialogSystem.getChildGameObject(gameObject, "HP_OverlayColor");
         HP_OverlayLines = DialogSystem.getChildGameObject(gameObject, "HP_OverlayLines");
+        HP_Avatar = DialogSystem.getChildGameObject(gameObject, "HP_Avatar");
 
         MONSTER_Base = DialogSystem.getChildGameObject(gameObject, "MONSTER_Base");
         MONSTER_OverlayColor = DialogSystem.getChildGameObject(gameObject, "MONSTER_OverlayColor");
@@ -394,6 +396,10 @@ public class HealthBar_Manager : MonoBehaviour
             var hplinescol = HealthBar_Manager.instance.HP_OverlayLines.GetComponent<Image>().color;
             hplinescol = new Color(hplinescol.r, hplinescol.g, hplinescol.b, Mathf.Lerp(hplinescol.a, 1f, Time.deltaTime * 4f));
             HealthBar_Manager.instance.HP_OverlayLines.GetComponent<Image>().color = hplinescol;
+
+            var hpav = HealthBar_Manager.instance.HP_Avatar.GetComponent<Image>().color;
+            hpav = new Color(hpav.r, hpav.g, hpav.b, Mathf.Lerp(hpav.a, 1f, Time.deltaTime * 4f));
+            HealthBar_Manager.instance.HP_Avatar.GetComponent<Image>().color = hpav;
             yield return null;
         }
         HealthBar_Manager.alpha_reduce = false;
@@ -422,6 +428,10 @@ public class HealthBar_Manager : MonoBehaviour
                 var hplinescol = HP_OverlayLines.GetComponent<Image>().color;
                 hplinescol = new Color(hplinescol.r, hplinescol.g, hplinescol.b, Mathf.Lerp(hplinescol.a, 0.3f, Time.deltaTime * 4f));
                 HP_OverlayLines.GetComponent<Image>().color = hplinescol;
+
+                var hpav = HealthBar_Manager.instance.HP_Avatar.GetComponent<Image>().color;
+                hpav = new Color(hpav.r, hpav.g, hpav.b, Mathf.Lerp(hpav.a, 0.3f, Time.deltaTime * 4f));
+                HealthBar_Manager.instance.HP_Avatar.GetComponent<Image>().color = hpav;
             }
             
             yield return null;

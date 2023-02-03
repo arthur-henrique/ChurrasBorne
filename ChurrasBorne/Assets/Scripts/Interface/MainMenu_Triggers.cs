@@ -70,9 +70,14 @@ public class MainMenu_Triggers : EventTrigger, IPointerClickHandler
                     MainMenu_Manager.menu_position = 4;
                     break;
 
-                case "MENU_Apply":
+                case "MENU_Language":
 
                     MainMenu_Manager.menu_position = 5;
+                    break;
+
+                case "MENU_Apply":
+
+                    MainMenu_Manager.menu_position = 6;
                     break;
 
             }

@@ -134,16 +134,70 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator DialogComplex(int num)
     {
         title_box_pos = new Vector2(0f, -360f);
-        
-        for (int i = 0; DialogBank.portuguese_dialog_bank_new[num, i, 0] != ""; i++)
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0) // english
         {
-            if (PlayerPrefs.GetInt("LANGUAGE") == 0) // portuguese
+            for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i, 0] != ""; i++)
             {
                 refreshText = true;
                 letterCounter = 0;
-                _title.text = DialogBank.portuguese_dialog_bank_new[num, i, 3];
-                _narrator.text = DialogBank.portuguese_dialog_bank_new[num, i, 1];
-                if (DialogBank.portuguese_dialog_bank_new[num, i, 0] == "left")
+                _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
+                _narrator.text = DialogBank.portuguese_dialog_bank_new[num][i, 1];
+                if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
+                {
+                    portrait_1_pos = new Vector2(-480f, 0f);
+                    portrait_2_pos = new Vector2(480f, -50f);
+
+                    portrait_1_col = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    portrait_2_col = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+
+                }
+                else
+                {
+                    portrait_1_pos = new Vector2(-480f, -50f);
+                    portrait_2_pos = new Vector2(480f, 0f);
+
+                    portrait_1_col = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+                    portrait_2_col = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+                }
+
+                for (int j = 0; j < spriteArray.Length; j++)
+                {
+                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num][i, 2])
+                    {
+                        if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
+                        {
+                            portrait_1.GetComponent<Image>().sprite = spriteArray[j];
+                        }
+                        else
+                        {
+                            portrait_2.GetComponent<Image>().sprite = spriteArray[j];
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(.5f);
+
+            for (int j = 0; !pc.Movimento.Attack.WasPressedThisFrame(); j++)
+            {
+                yield return null;
+            }
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1) // portuguese
+        {
+            for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i,0] != ""; i++)
+            {
+                refreshText = true;
+                letterCounter = 0;
+                _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
+                _narrator.text = DialogBank.portuguese_dialog_bank_new[num][i, 1];
+                if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                 {
                     portrait_1_pos = new Vector2(-480f,   0f);
                     portrait_2_pos = new Vector2( 480f, -50f);
@@ -163,9 +217,9 @@ public class DialogSystem : MonoBehaviour
 
                 for (int j = 0; j < spriteArray.Length; j++)
                 {
-                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num, i, 2])
+                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num][i, 2])
                     {
-                        if (DialogBank.portuguese_dialog_bank_new[num, i, 0] == "left")
+                        if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                         {
                             portrait_1.GetComponent<Image>().sprite = spriteArray[j];
                         } else
@@ -173,6 +227,61 @@ public class DialogSystem : MonoBehaviour
                             portrait_2.GetComponent<Image>().sprite = spriteArray[j];
                         }
                         
+                        break;
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(.5f);
+
+            for (int j = 0; !pc.Movimento.Attack.WasPressedThisFrame(); j++)
+            {
+                yield return null;
+            }
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2) // spanish
+        {
+            for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i, 0] != ""; i++)
+            {
+                refreshText = true;
+                letterCounter = 0;
+                _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
+                _narrator.text = DialogBank.portuguese_dialog_bank_new[num][i, 1];
+                if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
+                {
+                    portrait_1_pos = new Vector2(-480f, 0f);
+                    portrait_2_pos = new Vector2(480f, -50f);
+
+                    portrait_1_col = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    portrait_2_col = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+
+                }
+                else
+                {
+                    portrait_1_pos = new Vector2(-480f, -50f);
+                    portrait_2_pos = new Vector2(480f, 0f);
+
+                    portrait_1_col = new Color(0.6f, 0.6f, 0.6f, 0.6f);
+                    portrait_2_col = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+                }
+
+                for (int j = 0; j < spriteArray.Length; j++)
+                {
+                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num][i, 2])
+                    {
+                        if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
+                        {
+                            portrait_1.GetComponent<Image>().sprite = spriteArray[j];
+                        }
+                        else
+                        {
+                            portrait_2.GetComponent<Image>().sprite = spriteArray[j];
+                        }
+
                         break;
                     }
                 }
