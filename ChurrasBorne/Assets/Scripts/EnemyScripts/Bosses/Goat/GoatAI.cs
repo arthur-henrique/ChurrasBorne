@@ -204,14 +204,16 @@ public class GoatAI : MonoBehaviour
                 {
                     GameManager.instance.SetHasCleared(0, true);
                     FaseUmTriggerController.Instance.SecondGateOpen();
+                    coll.enabled = true;
+                    coll.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 else if (isP2)
                 {
-                    GameManager.instance.SetHasCleared(1, true);
-                    FaseUmTriggerController.Instance.SecondGateOpen();
+                    GateChecker.Instance.TheBossDied();
+                    //GameManager.instance.SetHasCleared(1, true);
+                    //FaseUmTriggerController.Instance.SecondGateOpen();
                 }
-                coll.enabled = true;
-                coll.transform.GetChild(0).gameObject.SetActive(true);
+                
                 break;
 
             case State.Idling:
