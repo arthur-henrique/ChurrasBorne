@@ -36,7 +36,7 @@ public class Inventory_Manager : MonoBehaviour
     private int sel_pos_highlight = 0;
     private int sel_pos_highlight_dest = -225;
 
-    private bool movementLock = false;
+    private bool movementLock = true;
 
     public List<int> itemStorage = new List<int>();
 
@@ -58,6 +58,7 @@ public class Inventory_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         instance = this;
         
         inv_board_highlight = DialogSystem.getChildGameObject(gameObject, "Select_Highlight");
@@ -74,9 +75,9 @@ public class Inventory_Manager : MonoBehaviour
         inv_item_2.GetComponent<Image>().sprite = itemImages[0];
         inv_item_3.GetComponent<Image>().sprite = itemImages[0];
 
-        itemStorage.Add(1);
-        itemStorage.Add(2);
-        itemStorage.Add(1);
+        //itemStorage.Add(1);
+        //itemStorage.Add(2);
+        //itemStorage.Add(1);
     }
 
     // Update is called once per frame
@@ -84,16 +85,20 @@ public class Inventory_Manager : MonoBehaviour
     {
         if (movementLock == true)
         {
-            if (pc.Movimento.Attack.WasPressedThisFrame())
+            if (pc.Movimento.Inventario.WasPressedThisFrame())
             {
                 movementLock = false;
             }
+            GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 0, 16f * Time.deltaTime);
+            PlayerMovement.EnableControl();
         } else
         {
-            if (pc.Movimento.Attack.WasPressedThisFrame())
+            if (pc.Movimento.Inventario.WasPressedThisFrame())
             {
                 movementLock = true;
             }
+            GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 1, 16f * Time.deltaTime);
+            PlayerMovement.DisableControl();
         }
 
         if (movementLock == false)
@@ -149,7 +154,7 @@ public class Inventory_Manager : MonoBehaviour
                 if (sel_pos_highlight > itemStorage.Count - 1) { sel_pos_highlight = itemStorage.Count - 1; }
                 if (sel_pos_highlight < 0) { sel_pos_highlight = 0; }
             }
-
+            /*
             if (pc.Movimento.Rolar.WasPressedThisFrame())
             {
                 itemStorage.Add(1);
@@ -158,7 +163,7 @@ public class Inventory_Manager : MonoBehaviour
             if (pc.Movimento.Curar.WasPressedThisFrame())
             {
                 itemStorage.Remove(1);
-            }
+            }*/
         }
         
 

@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 6907387856544462002}
   - component: {fileID: 7034205815826285361}
   - component: {fileID: 5886933926890426064}
+  - component: {fileID: 5005617682905381934}
   m_Layer: 5
   m_Name: Inventory_Canvas
   m_TagString: Untagged
@@ -507,6 +508,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 89a6bda86eceaad49800bcc9ed4e898b, type: 3}
   - {fileID: 21300000, guid: 2c36669ab0bf24f499c4cad274c0effe, type: 3}
   - {fileID: 21300000, guid: 397c35d5e4f713c4ba2f4dd9baa51b85, type: 3}
+--- !u!225 &5005617682905381934
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022627339331961009}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2479883672516989938
 GameObject:
   m_ObjectHideFlags: 0
