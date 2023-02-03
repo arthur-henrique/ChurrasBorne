@@ -9954,6 +9954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  dashDrills: {fileID: 9085501922857752424, guid: 87deae2f4a97599479b35edc86804021, type: 3}
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   chasingSpeed: 6
   dashingSpeed: 20
@@ -9963,6 +9964,7 @@ MonoBehaviour:
   canDashDistance: 12
   startTimeBTWMeleeATKs: 1.5
   startDashRecoveryTime: 1
+  isAlive: 1
   health: 500
   rb: {fileID: 8446388628132816272}
   anim: {fileID: 9160456545418378528}

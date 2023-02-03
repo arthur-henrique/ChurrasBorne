@@ -19,7 +19,7 @@ public class GoatAI : MonoBehaviour
     }
     private State state;
 
-    public GameObject gameManager;
+    public GameObject gameManager, dashDrills;
     public Transform player;
     private Vector2 dashTarget;
 
@@ -28,7 +28,8 @@ public class GoatAI : MonoBehaviour
     public float startTimeBTWMeleeATKs, startDashRecoveryTime;
     private float timeBTWMeleeATKs, dashRecoveryTime, timeToDie;
 
-    private bool isDashing = false, isAlreadyDying = false, isAlive = true;
+    private bool isDashing = false, isAlreadyDying = false;
+    public bool isAlive = true;
 
     public float health;
     public static bool goat_boss_died = false;
@@ -297,6 +298,8 @@ public class GoatAI : MonoBehaviour
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(40);
         }
+
+        Instantiate(dashDrills, transform.position, Quaternion.identity);
     }
 
     void Flip()

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FinalBossATK1
+  m_Name: GoatDrill
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 70d36aaa3cf445d45a6f15410a467522, type: 3}
+      value: {fileID: 21300000, guid: db26caf5a1fc0514c98b98d4204cbe23, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 675dabed6bf596c40b7aeab0eda8a813, type: 3}
+      value: {fileID: 21300000, guid: 9963a701da1b56e4e932338f1281fc2c, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: 6f7dd9e7e717ed24184e712be274d0da, type: 3}
+      value: {fileID: 21300000, guid: 2eff718f128cc72429d27fb762a2554a, type: 3}
     - time: 0.6
-      value: {fileID: 21300000, guid: cd700d875bf97a943bea6bd3dac99055, type: 3}
+      value: {fileID: 21300000, guid: 5aaa469be1b09b04789864663739182d, type: 3}
     - time: 0.8
-      value: {fileID: 21300000, guid: a0ba236931d4b9149a38c393dd57c953, type: 3}
+      value: {fileID: 21300000, guid: 1024f89e5387e174c8bf0a927a6bd736, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 700f1b4da7bbec34e816f8e773c137b4, type: 3}
+    - time: 1.2
+      value: {fileID: 21300000, guid: 23fe3ec7b36427f41b8a12305d5fcfc0, type: 3}
+    - time: 1.4
+      value: {fileID: 21300000, guid: 8ec103d48f2707841bc921b088712ea0, type: 3}
+    - time: 1.6
+      value: {fileID: 21300000, guid: 22d2e468c8199d54db8e5beb7e85378c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +56,21 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 70d36aaa3cf445d45a6f15410a467522, type: 3}
-    - {fileID: 21300000, guid: 675dabed6bf596c40b7aeab0eda8a813, type: 3}
-    - {fileID: 21300000, guid: 6f7dd9e7e717ed24184e712be274d0da, type: 3}
-    - {fileID: 21300000, guid: cd700d875bf97a943bea6bd3dac99055, type: 3}
-    - {fileID: 21300000, guid: a0ba236931d4b9149a38c393dd57c953, type: 3}
+    - {fileID: 21300000, guid: db26caf5a1fc0514c98b98d4204cbe23, type: 3}
+    - {fileID: 21300000, guid: 9963a701da1b56e4e932338f1281fc2c, type: 3}
+    - {fileID: 21300000, guid: 2eff718f128cc72429d27fb762a2554a, type: 3}
+    - {fileID: 21300000, guid: 5aaa469be1b09b04789864663739182d, type: 3}
+    - {fileID: 21300000, guid: 1024f89e5387e174c8bf0a927a6bd736, type: 3}
+    - {fileID: 21300000, guid: 700f1b4da7bbec34e816f8e773c137b4, type: 3}
+    - {fileID: 21300000, guid: 23fe3ec7b36427f41b8a12305d5fcfc0, type: 3}
+    - {fileID: 21300000, guid: 8ec103d48f2707841bc921b088712ea0, type: 3}
+    - {fileID: 21300000, guid: 22d2e468c8199d54db8e5beb7e85378c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.8000001
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,14 +91,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6
-    functionName: aeEyeLasersOn
+    functionName: DamagePlayerOn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.8
-    functionName: aeEyeLasersOff
+  - time: 1.6
+    functionName: DestroySelf
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

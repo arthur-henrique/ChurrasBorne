@@ -21,7 +21,7 @@ public class BullAI : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
 
-    public GameObject bullSpikes;
+    public GameObject bullSpikes, protectiveSpikes;
     public Collider2D portal;
 
     public AudioSource audioSource;
@@ -41,7 +41,7 @@ public class BullAI : MonoBehaviour
     private bool isAlreadyDying = false;
 
     private float knockbackDuration = 1.5f, knockbackPower = 50f;
-    private bool canTakeDamage = true;
+    private bool canTakeDamage = true, hasSummonedSpikes = false;
 
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
@@ -101,6 +101,7 @@ public class BullAI : MonoBehaviour
 
                 SwitchToAxeATK();
                 SwitchToBashATK();
+                SwitchToSummonATK();
                 break;
 
             case State.HeadBash:
@@ -123,6 +124,7 @@ public class BullAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToAxeATK();
+                SwitchToSummonATK();
                 break;
 
             case State.AxeSwing:
@@ -147,6 +149,19 @@ public class BullAI : MonoBehaviour
 
                 SwitchToBashATK();
                 SwitchToChasing();
+                SwitchToSummonATK();
+                break;
+
+            case State.SpikeSummon:
+                //hasSummonedSpikes = true;
+                
+                rb.velocity = Vector2.zero;
+
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+                anim.SetTrigger("Scream");
+
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 break;
 
             case State.Dead:
@@ -214,7 +229,7 @@ public class BullAI : MonoBehaviour
     }
     void SwitchToSummonATK()
     {
-        if (health == 40)
+        if (health <= 80 && !hasSummonedSpikes)
         {
             state = State.SpikeSummon;
         }
@@ -279,7 +294,13 @@ public class BullAI : MonoBehaviour
     //SPIKES
     public void SummonSpike()
     {
-        Instantiate(bullSpikes, player.position, Quaternion.identity);
+        Instantiate(bullSpikes, player.position, Quaternion.identity); 
+    }
+    public void SummonProtectiveSpikes()
+    {
+        hasSummonedSpikes = true;
+        Instantiate(protectiveSpikes, transform.position, Quaternion.identity);
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
 
     //HEALTH
