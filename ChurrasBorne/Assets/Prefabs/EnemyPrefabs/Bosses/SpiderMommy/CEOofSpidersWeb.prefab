@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4995753880148382735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.709558, y: -8.690454, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1844687291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 17ab97d05d223a94eb56df9e88a3d55f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -157,6 +157,13 @@ MonoBehaviour:
   speed: 15
   APTP: {fileID: 0}
   mommyWeb: {fileID: 7823189674828522440, guid: d712102df47535f4983fc052e0ae66ab, type: 3}
+  spitter: {fileID: 0}
   health: 100
   isOnTutorial: 0
+  isFromBoss: 0
   isAWeb: 1
+  hasBeenParried: 0
+  isOnFaseDois: 0
+  ltd: {fileID: 0}
+  normalTrail: {fileID: 0}
+  unparryTrail: {fileID: 0}

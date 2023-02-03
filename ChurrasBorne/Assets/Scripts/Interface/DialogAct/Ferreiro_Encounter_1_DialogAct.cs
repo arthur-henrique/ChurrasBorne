@@ -41,7 +41,6 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
             gameObject.SetActive(false);
         }
         target = GameObject.FindGameObjectWithTag("Player");
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 
     // Update is called once per frame
@@ -55,13 +54,8 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                    {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0);
-                        ferreiro_encounter_1_occurred = true;
-                    }
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0);
+                    ferreiro_encounter_1_occurred = true;
                 }
             }
 
@@ -75,14 +69,8 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
                 if (Vector2.Distance(transform.position, new Vector2(-56f, 262f)) < 1f) 
                 {
                     GetComponent<Animator>().SetBool("WALKING", false);
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                    {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneComplex(1);
-                        ferreiro_encounter_2_occurred = true;
-                    }
-
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(1);
+                    ferreiro_encounter_2_occurred = true;
                 }
             }
             

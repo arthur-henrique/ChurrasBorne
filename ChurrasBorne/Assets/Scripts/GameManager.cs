@@ -66,10 +66,12 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerAnimator = player.GetComponent<Animator>();
         SetHasCleared();
+        poisonTime = 0f;
     }
     private void OnEnable()
     {
         pc.Enable();
+        poisonTime = 0f;
     }
     private void OnDisable()
     {
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
         death.Priority = 0;
         boss.Priority = 0;
 
+        poisonTime = 0f;
         poisonEm = poison.emission;
         playerArmor = 1f;
         playerDamage = 10f;
@@ -164,15 +167,18 @@ public class GameManager : MonoBehaviour
         {
 
             //SaveGame();
-            Poison(1f);
+            //Poison(1f);
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
-            
+
             //LoadGame();
             //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
 
             //TutorialTriggerController.Instance.SecondGateTriggerOut();
+
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
         }
 
         if (poisonTime > 0)
@@ -236,7 +242,8 @@ public class GameManager : MonoBehaviour
 
     public void Poison(float poisonT)
     {
-        poisonTime += poisonT;
+        if (isAlive && !hasJustDied)
+            poisonTime += poisonT;
     }
 
     
@@ -265,7 +272,7 @@ public class GameManager : MonoBehaviour
                 healsLeft = 0;
             playerAnimator.SetFloat("numberOfMeat", healsLeft);
             reflAnim.SetFloat("numberOfMeat", healsLeft);
-            print(playerAnimator.GetFloat("numberOfMeat"));
+            //print(playerAnimator.GetFloat("numberOfMeat"));
             SetHealth(currentHealth);
         }
     }
@@ -355,6 +362,7 @@ public class GameManager : MonoBehaviour
         hasJustDied = false;
         StartCoroutine(DeadCounter());
         isAlive = false;
+        poisonTime = 0f;
     }
     
     public bool GetAlive()
@@ -442,6 +450,7 @@ public class GameManager : MonoBehaviour
     public void SwitchToDefaultCam()
     {
         dft.Priority = 1;
+        death.Priority = 0;
         boss.Priority = 0;
     }
 
@@ -459,10 +468,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.6f);
         playerAnimator.SetBool("isDead", false);
         reflAnim.SetBool("isDead", false);
+        poisonTime = 0f;
         if (isTut)
         {
             yield return new WaitForSeconds(1f);
-            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", 100, 0, false, null);
+            SwitchToDefaultCam();
+            canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", maxHealth, 0, false, null);
         }
     }
 

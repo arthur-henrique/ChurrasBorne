@@ -81,10 +81,11 @@ public class Transition_Manager : MonoBehaviour
         cr_transition_handle = StartCoroutine(TransitionHandle(scene_name));
     }
 
-    public void RestartScene(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
+    public void RestartScene(string scene_name, float health, float heals, bool isHoldingSword, GameObject destroyObj)
     {
         StopCoroutine(cr_transition_restart_handle);
         ReturnOriginalPosition();
+        GameManager.instance.SwitchToDefaultCam();
         cr_transition_restart_handle = StartCoroutine(TransitionHandleRestart(scene_name, health, heals, isHoldingSword, destroyObj));
     }
 
@@ -143,7 +144,7 @@ public class Transition_Manager : MonoBehaviour
 
     }
 
-    private IEnumerator TransitionHandleRestart(string scene_name, int health, float heals, bool isHoldingSword, GameObject destroyObj)
+    private IEnumerator TransitionHandleRestart(string scene_name, float health, float heals, bool isHoldingSword, GameObject destroyObj)
     {
         var smooth_time = 0.25f * 1.25f;
         for (int i = 0; i < 60 * 4; i++)

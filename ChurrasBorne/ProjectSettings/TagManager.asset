@@ -52,6 +52,7 @@ TagManager:
   - PROJECTILE
   - CLEANSER
   - TP
+  - MOBBOSS
   layers:
   - Default
   - TransparentFX
@@ -89,8 +90,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Objects
+    uniqueID: 1189529141
+    locked: 0
+  - name: Enemies
+    uniqueID: 2450280005
+    locked: 0
   - name: Player
     uniqueID: 3617505123
+    locked: 0
+  - name: Portoes e Paredes
+    uniqueID: 3373870951
     locked: 0
   - name: ForeGround
     uniqueID: 3889916511

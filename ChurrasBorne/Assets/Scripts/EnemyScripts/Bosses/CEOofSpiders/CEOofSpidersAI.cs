@@ -288,9 +288,7 @@ public class CEOofSpidersAI : MonoBehaviour
             }
             else if (isSpiderGranny)
             {
-                FaseDoisTriggerController.Instance.GateOpener();
-                faseDoisHalf.SetTrigger("ON");
-                GameManager.instance.SetHasCleared(3, true);
+                GateChecker.Instance.TheBossDied();
             }
         }
     }

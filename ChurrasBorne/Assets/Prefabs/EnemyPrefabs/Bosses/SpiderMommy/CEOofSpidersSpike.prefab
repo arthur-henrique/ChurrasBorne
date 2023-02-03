@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3578057323687879292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.999207, y: -12.60333, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1959508870705603740}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1844687291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 333f9584e81056e4099029051ffdea6e, type: 3}
   m_Color: {r: 0.10307205, g: 1, b: 0, a: 1}
@@ -165,6 +165,9 @@ MonoBehaviour:
   isAWeb: 0
   hasBeenParried: 0
   isOnFaseDois: 0
+  ltd: {fileID: 0}
+  normalTrail: {fileID: 0}
+  unparryTrail: {fileID: 0}
 --- !u!1 &7364654166701948111
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,8 +237,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1844687291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Time: 0.45
   m_Parameters:

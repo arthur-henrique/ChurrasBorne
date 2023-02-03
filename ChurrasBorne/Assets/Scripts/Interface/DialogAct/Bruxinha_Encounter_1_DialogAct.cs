@@ -41,7 +41,6 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
             gameObject.SetActive(false);
         }
         target = GameObject.FindGameObjectWithTag("Player");
-        dbox.GetComponent<DialogSystem>().db_PullDOWN();
     }
 
     // Update is called once per frame
@@ -55,25 +54,15 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                    if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                    {
-                        dbox.GetComponent<DialogSystem>().db_PullUP();
-                        dbox.GetComponent<DialogSystem>().db_SetSceneComplex(3);
-                        bruxinha_encounter_1_occurred = true;
-                    }
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(3);
+                    bruxinha_encounter_1_occurred = true;
                 }
             }
 
             if (CEOofSpidersAI.spider_boss_died == true && bruxinha_encounter_2_occurred == false)
             {
-                var selec = DialogSystem.getChildGameObject(dbox.GetComponent<DialogSystem>().gameObject, "BalloonBox");
-                if (selec.GetComponent<RectTransform>().anchoredPosition.y < -330)
-                {
-                    dbox.GetComponent<DialogSystem>().db_PullUP();
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(4);
-                    bruxinha_encounter_2_occurred = true;
-                }
+                dbox.GetComponent<DialogSystem>().db_SetSceneComplex(4);
+                bruxinha_encounter_2_occurred = true;
             }
 
         }

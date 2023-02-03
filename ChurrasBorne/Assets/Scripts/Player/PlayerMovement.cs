@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip player_eat;
     public AudioClip player_hurt;
 
-    private bool isOnIce, isOnWeb, isOnBossWeb;
+    public bool isOnIce, isOnWeb, isOnBossWeb;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
                             state = State.Rolling;
                             anim.SetTrigger("isRolling");
                             reflAnim.SetTrigger("isRolling");
-                            print("Rolei");
+                            //print("Rolei");
                             StartCoroutine(DustWait());
                             audioSource.PlayOneShot(player_dash, audioSource.volume);
                             Dash_Manager.dash_fill_global -= 60;
@@ -288,6 +288,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 break;
             case State.Dead:
+                particleEmission.rateOverTime = 0f;
+                snowParticleEmission.rateOverTime = 0f;
                 anim.SetFloat("moveX", 0);
                 anim.SetFloat("moveY", 0);
                 reflAnim.SetFloat("moveX", 0);
@@ -301,15 +303,19 @@ public class PlayerMovement : MonoBehaviour
         {
             case State.Normal:
                 moveVelocity = direcao * speed;
-                if(isOnIce)
+                if(isOnIce && !isOnWeb)
                 {
                     rb.AddForce(moveVelocity * 0.7f, ForceMode2D.Force);
                 }
-                else if(isOnWeb)
+                else if(isOnWeb && !isOnIce)
                 {
                     moveVelocity *= 0.6f;
                     rb.velocity = moveVelocity;
                 }
+                else if(isOnIce && isOnWeb)
+                    {
+                        rb.AddForce(moveVelocity * 0.5f, ForceMode2D.Force);
+                    }
                 else if (isOnBossWeb)
                 {
                     moveVelocity *= 0.5f;
@@ -358,7 +364,9 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = rollDirection * rollSpeed;
                 break;
             case State.Attacking:
-                rb.velocity = Vector2.zero;
+                if(!isOnIce)
+                    rb.velocity = Vector2.zero;
+                
                 break;
             case State.Healing:
                 moveVelocity = 0.8f * speed * direcao;
@@ -455,6 +463,35 @@ public class PlayerMovement : MonoBehaviour
             isOnIce = true;
         }
         else if(other.CompareTag("TEIA"))
+        {
+            isOnWeb = true;
+        }
+        else if (other.CompareTag("TEIABOSS"))
+        {
+            isOnBossWeb = true;
+        }
+        else if (other.CompareTag("CLEANSER"))
+        {
+            isOnIce = false;
+            isOnWeb = false;
+            isOnBossWeb = false;
+            isOnFaseDois = false;
+            GameManager.instance.SwitchToDefaultCam();
+            ExitSnowParticles();
+        }
+        else if (other.CompareTag("Fish"))
+        {
+            gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("GELO"))
+        {
+            isOnIce = true;
+        }
+        else if (other.CompareTag("TEIA"))
         {
             isOnWeb = true;
         }
@@ -582,5 +619,10 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         PlayDashParticlesStart();
     }
+
+    //private IEnumerator IsOnWeb()
+    //{
+
+    //}
 
 }
