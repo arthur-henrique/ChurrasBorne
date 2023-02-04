@@ -86,15 +86,64 @@ public class DialogBank : MonoBehaviour
 
     };
 
-    public static string[,,] portuguese_dialog_bank_new =
+    public static string[][,] portuguese_dialog_bank_new = new string[][,]
     {
-        { // 0 - Ferreiro, primeiro encontro
-            { "right", "Ferreira", "Ferreira_1", "beat the h*mophobe the game we fuckinG STAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN HOLY SHIT i LOVE cibele oh my god this theme makes me go W*T AS F*CK OOOOOOOOOOOOOOOOOOOOOOOOOH but LIKE OOOOOOOOOOH her design HER DESIGN EHVYWG9HOJBG oooooO23Y801789#&*#)@*$&) and her theme uaup AUU[P.... god i wish she was a real len'en oh my fucking god OOH GOD oh god GODgod GoDS............................. oahefwrhpdjlsnkbhiposejkfdl"},
-            { "left" , "Sabet", "Sabet_1", "bom saber chapa"},
-            { "left" , "Sabet", "Sabet_1", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
-            { "right", "Ferreira", "Ferreira_1", "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto"},
+        new string[,] { // 0 - Ferreiro, primeiro encontro
+            { "right", "Ferreira", "Ferreira_1", "Socorro!! Por favor, alguém? Qualquer um, por favor! Este Monstro vai me matar!!"},
             { "", "", "", ""}
         },
+        new string[,] { // 1 - Ferreiro, depois do boss
+            { "right", "Ferreira", "Ferreira_1", "Ah, céus, obrigado..."},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "Um santuário? Neste desastre de mundo?"},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right", "Ferreira", "Ferreira_1", "UM CHURRASCO??? Não... você está certo, qualquer coisa é melhor que ficar encalhado nessa floresta com estes monstros... você não é um deles... é?"},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "Bem, te encontro lá."},
+            { "", "", "", ""},
+        },
+        new string[,] { // 2 - Ferreiro, hub
+            { "right", "Ferreira", "Ferreira_1", "Olá amigo, é ótimo lhe ver aqui, e agradeço de novo por me resgatar. Acho que não me apresentei, meu nome é Ferreira, sou um Ferreiro de primeira linha, ou ao menos... eu era... anntes de todo esse desastre."},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "Fico feliz em poder lhe ajudar com o que quer que precise."},
+            { "", "", "", ""},
+        },
+        new string[,] { // 3 - VAZIO
+            { "left", "???", "Sabet_1", "Dialogo não implementado ainda."},
+            { "", "", "", ""},
+        },
+        new string[,] { // 4 - VAZIO
+            { "left", "???", "Sabet_1", "Dialogo não implementado ainda."},
+            { "", "", "", ""},
+        },
+        new string[,] { // 5 - VAZIO
+            { "right", "Bruna", "Bruna_1", "Oi Cavaleirinho! Acho que aquela situação não era a melhor pra um primeiro encontro, então vamos começar de novo. Prazer, eu sou Bruna, a Bruxa, e estou te devendo uma já que você salvou minha vida e tals."},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right", "Bruna", "Bruna_1", "Entendi, você é do tipo caladão, legal... legal..."},
+            { "", "", "", ""},
+        },
     };
+    /*{
+        { // 0 - Ferreiro, primeiro encontro
+            { "right", "Ferreira", "Ferreira_1", "EI VOCÊ, VOCÊ É UM CAVALEIRO? POR FAVOR, MATE ESSE MONSTRO!!!"},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "O quê? Se dá pra fazer churrasco com a carne dele? ...Eu creio que sim?"},
+            { "left", "Sabet", "Sabet_1", "..."},
+            { "", "", "", ""}
+        },
+        { // 1 - Ferreiro, depois do boss
+            { "right", "Ferreira", "Ferreira_1", "Ah, céus, obrigado..."},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "Um santuário? Neste desastre de mundo?"},
+            { "right", "Ferreira", "Ferreira_1", "UM CHURRASCO??? Não... você está certo, qualquer coisa é melhor que ficar encalhado nessa floresta com estes monstros... você não é um deles... é?"},
+            { "right", "Ferreira", "Ferreira_1", "..."},
+            { "", "", "", ""}
+        },
+    };*/
 
+    /*portuguese_dialog_bank_new[0] = { "right", "Ferreira", "Ferreira_1", "EI VOCÊ, VOCÊ É UM CAVALEIRO? POR FAVOR, MATE ESSE MONSTRO!!!"},
+            { "left" , "Sabet", "Sabet_1", "..."},
+            { "right" , "Ferreira", "Ferreira_1", "O quê? Se dá pra fazer churrasco com a carne dele? ...Eu creio que sim?"},
+            { "left", "Sabet", "Sabet_1", "..."},
+            { "", "", "", ""};*/
 }

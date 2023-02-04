@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -41,6 +41,8 @@ public class MainMenu_Manager : MonoBehaviour
     GameObject menu_vol_sfx_text;
     GameObject menu_vol_sfx_slider;
     GameObject menu_apply;
+    GameObject menu_lang;
+    GameObject menu_lang_text;
 
     private Vector3 velocity_bg = Vector3.zero;
     private Vector3 velocity_drop_shadow = Vector3.zero;
@@ -54,6 +56,7 @@ public class MainMenu_Manager : MonoBehaviour
     private Vector3 velocity_vol_master = Vector3.zero;
     private Vector3 velocity_vol_bgm = Vector3.zero;
     private Vector3 velocity_vol_sfx = Vector3.zero;
+    private Vector3 velocity_lang = Vector3.zero;
     private Vector3 velocity_apply = Vector3.zero;
 
     Color bg_img_color;
@@ -84,6 +87,8 @@ public class MainMenu_Manager : MonoBehaviour
 
     private int fs_mode_opt = 0;
     private string[] fs_mode = { "Desligada", "Exclusiva", "Borderless" };
+    private int lang_mode_opt = 0;
+    private string[] lang_mode = { "English", "Português", "Español" };
     private FullScreenMode[] fs_mode_out = { FullScreenMode.Windowed, FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow };
 
     private void Awake()
@@ -103,12 +108,18 @@ public class MainMenu_Manager : MonoBehaviour
     void Start()
     {
         //audioSource = GetComponent<AudioSource>();
-        PlayerPrefs.SetInt("LANGUAGE", 0);
+        if (PlayerPrefs.GetInt("LANGUAGE") != 0 && PlayerPrefs.GetInt("LANGUAGE") != 1 && PlayerPrefs.GetInt("LANGUAGE") != 2)
+        {
+            PlayerPrefs.SetInt("LANGUAGE", 1);
+        }
+        
 
         var resolution_size = PlayerPrefs.GetInt("RESOLUTION_SIZE", 3);
         var fullscreen_mode = PlayerPrefs.GetInt("FULLSCREEN_MODE", 0);
+        var language_mode = PlayerPrefs.GetInt("LANGUAGE");
         restable_opt = resolution_size;
         fs_mode_opt = fullscreen_mode;
+        lang_mode_opt = language_mode;
 
         Screen.SetResolution(restable[restable_opt, 0], restable[restable_opt, 1], fs_mode_out[fs_mode_opt]);
 
@@ -144,7 +155,7 @@ public class MainMenu_Manager : MonoBehaviour
 
         #region Menu Copyright
         menu_copyright = DialogSystem.getChildGameObject(gameObject, "MENU_Copyright");
-        menu_copyright.GetComponent<RectTransform>().anchoredPosition = new Vector3(540, -228, -1);
+        menu_copyright.GetComponent<RectTransform>().anchoredPosition = new Vector3(580, -228, -1);
 
         StartCoroutine(Intro_Copyright_Move());
         #endregion
@@ -185,32 +196,37 @@ public class MainMenu_Manager : MonoBehaviour
         #region -------- Options Menu
 
         menu_res = DialogSystem.getChildGameObject(gameObject, "MENU_Resolution");
-        menu_res.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -15, 0);
+        menu_res.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -20, 0);
 
         menu_res_text = DialogSystem.getChildGameObject(gameObject, "MENU_ResolutionTable");
 
         menu_fscreen = DialogSystem.getChildGameObject(gameObject, "MENU_Fullscreen");
-        menu_fscreen.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -50, 0);
+        menu_fscreen.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -15, 0);
 
         menu_fscreen_text = DialogSystem.getChildGameObject(gameObject, "MENU_FullscreenMode");
 
         menu_vol_master = DialogSystem.getChildGameObject(gameObject, "MENU_Master");
-        menu_vol_master.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -85, 0);
+        menu_vol_master.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -50, 0);
 
         menu_vol_master_text = DialogSystem.getChildGameObject(gameObject, "MENU_MasterVolume");
         menu_vol_master_slider = DialogSystem.getChildGameObject(gameObject, "MENU_MasterSlider");
 
         menu_vol_bgm = DialogSystem.getChildGameObject(gameObject, "MENU_BGM");
-        menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -120, 0);
+        menu_vol_bgm.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -85, 0);
 
         menu_vol_bgm_text = DialogSystem.getChildGameObject(gameObject, "MENU_BGMVolume");
         menu_vol_bgm_slider = DialogSystem.getChildGameObject(gameObject, "MENU_BGMSlider");
 
         menu_vol_sfx = DialogSystem.getChildGameObject(gameObject, "MENU_SFX");
-        menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -155, 0);
+        menu_vol_sfx.GetComponent<RectTransform>().anchoredPosition = new Vector3(-825, -120, 0);
 
         menu_vol_sfx_text = DialogSystem.getChildGameObject(gameObject, "MENU_SFXVolume");
         menu_vol_sfx_slider = DialogSystem.getChildGameObject(gameObject, "MENU_SFXSlider");
+
+        menu_lang = DialogSystem.getChildGameObject(gameObject, "MENU_Language");
+        menu_lang.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -155, 0);
+
+        menu_lang_text = DialogSystem.getChildGameObject(gameObject, "MENU_LanguageMode");
 
         menu_apply = DialogSystem.getChildGameObject(gameObject, "MENU_Apply");
         menu_apply.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -190, 0);
@@ -220,6 +236,56 @@ public class MainMenu_Manager : MonoBehaviour
 
     void Update()
     {
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0) // ENGLISH
+        {
+            menu_sel1.GetComponent<TextMeshProUGUI>().text = "Start Game";
+            menu_sel2.GetComponent<TextMeshProUGUI>().text = "Options";
+            menu_sel3.GetComponent<TextMeshProUGUI>().text = "Quit to Desktop";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Team ChurrasBorne 2022-2023";
+
+            menu_res.GetComponent<TextMeshProUGUI>().text = "Resolution:";
+            menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Fullscreen:";
+            menu_lang.GetComponent<TextMeshProUGUI>().text = "Language:";
+            menu_apply.GetComponent<TextMeshProUGUI>().text = "Apply and Return";
+
+            fs_mode[0] = "Off";
+            fs_mode[1] = "Exclusive";
+            fs_mode[2] = "Borderless";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1) // PORTUGUESE
+        {
+            menu_sel1.GetComponent<TextMeshProUGUI>().text = "Iniciar Jogo";
+            menu_sel2.GetComponent<TextMeshProUGUI>().text = "Opções";
+            menu_sel3.GetComponent<TextMeshProUGUI>().text = "Sair para Desktop";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Equipe ChurrasBorne 2022-2023";
+
+            menu_res.GetComponent<TextMeshProUGUI>().text = "Resolução:";
+            menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Tela Cheia:";
+            menu_lang.GetComponent<TextMeshProUGUI>().text = "Linguagem:";
+            menu_apply.GetComponent<TextMeshProUGUI>().text = "Aplicar e Retornar";
+
+            fs_mode[0] = "Desligada";
+            fs_mode[1] = "Exclusiva";
+            fs_mode[2] = "Sem Bordas";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2) // SPANISH
+        {
+            menu_sel1.GetComponent<TextMeshProUGUI>().text = "Empezar Juego";
+            menu_sel2.GetComponent<TextMeshProUGUI>().text = "Opciones";
+            menu_sel3.GetComponent<TextMeshProUGUI>().text = "Salir al Desktop";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Equipo ChurrasBorne 2022-2023";
+
+            menu_res.GetComponent<TextMeshProUGUI>().text = "Resolución:";
+            menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Fullscreen:";
+            menu_lang.GetComponent<TextMeshProUGUI>().text = "Idioma:";
+            menu_apply.GetComponent<TextMeshProUGUI>().text = "Aplicar y Retornar";
+
+            fs_mode[0] = "Apagado";
+            fs_mode[1] = "Exclusiva";
+            fs_mode[2] = "Sin Bordes";
+        }
+
+
         // Slightly offsets the background image according to the mouse position
         menu_bg.GetComponent<RectTransform>().anchoredPosition = new Vector2(
         (Mouse.current.position.x.ReadValue() / Screen.width) * 10,
@@ -235,8 +301,8 @@ public class MainMenu_Manager : MonoBehaviour
             if (menu_submenu == true)
             {
                 menu_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
-                if (menu_position > 5) { menu_position = 0; }
-                if (menu_position < 0) { menu_position = 5; }
+                if (menu_position > 6) { menu_position = 0; }
+                if (menu_position < 0) { menu_position = 6; }
             } else
             {
                 menu_position -= (int)pc.Movimento.NorteSul.ReadValue<float>();
@@ -316,6 +382,18 @@ public class MainMenu_Manager : MonoBehaviour
                         }
 
                         break;
+
+                    case 5:
+
+                        if (x > 0)
+                        {
+                            lang_mode_opt++;
+                        }
+                        else if (x < 0)
+                        {
+                            lang_mode_opt--;
+                        }
+                        break;
                 }
             }
 
@@ -346,7 +424,7 @@ public class MainMenu_Manager : MonoBehaviour
         //print(interactDelay);
 
 
-        if (Time.fixedTime > 3)
+        if (Time.timeSinceLevelLoad > 3)
         {
             StopCoroutine(mn_drop_shadow);
             StopCoroutine(mn_selections);
@@ -370,6 +448,7 @@ public class MainMenu_Manager : MonoBehaviour
                     menu_vol_bgm.GetComponent<EventTrigger>().enabled = true;
                     menu_vol_sfx.GetComponent<EventTrigger>().enabled = true;
                     menu_apply.GetComponent<EventTrigger>().enabled = true;
+                    menu_lang.GetComponent<EventTrigger>().enabled = true;
 
                     switch (menu_position)
                     {
@@ -377,15 +456,16 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            ElementTranslate(menu_res, new Vector3(-275, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-275, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -15, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, 20, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             var mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -413,6 +493,11 @@ public class MainMenu_Manager : MonoBehaviour
                             var mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
+                            var mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            var mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             var mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
                             #endregion
@@ -424,15 +509,16 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-275, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-275, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -50, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -15, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -460,6 +546,11 @@ public class MainMenu_Manager : MonoBehaviour
                             mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
                             #endregion
@@ -470,15 +561,16 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-275, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-275, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -85, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -50, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -506,6 +598,11 @@ public class MainMenu_Manager : MonoBehaviour
                             mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
                             #endregion
@@ -515,15 +612,16 @@ public class MainMenu_Manager : MonoBehaviour
                         case 3:
 
                             #region Render behavior
-                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-275, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-275, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -120, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -85, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -551,6 +649,11 @@ public class MainMenu_Manager : MonoBehaviour
                             mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
                             #endregion
@@ -561,15 +664,16 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-275, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-275, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
-                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -155, -1), ref velocity_drop_shadow, smooth_time);
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -120, -1), ref velocity_drop_shadow, smooth_time);
 
                             #region Element colors
                             mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
@@ -597,6 +701,11 @@ public class MainMenu_Manager : MonoBehaviour
                             mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 1.0f, Time.deltaTime * 4f));
 
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
                             #endregion
@@ -607,11 +716,64 @@ public class MainMenu_Manager : MonoBehaviour
 
                             #region Render behavior
 
-                            ElementTranslate(menu_res, new Vector3(-300, -15, 0), ref velocity_res, smooth_time);
-                            ElementTranslate(menu_fscreen, new Vector3(-300, -50, 0), ref velocity_fscreen, smooth_time);
-                            ElementTranslate(menu_vol_master, new Vector3(-300, -85, 0), ref velocity_vol_master, smooth_time);
-                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -120, 0), ref velocity_vol_bgm, smooth_time);
-                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -155, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-275, -155, 0), ref velocity_lang, smooth_time);
+                            ElementTranslate(menu_apply, new Vector3(-300, -190, 0), ref velocity_apply, smooth_time);
+
+                            menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
+                                Vector3.SmoothDamp(menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition, new Vector3(-165, -155, -1), ref velocity_drop_shadow, smooth_time);
+
+                            #region Element colors
+                            mn_res = menu_res.GetComponent<TextMeshProUGUI>().color;
+                            menu_res.GetComponent<TextMeshProUGUI>().color = new Color(mn_res.r, mn_res.g, mn_res.b, Mathf.Lerp(mn_res.a, 0.25f, Time.deltaTime * 4f));
+                            mn_rest = menu_res_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_res_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_rest.r, mn_rest.g, mn_rest.b, Mathf.Lerp(mn_rest.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_fs = menu_fscreen.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen.GetComponent<TextMeshProUGUI>().color = new Color(mn_fs.r, mn_fs.g, mn_fs.b, Mathf.Lerp(mn_fs.a, 0.25f, Time.deltaTime * 4f));
+                            mn_fst = menu_fscreen_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_fscreen_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_fst.r, mn_fst.g, mn_fst.b, Mathf.Lerp(mn_fst.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vmas = menu_vol_master.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmas.r, mn_vmas.g, mn_vmas.b, Mathf.Lerp(mn_vmas.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vmast = menu_vol_master_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_master_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vmast.r, mn_vmast.g, mn_vmast.b, Mathf.Lerp(mn_vmast.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vbgm = menu_vol_bgm.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgm.r, mn_vbgm.g, mn_vbgm.b, Mathf.Lerp(mn_vbgm.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vbgmt = menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_bgm_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vbgmt.r, mn_vbgmt.g, mn_vbgmt.b, Mathf.Lerp(mn_vbgmt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_vsfx = menu_vol_sfx.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfx.r, mn_vsfx.g, mn_vsfx.b, Mathf.Lerp(mn_vsfx.a, 0.25f, Time.deltaTime * 4f));
+                            mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
+
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 1.0f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 1.0f, Time.deltaTime * 4f));
+
+                            mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
+                            menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 0.25f, Time.deltaTime * 4f));
+                            #endregion
+                            #endregion
+                            break;
+
+                        case 6:
+
+                            #region Render behavior
+
+                            ElementTranslate(menu_res, new Vector3(-300, 20, 0), ref velocity_res, smooth_time);
+                            ElementTranslate(menu_fscreen, new Vector3(-300, -15, 0), ref velocity_fscreen, smooth_time);
+                            ElementTranslate(menu_vol_master, new Vector3(-300, -50, 0), ref velocity_vol_master, smooth_time);
+                            ElementTranslate(menu_vol_bgm, new Vector3(-300, -85, 0), ref velocity_vol_bgm, smooth_time);
+                            ElementTranslate(menu_vol_sfx, new Vector3(-300, -120, 0), ref velocity_vol_sfx, smooth_time);
+                            ElementTranslate(menu_lang, new Vector3(-300, -155, 0), ref velocity_lang, smooth_time);
                             ElementTranslate(menu_apply, new Vector3(-275, -190, 0), ref velocity_apply, smooth_time);
 
                             menu_drop_shadow.GetComponent<RectTransform>().anchoredPosition =
@@ -643,6 +805,11 @@ public class MainMenu_Manager : MonoBehaviour
                             mn_vsfxt = menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color;
                             menu_vol_sfx_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_vsfxt.r, mn_vsfxt.g, mn_vsfxt.b, Mathf.Lerp(mn_vsfxt.a, 0.25f, Time.deltaTime * 4f));
 
+                            mn_lang = menu_lang.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang.GetComponent<TextMeshProUGUI>().color = new Color(mn_lang.r, mn_lang.g, mn_lang.b, Mathf.Lerp(mn_lang.a, 0.25f, Time.deltaTime * 4f));
+                            mn_langt = menu_lang_text.GetComponent<TextMeshProUGUI>().color;
+                            menu_lang_text.GetComponent<TextMeshProUGUI>().color = new Color(mn_langt.r, mn_langt.g, mn_langt.b, Mathf.Lerp(mn_langt.a, 0.25f, Time.deltaTime * 4f));
+
                             mn_app = menu_apply.GetComponent<TextMeshProUGUI>().color;
                             menu_apply.GetComponent<TextMeshProUGUI>().color = new Color(mn_app.r, mn_app.g, mn_app.b, Mathf.Lerp(mn_app.a, 1.0f, Time.deltaTime * 4f));
                             #endregion
@@ -652,11 +819,12 @@ public class MainMenu_Manager : MonoBehaviour
 
                 } else
                 {
-                    ElementTranslate(menu_res, new Vector3(-700, -15, 0), ref velocity_res, smooth_time);
-                    ElementTranslate(menu_fscreen, new Vector3(-700, -50, 0), ref velocity_fscreen, smooth_time);
-                    ElementTranslate(menu_vol_master, new Vector3(-825, -85, 0), ref velocity_vol_master, smooth_time);
-                    ElementTranslate(menu_vol_bgm, new Vector3(-825, -120, 0), ref velocity_vol_bgm, smooth_time);
-                    ElementTranslate(menu_vol_sfx, new Vector3(-825, -155, 0), ref velocity_vol_sfx, smooth_time);
+                    ElementTranslate(menu_res, new Vector3(-700, 20, 0), ref velocity_res, smooth_time);
+                    ElementTranslate(menu_fscreen, new Vector3(-700, -15, 0), ref velocity_fscreen, smooth_time);
+                    ElementTranslate(menu_vol_master, new Vector3(-825, -50, 0), ref velocity_vol_master, smooth_time);
+                    ElementTranslate(menu_vol_bgm, new Vector3(-825, -85, 0), ref velocity_vol_bgm, smooth_time);
+                    ElementTranslate(menu_vol_sfx, new Vector3(-825, -120, 0), ref velocity_vol_sfx, smooth_time);
+                    ElementTranslate(menu_lang, new Vector3(-700, -155, 0), ref velocity_lang, smooth_time);
                     ElementTranslate(menu_apply, new Vector3(-700, -190, 0), ref velocity_apply, smooth_time);
 
                     menu_sel1.GetComponent<EventTrigger>().enabled = true;
@@ -669,6 +837,7 @@ public class MainMenu_Manager : MonoBehaviour
                     menu_vol_bgm.GetComponent<EventTrigger>().enabled = false;
                     menu_vol_sfx.GetComponent<EventTrigger>().enabled = false;
                     menu_apply.GetComponent<EventTrigger>().enabled = false;
+                    menu_lang.GetComponent<EventTrigger>().enabled = false;
 
                     switch (menu_position)
                     {
@@ -756,6 +925,12 @@ public class MainMenu_Manager : MonoBehaviour
                             break;
 
                         case 5:
+
+                            lang_mode_opt++;
+                            menu_selection_confirm = false;
+                            break;
+
+                        case 6:
                             
                             Screen.SetResolution(restable[restable_opt, 0], restable[restable_opt, 1], fs_mode_out[fs_mode_opt]);
 
@@ -826,10 +1001,17 @@ public class MainMenu_Manager : MonoBehaviour
 
         menu_fscreen_text.GetComponent<TextMeshProUGUI>().text = fs_mode[fs_mode_opt];
 
+        if (lang_mode_opt > 2) { lang_mode_opt = 0; }
+        if (lang_mode_opt < 0) { lang_mode_opt = 2; }
+
+        PlayerPrefs.SetInt("LANGUAGE", lang_mode_opt);
+
+        menu_lang_text.GetComponent<TextMeshProUGUI>().text = lang_mode[lang_mode_opt];
+
         if (menu_submenu == true)
         {
-            if (menu_position > 5) { menu_position = 0; }
-            if (menu_position < 0) { menu_position = 5; }
+            if (menu_position > 6) { menu_position = 0; }
+            if (menu_position < 0) { menu_position = 6; }
         } else
         {
             if (menu_position > 2) { menu_position = 0; }
