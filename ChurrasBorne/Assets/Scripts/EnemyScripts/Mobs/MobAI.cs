@@ -325,7 +325,7 @@ public class MobAI : MonoBehaviour
                 }
                 else if(isOnFaseTres)
                 {
-                    // More code to come;
+                    EnemyControllerFaseTres.Instance.KilledEnemy(gameObject);
                 }
                 break;
         }

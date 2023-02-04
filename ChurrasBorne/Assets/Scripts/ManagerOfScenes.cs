@@ -7,7 +7,7 @@ public class ManagerOfScenes : MonoBehaviour
     public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
     public GameObject particleEmmy;
-    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf;
+    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf;
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
@@ -26,6 +26,8 @@ public class ManagerOfScenes : MonoBehaviour
         clearedHalf = GameManager.instance.GetHasCleared(1);
         clearedDois = GameManager.instance.GetHasCleared(2);
         clearedDoisHalf = GameManager.instance.GetHasCleared(3);
+        clearedTres = GameManager.instance.GetHasCleared(4);
+        clearedTresHalf = GameManager.instance.GetHasCleared(5);
         if(gate != null)
             GameManager.instance.GateCamSetter(gate);
 
@@ -74,6 +76,7 @@ public class ManagerOfScenes : MonoBehaviour
             PostProcessingControl.Instance.TurnOffVignette();
             if (!clearedUm && !clearedHalf)
             {
+                passado.SetActive(true);
                 eclipse.SetActive(false);
             }
             else if(clearedUm && !clearedHalf)
@@ -138,6 +141,34 @@ public class ManagerOfScenes : MonoBehaviour
                     //FaseDoisTriggerController.Instance.SalaDoisTrigger();
                     //FaseDoisTriggerController.Instance.SalaTresTrigger();
                     //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
+                    eclipse.SetActive(true);
+                }
+            }
+        }
+        if(gameObject.CompareTag("FASETRES"))
+        {
+            PostProcessingControl.Instance.TurnOffVignette();
+            if (!clearedTres && !clearedTresHalf)
+            {
+                passado.SetActive(true);
+                eclipse.SetActive(false);
+            }
+            else if (clearedTres && !clearedTresHalf)
+            {
+                passado.SetActive(false);
+                eclipse.SetActive(true);
+            }
+            else if (clearedTres && clearedTresHalf)
+            {
+                randomTimeline = Random.Range(1, 3);
+                if (randomTimeline == 1)
+                {
+                    passado.SetActive(true);
+                    eclipse.SetActive(false);
+                }
+                else if (randomTimeline == 2)
+                {
+                    passado.SetActive(false);
                     eclipse.SetActive(true);
                 }
             }
