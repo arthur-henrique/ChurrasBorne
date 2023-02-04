@@ -101,46 +101,49 @@ public class EnemyControllerFaseTres : MonoBehaviour
         if (firstMob.Contains(enemy))
         {
             firstMob.Remove(enemy);
-            IsFirstMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         else if (secondMob.Contains(enemy))
         {
             secondMob.Remove(enemy);
-            IsSecondMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
+
         }
         else if (thirdMob.Contains(enemy))
         {
             thirdMob.Remove(enemy);
-            IsThirdMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
+
         }
         else if (fourthMob.Contains(enemy))
         {
             fourthMob.Remove(enemy);
-            IsFourthMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         else if (fifthMob.Contains(enemy))
         {
             fifthMob.Remove(enemy);
-            IsFifthMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         else if (sixthMob.Contains(enemy))
         {
             sixthMob.Remove(enemy);
-            IsSixthMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         if (seventhMob.Contains(enemy))
         {
             seventhMob.Remove(enemy);
-            IsSeventhMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         if (eigthMob.Contains(enemy))
         {
             eigthMob.Remove(enemy);
-            IsEigthMobCleared();
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
         }
         if (bossMob.Contains(enemy))
         {
             bossMob.Remove(enemy);
+            FaseTresTriggerController.Instance.ContadorDeInimigosMortos();
             IsBossMobCleared();
         }
     }
@@ -182,71 +185,7 @@ public class EnemyControllerFaseTres : MonoBehaviour
     {
         bossMob.ForEach(x => x.SetActive(true));
     }
-    // Fazer quando lista estEvazia:
-    public void IsFirstMobCleared()
-    {
-        if (firstMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaUmTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsSecondMobCleared()
-    {
-        if (secondMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaDoisTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsThirdMobCleared()
-    {
-        if (thirdMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaTresTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsFourthMobCleared()
-    {
-        if (fourthMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaQuatroTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsFifthMobCleared()
-    {
-        if (fifthMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaCincoTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsSixthMobCleared()
-    {
-        if (sixthMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaSeisTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsSeventhMobCleared()
-    {
-        if (seventhMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaSeteTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
-    public void IsEigthMobCleared()
-    {
-        if (eigthMob.Count <= 0)
-        {
-            FaseTresTriggerController.Instance.SalaOitoTrigger();
-            FaseTresTriggerController.Instance.ContadorDeSalasTerminadas();
-        }
-    }
+
 
     public void IsBossMobCleared()
     {

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,136 +7,129 @@ public class FaseTresTriggerController : MonoBehaviour
 {
     public static FaseTresTriggerController Instance;
     // Start is called before the first frame update
-    public GameObject[] salaUmLock;
-    public GameObject[] salaDoisLock;
-    public GameObject[] salaTresLock;
-    public GameObject[] salaQuatroLock;
-    public GameObject[] salaCincoLock;
-    public GameObject[] salaSeisLock;
-    public GameObject[] salaSeteLock;
-    public GameObject[] salaOitoLock;
+    public GameObject[] firstLock;
+    public GameObject[] secondLock;
+    public GameObject[] thirdLock;
+    public GameObject[] fourthLock;
 
-    public Animator preBossAnim;
-    public Animator bossAnim;
-    public Animator preBossAnimEc;
-    public Animator bossAnimEc;
 
     public GameObject portalToHub;
-    private int salasTerminadas;
+    private int inimigosMortos;
+    public CinemachineVirtualCamera gate;
+    public GameObject[] gateCamPos;
+    private bool hasOpenfirst, hasOpensecond, hasOpenthird, hasOpenBoss;
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
-        salasTerminadas = 0;
+        inimigosMortos = 0;
     }
 
     public void SalaUmTrigger()
     {
-        for (int i = 0; i < salaUmLock.Length; i++)
+        for (int i = 0; i < firstLock.Length; i++)
         {
-            salaUmLock[i].SetActive(!salaUmLock[i].activeSelf);
+            if (firstLock[i].activeSelf == true)
+            firstLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
     public void SalaDoisTrigger()
     {
-        for (int i = 0; i < salaDoisLock.Length; i++)
+        for (int i = 0; i < secondLock.Length; i++)
         {
-            salaDoisLock[i].SetActive(!salaDoisLock[i].activeSelf);
+            secondLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
-    public void SalaTresTrigger()
+    public void SalaBossInTrigger()
     {
-        for (int i = 0; i < salaTresLock.Length; i++)
+        for (int i = 0; i < thirdLock.Length; i++)
         {
-            salaTresLock[i].SetActive(!salaTresLock[i].activeSelf);
+            thirdLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
-    public void SalaQuatroTrigger()
+    public void SalaBossOutTrigger()
     {
-        for (int i = 0; i < salaQuatroLock.Length; i++)
+        for (int i = 0; i < fourthLock.Length; i++)
         {
-            salaQuatroLock[i].SetActive(!salaQuatroLock[i].activeSelf);
+            fourthLock[i].SetActive(!fourthLock[i].activeSelf);
         }
     }
-    public void SalaCincoTrigger()
-    {
-        for (int i = 0; i < salaCincoLock.Length; i++)
-        {
-            salaCincoLock[i].SetActive(!salaCincoLock[i].activeSelf);
-        }
-    }
-    public void SalaSeisTrigger()
-    {
-        for (int i = 0; i < salaSeisLock.Length; i++)
-        {
-            salaSeisLock[i].SetActive(!salaSeisLock[i].activeSelf);
-        }
-    }
-    public void SalaSeteTrigger()
-    {
-        for (int i = 0; i < salaSeteLock.Length; i++)
-        {
-            salaSeteLock[i].SetActive(!salaSeteLock[i].activeSelf);
-        }
-    }
-    public void SalaOitoTrigger()
-    {
-        for (int i = 0; i < salaOitoLock.Length; i++)
-        {
-            salaOitoLock[i].SetActive(!salaOitoLock[i].activeSelf);
-        }
-    }
+    
 
-    public void ContadorDeSalasTerminadas()
+    public void ContadorDeInimigosMortos()
     {
-        salasTerminadas++;
+        inimigosMortos++;
     }
 
     private void FixedUpdate()
     {
-        if (salasTerminadas > 3)
+        if (inimigosMortos >= 28 && !hasOpenfirst)
         {
-            salasTerminadas = 0;
+            hasOpenfirst = true;
+            gate.transform.position = gateCamPos[0].transform.position;
+            GameManager.instance.GateCamSetter(gate);
             GameManager.instance.GateCAM();
-            StartCoroutine(OpenTheGates());
+            StartCoroutine(OpenTheGates(1));
 
+        }
+        else if(inimigosMortos >= 53 && !hasOpensecond)
+        {
+            hasOpensecond = true;
+            gate.transform.position = gateCamPos[1].transform.position;
+            GameManager.instance.GateCamSetter(gate);
+            GameManager.instance.GateCAM();
+            StartCoroutine(OpenTheGates(2));
+        }
+        else if(inimigosMortos > 99 && !hasOpenthird)
+        {
+            hasOpenthird = true;
+            gate.transform.position = gateCamPos[2].transform.position;
+            GameManager.instance.GateCamSetter(gate);
+            GameManager.instance.GateCAM();
+            StartCoroutine(OpenTheGates(3));
         }
     }
 
     public void GateOpener()
     {
-        StartCoroutine(OpenTheGates());
+        StartCoroutine(BossWasKilled());
     }
 
     public void CloseTheGates()
     {
-        if (!GameManager.instance.GetHasCleared(2))
+        for (int i = 0; i < thirdLock.Length; i++)
         {
-            preBossAnim.SetTrigger("CLOSEIT");
-            bossAnim.SetTrigger("CLOSEIT");
+            thirdLock[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+        }
+    }
+    IEnumerator OpenTheGates(int sequence)
+    {
+        yield return new WaitForSeconds(2);
+        
+        if(sequence == 1)
+        {
+            SalaUmTrigger();
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
-        if (GameManager.instance.GetHasCleared(2))
+        else if (sequence == 2)
         {
-            preBossAnimEc.SetTrigger("CLOSEIT");
-            bossAnimEc.SetTrigger("CLOSEIT");
+            SalaDoisTrigger();
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        else if (sequence == 3)
+        {
+            SalaBossInTrigger();
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
-    IEnumerator OpenTheGates()
+    IEnumerator BossWasKilled()
     {
-        yield return new WaitForSeconds(2);
-        if (!GameManager.instance.GetHasCleared(2))
-        {
-            preBossAnim.SetTrigger("OPENIT");
-            bossAnim.SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
-        }
-        if (GameManager.instance.GetHasCleared(2))
-        {
-            preBossAnimEc.SetTrigger("OPENIT");
-            bossAnimEc.SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
-        }
+        gate.transform.position = gateCamPos[3].transform.position;
+        yield return new WaitForSeconds(1);
+        GameManager.instance.GateCamSetter(gate);
+        GameManager.instance.GateCAM();
+        SalaBossInTrigger();
+        SalaBossOutTrigger();
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 }
