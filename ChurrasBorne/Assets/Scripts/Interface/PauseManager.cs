@@ -210,7 +210,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void Show_Pause()
+    public void Show_Pause()
     {
         PlayerMovement.DisableControl();
         pause_sel1.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, pause_sel1.GetComponent<TextMeshProUGUI>().color.a);

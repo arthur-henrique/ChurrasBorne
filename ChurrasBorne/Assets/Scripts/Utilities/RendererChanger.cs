@@ -8,6 +8,7 @@ public class RendererChanger : MonoBehaviour
     public string upLayer = "Portoes e Paredes";
     public string downLayer = "Objects";
     private Transform player;
+    public bool needXTransform = false;
 
     private void Start()
     {
@@ -38,6 +39,24 @@ public class RendererChanger : MonoBehaviour
             for (int i = 0; i < srs.Length; i++)
             {
                 srs[i].sortingLayerName = downLayer;
+            }
+        }
+
+        if(needXTransform)
+        {
+            if (player.position.x >= this.transform.position.x)
+            {
+                for (int i = 0; i < srs.Length; i++)
+                {
+                    srs[i].sortingLayerName = downLayer;
+                }
+            }
+            else if (player.position.x < this.transform.position.x)
+            {
+                for (int i = 0; i < srs.Length; i++)
+                {
+                    srs[i].sortingLayerName = upLayer;
+                }
             }
         }
     }

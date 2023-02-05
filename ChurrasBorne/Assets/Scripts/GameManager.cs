@@ -510,9 +510,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ReturnFromGateCam()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSecondsRealtime(6f);
         SwitchFromGateCam();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSecondsRealtime(1f);
         PlayerMovement.EnableControl();
     }
 

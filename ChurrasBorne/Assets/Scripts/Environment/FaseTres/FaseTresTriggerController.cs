@@ -69,6 +69,7 @@ public class FaseTresTriggerController : MonoBehaviour
             hasOpenfirst = true;
             gate.transform.position = gateCamPos[0].transform.position;
             GameManager.instance.GateCamSetter(gate);
+            StartCoroutine(FreezeTime());
             GameManager.instance.GateCAM();
             StartCoroutine(OpenTheGates(1));
 
@@ -78,6 +79,7 @@ public class FaseTresTriggerController : MonoBehaviour
             hasOpensecond = true;
             gate.transform.position = gateCamPos[1].transform.position;
             GameManager.instance.GateCamSetter(gate);
+            StartCoroutine(FreezeTime());
             GameManager.instance.GateCAM();
             StartCoroutine(OpenTheGates(2));
         }
@@ -86,6 +88,7 @@ public class FaseTresTriggerController : MonoBehaviour
             hasOpenthird = true;
             gate.transform.position = gateCamPos[2].transform.position;
             GameManager.instance.GateCamSetter(gate);
+            StartCoroutine(FreezeTime());
             GameManager.instance.GateCAM();
             StartCoroutine(OpenTheGates(3));
         }
@@ -136,5 +139,12 @@ public class FaseTresTriggerController : MonoBehaviour
             fifthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
         GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+    }
+
+    IEnumerator FreezeTime()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(7);
+        Time.timeScale = 1;
     }
 }

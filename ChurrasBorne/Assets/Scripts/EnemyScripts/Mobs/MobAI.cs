@@ -9,6 +9,7 @@ public class MobAI : MonoBehaviour
     {
         Spawning,
         Idling,
+        GazingIntoTheNightSky,
         Chasing,
         Attacking,
         Shooting,
@@ -17,7 +18,7 @@ public class MobAI : MonoBehaviour
         RecoveringFromDash,
         Dead
     }
-    private State state;
+    private State state, lastState;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -328,6 +329,11 @@ public class MobAI : MonoBehaviour
                     EnemyControllerFaseTres.Instance.KilledEnemy(gameObject);
                 }
                 break;
+            case State.GazingIntoTheNightSky:
+                rb.velocity = Vector2.zero;
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
+                break;
         }
 
         //DASH
@@ -416,6 +422,13 @@ public class MobAI : MonoBehaviour
             audioSource.PlayOneShot(monster_death, audioSource.volume);
             state = State.Dead;
         }
+    }
+
+    public void OpenYourEyesToTheNight()
+    {
+        lastState = state;
+        state = State.GazingIntoTheNightSky;
+        StartCoroutine(SnapOutOfIt());
     }
 
     //MELEE
@@ -600,6 +613,11 @@ public class MobAI : MonoBehaviour
         }
         canBeKbed = true;
         yield return 0;
+    }
+    public IEnumerator SnapOutOfIt()
+    {
+        yield return new WaitForSeconds(4f);
+        state = lastState;
     }
 
     public void PlayThePunchAudio()

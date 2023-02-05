@@ -194,5 +194,65 @@ public class EnemyControllerFaseTres : MonoBehaviour
             GateChecker.Instance.MobsDied();
         }
     }
+
+    public void LookUp()
+    {
+        for (int i = 0; i < firstMob.Count; i++)
+        {
+            if (firstMob[i].activeSelf == true)
+            {
+                firstMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < secondMob.Count; i++)
+        {
+            if (secondMob[i].activeSelf == true)
+            {
+                secondMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < thirdMob.Count; i++)
+        {
+            if (thirdMob[i].activeSelf == true)
+            {
+                thirdMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < fourthMob.Count; i++)
+        {
+            if (fourthMob[i].activeSelf == true)
+            {
+                fourthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < fifthMob.Count; i++)
+        {
+            if (fifthMob[i].activeSelf == true)
+            {
+                fifthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < sixthMob.Count; i++)
+        {
+            if (sixthMob[i].activeSelf == true)
+            {
+                sixthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < seventhMob.Count; i++)
+        {
+            if (seventhMob[i].activeSelf == true)
+            {
+                seventhMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+        for (int i = 0; i < eigthMob.Count; i++)
+        {
+            if (eigthMob[i].activeSelf == true)
+            {
+                eigthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
+            }
+        }
+    }
 }
 
