@@ -15,7 +15,7 @@ public class FaseTresTriggerController : MonoBehaviour
 
 
     public GameObject portalToHub;
-    private int inimigosMortos;
+    public int inimigosMortos;
     public CinemachineVirtualCamera gate;
     public GameObject[] gateCamPos;
     private bool hasOpenfirst = false, hasOpensecond = false, hasOpenthird = false, hasPlayedSound = false;
