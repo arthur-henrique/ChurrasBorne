@@ -4,70 +4,43 @@ using UnityEngine;
 
 public class PathControllerFaseTres : MonoBehaviour
 {
-    public GameObject[] triggerUm, triggerDois;
-    private void Start()
-    {
-        triggerUm = GameObject.FindGameObjectsWithTag("FASETRESSALAUM");
-        triggerDois = GameObject.FindGameObjectsWithTag("FASETRESSALADOIS");
-    }
+    public GameObject boss;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("FASETRESSALAUM"))
+            if (gameObject.CompareTag("FASETRESLOCKUM"))
             {
-                FaseTresTriggerController.Instance.SalaUmTrigger();
                 EnemyControllerFaseTres.Instance.SpawnFistMob();
-
-                for (int i = 0; i < triggerUm.Length; i++)
-                {
-                    triggerUm[i].SetActive(false);
-                }
-            }
-            else if (gameObject.CompareTag("FASETRESSALADOIS"))
-            {
-                FaseTresTriggerController.Instance.SalaDoisTrigger();
                 EnemyControllerFaseTres.Instance.SpawnSecondMob();
-
-                for (int i = 0; i < triggerDois.Length; i++)
-                {
-                    triggerDois[i].SetActive(false);
-                }
-            }
-            else if (gameObject.CompareTag("FASETRESSALATRES"))
-            {
-                FaseTresTriggerController.Instance.SalaTresTrigger();
                 EnemyControllerFaseTres.Instance.SpawnThirdMob();
+
+            }
+            else if (gameObject.CompareTag("FASETRESLOCKDOIS"))
+            {
+                EnemyControllerFaseTres.Instance.SpawnFourthMob();
+                EnemyControllerFaseTres.Instance.SpawnFifthMob();
+
+
+            }
+            else if (gameObject.CompareTag("FASETRESLOCKTRES"))
+            {
+                EnemyControllerFaseTres.Instance.SpawnSixthMob();
+                EnemyControllerFaseTres.Instance.SpawnSeventhMob();
+                gameObject.SetActive(false);
+
+
                 gameObject.SetActive(false);
             }
             else if (gameObject.CompareTag("FASETRESSALAQUATRO"))
             {
-                FaseTresTriggerController.Instance.SalaQuatroTrigger();
-                EnemyControllerFaseTres.Instance.SpawnFourthMob();
-                gameObject.SetActive(false);
-            }
-            else if (gameObject.CompareTag("FASETRESSALACINCO"))
-            {
-                FaseTresTriggerController.Instance.SalaCincoTrigger();
-                EnemyControllerFaseTres.Instance.SpawnFifthMob();
-                gameObject.SetActive(false);
-            }
-            else if (gameObject.CompareTag("FASETRESSALASEIS"))
-            {
-                FaseTresTriggerController.Instance.SalaSeisTrigger();
-                EnemyControllerFaseTres.Instance.SpawnSixthMob();
-                gameObject.SetActive(false);
-            }
-            else if (gameObject.CompareTag("FASETRESSALASETE"))
-            {
-                FaseTresTriggerController.Instance.SalaSeteTrigger();
-                EnemyControllerFaseTres.Instance.SpawnSeventhMob();
-                gameObject.SetActive(false);
-            }
-            else if (gameObject.CompareTag("FASETRESSALAOITO"))
-            {
-                FaseTresTriggerController.Instance.SalaOitoTrigger();
                 EnemyControllerFaseTres.Instance.SpawnEigthMob();
+                gameObject.SetActive(false);
+            }
+            else if (gameObject.CompareTag("FASETRESBOSS"))
+            {
+                FaseTresTriggerController.Instance.CloseTheGates();
+                boss.SetActive(true);
                 gameObject.SetActive(false);
             }
         }
