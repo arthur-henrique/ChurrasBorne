@@ -11,13 +11,14 @@ public class FaseTresTriggerController : MonoBehaviour
     public GameObject[] secondLock;
     public GameObject[] thirdLock;
     public GameObject[] fourthLock;
+    public GameObject[] fifthLock;
 
 
     public GameObject portalToHub;
     private int inimigosMortos;
     public CinemachineVirtualCamera gate;
     public GameObject[] gateCamPos;
-    private bool hasOpenfirst, hasOpensecond, hasOpenthird, hasOpenBoss;
+    private bool hasOpenfirst = false, hasOpensecond = false, hasOpenthird = false, hasPlayedSound = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -130,6 +131,10 @@ public class FaseTresTriggerController : MonoBehaviour
         GameManager.instance.GateCAM();
         SalaBossInTrigger();
         SalaBossOutTrigger();
+        for (int i = 0; i < thirdLock.Length; i++)
+        {
+            fifthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
         GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 }
