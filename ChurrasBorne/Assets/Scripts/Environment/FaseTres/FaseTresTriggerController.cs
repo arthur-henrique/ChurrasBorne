@@ -108,7 +108,7 @@ public class FaseTresTriggerController : MonoBehaviour
     }
     IEnumerator OpenTheGates(int sequence)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2f);
         
         if(sequence == 1)
         {

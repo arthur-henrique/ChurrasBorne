@@ -98,7 +98,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 034025f04b0d1b9499fb20b102a44fbc, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -162,3 +162,4 @@ MonoBehaviour:
   - {fileID: 4184757367657961258}
   upLayer: Portoes e Paredes
   downLayer: Objects
+  needXTransform: 0
