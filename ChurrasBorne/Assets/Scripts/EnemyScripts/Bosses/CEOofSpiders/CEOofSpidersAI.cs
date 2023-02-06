@@ -52,6 +52,7 @@ public class CEOofSpidersAI : MonoBehaviour
     public AudioClip spider_attack_3;
     public AudioClip spider_death;
     private bool canTakeDamage = true;
+    public GateChecker gc;
 
     private void Awake()
     {
@@ -288,7 +289,7 @@ public class CEOofSpidersAI : MonoBehaviour
             }
             else if (isSpiderGranny)
             {
-                GateChecker.Instance.TheBossDied();
+                gc.isTheBossDead= true;
             }
         }
     }
