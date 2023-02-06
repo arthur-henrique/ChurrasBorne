@@ -181,15 +181,7 @@ public class GameManager : MonoBehaviour
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
 
-            if (poisonTime > 0)
-        {
-            isPoisoned = true;
-            if (!isPoisonTicking)
-            {
-                isPoisonTicking = true;
-                StartCoroutine(PoisonTick());
-            }
-        }
+        
         if (isPoisoned)
         {
             ltd.color = new Color(0.3517012f, 0.8679245f, 0.2571021f, 1f);
@@ -204,6 +196,19 @@ public class GameManager : MonoBehaviour
             ltd.color = new Color(0.7745855f, 0.7125668f, 0.9056604f, 1f);
             poisonEm.rateOverTime = 0;
             isPoisonTicking = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (poisonTime > 0)
+        {
+            isPoisoned = true;
+            if (!isPoisonTicking)
+            {
+                isPoisonTicking = true;
+                StartCoroutine(PoisonTick());
+            }
         }
     }
 
@@ -238,12 +243,26 @@ public class GameManager : MonoBehaviour
     {
         currentHealth -= 3;
         SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            hasJustDied = true;
+            isAlive = false;
+            if (hasJustDied)
+            {
+                DeathRoutine();
+            }
+        }
+        
     }
 
     public void Poison(float poisonT)
     {
         if (isAlive && !hasJustDied)
+        {
             poisonTime += poisonT;
+            if (poisonTime >= 2f)
+                poisonTime = 2f;
+        }
     }
 
     

@@ -440,8 +440,11 @@ public class MobAI : MonoBehaviour
             //    StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             if(isAPoisonSpider)
             {
-                GameManager.instance.TakeDamage(3);
-                GameManager.instance.Poison(1f);
+                if(GameManager.instance.canTakeDamage)
+                {
+                    GameManager.instance.TakeDamage(3);
+                    GameManager.instance.Poison(1f);
+                }
             }
             else
             {

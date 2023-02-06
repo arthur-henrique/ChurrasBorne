@@ -60,14 +60,12 @@ public class Projectile : MonoBehaviour
         }
         // Manages if the project may or not be parried
         int diceroll = Random.Range(0, 4);
-        print(diceroll);
-        if (diceroll > 2)
+        //print(diceroll);
+        if (diceroll > 2 && normalTrail != null && unparryTrail != null)
         {
             canBeParried = false;
-            if(normalTrail != null)
-                normalTrail.SetActive(false);
-            if(unparryTrail != null)
-                unparryTrail.SetActive(true);
+            normalTrail.SetActive(false);
+            unparryTrail.SetActive(true);
             sr.color = new Color(0.7423134f, 0f, 1f, 1f);
             if (ltd != null)
                 ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
