@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
-    private readonly int amountToHeal = 30;
+    private readonly int amountToHeal = 50;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private static Animator anim;
