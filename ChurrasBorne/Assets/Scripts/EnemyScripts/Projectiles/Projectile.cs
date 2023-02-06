@@ -64,10 +64,13 @@ public class Projectile : MonoBehaviour
         if (diceroll > 2)
         {
             canBeParried = false;
-            normalTrail.SetActive(false);
-            unparryTrail.SetActive(true);
+            if(normalTrail != null)
+                normalTrail.SetActive(false);
+            if(unparryTrail != null)
+                unparryTrail.SetActive(true);
             sr.color = new Color(0.7423134f, 0f, 1f, 1f);
-            ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
+            if (ltd != null)
+                ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
         }
     }
 
