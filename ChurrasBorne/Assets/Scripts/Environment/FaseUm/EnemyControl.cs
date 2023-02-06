@@ -17,6 +17,7 @@ public class EnemyControl : MonoBehaviour
     public GameObject troncosHalf;
     private bool clearedUm, clearedHalf;
     private int randomTL;
+    public GateChecker gc;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -125,7 +126,7 @@ public class EnemyControl : MonoBehaviour
         else if (bossMob.Contains(enemy))
         {
             bossMob.Remove(enemy);
-            IsSixthMobCleared();
+            IsBossMobCleared();
         }
     }
 
@@ -248,7 +249,7 @@ public class EnemyControl : MonoBehaviour
     {
         if (bossMob.Count <= 0)
         {
-            GateChecker.Instance.MobsDied();
+            gc.areTheMobsDead = true;
         }
     }
 

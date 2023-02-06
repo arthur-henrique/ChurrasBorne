@@ -55,6 +55,7 @@ public class GoatAI : MonoBehaviour
 
     private float armor;
     private float playerDamage;
+    public GateChecker gc;
 
     private void Awake()
     {
@@ -209,7 +210,7 @@ public class GoatAI : MonoBehaviour
                 }
                 else if (isP2)
                 {
-                    GateChecker.Instance.TheBossDied();
+                    gc.isTheBossDead = true;
                     //GameManager.instance.SetHasCleared(1, true);
                     //FaseUmTriggerController.Instance.SecondGateOpen();
                 }

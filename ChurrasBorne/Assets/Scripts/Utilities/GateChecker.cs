@@ -6,7 +6,7 @@ public class GateChecker : MonoBehaviour
 {
     public static GateChecker Instance;
     public bool isOnFaseUm = false, IsOnFaseDois = false;
-    private bool isTheBossDead = false, areTheMobsDead = false, hasRun = false;
+    public bool isTheBossDead = false, areTheMobsDead = false, hasRun = false;
     public Animator faseDoisHalf;
     public Collider2D coll;
 
