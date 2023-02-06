@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
                     {
                         if (canKnockback && GameManager.instance.canTakeDamage == true)
                             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-                        GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor());
+                        GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor(), 2f);
                     }
                 }
             }
