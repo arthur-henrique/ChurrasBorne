@@ -5,17 +5,6 @@ using UnityEngine.EventSystems;
 
 public class Pause_Triggers : EventTrigger, IPointerClickHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SelectItem(BaseEventData data)
     {
         if (PauseManager.selection_confirm == false)
@@ -25,24 +14,104 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
                 PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_move, PauseManager.instance.audioSource.volume);
             }
             
-            switch (gameObject.name)
+            if (PauseManager.submenu == false)
             {
-                case "PAUSE_Continuar":
+                switch (gameObject.name)
+                {
+                    case "PAUSE_Continuar":
 
-                    PauseManager.selection_position = 0;
-                    break;
+                        PauseManager.selection_position = 0;
+                        break;
 
-                case "PAUSE_Hub":
+                    case "PAUSE_Hub":
 
-                    PauseManager.selection_position = 1;
-                    break;
+                        PauseManager.selection_position = 1;
+                        break;
 
-                case "PAUSE_Titulo":
+                    case "PAUSE_Opcoes":
 
-                    PauseManager.selection_position = 2;
-                    break;
+                        PauseManager.selection_position = 2;
+                        break;
 
+                    case "PAUSE_Titulo":
+
+                        PauseManager.selection_position = 3;
+                        break;
+
+                }
+            } else
+            {
+                switch (gameObject.name)
+                {
+                    case "PAUSE_Resolucao":
+
+                        PauseManager.selection_position = 0;
+                        break;
+
+                    case "PAUSE_TelaCheia":
+
+                        PauseManager.selection_position = 1;
+                        break;
+
+                    case "PAUSE_Master":
+
+                        PauseManager.selection_position = 2;
+                        break;
+
+                    case "PAUSE_MasterVolume":
+
+                        PauseManager.selection_position = 2;
+                        break;
+
+                    case "PAUSE_MasterSlider":
+
+                        PauseManager.selection_position = 2;
+                        break;
+
+                    case "PAUSE_BGM":
+
+                        PauseManager.selection_position = 3;
+                        break;
+
+                    case "PAUSE_BGMVolume":
+
+                        PauseManager.selection_position = 3;
+                        break;
+
+                    case "PAUSE_BGMSlider":
+
+                        PauseManager.selection_position = 3;
+                        break;
+
+                    case "PAUSE_SFX":
+
+                        PauseManager.selection_position = 4;
+                        break;
+
+                    case "PAUSE_SFXVolume":
+
+                        PauseManager.selection_position = 4;
+                        break;
+
+                    case "PAUSE_SFXSlider":
+
+                        PauseManager.selection_position = 4;
+                        break;
+
+                    case "PAUSE_Linguagem":
+
+                        PauseManager.selection_position = 5;
+                        break;
+
+                    case "PAUSE_Aplicar":
+
+                        PauseManager.selection_position = 6;
+                        break;
+
+
+                }
             }
+            
         }
 
     }
@@ -53,9 +122,9 @@ public class Pause_Triggers : EventTrigger, IPointerClickHandler
         {
             if (PauseManager.isPaused)
             {
-                PauseManager.selection_confirm = true;
-                PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_confirm, PauseManager.instance.audioSource.volume);
-                Debug.Log("start");
+                //PauseManager.selection_confirm = true;
+                //PauseManager.instance.audioSource.PlayOneShot(PauseManager.instance.ui_confirm, PauseManager.instance.audioSource.volume);
+                //Debug.Log("start");
             }
             
         }

@@ -123,10 +123,6 @@ public class Transition_Manager : MonoBehaviour
         stop_descend = false;
         for (int i = 0; i < 60 * 20; i++)
         {
-            if (i == 10)
-            {
-                PlayerMovement.EnableControl();
-            }
             if (stop_descend) { break; }
             curtain_left_1.GetComponent<RectTransform>().anchoredPosition =
                 Vector3.SmoothDamp(curtain_left_1.GetComponent<RectTransform>().anchoredPosition, new Vector3(-368.5f, -670, 0), ref velocity_left1, smooth_time, 999, Time.unscaledDeltaTime);
