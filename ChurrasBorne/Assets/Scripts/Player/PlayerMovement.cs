@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     float timer;
     float canAttackChecker = 0.9f;
-    private float x, y;
+    public float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;

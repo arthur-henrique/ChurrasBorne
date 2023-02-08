@@ -14,6 +14,9 @@ TextureImporter:
   - first:
       213: 3802041752983577011
     second: Decoracoes_Gerais_Extra_3
+  - first:
+      213: -8632612026409262904
+    second: Decoracoes_Gerais_Extra_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -206,6 +209,27 @@ TextureImporter:
       bones: []
       spriteID: 3b12acb84d093c430800000000000000
       internalID: 3802041752983577011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Extra_4
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1664
+        width: 127
+        height: 191
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c06c1a791dc23880800000000000000
+      internalID: -8632612026409262904
       vertices: []
       indices: 
       edges: []
