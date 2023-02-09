@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
 
-    public Transform APTP;
+    public Transform APTP, spiderHead;
     private Vector2 target;
 
     public GameObject mommyWeb;
@@ -28,6 +28,7 @@ public class Projectile : MonoBehaviour
     {
         //Para PROJECTILE MOVEMENT
         APTP = GameObject.FindGameObjectWithTag("NYA").transform;
+        spiderHead = GameObject.FindGameObjectWithTag("SpiderHead").transform;
         sr = gameObject.GetComponent<SpriteRenderer>();
 
         target = APTP.position;
@@ -80,7 +81,7 @@ public class Projectile : MonoBehaviour
         }
         else if (health <= 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, spiderHead.position, speed * Time.deltaTime);
 
             hasBeenParried = true;
         }

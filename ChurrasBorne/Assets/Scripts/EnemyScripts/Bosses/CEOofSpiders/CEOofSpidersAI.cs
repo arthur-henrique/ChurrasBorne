@@ -9,23 +9,19 @@ public class CEOofSpidersAI : MonoBehaviour
     {
         Spawning,
         Chasing,
-        Running,
         Shooting,
-        SpawningSpiders,
-        WasHit,
         Idling,
-        Repositioning,
         Dead
     }
     
     private State state;
 
     public Transform player;
-    public GameObject gameManager;
+    public GameObject gameManager, wandTip;
 
     public Rigidbody2D rb;
 
-    public GameObject web, spike, spiders, shootPoint;
+    public GameObject web, glassSpike, spiders;
 
     public GameObject[] tbPoints;
 
@@ -35,10 +31,10 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public bool isSpiderGranny;
 
-    private bool isAlreadyDying = false, isAlreadySpawningSpiders = false;
+    private bool isAlive = true, isAlreadyDying = false;
 
-    public float speed, rangedDistanceI, rangedDistanceII, startTimeBTWWebShot, startTimeToSpawnSpiders, startRunningTime, startTimeToReposition;
-    private float timeBTWWebShots, timeToSpawnSpiders, timeToDie, runningTime, timeToReposition;
+    public float speed, chaseDistance, startTimeBTWWebShot, repositionDistance;
+    private float timeBTWWebShots, timeToReposition;
 
     public Animator faseDois, faseDoisHalf;
 
@@ -64,12 +60,8 @@ public class CEOofSpidersAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-        timeToDie = .1f;
-        runningTime = startRunningTime;
-
         timeBTWWebShots = startTimeBTWWebShot;
-        timeToSpawnSpiders = startTimeToSpawnSpiders;
-        timeToReposition = startTimeToReposition;
+        timeToReposition = 2f;
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
@@ -93,65 +85,22 @@ public class CEOofSpidersAI : MonoBehaviour
 
                 transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
-                SwitchToShooting();
-                SwitchToSpawningSpiders();
-                break;
-
-            case State.Running:
-                Flip();
-
-                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-
-                if (isSpiderGranny)
-                {
-                    if (runningTime <= 0)
-                    {
-                        anim.SetTrigger("ATK3");
-                        audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
-                        runningTime = startRunningTime;
-                    }
-                    else
-                    {
-                        runningTime -= Time.deltaTime;
-                    }
-                }
-
-                if (!isSpiderGranny)
-                {
-                    if (timeToReposition <= 0)
-                    {
-                        state = State.Repositioning;
-
-                        timeToReposition = startTimeToReposition;
-                    }
-                    else
-                    {
-                        timeToReposition -= Time.deltaTime;
-                    }
-                }
-                anim.SetBool("Walk", true);
-                anim.SetBool("ATK1", false);
-
-                SwitchToChasing();
-                SwitchToShooting();
-                SwitchToSpawningSpiders();
-                break;
-
-            case State.Repositioning:
-                Flip();
-
-                rb.velocity = Vector2.zero;
-
-                anim.SetBool("Walk", true);
-                anim.SetBool("ATK1", false);
-
-                anim.SetTrigger("Disappear");
+                SwitchCombatState();
                 break;
 
             case State.Shooting:
                 Flip();
 
                 rb.velocity = Vector2.zero;
+
+                if(Vector2.Distance(transform.position, player.position) <= repositionDistance)
+                {
+                    timeToReposition -= Time.deltaTime;
+                }
+                else
+                {
+                    timeToReposition = 2f;
+                }
 
                 anim.SetBool("ATK1", true);
                 //audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
@@ -169,48 +118,16 @@ public class CEOofSpidersAI : MonoBehaviour
                     timeBTWWebShots -= Time.deltaTime;
                 }
 
-                SwitchToRunning();
-                SwitchToChasing();
-                SwitchToSpawningSpiders();
-                break;
-
-            case State.SpawningSpiders:
-                Flip();
-
-                rb.velocity = Vector2.zero;
-
-                anim.SetBool("ATK1", true);
-                anim.SetBool("Walk", false);
-                //audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
-
-                if (!isAlreadySpawningSpiders)
-                {
-                    anim.SetTrigger("ATK3");
-                    audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
-                    isAlreadySpawningSpiders = true;    
-                }
+                SwitchCombatState();
                 break;
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
 
-                anim.SetBool("ATK1", true);
-                anim.SetBool("Walk", false);
+                anim.SetTrigger("Die");
+                audioSource.PlayOneShot(spider_death, audioSource.volume);
 
-                timeToReposition = startTimeToReposition;
-
-                if (timeToDie <= 0)
-                {
-                    anim.SetTrigger("Die");
-                    audioSource.PlayOneShot(spider_death, audioSource.volume);
-                    timeToDie = 10000;
-                }
-                else
-                {
-                    timeToDie -= Time.deltaTime;
-                }
-
-                isAlreadyDying = true;
+                isAlive = false;
                 spider_boss_died = true;
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
@@ -230,54 +147,28 @@ public class CEOofSpidersAI : MonoBehaviour
         }
     }
 
-    void BeginCombat()
+    void aeHasSpawned()
     {
-        SwitchToRunning();
-        SwitchToChasing();
-        SwitchToShooting();
+        SwitchCombatState();
     }
 
-    void SwitchToChasing()
+    void SwitchCombatState()
     {
-        if (Vector2.Distance(transform.position, player.position) > rangedDistanceII && health > 0)
+        if (Vector2.Distance(transform.position, player.position) > chaseDistance && health > 0)
         {
             state = State.Chasing;
         }
-    }
-    void SwitchToRunning()
-    {
-        if (Vector2.Distance(transform.position, player.position) <= rangedDistanceI && health > 0)
-        {
-            state = State.Running;
-        }
-    }
-    void SwitchToShooting()
-    {
-        if (Vector2.Distance(transform.position, player.position) > rangedDistanceI && Vector2.Distance(transform.position, player.position) <= rangedDistanceII && health > 0)
+        if (Vector2.Distance(transform.position, player.position) <= chaseDistance && health > 0)
         {
             state = State.Shooting;
         }
     }
-    void SwitchToSpawningSpiders()
-    {
-        if (isSpiderGranny)
-        {
-            if (timeToSpawnSpiders <= 0)
-            {
-                state = State.SpawningSpiders;
 
-                timeToSpawnSpiders = startTimeToSpawnSpiders;
-            }
-            else
-            {
-                timeToSpawnSpiders -= Time.deltaTime;
-            }
-        }
-    }
-    void SwitchToDead()
+    void Die()
     {
         if(health <= 0)
         {
+            isAlreadyDying = true;
             state = State.Dead;
             GameManager.instance.SwitchToDefaultCam();
             if (!isSpiderGranny)
@@ -305,41 +196,47 @@ public class CEOofSpidersAI : MonoBehaviour
         }
     }
 
-    void ShootSpike()
+    void aeShootSpike()
     {
-        Instantiate(spike, shootPoint.transform.position, Quaternion.identity);
+        Instantiate(glassSpike, wandTip.transform.position, Quaternion.identity);
         audioSource.PlayOneShot(spider_attack_2, audioSource.volume);
-    }
-    void ShootWeb()
-    {
-        Instantiate(web, shootPoint.transform.position, Quaternion.identity);
-        audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
-    }
-    void SpawnSpiders()
-    {
-        Instantiate(spiders, transform.position, Quaternion.identity);
-        audioSource.PlayOneShot(spider_attack_3, audioSource.volume);
-        isAlreadySpawningSpiders = false;
 
-        SwitchToChasing();
-        SwitchToRunning();
-        SwitchToShooting();
-        SwitchToSpawningSpiders();
+        if(timeToReposition <= 0)
+        {
+            timeToReposition = 2f;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            anim.SetTrigger("Disappear");
+        }
     }
-    void HasDisappeared()
+    void aeShootWeb()
+    {
+        Instantiate(web, wandTip.transform.position, Quaternion.identity);
+        audioSource.PlayOneShot(spider_attack_1, audioSource.volume);
+
+        if (timeToReposition <= 0)
+        {
+            timeToReposition = 2f;
+            anim.SetTrigger("Disappear");
+        }
+    }
+
+    void aeHasDisappeared()
     {
         int rand = Random.Range(0, 6);
 
         transform.position = tbPoints[rand].transform.position;
 
+        if(isSpiderGranny)
+        {
+            Instantiate(spiders, transform.position, Quaternion.identity);  
+        }
+
         anim.SetTrigger("Reappear");
     }
-
-    void HasReappeared()
+    void aeHasReappeared()
     {
-        SwitchToChasing();
-        SwitchToRunning();
-        SwitchToShooting();
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        SwitchCombatState();
     }
 
     public void TakeDamage(bool isProjectile = false)
@@ -352,16 +249,15 @@ public class CEOofSpidersAI : MonoBehaviour
             int damage = 10;
             health -= damage;
             audioSource.PlayOneShot(spider_hurt, audioSource.volume);
-            anim.SetTrigger("Hit");
 
             if (!isAlreadyDying)
             {
-                SwitchToDead();
+                Die();
             }
         }
     }
 
-    void DestroySelf()
+    void aeDestroySelf()
     {
         Destroy(gameObject);
     }

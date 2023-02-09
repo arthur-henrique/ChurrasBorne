@@ -35,6 +35,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1587166640220705986}
+  - {fileID: 8104636664285498712}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -120,7 +121,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.08108997, y: 0.35679412}
@@ -159,22 +160,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   gameManager: {fileID: 0}
+  wandTip: {fileID: 5254078576648270915}
   rb: {fileID: 3173209745659878059}
   web: {fileID: 4995753880148382735, guid: 391c67dfb117fc447bf7d9636d040011, type: 3}
-  spike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
+  glassSpike: {fileID: 3578057323687879292, guid: 721a71a182e8c6a478f78eabe12c6f63, type: 3}
   spiders: {fileID: 0}
-  shootPoint: {fileID: 5254078576648270915}
-  tbPoints: []
+  tbPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   anim: {fileID: 2223503110792180030}
-  health: 250
+  health: 350
   isSpiderGranny: 0
-  speed: 7
-  rangedDistanceI: 5
-  rangedDistanceII: 20
+  speed: 6
+  chaseDistance: 18
   startTimeBTWWebShot: 4
-  startTimeToSpawnSpiders: 0
-  startRunningTime: 0
-  startTimeToReposition: 2
+  repositionDistance: 2
   faseDois: {fileID: 0}
   faseDoisHalf: {fileID: 0}
   audioSource: {fileID: 0}
@@ -295,6 +299,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &576957495734322028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8104636664285498712}
+  m_Layer: 8
+  m_Name: ParriedSpikeTarget
+  m_TagString: SpiderHead
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8104636664285498712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576957495734322028}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.14, y: 2.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 495486129843499368}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5254078576648270915
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,9 +339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1587166640220705986}
   m_Layer: 8
-  m_Name: NYYYAAAAAAAA
+  m_Name: WandTip
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

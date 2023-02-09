@@ -50,7 +50,7 @@ public class MobAI : MonoBehaviour
         isAGeletebas,
         isAShatebas,
         isAGigantebas;
-    private bool canDash = false, isDashing = false;
+    private bool canDash = false, isDashing = false, canBeStunned = true;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
 
@@ -67,6 +67,7 @@ public class MobAI : MonoBehaviour
     // Controle de dano:
     private float damage, armor, health;
     private float playerDamage;
+    private float stunCD;
     
     private void Awake()
     {
@@ -87,6 +88,8 @@ public class MobAI : MonoBehaviour
         timeBTWShots = startTimeBTWShots;
 
         stunTime = startStunTime;
+
+        stunCD = Random.Range(3, 5);
 
         dashRecoveryTime = startDashRecoveryTime;
         
@@ -286,10 +289,14 @@ public class MobAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetBool("Idle", true);
-                anim.SetBool("Walk", false);               
+                anim.SetBool("Walk", false);
+
+                canBeStunned = false;
 
                 if (stunTime <= 0)
                 {
+                    stunTime = startStunTime;
+                    
                     SwitchToChasing();
                     SwitchToIdling();
                     SwitchToAttacking();
@@ -328,6 +335,17 @@ public class MobAI : MonoBehaviour
                     // More code to come;
                 }
                 break;
+        }
+
+        if(!canBeStunned)
+        {
+            stunCD -= Time.deltaTime;
+
+            if(stunCD <= 0)
+            {
+                stunCD = Random.Range(3, 5);
+                canBeStunned = true;
+            }
         }
 
         //DASH
@@ -475,7 +493,7 @@ public class MobAI : MonoBehaviour
             StartCoroutine(CanTakeDamageCD());
             if (health >= 0)
             {
-                anim.SetTrigger("Hit");
+                //anim.SetTrigger("Hit");
                 DrawBlood();
             }
             if(GameManager.instance.GetMeat() >= 0)
@@ -489,12 +507,13 @@ public class MobAI : MonoBehaviour
             print(playerDamage);
             health -= playerDamage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
-            state = State.Stunned;
-        }
 
-        
-
-        
+            if (canBeStunned && !isAGigantebas)
+            {
+                anim.SetTrigger("Hit");
+                state = State.Stunned;
+            }
+        }           
     }
 
     private void PlayStepDust()

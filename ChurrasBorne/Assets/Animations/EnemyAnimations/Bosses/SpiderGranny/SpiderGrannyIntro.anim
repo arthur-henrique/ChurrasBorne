@@ -127,7 +127,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 2
-    functionName: BeginCombat
+    functionName: aeHasSpawned
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -199,7 +199,7 @@ public class FinalBossF1AI : MonoBehaviour
         {
             state = State.EyeLasers;
         }
-        else
+        if (Vector2.Distance(transform.position, player.position) <= screamDistance && health > 0)
         {
             state = State.Scream;
         }
