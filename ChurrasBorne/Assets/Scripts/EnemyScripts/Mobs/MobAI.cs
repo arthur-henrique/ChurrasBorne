@@ -9,6 +9,7 @@ public class MobAI : MonoBehaviour
     {
         Spawning,
         Idling,
+        GazingIntoTheNightSky,
         Chasing,
         Attacking,
         Shooting,
@@ -17,7 +18,7 @@ public class MobAI : MonoBehaviour
         RecoveringFromDash,
         Dead
     }
-    private State state;
+    private State state, lastState;
 
     public Rigidbody2D rb;
     public Animator anim;
@@ -332,8 +333,13 @@ public class MobAI : MonoBehaviour
                 }
                 else if(isOnFaseTres)
                 {
-                    // More code to come;
+                    EnemyControllerFaseTres.Instance.KilledEnemy(gameObject);
                 }
+                break;
+            case State.GazingIntoTheNightSky:
+                rb.velocity = Vector2.zero;
+                anim.SetBool("Idle", true);
+                anim.SetBool("Walk", false);
                 break;
         }
 
@@ -436,6 +442,13 @@ public class MobAI : MonoBehaviour
         }
     }
 
+    public void OpenYourEyesToTheNight()
+    {
+        lastState = state;
+        state = State.GazingIntoTheNightSky;
+        StartCoroutine(SnapOutOfIt());
+    }
+
     //MELEE
     void DamagePlayer()
     {
@@ -445,8 +458,11 @@ public class MobAI : MonoBehaviour
             //    StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             if(isAPoisonSpider)
             {
-                GameManager.instance.TakeDamage(3);
-                GameManager.instance.Poison(1f);
+                if(GameManager.instance.canTakeDamage)
+                {
+                    GameManager.instance.TakeDamage(3);
+                    GameManager.instance.Poison(1f);
+                }
             }
             else
             {
@@ -619,6 +635,11 @@ public class MobAI : MonoBehaviour
         }
         canBeKbed = true;
         yield return 0;
+    }
+    public IEnumerator SnapOutOfIt()
+    {
+        yield return new WaitForSeconds(4f);
+        state = lastState;
     }
 
     public void PlayThePunchAudio()

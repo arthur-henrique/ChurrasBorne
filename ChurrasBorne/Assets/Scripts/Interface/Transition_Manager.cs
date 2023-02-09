@@ -119,6 +119,7 @@ public class Transition_Manager : MonoBehaviour
             GameManager.instance.NextLevelSetter(Vector2.zero);
         }
         Time.timeScale = 1;
+        
         stop_descend = false;
         for (int i = 0; i < 60 * 20; i++)
         {
@@ -138,7 +139,8 @@ public class Transition_Manager : MonoBehaviour
                 Vector3.SmoothDamp(curtain_right_3.GetComponent<RectTransform>().anchoredPosition, new Vector3(38.5f, -670, 0), ref velocity_right3, smooth_time * 2f, 999, Time.unscaledDeltaTime);
             yield return null;
         }
-        PlayerMovement.EnableControl();
+        
+
 
         //ReturnOriginalPosition();
 

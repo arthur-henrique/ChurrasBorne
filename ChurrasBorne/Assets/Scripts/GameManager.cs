@@ -53,10 +53,11 @@ public class GameManager : MonoBehaviour
     private float poisonTime;
     public ParticleSystem poison;
     private ParticleSystem.EmissionModule poisonEm;
-
+    [SerializeField]
     private float playerDamage, playerArmor;
     public bool hasBetterSword = false;
     private float swordDamage = 15f, betterSwordDamage = 25f;
+    public PlayerTempPowerUps playerBuff;
 
     private void Awake()
     {
@@ -168,28 +169,21 @@ public class GameManager : MonoBehaviour
 
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            playerBuff.enabled = true;
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
 
-            //LoadGame();
-            //UnityEngine.SceneManagement.SceneManager.LoadScene("FaseDois");
-
-            //TutorialTriggerController.Instance.SecondGateTriggerOut();
-
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
         }
-
-        if (poisonTime > 0)
+        if (pc.Tester.YKey.WasPressedThisFrame())
         {
-            isPoisoned = true;
-            if (!isPoisonTicking)
-            {
-                isPoisonTicking = true;
-                StartCoroutine(PoisonTick());
-            }
+
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
+
+        
         if (isPoisoned)
         {
             ltd.color = new Color(0.3517012f, 0.8679245f, 0.2571021f, 1f);
@@ -204,6 +198,19 @@ public class GameManager : MonoBehaviour
             ltd.color = new Color(0.7745855f, 0.7125668f, 0.9056604f, 1f);
             poisonEm.rateOverTime = 0;
             isPoisonTicking = false;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (poisonTime > 0)
+        {
+            isPoisoned = true;
+            if (!isPoisonTicking)
+            {
+                isPoisonTicking = true;
+                StartCoroutine(PoisonTick());
+            }
         }
     }
 
@@ -238,12 +245,26 @@ public class GameManager : MonoBehaviour
     {
         currentHealth -= 3;
         SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            hasJustDied = true;
+            isAlive = false;
+            if (hasJustDied)
+            {
+                DeathRoutine();
+            }
+        }
+        
     }
 
     public void Poison(float poisonT)
     {
         if (isAlive && !hasJustDied)
+        {
             poisonTime += poisonT;
+            if (poisonTime >= 2f)
+                poisonTime = 2f;
+        }
     }
 
     
@@ -510,9 +531,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator ReturnFromGateCam()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSecondsRealtime(6f);
         SwitchFromGateCam();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSecondsRealtime(1f);
         PlayerMovement.EnableControl();
     }
 

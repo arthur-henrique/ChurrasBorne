@@ -89,6 +89,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Inventario"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ca09348-ab2c-495b-8778-b1fd91b500ff"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -496,6 +505,28 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interagir"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ca59ca8-358b-4a80-936a-2376f4cf8f13"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventario"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71477cf9-5386-4d5b-a11a-7595b4474099"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Inventario"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1097,6 +1128,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""YKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""c743b11f-2099-4bd7-af1b-8cd616b3b8a3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1132,6 +1172,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""TKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b720491-97c0-4bf6-ae90-ff24f9607ad2"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""YKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1147,6 +1198,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_Attack = m_Movimento.FindAction("Attack", throwIfNotFound: true);
         m_Movimento_Curar = m_Movimento.FindAction("Curar", throwIfNotFound: true);
         m_Movimento_Interagir = m_Movimento.FindAction("Interagir", throwIfNotFound: true);
+        m_Movimento_Inventario = m_Movimento.FindAction("Inventario", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -1167,6 +1219,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Tester_LKey = m_Tester.FindAction("LKey", throwIfNotFound: true);
         m_Tester_PKey = m_Tester.FindAction("PKey", throwIfNotFound: true);
         m_Tester_TKey = m_Tester.FindAction("TKey", throwIfNotFound: true);
+        m_Tester_YKey = m_Tester.FindAction("YKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1233,6 +1286,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_Attack;
     private readonly InputAction m_Movimento_Curar;
     private readonly InputAction m_Movimento_Interagir;
+    private readonly InputAction m_Movimento_Inventario;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -1244,6 +1298,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Movimento_Attack;
         public InputAction @Curar => m_Wrapper.m_Movimento_Curar;
         public InputAction @Interagir => m_Wrapper.m_Movimento_Interagir;
+        public InputAction @Inventario => m_Wrapper.m_Movimento_Inventario;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1274,6 +1329,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Interagir.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
                 @Interagir.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
                 @Interagir.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInteragir;
+                @Inventario.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
+                @Inventario.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
+                @Inventario.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -1299,6 +1357,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Interagir.started += instance.OnInteragir;
                 @Interagir.performed += instance.OnInteragir;
                 @Interagir.canceled += instance.OnInteragir;
+                @Inventario.started += instance.OnInventario;
+                @Inventario.performed += instance.OnInventario;
+                @Inventario.canceled += instance.OnInventario;
             }
         }
     }
@@ -1448,6 +1509,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Tester_LKey;
     private readonly InputAction m_Tester_PKey;
     private readonly InputAction m_Tester_TKey;
+    private readonly InputAction m_Tester_YKey;
     public struct TesterActions
     {
         private @PlayerController m_Wrapper;
@@ -1455,6 +1517,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @LKey => m_Wrapper.m_Tester_LKey;
         public InputAction @PKey => m_Wrapper.m_Tester_PKey;
         public InputAction @TKey => m_Wrapper.m_Tester_TKey;
+        public InputAction @YKey => m_Wrapper.m_Tester_YKey;
         public InputActionMap Get() { return m_Wrapper.m_Tester; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1473,6 +1536,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @TKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
                 @TKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
                 @TKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnTKey;
+                @YKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
+                @YKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
+                @YKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
             }
             m_Wrapper.m_TesterActionsCallbackInterface = instance;
             if (instance != null)
@@ -1486,6 +1552,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @TKey.started += instance.OnTKey;
                 @TKey.performed += instance.OnTKey;
                 @TKey.canceled += instance.OnTKey;
+                @YKey.started += instance.OnYKey;
+                @YKey.performed += instance.OnYKey;
+                @YKey.canceled += instance.OnYKey;
             }
         }
     }
@@ -1499,6 +1568,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnCurar(InputAction.CallbackContext context);
         void OnInteragir(InputAction.CallbackContext context);
+        void OnInventario(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1522,5 +1592,6 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnLKey(InputAction.CallbackContext context);
         void OnPKey(InputAction.CallbackContext context);
         void OnTKey(InputAction.CallbackContext context);
+        void OnYKey(InputAction.CallbackContext context);
     }
 }

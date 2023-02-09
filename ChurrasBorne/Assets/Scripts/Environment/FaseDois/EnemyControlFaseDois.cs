@@ -18,6 +18,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     private bool clearedDois, clearedHalf;
     private int randomTL;
+    public GateChecker gc;
 
     private void Awake()
     {
@@ -253,7 +254,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     {
         if (bossMob.Count <= 0)
         {
-            GateChecker.Instance.MobsDied();
+            gc.areTheMobsDead = true;
         }
     }
 }

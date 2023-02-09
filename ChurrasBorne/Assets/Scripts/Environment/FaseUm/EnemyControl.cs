@@ -12,10 +12,12 @@ public class EnemyControl : MonoBehaviour
     private readonly List<GameObject> fourthMob = new List<GameObject>();
     private readonly List<GameObject> fifthMob = new List<GameObject>();
     private readonly List<GameObject> sixthMob = new List<GameObject>();
+    private readonly List<GameObject> bossMob = new List<GameObject>();
     private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     public GameObject troncosHalf;
     private bool clearedUm, clearedHalf;
     private int randomTL;
+    public GateChecker gc;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -77,6 +79,7 @@ public class EnemyControl : MonoBehaviour
         fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
         fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
         sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
+        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
 
         firstMob.ForEach(x => x.SetActive(false));
         secondMob.ForEach(x => x.SetActive(false));
@@ -84,6 +87,7 @@ public class EnemyControl : MonoBehaviour
         fourthMob.ForEach(x => x.SetActive(false));
         fifthMob.ForEach(x => x.SetActive(false));
         sixthMob.ForEach(x => x.SetActive(false));
+        bossMob.ForEach(x => x.SetActive(false));
     }
 
     public void KilledEnemy(GameObject enemy)
@@ -118,6 +122,11 @@ public class EnemyControl : MonoBehaviour
         {
             sixthMob.Remove(enemy);
             IsSixthMobCleared();
+        }
+        else if (bossMob.Contains(enemy))
+        {
+            bossMob.Remove(enemy);
+            IsBossMobCleared();
         }
     }
 
@@ -163,6 +172,11 @@ public class EnemyControl : MonoBehaviour
         {
             sixthMob[i].SetActive(true);
         }
+    }
+
+    public void SpawnBossMob()
+    {
+        bossMob.ForEach(x => x.SetActive(true));
     }
 
     public void IsFirstMobCleared()
@@ -228,6 +242,14 @@ public class EnemyControl : MonoBehaviour
         if (sixthMob.Count <= 0)
         {
             FaseUmTriggerController.Instance.FirstGateOut();
+        }
+    }
+
+    public void IsBossMobCleared()
+    {
+        if (bossMob.Count <= 0)
+        {
+            gc.areTheMobsDead = true;
         }
     }
 

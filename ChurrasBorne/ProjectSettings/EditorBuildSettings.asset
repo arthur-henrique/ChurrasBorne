@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/LanguageSelect.unity
+    guid: ab60a3e3580386f45a3cbac7f56c07ee
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7be5be534592df54cb7168b4d402cc62
   - enabled: 1
@@ -20,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FaseDois.unity
     guid: 280600760154b7440ba3395c079eae37
+  - enabled: 1
+    path: Assets/Scenes/FaseTres.unity
+    guid: b66f43b66b838f647ac2a3cafb5e060f
   - enabled: 1
     path: Assets/Scenes/Test Scenes/TransitionTest_1.unity
     guid: 14688af5d1f686f469db74774376fefc
