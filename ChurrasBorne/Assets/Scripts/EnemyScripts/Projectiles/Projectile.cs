@@ -112,12 +112,12 @@ public class Projectile : MonoBehaviour
         {
             if (!isAWeb && !isFromBoss)
             {
-                GameManager.instance.TakeDamage(7);
+                GameManager.instance.TakeDamage(9);
                 Destroy(gameObject);
             }
             else if (!isAWeb && isFromBoss)
             {
-                GameManager.instance.TakeDamage(12);
+                GameManager.instance.TakeDamage(15);
                 canBeParried = false;
                 Destroy(gameObject);
             }

@@ -176,7 +176,7 @@ MonoBehaviour:
   health: 450
   isSpiderGranny: 1
   speed: 3
-  chaseDistance: 18
+  chaseDistance: 25
   startTimeBTWWebShot: 4
   repositionDistance: 2
   faseDois: {fileID: 0}
@@ -188,6 +188,7 @@ MonoBehaviour:
   spider_attack_2: {fileID: 8300000, guid: 64913f2b90c19724f9b6d990dfd0b042, type: 3}
   spider_attack_3: {fileID: 8300000, guid: b2ede22def3c85e448a2cdc8a57a3b05, type: 3}
   spider_death: {fileID: 8300000, guid: f74cc2beaa1aea446be079d61e34fe3f, type: 3}
+  gc: {fileID: 0}
 --- !u!114 &5099703609207020552
 MonoBehaviour:
   m_ObjectHideFlags: 0

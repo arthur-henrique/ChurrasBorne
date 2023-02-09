@@ -155,8 +155,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e55520b7523c84c80f086d0aadfc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 18
   APTP: {fileID: 0}
+  spiderHead: {fileID: 0}
   mommyWeb: {fileID: 0}
   spitter: {fileID: 0}
   health: 10
