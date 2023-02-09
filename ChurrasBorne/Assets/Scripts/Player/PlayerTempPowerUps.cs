@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerTempPowerUps : MonoBehaviour
 {
-    private float standardSpeed = 10;
-    private float targetedSpeed = 15;
+    private float standardSpeed = 10f,
+    targetedSpeed = 15f;
+    
 
     private void OnEnable()
     {
         gameObject.GetComponent<PlayerMovement>().speed = targetedSpeed;
+        GameManager.instance.HasBetterSword();
         StartCoroutine(TimeIsOut());
 
     }
@@ -18,6 +20,7 @@ public class PlayerTempPowerUps : MonoBehaviour
     {
         yield return new WaitForSeconds(15f);
         gameObject.GetComponent<PlayerMovement>().speed = standardSpeed;
+        GameManager.instance.HasSword();
         this.enabled = false;
     }
 }

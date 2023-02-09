@@ -53,10 +53,11 @@ public class GameManager : MonoBehaviour
     private float poisonTime;
     public ParticleSystem poison;
     private ParticleSystem.EmissionModule poisonEm;
-
+    [SerializeField]
     private float playerDamage, playerArmor;
     public bool hasBetterSword = false;
     private float swordDamage = 15f, betterSwordDamage = 25f;
+    public PlayerTempPowerUps playerBuff;
 
     private void Awake()
     {
@@ -168,7 +169,8 @@ public class GameManager : MonoBehaviour
 
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            playerBuff.enabled = true;
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
