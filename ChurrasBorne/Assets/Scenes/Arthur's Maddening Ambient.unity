@@ -2555,6 +2555,8 @@ MonoBehaviour:
   gate: {fileID: 0}
   portalUm: {fileID: 0}
   portalDois: {fileID: 0}
+  audioS: {fileID: 0}
+  questHubAudio: {fileID: 0}
   GateCamPos: []
 --- !u!4 &1748785053
 Transform:
@@ -2729,6 +2731,9 @@ MonoBehaviour:
   playerArmor: 0
   hasBetterSword: 0
   playerBuff: {fileID: 657585042}
+  hasCompletedQuestOne: 0
+  hasCompletedQuestTwo: 0
+  hasCompletedQuestThree: 0
 --- !u!4 &1748823649
 Transform:
   m_ObjectHideFlags: 0

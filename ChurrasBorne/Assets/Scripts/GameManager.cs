@@ -176,11 +176,11 @@ public class GameManager : MonoBehaviour
         // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-
+            
             //SaveGame();
             //Poison(1f);
             canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
-            
+
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
