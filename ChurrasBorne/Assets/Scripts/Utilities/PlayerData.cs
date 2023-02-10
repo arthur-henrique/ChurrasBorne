@@ -13,7 +13,10 @@ public class PlayerData
         clearedPhaseThree,
         clearedPhaseThreeHalf,
         clearedPhaseFour,
-        hasFlask;
+        hasFlask,
+        hasCompletedQuestOne,
+        hasCompletedQuestTwo,
+        hasCompletedQuestThree;
     public bool hasSeenGateTwo;
     public float maxHealth, playerArmor;
 
@@ -30,5 +33,8 @@ public class PlayerData
         clearedPhaseThreeHalf = gameManager.GetHasCleared(5);
         clearedPhaseFour = gameManager.GetHasCleared(6);
         hasFlask = gameManager.HasFlask();
+        hasCompletedQuestOne = gameManager.hasCompletedQuestOne;
+        hasCompletedQuestTwo = gameManager.hasCompletedQuestTwo;
+        hasCompletedQuestThree = gameManager.hasCompletedQuestThree;
     }
 }

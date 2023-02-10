@@ -12,6 +12,8 @@ public class ManagerOfScenes : MonoBehaviour
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
     public Animator portalDois;
+    public AudioSource audioS;
+    public AudioClip questHubAudio;
 
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
@@ -66,6 +68,17 @@ public class ManagerOfScenes : MonoBehaviour
                 particleEmmy.SetActive(true);
                 portalUm.enabled = true;
                 portalDois.SetTrigger("ON");
+            }
+
+            if(GameManager.instance.hasCompletedQuestThree)
+            {
+                // play the new hub song
+                audioS.clip = questHubAudio;
+                audioS.Play();
+            }
+            else
+            {
+                audioS.Play();
             }
         }
         

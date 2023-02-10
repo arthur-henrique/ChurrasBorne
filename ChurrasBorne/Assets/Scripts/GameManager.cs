@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
     public bool hasBetterSword = false;
     private float swordDamage = 15f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
-
+    // Manages Quest
+    public bool hasCompletedQuestOne,
+        hasCompletedQuestTwo,
+        hasCompletedQuestThree;
     // Manages PowerBuff
     private bool hasFlask = false,
         emptyFlask = false,
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
 
             //SaveGame();
             //Poison(1f);
-            //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
             
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -458,6 +461,7 @@ public class GameManager : MonoBehaviour
     // First Quest
     public void HasCompletedFirstQuest()
     {
+        hasCompletedQuestOne = true;
         playerArmor = 1.5f;
     }
     public float GetArmor()
@@ -468,6 +472,7 @@ public class GameManager : MonoBehaviour
     // Second Quest
     public void HasCompletedSecondQuest()
     {
+        hasCompletedQuestTwo = true;
         hasFlask = true;
         fullFlask = true;
     }
@@ -487,6 +492,11 @@ public class GameManager : MonoBehaviour
     public void HasBetterSword() // buff is On
     {
         playerDamage= betterSwordDamage;
+    }
+    // Third Quest
+    public void HasCompletedThirdQuest()
+    {
+        hasCompletedQuestThree = true;
     }
     
 
@@ -599,6 +609,9 @@ public class GameManager : MonoBehaviour
         maxHealth = data.maxHealth;
         playerArmor = data.playerArmor;
         hasSeenGateTwo= data.hasSeenGateTwo;
+        hasCompletedQuestOne = data.hasCompletedQuestOne;
+        hasCompletedQuestTwo = data.hasCompletedQuestTwo;
+        hasCompletedQuestThree = data.hasCompletedQuestThree;
         player.transform.position = new Vector2(0, 0);
     }
 
