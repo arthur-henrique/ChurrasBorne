@@ -9,17 +9,26 @@ public class PlayerData
         clearedPhaseOne,
         clearedPhaseOneHalf,
         clearedPhaseTwo,
-        clearedPhaseTwoHalf;
+        clearedPhaseTwoHalf,
+        clearedPhaseThree,
+        clearedPhaseThreeHalf,
+        clearedPhaseFour,
+        hasFlask;
     public bool hasSeenGateTwo;
-    public float maxHealth;
+    public float maxHealth, playerArmor;
 
     public PlayerData(GameManager gameManager)
     {
         hasSeenGateTwo = gameManager.GetHasSeenGateTwoAnim();
         maxHealth = gameManager.maxHealth;
+        playerArmor = gameManager.GetArmor();
         clearedPhaseOne = gameManager.GetHasCleared(0);
         clearedPhaseOneHalf = gameManager.GetHasCleared(1);
         clearedPhaseTwo = gameManager.GetHasCleared(2);
         clearedPhaseTwoHalf = gameManager.GetHasCleared(3);
+        clearedPhaseThree = gameManager.GetHasCleared(4);
+        clearedPhaseThreeHalf = gameManager.GetHasCleared(5);
+        clearedPhaseFour = gameManager.GetHasCleared(6);
+        hasFlask = gameManager.HasFlask();
     }
 }

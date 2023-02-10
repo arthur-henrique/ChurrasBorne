@@ -59,6 +59,13 @@ public class GameManager : MonoBehaviour
     private float swordDamage = 15f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
 
+    // Manages PowerBuff
+    private bool hasFlask = false,
+        emptyFlask = false,
+        fullFlask = false;
+
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -142,12 +149,12 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (GetHasCleared(3) == true && clearGame == false)
-            {
-                Instantiate(clearGamePrefab);
-                PlayerMovement.DisableControl();
-                clearGame = true;
-            }
+            //if (GetHasCleared(3) == true && clearGame == false)
+            //{
+            //    Instantiate(clearGamePrefab);
+            //    PlayerMovement.DisableControl();
+            //    clearGame = true;
+            //}
 
         }
         //print("GAME_MANAGER: " + currentHealth);
@@ -163,14 +170,14 @@ public class GameManager : MonoBehaviour
         }
         SetHealth(currentHealth);
 
-
+        // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
 
             //SaveGame();
             //Poison(1f);
             //canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
-            playerBuff.enabled = true;
+            
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
         {
@@ -181,6 +188,22 @@ public class GameManager : MonoBehaviour
         {
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
+        }
+
+        if(pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
+        {
+            if (fullFlask)
+            {
+                fullFlask = false;
+                playerBuff.enabled = true;
+                emptyFlask = true;
+                print("HasBuff");
+            }
+            else if (emptyFlask)
+            {
+                // toca o som de impossivel usar
+                print("FlaskEmpty");
+            }
         }
 
         
@@ -431,22 +454,41 @@ public class GameManager : MonoBehaviour
     {
         return playerDamage;
     }
-    public void HasSword()
+    // Manages quest rewards
+    // First Quest
+    public void HasCompletedFirstQuest()
     {
-        playerDamage = swordDamage;
-    }
-    public void SetHasBetterSword()
-    {
-        hasBetterSword = true;
-    }
-    public void HasBetterSword()
-    {
-        playerDamage= betterSwordDamage;
+        playerArmor = 1.5f;
     }
     public float GetArmor()
     {
         return playerArmor;
     }
+
+    // Second Quest
+    public void HasCompletedSecondQuest()
+    {
+        hasFlask = true;
+        fullFlask = true;
+    }
+    public bool HasFlask()
+    {
+        return hasFlask;
+    }
+    public void FlaskRefill()
+    {
+        fullFlask = true;
+    }
+    public void HasSword() // Buff is off
+    {
+        playerDamage = swordDamage;
+    }
+    
+    public void HasBetterSword() // buff is On
+    {
+        playerDamage= betterSwordDamage;
+    }
+    
 
 
     public void SwitchToGateCam()
@@ -550,7 +592,12 @@ public class GameManager : MonoBehaviour
         hasCleared[1] = data.clearedPhaseOneHalf;
         hasCleared[2] = data.clearedPhaseTwo;
         hasCleared[3] = data.clearedPhaseTwoHalf;
+        hasCleared[4] = data.clearedPhaseThree;
+        hasCleared[5] = data.clearedPhaseThreeHalf;
+        hasCleared[6] = data.clearedPhaseFour;
+        hasFlask = data.hasFlask;
         maxHealth = data.maxHealth;
+        playerArmor = data.playerArmor;
         hasSeenGateTwo= data.hasSeenGateTwo;
         player.transform.position = new Vector2(0, 0);
     }

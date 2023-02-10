@@ -18,7 +18,7 @@ public class PlayerTempPowerUps : MonoBehaviour
 
     private IEnumerator TimeIsOut()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(60f);
         gameObject.GetComponent<PlayerMovement>().speed = standardSpeed;
         GameManager.instance.HasSword();
         this.enabled = false;
