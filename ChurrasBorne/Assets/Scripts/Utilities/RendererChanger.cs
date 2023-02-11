@@ -9,6 +9,7 @@ public class RendererChanger : MonoBehaviour
     public string downLayer = "Objects";
     private Transform player;
     public bool needXTransform = false;
+    [SerializeField] private float distance = 30f;
 
     private void Start()
     {
@@ -27,37 +28,42 @@ public class RendererChanger : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (player.position.y >= this.transform.position.y)
+        
+        if(Vector2.Distance(transform.position, player.position) <= distance)
         {
-            for (int i = 0; i < srs.Length; i++)
-            {
-                srs[i].sortingLayerName = upLayer;
-            }
-        }
-        else if (player.position.y < this.transform.position.y)
-        {
-            for (int i = 0; i < srs.Length; i++)
-            {
-                srs[i].sortingLayerName = downLayer;
-            }
-        }
-
-        if(needXTransform)
-        {
-            if (player.position.x >= this.transform.position.x)
-            {
-                for (int i = 0; i < srs.Length; i++)
-                {
-                    srs[i].sortingLayerName = downLayer;
-                }
-            }
-            else if (player.position.x < this.transform.position.x)
+            if (player.position.y >= this.transform.position.y)
             {
                 for (int i = 0; i < srs.Length; i++)
                 {
                     srs[i].sortingLayerName = upLayer;
                 }
             }
+            else if (player.position.y < this.transform.position.y)
+            {
+                for (int i = 0; i < srs.Length; i++)
+                {
+                    srs[i].sortingLayerName = downLayer;
+                }
+            }
+
+            if (needXTransform)
+            {
+                if (player.position.x >= this.transform.position.x)
+                {
+                    for (int i = 0; i < srs.Length; i++)
+                    {
+                        srs[i].sortingLayerName = downLayer;
+                    }
+                }
+                else if (player.position.x < this.transform.position.x)
+                {
+                    for (int i = 0; i < srs.Length; i++)
+                    {
+                        srs[i].sortingLayerName = upLayer;
+                    }
+                }
+            }
         }
+        
     }
 }

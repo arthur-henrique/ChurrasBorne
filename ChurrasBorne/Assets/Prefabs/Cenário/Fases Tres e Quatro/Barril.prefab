@@ -78,7 +78,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.71875, y: 1.75}
+  m_Size: {x: 1.28125, y: 1.65625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,6 +100,7 @@ MonoBehaviour:
   - {fileID: 2556146964706598942}
   upLayer: Portoes e Paredes
   downLayer: Objects
+  needXTransform: 0
 --- !u!70 &2556146964706598940
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
