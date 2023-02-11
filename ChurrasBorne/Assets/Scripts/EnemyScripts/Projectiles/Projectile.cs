@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed;
 
-    public Transform APTP, spiderHead;
+    public Transform APTP, bossTarget;
     private Vector2 target;
 
     public GameObject mommyWeb;
@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
     {
         //Para PROJECTILE MOVEMENT
         APTP = GameObject.FindGameObjectWithTag("NYA").transform;
-        spiderHead = GameObject.FindGameObjectWithTag("SpiderHead").transform;
+        bossTarget = GameObject.FindGameObjectWithTag("BossTarget").transform;
         sr = gameObject.GetComponent<SpriteRenderer>();
 
         target = APTP.position;
@@ -80,9 +80,15 @@ public class Projectile : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
-        else if (health <= 0)
+        if (health <= 0 && !isFromBoss)
         {
-            transform.position = Vector2.MoveTowards(transform.position, spiderHead.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
+
+            hasBeenParried = true;
+        }
+        if (health <= 0 && isFromBoss)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossTarget.position, speed * Time.deltaTime);
 
             hasBeenParried = true;
         }
@@ -128,13 +134,17 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if (collision.CompareTag("TRONCO"))
+        if (collision.CompareTag("TRONCO"))
         {
             Destroy(gameObject);
         }
-        else if (collision.CompareTag("PAREDE") && !isOnFaseDois)
+        if (collision.CompareTag("PAREDE") && !isOnFaseDois)
         {
             Destroy(gameObject);
+        }
+        if (collision.CompareTag("BOSS") && isFromBoss)
+        {
+            Destroy(gameObject, .5f);
         }
 
         //HEALTH

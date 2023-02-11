@@ -178,7 +178,7 @@ MonoBehaviour:
   speed: 3
   chaseDistance: 25
   startTimeBTWWebShot: 4
-  repositionDistance: 2
+  repositionDistance: 4
   faseDois: {fileID: 0}
   faseDoisHalf: {fileID: 0}
   audioSource: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 8956821323150302102}
   m_Layer: 8
   m_Name: ParriedSpikeTarget
-  m_TagString: SpiderHead
+  m_TagString: BossTarget
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
