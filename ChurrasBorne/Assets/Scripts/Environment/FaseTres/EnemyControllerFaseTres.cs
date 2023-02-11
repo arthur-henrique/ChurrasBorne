@@ -36,7 +36,21 @@ public class EnemyControllerFaseTres : MonoBehaviour
         }
         for (int i = 0; i < ltds.Count; i++)
         {
+            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Freeform)
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
             if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Fish"))
             {
                 ltds.Remove(ltds[i]);
             }

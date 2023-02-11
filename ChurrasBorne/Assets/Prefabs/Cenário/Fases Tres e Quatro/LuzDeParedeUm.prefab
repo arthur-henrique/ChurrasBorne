@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4970907853669779962}
   - component: {fileID: 4970907853669779963}
+  - component: {fileID: 3780147372478851154}
   m_Layer: 0
   m_Name: LuzDeParedeUm
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4970907853669779908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.1685486, y: -18.746944, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4970907854894537952}
@@ -83,6 +84,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3780147372478851154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4970907853669779908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -2670828881919431651, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -2168418606941581916, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &4970907854894537953
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +110,7 @@ GameObject:
   - component: {fileID: 4970907854894537959}
   m_Layer: 0
   m_Name: Luz
-  m_TagString: Untagged
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

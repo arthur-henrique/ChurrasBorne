@@ -191,6 +191,9 @@ TextureImporter:
   - first:
       213: 5099091002397943373
     second: "Decora\xE7\xF5es_Gerais_55"
+  - first:
+      213: -8485757395284991409
+    second: Ramp
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1109,8 +1112,8 @@ TextureImporter:
         y: 960
         width: 34
         height: 129
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.26, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1130,8 +1133,8 @@ TextureImporter:
         y: 960
         width: 22
         height: 208
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1151,8 +1154,8 @@ TextureImporter:
         y: 960
         width: 22
         height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1172,8 +1175,8 @@ TextureImporter:
         y: 960
         width: 18
         height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1193,8 +1196,8 @@ TextureImporter:
         y: 960
         width: 18
         height: 204
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1614,7 +1617,7 @@ TextureImporter:
         width: 53
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1622,6 +1625,27 @@ TextureImporter:
       bones: []
       spriteID: d46e153204c93c640800000000000000
       internalID: 5099091002397943373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramp
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 842
+        width: 92
+        height: 171
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42e4e3cb988c3a80800000000000000
+      internalID: -8485757395284991409
       vertices: []
       indices: 
       edges: []
