@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7205075730346861573}
   - component: {fileID: 7205075730346861572}
   - component: {fileID: 7205075730346861575}
+  - component: {fileID: 8713047019444199716}
   m_Layer: 0
   m_Name: PlacaDois
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7205075730346861574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.27, y: -0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,6 +102,7 @@ MonoBehaviour:
   upLayer: Portoes e Paredes
   downLayer: Objects
   needXTransform: 0
+  distance: 30
 --- !u!70 &7205075730346861575
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,3 +119,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.015061617, y: 0.12}
   m_Size: {x: 0.19354057, y: 0.32653207}
   m_Direction: 0
+--- !u!114 &8713047019444199716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7205075730346861574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -9159329487318863024, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -7809935008157463808, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}

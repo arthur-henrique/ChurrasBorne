@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2979129687039903048}
   - component: {fileID: 2979129687039903055}
   - component: {fileID: 2979129687039903054}
+  - component: {fileID: 4973832178264734882}
   m_Layer: 0
   m_Name: PilastraLonga
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979129687039903053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.17, y: -30.91, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2979129687892576658}
@@ -125,6 +126,21 @@ MonoBehaviour:
   upLayer: Portoes e Paredes
   downLayer: Objects
   needXTransform: 0
+  distance: 30
+--- !u!114 &4973832178264734882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687039903053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -7528704001273910145, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -6654823407673398551, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &2979129687342892175
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +154,7 @@ GameObject:
   - component: {fileID: 2979129687342892168}
   - component: {fileID: 2979129687342892170}
   - component: {fileID: 2979129687342892169}
+  - component: {fileID: 3813447653872068924}
   m_Layer: 0
   m_Name: PilastraConcreto
   m_TagString: TRONCO
@@ -153,7 +170,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979129687342892175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.34, z: 0}
+  m_LocalPosition: {x: 0, y: 2.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2979129687039903049}
@@ -269,6 +286,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeAnim: {fileID: 2979129687342892168}
   copaAnim: {fileID: 2979129687377088805}
+--- !u!114 &3813447653872068924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687342892175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: 2139162031024124372, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &2979129687377088809
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +313,7 @@ GameObject:
   - component: {fileID: 2979129687377088805}
   - component: {fileID: 2979129687377088804}
   - component: {fileID: 2979129687377088811}
+  - component: {fileID: 318301192218575367}
   m_Layer: 0
   m_Name: PilastraTopo
   m_TagString: COPA
@@ -297,7 +329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979129687377088809}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.67, z: 0}
+  m_LocalPosition: {x: 0, y: 5.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2979129687039903049}
@@ -413,6 +445,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8125, y: 1.0777092}
   m_EdgeRadius: 0
+--- !u!114 &318301192218575367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687377088809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: 4239358016648897511, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -1829467168970694876, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &2979129687892576656
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2979129687892576658}
   - component: {fileID: 2979129687892576657}
+  - component: {fileID: 7979649687060437575}
   m_Layer: 0
   m_Name: PilastraMeio
   m_TagString: Untagged
@@ -495,6 +542,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7979649687060437575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687892576656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -7731337745735807310, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -5434458440457553902, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &2979129688512768977
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +569,7 @@ GameObject:
   - component: {fileID: 2979129688512768973}
   - component: {fileID: 2979129688512768972}
   - component: {fileID: 2979129688512768979}
+  - component: {fileID: 5757584924297264674}
   m_Layer: 0
   m_Name: PilastraConcretoCima
   m_TagString: TRONCO
@@ -523,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2979129688512768977}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.35, z: 0}
+  m_LocalPosition: {x: 0, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2979129687039903049}
@@ -639,3 +701,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeAnim: {fileID: 2979129688512768973}
   copaAnim: {fileID: 2979129687377088805}
+--- !u!114 &5757584924297264674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129688512768977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: 2139162031024124372, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
