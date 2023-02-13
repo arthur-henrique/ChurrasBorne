@@ -166,6 +166,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToShooting();
+                SwitchToDead();
                 break;
 
             case State.Chasing:
@@ -183,6 +184,7 @@ public class MobAI : MonoBehaviour
                 SwitchToAttacking();
                 SwitchToShooting();
                 SwitchToDashing();
+                SwitchToDead();
                 break;
 
             case State.Attacking:
@@ -205,6 +207,7 @@ public class MobAI : MonoBehaviour
                 }
 
                 SwitchToChasing();
+                SwitchToDead();
                 break;
 
             case State.Shooting:
@@ -228,6 +231,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToIdling();
                 SwitchToChasing();
+                SwitchToDead();
                 TimeBTWAttacks -= Time.deltaTime;
                 break;
 
@@ -284,6 +288,7 @@ public class MobAI : MonoBehaviour
                 {
                     dashRecoveryTime -= Time.deltaTime;
                 }
+                SwitchToDead();
                 break;
 
             case State.Stunned:

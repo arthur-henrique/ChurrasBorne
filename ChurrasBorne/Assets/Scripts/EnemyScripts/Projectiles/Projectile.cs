@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     public float speed;
 
     public Transform APTP, bossTarget;
-    private Vector2 target;
+    private Vector2 target, newTarget;
 
     public GameObject mommyWeb;
 
@@ -28,7 +28,11 @@ public class Projectile : MonoBehaviour
     {
         //Para PROJECTILE MOVEMENT
         APTP = GameObject.FindGameObjectWithTag("NYA").transform;
-        bossTarget = GameObject.FindGameObjectWithTag("BossTarget").transform;
+        if (isFromBoss)
+        {
+            bossTarget = GameObject.FindGameObjectWithTag("BossTarget").transform;
+            newTarget = bossTarget.position;
+        }
         sr = gameObject.GetComponent<SpriteRenderer>();
 
         target = APTP.position;
@@ -85,10 +89,10 @@ public class Projectile : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
 
             hasBeenParried = true;
-        }
+        }     
         if (health <= 0 && isFromBoss)
         {
-            transform.position = Vector2.MoveTowards(transform.position, bossTarget.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, newTarget, speed * Time.deltaTime);
 
             hasBeenParried = true;
         }
