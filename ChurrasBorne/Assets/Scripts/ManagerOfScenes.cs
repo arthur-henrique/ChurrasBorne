@@ -176,6 +176,7 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 passado.SetActive(false);
                 eclipse.SetActive(true);
+                PostProcessingControl.Instance.TurnOnVignette();
                 isEclipse = true;
             }
             else if (clearedTres && clearedTresHalf)
@@ -191,6 +192,7 @@ public class ManagerOfScenes : MonoBehaviour
                 {
                     passado.SetActive(false);
                     eclipse.SetActive(true);
+                    PostProcessingControl.Instance.TurnOnVignette();
                     isEclipse = true;
                 }
             }
