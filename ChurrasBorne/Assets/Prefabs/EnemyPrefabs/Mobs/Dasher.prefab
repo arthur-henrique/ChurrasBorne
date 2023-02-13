@@ -5028,7 +5028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBase: 5000
+  sortingOrderBase: 0
   offset: 1
   runOnlyOnce: 0
 --- !u!114 &8802307300907700796
@@ -5075,6 +5075,7 @@ MonoBehaviour:
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
+  isOnFaseTres: 0
   bloodSpatter: {fileID: 5958385356613861224}
   stepDust: {fileID: 0}
   stompDust: {fileID: 0}

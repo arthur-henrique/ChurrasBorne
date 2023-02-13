@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
-    private GameObject player;
+    public GameObject player;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
@@ -547,6 +547,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             SwitchToDefaultCam();
             canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", maxHealth, 0, false, null);
+            
         }
     }
 
