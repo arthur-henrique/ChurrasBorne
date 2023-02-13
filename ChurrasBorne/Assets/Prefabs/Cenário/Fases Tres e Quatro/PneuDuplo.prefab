@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1477270498692641737}
   - component: {fileID: 800579787450778466}
+  - component: {fileID: 8585709692633354065}
   m_Layer: 0
   m_Name: PneuBaixo
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685009493318201301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 133.95038}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8002695260345312054}
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8585709692633354065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685009493318201301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
+  eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &2542090269919153531
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3435246492648645503}
   - component: {fileID: 7487567808257396499}
+  - component: {fileID: 263685288480396290}
   m_Layer: 0
   m_Name: PneuCima
   m_TagString: Untagged
@@ -107,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542090269919153531}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.97, z: 133.95038}
+  m_LocalPosition: {x: 0, y: 0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8002695260345312054}
@@ -164,6 +180,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &263685288480396290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542090269919153531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
+  eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &6189696831563935380
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6189696831563935380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.66, y: -31.33182, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1477270498692641737}
@@ -217,6 +247,7 @@ MonoBehaviour:
   upLayer: Portoes e Paredes
   downLayer: Objects
   needXTransform: 0
+  distance: 30
 --- !u!70 &1928151309057107739
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

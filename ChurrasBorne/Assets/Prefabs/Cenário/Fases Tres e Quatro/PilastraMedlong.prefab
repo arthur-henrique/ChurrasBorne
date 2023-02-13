@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5706233875536331041}
   - component: {fileID: 5706233875536331040}
   - component: {fileID: 5706233875536331071}
+  - component: {fileID: 1978456651420962127}
   m_Layer: 0
   m_Name: PilastraTopo
   m_TagString: COPA
@@ -144,6 +145,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.8125, y: 1.0777092}
   m_EdgeRadius: 0
+--- !u!114 &1978456651420962127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706233875536331068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: 4239358016648897511, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -1829467168970694876, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &5706233876168534089
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5706233876168534091}
   - component: {fileID: 5706233876168534090}
+  - component: {fileID: 8371350845803223319}
   m_Layer: 0
   m_Name: PilastraMeio
   m_TagString: Untagged
@@ -226,6 +242,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8371350845803223319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706233876168534089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -7731337745735807310, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -5434458440457553902, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &5706233876196848036
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +269,7 @@ GameObject:
   - component: {fileID: 5706233876196848039}
   - component: {fileID: 5706233876196848041}
   - component: {fileID: 5706233876196848040}
+  - component: {fileID: 2232519647643315450}
   m_Layer: 0
   m_Name: PilastraConcreto
   m_TagString: TRONCO
@@ -370,6 +401,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeAnim: {fileID: 5706233876196848039}
   copaAnim: {fileID: 5706233875536331041}
+--- !u!114 &2232519647643315450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706233876196848036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: 2139162031024124372, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
 --- !u!1 &5706233876614986956
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +427,7 @@ GameObject:
   - component: {fileID: 5706233876614986959}
   - component: {fileID: 5706233876614986958}
   - component: {fileID: 5706233876614986957}
+  - component: {fileID: 4292339283201745406}
   m_Layer: 0
   m_Name: PilastraMedlong
   m_TagString: Untagged
@@ -397,7 +443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5706233876614986956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.84, y: -28.17, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5706233876168534091}
@@ -493,3 +539,18 @@ MonoBehaviour:
   upLayer: Portoes e Paredes
   downLayer: Objects
   needXTransform: 0
+  distance: 30
+--- !u!114 &4292339283201745406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706233876614986956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: -7528704001273910145, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -6654823407673398551, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}

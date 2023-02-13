@@ -14,6 +14,7 @@ public class ManagerOfScenes : MonoBehaviour
     public Animator portalDois;
     public AudioSource audioS;
     public AudioClip questHubAudio;
+    public bool isEclipse = false;
 
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
@@ -91,11 +92,13 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 passado.SetActive(true);
                 eclipse.SetActive(false);
+                isEclipse = false;
             }
             else if(clearedUm && !clearedHalf)
             {
                 passado.SetActive(false);
                 eclipse.SetActive(true);
+                isEclipse = true;
             }
             else if(clearedUm && clearedHalf)
             {
@@ -104,11 +107,13 @@ public class ManagerOfScenes : MonoBehaviour
                 {
                     passado.SetActive(true);
                     eclipse.SetActive(false);
+                    isEclipse = false;
                 }
                 else if (randomTimeline == 2)
                 {
                     passado.SetActive(false);
                     eclipse.SetActive(true);
+                    isEclipse = true;
                 }
             }
         }
@@ -165,11 +170,13 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 passado.SetActive(true);
                 eclipse.SetActive(false);
+                isEclipse = false;
             }
             else if (clearedTres && !clearedTresHalf)
             {
                 passado.SetActive(false);
                 eclipse.SetActive(true);
+                isEclipse = true;
             }
             else if (clearedTres && clearedTresHalf)
             {
@@ -178,11 +185,13 @@ public class ManagerOfScenes : MonoBehaviour
                 {
                     passado.SetActive(true);
                     eclipse.SetActive(false);
+                    isEclipse = false;
                 }
                 else if (randomTimeline == 2)
                 {
                     passado.SetActive(false);
                     eclipse.SetActive(true);
+                    isEclipse = true;
                 }
             }
         }
