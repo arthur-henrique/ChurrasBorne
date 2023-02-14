@@ -26,7 +26,7 @@ public class RendererChanger : MonoBehaviour
     //    }
     //}
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         
         if(Vector2.Distance(transform.position, player.position) <= distance)

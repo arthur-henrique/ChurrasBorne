@@ -69,6 +69,8 @@ public class MobAI : MonoBehaviour
     private float damage, armor, health;
     private float playerDamage;
     private float stunCD;
+
+    public GameObject spriteCenter;
     
     private void Awake()
     {
@@ -81,7 +83,7 @@ public class MobAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         sr = gameObject.GetComponent<SpriteRenderer>();
-        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         audioSource = GetComponent<AudioSource>();
 
         TimeBTWAttacks = 0.1f;
@@ -166,6 +168,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToChasing();
                 SwitchToShooting();
+                SwitchToDead();
                 break;
 
             case State.Chasing:
@@ -183,6 +186,7 @@ public class MobAI : MonoBehaviour
                 SwitchToAttacking();
                 SwitchToShooting();
                 SwitchToDashing();
+                SwitchToDead();
                 break;
 
             case State.Attacking:
@@ -205,6 +209,7 @@ public class MobAI : MonoBehaviour
                 }
 
                 SwitchToChasing();
+                SwitchToDead();
                 break;
 
             case State.Shooting:
@@ -228,6 +233,7 @@ public class MobAI : MonoBehaviour
 
                 SwitchToIdling();
                 SwitchToChasing();
+                SwitchToDead();
                 TimeBTWAttacks -= Time.deltaTime;
                 break;
 
@@ -284,6 +290,7 @@ public class MobAI : MonoBehaviour
                 {
                     dashRecoveryTime -= Time.deltaTime;
                 }
+                SwitchToDead();
                 break;
 
             case State.Stunned:
@@ -374,7 +381,7 @@ public class MobAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
     }
 
     void BeginCombat()
@@ -482,7 +489,7 @@ public class MobAI : MonoBehaviour
     //RANGED
     void InstantiateProjectile()
     {
-        Instantiate(projectile, transform.position, Quaternion.identity);
+        Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
     }
 
     //FLIP
@@ -507,6 +514,7 @@ public class MobAI : MonoBehaviour
         {
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
             if (health >= 0)
             {
                 //anim.SetTrigger("Hit");

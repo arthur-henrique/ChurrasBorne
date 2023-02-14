@@ -86,6 +86,7 @@ public class Transition_Manager : MonoBehaviour
         StopCoroutine(cr_transition_restart_handle);
         ReturnOriginalPosition();
         GameManager.instance.SwitchToDefaultCam();
+        
         cr_transition_restart_handle = StartCoroutine(TransitionHandleRestart(scene_name, health, heals, isHoldingSword, destroyObj));
     }
 
@@ -176,7 +177,7 @@ public class Transition_Manager : MonoBehaviour
                 break;
 
             case "Tutorial":
-                GameManager.instance.SetPlayerPosition(new Vector2(-2.46f, -0.22f));
+                GameManager.instance.SetPlayerPosition(new Vector2(0f, 0f));
                 break;
 
             case "FaseUm":
