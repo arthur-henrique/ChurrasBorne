@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8767030484895722900}
   - component: {fileID: 8219067691511694832}
   - component: {fileID: 1307184874191184438}
+  - component: {fileID: 3338639931206675727}
   m_Layer: 0
   m_Name: PneuMeioCima
   m_TagString: Untagged
@@ -69,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +98,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &3338639931206675727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006695869217720533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 1
 --- !u!1 &1507546199255492680
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +122,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8246807224676349420}
-  - component: {fileID: 9106080313225802535}
   - component: {fileID: 1787663820757094950}
   - component: {fileID: 184216580449286717}
   m_Layer: 0
@@ -134,27 +149,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9106080313225802535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507546199255492680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 2233605007006758967}
-  - {fileID: 5237695305132892152}
-  - {fileID: 8219067691511694832}
-  - {fileID: 9138999835265985568}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!70 &1787663820757094950
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,6 +197,7 @@ GameObject:
   - component: {fileID: 3648736312311432827}
   - component: {fileID: 5237695305132892152}
   - component: {fileID: 2700794589520958287}
+  - component: {fileID: 7444397846218645469}
   m_Layer: 0
   m_Name: PneuMeioBaixo
   m_TagString: Untagged
@@ -261,8 +256,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -289,6 +284,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &7444397846218645469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637066544840622956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -1
+  runOnlyOnce: 1
 --- !u!1 &2248178195322231178
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +310,7 @@ GameObject:
   - component: {fileID: 3623963439063046314}
   - component: {fileID: 2233605007006758967}
   - component: {fileID: 4463359855759202242}
+  - component: {fileID: 1469165985948950263}
   m_Layer: 0
   m_Name: PneuBaixo
   m_TagString: Untagged
@@ -358,8 +369,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -386,6 +397,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &1469165985948950263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2248178195322231178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 1
+  runOnlyOnce: 1
 --- !u!1 &8469306720776294655
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +423,7 @@ GameObject:
   - component: {fileID: 1460633660268752814}
   - component: {fileID: 9138999835265985568}
   - component: {fileID: 6726242056824988300}
+  - component: {fileID: 384778601697378329}
   m_Layer: 0
   m_Name: PneuCima
   m_TagString: Untagged
@@ -455,8 +482,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -483,3 +510,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &384778601697378329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8469306720776294655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -5
+  runOnlyOnce: 1

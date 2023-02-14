@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1295464520674213310}
   - component: {fileID: 8421980827935303189}
-  - component: {fileID: 4671313453908514559}
   - component: {fileID: 6718472014487257167}
   - component: {fileID: 6796375914548705657}
   - component: {fileID: 7764815323373799249}
+  - component: {fileID: 6346125698938766117}
   m_Layer: 0
   m_Name: Pneu
   m_TagString: Untagged
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86,24 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4671313453908514559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1821709596584271839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 8421980827935303189}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!70 &6718472014487257167
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -155,3 +137,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &6346125698938766117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821709596584271839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 1
+  runOnlyOnce: 1

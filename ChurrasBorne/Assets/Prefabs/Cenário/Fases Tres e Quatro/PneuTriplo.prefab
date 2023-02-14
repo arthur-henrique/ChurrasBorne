@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1284932717896048959}
-  - component: {fileID: 1664865108380281553}
   - component: {fileID: 8172866017972583452}
   - component: {fileID: 3965874774537494090}
   m_Layer: 0
@@ -36,26 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1664865108380281553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110235259679449413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 3691933648037441268}
-  - {fileID: 7449316464472785239}
-  - {fileID: 4542280890942920537}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!70 &8172866017972583452
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -104,6 +83,7 @@ GameObject:
   - component: {fileID: 3066349819544979711}
   - component: {fileID: 3691933648037441268}
   - component: {fileID: 6152620770113948818}
+  - component: {fileID: 2258008690175402517}
   m_Layer: 0
   m_Name: PneuBaixo
   m_TagString: Untagged
@@ -162,8 +142,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -190,6 +170,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &2258008690175402517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218415779595116941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 1
+  runOnlyOnce: 1
 --- !u!1 &5771568816891420233
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,6 +196,7 @@ GameObject:
   - component: {fileID: 7695087098711113925}
   - component: {fileID: 4542280890942920537}
   - component: {fileID: 5023081548182468533}
+  - component: {fileID: 7298569553476962848}
   m_Layer: 0
   m_Name: PneuCima
   m_TagString: Untagged
@@ -259,8 +255,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -287,6 +283,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &7298569553476962848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771568816891420233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 1
 --- !u!1 &6718134380720220360
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +309,7 @@ GameObject:
   - component: {fileID: 6113107083165837344}
   - component: {fileID: 7449316464472785239}
   - component: {fileID: 4201381204218249233}
+  - component: {fileID: 3931960387280768112}
   m_Layer: 0
   m_Name: PneuMeio
   m_TagString: Untagged
@@ -356,8 +368,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -384,3 +396,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &3931960387280768112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6718134380720220360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -1
+  runOnlyOnce: 1

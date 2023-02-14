@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1477270498692641737}
   - component: {fileID: 800579787450778466}
   - component: {fileID: 8585709692633354065}
+  - component: {fileID: 8509350973781677423}
   m_Layer: 0
   m_Name: PneuBaixo
   m_TagString: Untagged
@@ -69,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,6 +98,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &8509350973781677423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685009493318201301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 1
+  runOnlyOnce: 1
 --- !u!1 &2542090269919153531
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +124,7 @@ GameObject:
   - component: {fileID: 3435246492648645503}
   - component: {fileID: 7487567808257396499}
   - component: {fileID: 263685288480396290}
+  - component: {fileID: 2737199141285410862}
   m_Layer: 0
   m_Name: PneuCima
   m_TagString: Untagged
@@ -166,8 +183,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -194,6 +211,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: -2397156279054962034, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &2737199141285410862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2542090269919153531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -1
+  runOnlyOnce: 1
 --- !u!1 &6189696831563935380
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +235,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8002695260345312054}
-  - component: {fileID: 744355546758359741}
   - component: {fileID: 1928151309057107739}
   - component: {fileID: 8082607095772559022}
   m_Layer: 0
@@ -229,25 +260,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &744355546758359741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6189696831563935380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 800579787450778466}
-  - {fileID: 7487567808257396499}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!70 &1928151309057107739
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

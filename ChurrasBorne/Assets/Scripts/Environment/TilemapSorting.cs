@@ -5,7 +5,7 @@ using UnityEngine;
 public class TilemapSorting : MonoBehaviour
 {
     [SerializeField]
-    private int sortingOrderBase = 5000;
+    private int sortingOrderBase = 0;
     [SerializeField]
     private int offset = 0;
     [SerializeField]
