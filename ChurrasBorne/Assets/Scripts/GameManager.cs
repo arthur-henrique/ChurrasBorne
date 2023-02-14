@@ -246,13 +246,13 @@ public class GameManager : MonoBehaviour
     {
         if (canTakeDamage && isAlive)
         {
+            canTakeDamage = false;
             playerAnimator.SetTrigger("isHit");
             reflAnim.SetTrigger("isHit");
             PostProcessingControl.Instance.TurnOnCA();
             damageCDCounter = damageTime;
-            SetDamagetime(damageTime);
+            SetDamagetime(damageCDCounter);
             PlayerMovement.SetDamageState();
-            canTakeDamage = false;
             currentHealth -= damage;
             SetHealth(currentHealth);
             if (currentHealth <= 0)

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596802273485643606}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.46, y: -2.14, z: 0}
+  m_LocalPosition: {x: 1.46, y: -0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1962373924799368206}
@@ -4887,6 +4887,7 @@ GameObject:
   - component: {fileID: -5299975102097468759}
   - component: {fileID: 3612134723383040295}
   - component: {fileID: 6176250986859439302}
+  - component: {fileID: 2290460518013341514}
   m_Layer: 8
   m_Name: Gigantebas
   m_TagString: Untagged
@@ -4949,8 +4950,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1844687291
-  m_SortingLayer: 2
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4924e5a39dd3d5488fee6c99d3b71da, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4962,7 +4963,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &1962373924799368192
 Rigidbody2D:
   serializedVersion: 4
@@ -5016,8 +5017,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010236621, y: 0.097248316}
-  m_Size: {x: 0.90852714, y: 2.9660969}
+  m_Offset: {x: 0.120919466, y: 2.4197052}
+  m_Size: {x: 1.8677785, y: 3.4455066}
   m_Direction: 0
 --- !u!114 &-5299975102097468759
 MonoBehaviour:
@@ -5178,6 +5179,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2290460518013341514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962373924799368197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5
 --- !u!1 &4030398992210404501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5204,7 +5220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4030398992210404501}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 0.67, z: 0}
+  m_LocalPosition: {x: -0.46, y: 2.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1962373924799368206}
@@ -10074,7 +10090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7203640462882420264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.45, y: -1.21, z: 0}
+  m_LocalPosition: {x: 1.45, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1962373924799368206}
@@ -10126,7 +10142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7663306357297040713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21, y: -1.61, z: 0}
+  m_LocalPosition: {x: 0.21, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1962373924799368206}
