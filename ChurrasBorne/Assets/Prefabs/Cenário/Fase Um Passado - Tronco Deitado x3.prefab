@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: 1
+  offset: 0
   runOnlyOnce: 1
 --- !u!70 &6234895323810582689
 CapsuleCollider2D:
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: -1
+  offset: -2
   runOnlyOnce: 1
 --- !u!1 &8434231358357881571
 GameObject:
@@ -333,5 +333,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: 0
+  offset: -1
   runOnlyOnce: 1

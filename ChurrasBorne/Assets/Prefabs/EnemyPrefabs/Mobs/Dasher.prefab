@@ -4995,8 +4995,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010236621, y: 1.9400793}
-  m_Size: {x: 0.90852714, y: 2.486255}
+  m_Offset: {x: 0.010236621, y: 1.70165}
+  m_Size: {x: 0.90852714, y: 2.9631135}
   m_Direction: 0
 --- !u!95 &9201290858415813941
 Animator:
@@ -5080,6 +5080,7 @@ MonoBehaviour:
   bloodSpatter: {fileID: 5958385356613861224}
   stepDust: {fileID: 0}
   stompDust: {fileID: 0}
+  spriteCenter: {fileID: 0}
 --- !u!82 &8221106615309470292
 AudioSource:
   m_ObjectHideFlags: 0
