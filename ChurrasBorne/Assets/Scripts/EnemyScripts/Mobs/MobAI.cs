@@ -98,7 +98,7 @@ public class MobAI : MonoBehaviour
         
         if(isASpitter)
         {
-            health = 45f;
+            health = 75f;
             damage = 15f;
             armor = 1f;
         }
@@ -110,7 +110,7 @@ public class MobAI : MonoBehaviour
         }
         else if (isASpider)
         {
-            health = 75f;
+            health = 60f;
             damage = 5f;
             armor = 1f;
             isAPoisonSpider = true;
@@ -139,7 +139,7 @@ public class MobAI : MonoBehaviour
         }
         else if(isAShatebas)
         {
-            health = 50f;
+            health = 100f;
             damage = 25f;
             armor = 0.75f;
         }
@@ -147,7 +147,7 @@ public class MobAI : MonoBehaviour
         {
             health = 200f;
             damage = 25f;
-            armor = 1.5f;
+            armor = 1.25f;
         }
     }
 

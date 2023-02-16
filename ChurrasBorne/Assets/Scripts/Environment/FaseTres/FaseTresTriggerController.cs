@@ -19,11 +19,31 @@ public class FaseTresTriggerController : MonoBehaviour
     public CinemachineVirtualCamera gate;
     public GameObject[] gateCamPos;
     private bool hasOpenfirst = false, hasOpensecond = false, hasOpenthird = false, hasPlayedSound = false;
+    public GameObject normalLock8, eclipseLock6, normalBossLock, eclipseBossLock;
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
         inimigosMortos = 0;
+    }
+
+    private void Start()
+    {
+        inimigosMortos = 0;
+        if (!ManagerOfScenes.instance.isEclipse)
+        {
+            normalLock8.SetActive(true);
+            normalBossLock.SetActive(true);
+            eclipseLock6.SetActive(false);
+            eclipseBossLock.SetActive(false);
+        }
+        else if(ManagerOfScenes.instance.isEclipse)
+        {
+            normalLock8.SetActive(false);
+            normalBossLock.SetActive(false);
+            eclipseLock6.SetActive(true);
+            eclipseBossLock.SetActive(true);
+        }
     }
 
     public void SalaUmTrigger()
