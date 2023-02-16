@@ -17,6 +17,8 @@ public class GridAttackBender : MonoBehaviour
     private bool isTotalGridHappening, hasGottenPlayerPos, hasDecidedMatch;
     private int randomHorizontal, randomVertical;
 
+    public ArmorAI armor;
+
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -37,7 +39,7 @@ public class GridAttackBender : MonoBehaviour
             }
         }
         // Manages Random Match
-        if (matchTimerCheck > 0)
+        if (matchTimerCheck > 0 && armor.canMatch)
         {
             matchTimerCheck -= Time.deltaTime;
             if (matchTimerCheck <= 0)
@@ -53,7 +55,7 @@ public class GridAttackBender : MonoBehaviour
             }
         }
         // Manages Grid
-        if (gridTimerCheck > 0)
+        if (gridTimerCheck > 0 && armor.canGrid)
         {
             gridTimerCheck -= Time.deltaTime;
 
