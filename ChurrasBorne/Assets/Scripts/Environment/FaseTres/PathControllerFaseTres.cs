@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathControllerFaseTres : MonoBehaviour
 {
-    public GameObject boss;
+    public GameObject boss, gridMaster;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -41,6 +41,7 @@ public class PathControllerFaseTres : MonoBehaviour
             {
                 FaseTresTriggerController.Instance.CloseTheGates();
                 boss.SetActive(true);
+                gridMaster.SetActive(true);
                 gameObject.SetActive(false);
             }
         }
