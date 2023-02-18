@@ -50,7 +50,8 @@ public class MobAI : MonoBehaviour
         isATebas,
         isAGeletebas,
         isAShatebas,
-        isAGigantebas;
+        isAGigantebas,
+        isASkeletebas;
     private bool canDash = false, isDashing = false, canBeStunned = true;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
@@ -148,6 +149,12 @@ public class MobAI : MonoBehaviour
             health = 200f;
             damage = 25f;
             armor = 1.5f;
+        }
+        else if(isASkeletebas)
+        {
+            health = 75f;
+            damage = 30f;
+            armor = 0.75f;
         }
     }
 
@@ -518,7 +525,8 @@ public class MobAI : MonoBehaviour
             if (health >= 0)
             {
                 //anim.SetTrigger("Hit");
-                DrawBlood();
+                if(!isASkeletebas)
+                    DrawBlood();
             }
             if(GameManager.instance.GetMeat() >= 0)
             {
