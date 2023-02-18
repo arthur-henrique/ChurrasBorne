@@ -139,7 +139,7 @@ public class MobAI : MonoBehaviour
         }
         else if(isAShatebas)
         {
-            health = 50f;
+            health = 100f;
             damage = 25f;
             armor = 0.75f;
         }
