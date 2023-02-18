@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: -677462173
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84a84832cd9ca0d49a21088bef57ad60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbae9983b0576154db25f422a35fdee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
   isAGeletebas: 0
   isAShatebas: 0
   isAGigantebas: 0
+  isASkeletebas: 0
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   bloodSpatter: {fileID: 0}
   stepDust: {fileID: 0}
   stompDust: {fileID: 0}
+  spriteCenter: {fileID: 0}
 --- !u!82 &104732389356124469
 AudioSource:
   m_ObjectHideFlags: 0
