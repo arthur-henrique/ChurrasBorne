@@ -1,0 +1,410 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7068435553312719190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7068435553312719189}
+  m_Layer: 0
+  m_Name: VerticalGrido Roxo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7068435553312719189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7068435553312719190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -39, y: -22.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6906989352086482930}
+  - {fileID: 7476279741970070441}
+  - {fileID: 7019348034811348675}
+  - {fileID: 4646275201993445891}
+  - {fileID: 3275304097622777114}
+  - {fileID: 4383780134168983963}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2367821136913529584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &3275304097622777114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 2367821136913529584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3566384369117814385
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &4383780134168983963 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 3566384369117814385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5607797183463896553
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &4646275201993445891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 5607797183463896553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5940961796051339288
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &6906989352086482930 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 5940961796051339288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7667681479137729603
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &7476279741970070441 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 7667681479137729603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7836752250210869545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7068435553312719189}
+    m_Modifications:
+    - target: {fileID: 984044758127847400, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_Name
+      value: GridAttack - Vertical Roxo
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+--- !u!4 &7019348034811348675 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 984044758127847402, guid: f1c9753eea9fda3498fa7da67ab63ccc, type: 3}
+  m_PrefabInstance: {fileID: 7836752250210869545}
+  m_PrefabAsset: {fileID: 0}
