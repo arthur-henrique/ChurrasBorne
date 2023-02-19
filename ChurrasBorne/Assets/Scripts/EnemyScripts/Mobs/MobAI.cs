@@ -38,10 +38,8 @@ public class MobAI : MonoBehaviour
     public AudioClip monster_punch;
     public AudioClip monster_spit;
 
-    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
-    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
-
-    
+    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, dashingSpeed, chaseDistance, chasingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
+    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;    
 
     public bool isASpitter,
         isADasher,
@@ -51,6 +49,7 @@ public class MobAI : MonoBehaviour
         isAGeletebas,
         isAShatebas,
         isAGigantebas;
+
     private bool canDash = false, isDashing = false, canBeStunned = true;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
@@ -90,7 +89,7 @@ public class MobAI : MonoBehaviour
 
         stunTime = startStunTime;
 
-        stunCD = Random.Range(3, 5);
+        stunCD = Random.Range(1, 3);
 
         dashRecoveryTime = startDashRecoveryTime;
         
@@ -354,7 +353,7 @@ public class MobAI : MonoBehaviour
 
             if(stunCD <= 0)
             {
-                stunCD = Random.Range(3, 5);
+                stunCD = Random.Range(1, 3);
                 canBeStunned = true;
             }
         }
@@ -366,9 +365,9 @@ public class MobAI : MonoBehaviour
 
             Vector3 fator = target - transform.position;
 
-            dashTarget.x = target.x + fator.x * 2;
+            dashTarget.x = target.x + fator.x;
 
-            dashTarget.y = target.y + fator.y * 2;
+            dashTarget.y = target.y + fator.y;
         }
 
         if (!gameManager.GetComponent<GameManager>().isAlive)

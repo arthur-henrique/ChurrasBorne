@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FinalBossOffensiveScream
+  m_Name: FinalBossF2OffensiveScream
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,26 +20,26 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: f401042d18b60bf4284bf70272948313, type: 3}
-    - time: 0.14285715
-      value: {fileID: 21300000, guid: f47362421a37bab4eb9a5a43fa5dcd05, type: 3}
-    - time: 0.2857143
-      value: {fileID: 21300000, guid: 2a349dfc735115e44932507e9e9874f6, type: 3}
-    - time: 0.42857143
-      value: {fileID: 21300000, guid: 807cefdeb83ac9643bc3a2ee4b1223c7, type: 3}
-    - time: 0.5714286
-      value: {fileID: 21300000, guid: fad8cc1508964fc458527a6a29430abe, type: 3}
-    - time: 0.71428573
-      value: {fileID: 21300000, guid: 35b30f3c0143d8e4786963db7fba1e0b, type: 3}
-    - time: 0.85714287
-      value: {fileID: 21300000, guid: a4c98e74c1b9abb41937f344f4821727, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: fa0338947fc0f784abc2fdcda433c9bd, type: 3}
+      value: {fileID: 21300000, guid: 12e682cc20e7f824e837d2329cb4b861, type: 3}
+    - time: 0.083333336
+      value: {fileID: 21300000, guid: 36624ba5b6787ed4cb4dcc1d6cda353c, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 8076ac1e11f2fe34eba53be7ada443c1, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: b6ba7e6f19709b140a87db0521d73ec2, type: 3}
+    - time: 0.33333334
+      value: {fileID: 21300000, guid: e94766758af2bbf4789e6136c9873cc8, type: 3}
+    - time: 0.41666666
+      value: {fileID: 21300000, guid: 3dd71b8edc7fc6b40a0d6af86fbb91f6, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: a82dc9bfc99418d489a78b64bcd58dea, type: 3}
+    - time: 0.5833333
+      value: {fileID: 21300000, guid: 502be95ca9eadad40a62a94216358d66, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -54,25 +54,25 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: f401042d18b60bf4284bf70272948313, type: 3}
-    - {fileID: 21300000, guid: f47362421a37bab4eb9a5a43fa5dcd05, type: 3}
-    - {fileID: 21300000, guid: 2a349dfc735115e44932507e9e9874f6, type: 3}
-    - {fileID: 21300000, guid: 807cefdeb83ac9643bc3a2ee4b1223c7, type: 3}
-    - {fileID: 21300000, guid: fad8cc1508964fc458527a6a29430abe, type: 3}
-    - {fileID: 21300000, guid: 35b30f3c0143d8e4786963db7fba1e0b, type: 3}
-    - {fileID: 21300000, guid: a4c98e74c1b9abb41937f344f4821727, type: 3}
-    - {fileID: 21300000, guid: fa0338947fc0f784abc2fdcda433c9bd, type: 3}
+    - {fileID: 21300000, guid: 12e682cc20e7f824e837d2329cb4b861, type: 3}
+    - {fileID: 21300000, guid: 36624ba5b6787ed4cb4dcc1d6cda353c, type: 3}
+    - {fileID: 21300000, guid: 8076ac1e11f2fe34eba53be7ada443c1, type: 3}
+    - {fileID: 21300000, guid: b6ba7e6f19709b140a87db0521d73ec2, type: 3}
+    - {fileID: 21300000, guid: e94766758af2bbf4789e6136c9873cc8, type: 3}
+    - {fileID: 21300000, guid: 3dd71b8edc7fc6b40a0d6af86fbb91f6, type: 3}
+    - {fileID: 21300000, guid: a82dc9bfc99418d489a78b64bcd58dea, type: 3}
+    - {fileID: 21300000, guid: 502be95ca9eadad40a62a94216358d66, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1428572
+    m_StopTime: 0.6666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -87,7 +87,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1
+  - time: 0.5833333
     functionName: aeOffScreamATK
     data: 
     objectReferenceParameter: {fileID: 0}
