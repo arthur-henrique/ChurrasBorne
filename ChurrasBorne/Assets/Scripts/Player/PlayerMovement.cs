@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         switch (state)
         {
             case State.Normal:
@@ -207,8 +208,7 @@ public class PlayerMovement : MonoBehaviour
                 anim.SetBool("attackIsPlaying", true);
                 reflAnim.SetBool("attackIsPlaying", true);
                 StartCoroutine(ReturnToNormal());
-                anim.SetBool("attackIsPlaying", false);
-                reflAnim.SetBool("attackIsPlaying", false);
+                
                 attackPressed = false;
                 break;
             case State.Healing:
@@ -250,14 +250,11 @@ public class PlayerMovement : MonoBehaviour
                 if (takingDamage)
                 {
                     timer = GameManager.instance.GetDamagetime();
+                    print(timer);
                     audioSource.PlayOneShot(player_hurt, audioSource.volume);
                     takingDamage = false;
                 }
                 timer -= Time.deltaTime;
-                if (pc.Movimento.Attack.WasPressedThisFrame())
-                {
-                    attackPressed = true;
-                }
                 if (pc.Movimento.Curar.WasPressedThisFrame() && healsLeft >= 0)
                 {
                     healingAnimCd = 1f;
@@ -266,14 +263,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (timer <= 0f)
                 {
-                    if (attackPressed)
-                    {
-                        state = State.Attacking;
-                        anim.SetTrigger("isAttacking");
-                        reflAnim.SetTrigger("isAttacking");
-                        takingDamage = true;
-                    }
-                    else if (healingPressed)
+                    if (healingPressed)
                     {
                         state = State.Healing;
                         anim.SetTrigger("isHealing");
@@ -452,6 +442,8 @@ public class PlayerMovement : MonoBehaviour
     public void CantAttack()
     {
         StartCoroutine(StupidAttackCD());
+        anim.SetBool("attackIsPlaying", false);
+        reflAnim.SetBool("attackIsPlaying", false);
     }
 
 

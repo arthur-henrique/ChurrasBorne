@@ -38,8 +38,10 @@ public class MobAI : MonoBehaviour
     public AudioClip monster_punch;
     public AudioClip monster_spit;
 
-    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, dashingSpeed, chaseDistance, chasingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
-    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;    
+    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
+    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
+
+    
 
     public bool isASpitter,
         isADasher,
@@ -48,8 +50,8 @@ public class MobAI : MonoBehaviour
         isATebas,
         isAGeletebas,
         isAShatebas,
-        isAGigantebas;
-
+        isAGigantebas,
+        isASkeletebas;
     private bool canDash = false, isDashing = false, canBeStunned = true;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
@@ -68,6 +70,8 @@ public class MobAI : MonoBehaviour
     private float damage, armor, health;
     private float playerDamage;
     private float stunCD;
+
+    public GameObject spriteCenter;
     
     private void Awake()
     {
@@ -80,7 +84,7 @@ public class MobAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         sr = gameObject.GetComponent<SpriteRenderer>();
-        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         audioSource = GetComponent<AudioSource>();
 
         TimeBTWAttacks = 0.1f;
@@ -89,7 +93,7 @@ public class MobAI : MonoBehaviour
 
         stunTime = startStunTime;
 
-        stunCD = Random.Range(1, 3);
+        stunCD = Random.Range(3, 5);
 
         dashRecoveryTime = startDashRecoveryTime;
         
@@ -136,7 +140,7 @@ public class MobAI : MonoBehaviour
         }
         else if(isAShatebas)
         {
-            health = 50f;
+            health = 100f;
             damage = 25f;
             armor = 0.75f;
         }
@@ -145,6 +149,12 @@ public class MobAI : MonoBehaviour
             health = 200f;
             damage = 25f;
             armor = 1.5f;
+        }
+        else if(isASkeletebas)
+        {
+            health = 75f;
+            damage = 30f;
+            armor = 0.75f;
         }
     }
 
@@ -353,7 +363,7 @@ public class MobAI : MonoBehaviour
 
             if(stunCD <= 0)
             {
-                stunCD = Random.Range(1, 3);
+                stunCD = Random.Range(3, 5);
                 canBeStunned = true;
             }
         }
@@ -365,9 +375,9 @@ public class MobAI : MonoBehaviour
 
             Vector3 fator = target - transform.position;
 
-            dashTarget.x = target.x + fator.x;
+            dashTarget.x = target.x + fator.x * 2;
 
-            dashTarget.y = target.y + fator.y;
+            dashTarget.y = target.y + fator.y * 2;
         }
 
         if (!gameManager.GetComponent<GameManager>().isAlive)
@@ -378,7 +388,7 @@ public class MobAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        target = new Vector3(player.transform.position.x, player.transform.position.y + yOffset, player.transform.position.z);
+        target = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
     }
 
     void BeginCombat()
@@ -486,7 +496,7 @@ public class MobAI : MonoBehaviour
     //RANGED
     void InstantiateProjectile()
     {
-        Instantiate(projectile, transform.position, Quaternion.identity);
+        Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
     }
 
     //FLIP
@@ -511,10 +521,12 @@ public class MobAI : MonoBehaviour
         {
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
             if (health >= 0)
             {
                 //anim.SetTrigger("Hit");
-                DrawBlood();
+                if(!isASkeletebas)
+                    DrawBlood();
             }
             if(GameManager.instance.GetMeat() >= 0)
             {

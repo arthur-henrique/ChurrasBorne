@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2979129687039903049}
   - component: {fileID: 2979129687039903048}
   - component: {fileID: 2979129687039903055}
-  - component: {fileID: 2979129687039903054}
   - component: {fileID: 4973832178264734882}
+  - component: {fileID: 4736887392753599733}
   m_Layer: 0
   m_Name: PilastraLonga
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2979129687039903053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 2979129687892576658}
   - {fileID: 2979129687342892171}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -7528704001273910145, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -105,28 +105,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.21}
   m_Size: {x: 3.3125, y: 0.45}
   m_Direction: 1
---- !u!114 &2979129687039903054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979129687039903053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 2979129687039903048}
-  - {fileID: 2979129687892576657}
-  - {fileID: 2979129687342892164}
-  - {fileID: 2979129688512768978}
-  - {fileID: 2979129687377088810}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!114 &4973832178264734882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +119,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -7528704001273910145, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: -6654823407673398551, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &4736887392753599733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687039903053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 0
+  runOnlyOnce: 1
 --- !u!1 &2979129687342892175
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +148,7 @@ GameObject:
   - component: {fileID: 2979129687342892170}
   - component: {fileID: 2979129687342892169}
   - component: {fileID: 3813447653872068924}
+  - component: {fileID: 316434798247506640}
   m_Layer: 0
   m_Name: PilastraConcreto
   m_TagString: TRONCO
@@ -213,8 +207,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -300,6 +294,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: 2139162031024124372, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &316434798247506640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687342892175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -4
+  runOnlyOnce: 1
 --- !u!1 &2979129687377088809
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +323,7 @@ GameObject:
   - component: {fileID: 2979129687377088804}
   - component: {fileID: 2979129687377088811}
   - component: {fileID: 318301192218575367}
+  - component: {fileID: 4721096446603216166}
   m_Layer: 0
   m_Name: PilastraTopo
   m_TagString: COPA
@@ -372,8 +382,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 4
   m_Sprite: {fileID: 4239358016648897511, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -459,6 +469,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 4239358016648897511, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: -1829467168970694876, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &4721096446603216166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687377088809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -12
+  runOnlyOnce: 1
 --- !u!1 &2979129687892576656
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +495,7 @@ GameObject:
   - component: {fileID: 2979129687892576658}
   - component: {fileID: 2979129687892576657}
   - component: {fileID: 7979649687060437575}
+  - component: {fileID: 4789710323941693798}
   m_Layer: 0
   m_Name: PilastraMeio
   m_TagString: Untagged
@@ -528,8 +554,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: -7731337745735807310, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -556,6 +582,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -7731337745735807310, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: -5434458440457553902, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &4789710323941693798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129687892576656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -2
+  runOnlyOnce: 1
 --- !u!1 &2979129688512768977
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +611,7 @@ GameObject:
   - component: {fileID: 2979129688512768972}
   - component: {fileID: 2979129688512768979}
   - component: {fileID: 5757584924297264674}
+  - component: {fileID: 4730437444185049457}
   m_Layer: 0
   m_Name: PilastraConcretoCima
   m_TagString: TRONCO
@@ -628,8 +670,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -715,3 +757,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -8396083162235224715, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: 2139162031024124372, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &4730437444185049457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979129688512768977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -8
+  runOnlyOnce: 1

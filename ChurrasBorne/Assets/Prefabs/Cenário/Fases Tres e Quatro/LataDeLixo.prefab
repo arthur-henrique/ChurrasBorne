@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7504450499366960405}
   - component: {fileID: 7504450499366960402}
-  - component: {fileID: 7504450499366960403}
   - component: {fileID: 7504450499366960400}
   - component: {fileID: 3228526165016073085}
+  - component: {fileID: 1593454705132328955}
   m_Layer: 0
   m_Name: LataDeLixo
   m_TagString: Untagged
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1537884332448737245, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,24 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7504450499366960403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7504450499366960401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 7504450499366960402}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!70 &7504450499366960400
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,3 +115,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -1537884332448737245, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: 4185989986211163546, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+--- !u!114 &1593454705132328955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504450499366960401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: 0
+  runOnlyOnce: 1

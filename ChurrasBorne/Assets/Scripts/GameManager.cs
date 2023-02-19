@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     public static GameManager instance;
-    private GameObject player;
+    public GameObject player;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
     private Animator playerAnimator;
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -246,13 +246,13 @@ public class GameManager : MonoBehaviour
     {
         if (canTakeDamage && isAlive)
         {
+            canTakeDamage = false;
             playerAnimator.SetTrigger("isHit");
             reflAnim.SetTrigger("isHit");
             PostProcessingControl.Instance.TurnOnCA();
             damageCDCounter = damageTime;
-            SetDamagetime(damageTime);
+            SetDamagetime(damageCDCounter);
             PlayerMovement.SetDamageState();
-            canTakeDamage = false;
             currentHealth -= damage;
             SetHealth(currentHealth);
             if (currentHealth <= 0)
@@ -547,6 +547,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             SwitchToDefaultCam();
             canvas.GetComponent<Transition_Manager>().RestartScene("Tutorial", maxHealth, 0, false, null);
+            
         }
     }
 
