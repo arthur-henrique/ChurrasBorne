@@ -29,21 +29,14 @@ public class EnemyControllerFaseTres : MonoBehaviour
         ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
         for (int i = 0; i < ltds.Count; i++)
         {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Global)
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
             {
                 ltds.Remove(ltds[i]);
             }
         }
         for (int i = 0; i < ltds.Count; i++)
         {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Freeform)
-            {
-                ltds.Remove(ltds[i]);
-            }
-        }
-        for (int i = 0; i < ltds.Count; i++)
-        {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Sprite)
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
             {
                 ltds.Remove(ltds[i]);
             }
@@ -51,6 +44,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
         for (int i = 0; i < ltds.Count; i++)
         {
             if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Fish"))
             {
                 ltds.Remove(ltds[i]);
             }
@@ -70,13 +70,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
         {
             p1.SetActive(true);
             p2.SetActive(false);
-            ltds.ForEach(x => x.intensity = 7f);
+            ltds.ForEach(x => x.intensity = 5f);
         }
         else if (clearedTres && !clearedTresHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
-            ltds.ForEach(x => x.intensity = 3f);
+            ltds.ForEach(x => x.intensity = 2f);
         }
         else if (clearedTres && clearedTresHalf)
         {
@@ -84,13 +84,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
             {
                 p1.SetActive(true);
                 p2.SetActive(false);
-                ltds.ForEach(x => x.intensity = 7f);
+                ltds.ForEach(x => x.intensity = 5f);
             }
             else if (randomTL == 2)
             {
                 p1.SetActive(false);
                 p2.SetActive(true);
-                ltds.ForEach(x => x.intensity = 3f);
+                ltds.ForEach(x => x.intensity = 2f);
 
             }
         }
