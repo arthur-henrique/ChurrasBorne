@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     public int health;
 
-    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois;
+    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois, isAFireBall;
     private bool canBeParried = true;
     private SpriteRenderer sr;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
@@ -136,6 +136,10 @@ public class Projectile : MonoBehaviour
                 canBeParried = false;
                 Instantiate(mommyWeb, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            }
+            if(isAFireBall)
+            {
+                GameManager.instance.Poison(1f);
             }
         }
         if (collision.CompareTag("TRONCO"))

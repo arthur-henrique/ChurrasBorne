@@ -29,7 +29,7 @@ public class FinalBossDrill : MonoBehaviour
             }
         }
 
-        if (finalBoss.GetComponent<FinalBossF1AI>().isBreathing == false)
+        if (finalBoss.GetComponent<FinalBossAI>().isBreathing == false)
         {
             Destroy(gameObject);
         }

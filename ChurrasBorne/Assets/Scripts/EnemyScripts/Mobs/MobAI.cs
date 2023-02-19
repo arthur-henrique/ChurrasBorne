@@ -51,7 +51,8 @@ public class MobAI : MonoBehaviour
         isAGeletebas,
         isAShatebas,
         isAGigantebas,
-        isASkeletebas;
+        isASkeletebas,
+        isASkully;
     private bool canDash = false, isDashing = false, canBeStunned = true;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
@@ -93,7 +94,7 @@ public class MobAI : MonoBehaviour
 
         stunTime = startStunTime;
 
-        stunCD = Random.Range(3, 5);
+        stunCD = Random.Range(1, 3);
 
         dashRecoveryTime = startDashRecoveryTime;
         
@@ -155,6 +156,12 @@ public class MobAI : MonoBehaviour
             health = 75f;
             damage = 30f;
             armor = 0.75f;
+        }
+        else if(isASkully)
+        {
+            health = 60f;
+            damage = 15f;
+            armor = 0.5f;
         }
     }
 
@@ -363,7 +370,7 @@ public class MobAI : MonoBehaviour
 
             if(stunCD <= 0)
             {
-                stunCD = Random.Range(3, 5);
+                stunCD = Random.Range(1, 3);
                 canBeStunned = true;
             }
         }
@@ -375,9 +382,9 @@ public class MobAI : MonoBehaviour
 
             Vector3 fator = target - transform.position;
 
-            dashTarget.x = target.x + fator.x * 2;
+            dashTarget.x = target.x + fator.x;
 
-            dashTarget.y = target.y + fator.y * 2;
+            dashTarget.y = target.y + fator.y;
         }
 
         if (!gameManager.GetComponent<GameManager>().isAlive)
@@ -525,7 +532,7 @@ public class MobAI : MonoBehaviour
             if (health >= 0)
             {
                 //anim.SetTrigger("Hit");
-                if(!isASkeletebas)
+                if(!isASkeletebas && !isASkully)
                     DrawBlood();
             }
             if(GameManager.instance.GetMeat() >= 0)

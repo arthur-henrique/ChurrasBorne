@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalBossF1AI : MonoBehaviour
+public class FinalBossAI : MonoBehaviour
 {
     private enum State
     {
@@ -14,7 +14,7 @@ public class FinalBossF1AI : MonoBehaviour
 
     private State state;
 
-    public Transform player, rightEye, leftEye;
+    public Transform player, rightEye, leftEye, mouth;
 
     private Vector3 eyeLaserTarget, target;
 
@@ -24,15 +24,15 @@ public class FinalBossF1AI : MonoBehaviour
 
     public GameObject[] tbPoints;
 
-    public GameObject offensiveDrills, defensiveDrills, secondFase;
+    public GameObject offensiveDrills, defensiveDrills, fireBalls, secondFase;
 
     private Collider2D[] playerHit;
 
     public int health;
 
-    private bool isAlreadyDying = false, isShootingEyeLasers = false, isShootingSuperLasers;
+    private bool isAlreadyDying = false, isShootingEyeLasers = false, isShootingSuperLasers, canTakeDamage = true;
 
-    public bool isBreathing;
+    public bool isBreathing, isF2;
 
     public float screamDistance;
     private float timeToReposition, randomNumber, specialATKCooldown;
@@ -49,8 +49,6 @@ public class FinalBossF1AI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("NYA").transform;
-        rightEye = GameObject.FindGameObjectWithTag("RightEye").transform;
-        leftEye = GameObject.FindGameObjectWithTag("LeftEye").transform;
 
         timeToReposition = 2f;
         specialATKCooldown = 5f;
@@ -61,24 +59,36 @@ public class FinalBossF1AI : MonoBehaviour
         switch (state)
         {
             case State.Spawning:
-                Debug.Log("Ayyy lmao");
+                Debug.Log("FinalBossSpawn");
                 break;
 
             case State.EyeLasers:
                 anim.SetBool("EyeLasers", true);
                 anim.SetBool("Scream", false);
 
-                if(specialATKCooldown <= 0)
+                if (specialATKCooldown <= 0)
                 {
-                    randomNumber = Random.Range(1, 10);
+                    randomNumber = Random.Range(1, 5);
 
-                    if(randomNumber <=6)
+                    if (randomNumber == 2)
                     {
                         anim.SetTrigger("OffScream");
+                        randomNumber = 1;
                     }
-                    if (randomNumber >6)
+                    if (randomNumber == 3)
                     {
                         anim.SetTrigger("SuperLaser");
+                        randomNumber = 1;
+                    }
+                    if (!isF2 && randomNumber == 4)
+                    {
+                        anim.SetTrigger("OffScream");
+                        randomNumber = 1;
+                    }
+                    if (isF2 && randomNumber == 4)
+                    {
+                        anim.SetTrigger("FireBalls");
+                        randomNumber = 1;
                     }
 
                     specialATKCooldown = 7f;
@@ -105,8 +115,6 @@ public class FinalBossF1AI : MonoBehaviour
             case State.Dead:
                 isBreathing = false;
 
-                anim.SetBool("EyeLasers", true);
-                anim.SetBool("Scream", false);
                 anim.SetTrigger("Die");
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
@@ -144,7 +152,7 @@ public class FinalBossF1AI : MonoBehaviour
             }
 
             laserRight.SetPosition(0, rightEye.position);
-            laserRight.SetPosition(1, eyeLaserTarget);
+            laserRight.SetPosition(1, target);
 
             RaycastHit2D[] hitInfoLeft = Physics2D.RaycastAll(leftEye.position, target, Mathf.Infinity, mask);
 
@@ -152,9 +160,9 @@ public class FinalBossF1AI : MonoBehaviour
             {
                 GameManager.instance.TakeDamage(1);
             }
-            
+
             laserLeft.SetPosition(0, leftEye.position);
-            laserLeft.SetPosition(1, eyeLaserTarget);
+            laserLeft.SetPosition(1, target);
 
             laserLeft.enabled = true;
             laserRight.enabled = true;
@@ -167,21 +175,21 @@ public class FinalBossF1AI : MonoBehaviour
 
             if (hitInfoRight != null)
             {
-                GameManager.instance.TakeDamage(1000);
+                GameManager.instance.TakeDamage(50);
             }
 
             superLaserRight.SetPosition(0, rightEye.position);
-            superLaserRight.SetPosition(1, eyeLaserTarget);
+            superLaserRight.SetPosition(1, target);
 
             RaycastHit2D[] hitInfoLeft = Physics2D.RaycastAll(leftEye.position, target, Mathf.Infinity, mask);
 
             if (hitInfoLeft != null)
             {
-                GameManager.instance.TakeDamage(1000);
+                GameManager.instance.TakeDamage(50);
             }
 
             superLaserLeft.SetPosition(0, leftEye.position);
-            superLaserLeft.SetPosition(1, eyeLaserTarget);
+            superLaserLeft.SetPosition(1, target);
 
             superLaserLeft.enabled = true;
             superLaserRight.enabled = true;
@@ -210,6 +218,7 @@ public class FinalBossF1AI : MonoBehaviour
         {
             isAlreadyDying = true;
             state = State.Dead;
+            Debug.Log("SUS");
         }
     }
 
@@ -226,15 +235,20 @@ public class FinalBossF1AI : MonoBehaviour
             timeToReposition = 2f;
         }
 
-        if(timeToReposition <= 0)
+        if (timeToReposition <= 0)
         {
             timeToReposition = 2f;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             anim.SetTrigger("Disappear");
         }
     }
     void aeOffScreamATK()
     {
         Instantiate(offensiveDrills, player.position, Quaternion.identity);
+    }
+    void aeFireBallATK()
+    {
+        Instantiate(fireBalls, mouth.position, Quaternion.identity);
     }
 
     void aeEyeLasersOn()
@@ -248,7 +262,7 @@ public class FinalBossF1AI : MonoBehaviour
 
     void aeSuperLaserOn()
     {
-        isShootingSuperLasers = true;   
+        isShootingSuperLasers = true;
     }
     void aeSuperLaserOff()
     {
@@ -266,24 +280,39 @@ public class FinalBossF1AI : MonoBehaviour
     void aeHasReappeared()
     {
         specialATKCooldown = 5f;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         SwitchCombatState();
     }
 
     //HEALTH
     public void TakeDamage()
     {
-        gameObject.GetComponent<ColorChanger>().ChangeColor();
-        int damage = 10;
-        health -= damage;
-
-        if (!isAlreadyDying)
+        if (canTakeDamage)
         {
-            Die();
+            gameObject.GetComponent<ColorChanger>().ChangeColor();
+            StartCoroutine(CanTakeDamageCD());
+            int damage = 10;
+            health -= damage;
+
+            if (!isAlreadyDying)
+            {
+                Die();
+            }
         }
     }
-    void aeSpawnSecondFase()
+    void aeDie()
     {
-        Instantiate(secondFase);
-        Destroy(gameObject, .2f);
+        if(!isF2)
+        {
+            secondFase.SetActive(true);
+        }
+        
+        Destroy(gameObject);
+    }
+
+    private IEnumerator CanTakeDamageCD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTakeDamage = true;
     }
 }
