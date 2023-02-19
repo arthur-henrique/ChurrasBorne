@@ -93,7 +93,7 @@ public class MobAI : MonoBehaviour
 
         stunTime = startStunTime;
 
-        stunCD = Random.Range(3, 5);
+        stunCD = Random.Range(1, 3);
 
         dashRecoveryTime = startDashRecoveryTime;
         
@@ -363,7 +363,7 @@ public class MobAI : MonoBehaviour
 
             if(stunCD <= 0)
             {
-                stunCD = Random.Range(3, 5);
+                stunCD = Random.Range(1, 3);
                 canBeStunned = true;
             }
         }
@@ -375,9 +375,9 @@ public class MobAI : MonoBehaviour
 
             Vector3 fator = target - transform.position;
 
-            dashTarget.x = target.x + fator.x * 2;
+            dashTarget.x = target.x + fator.x;
 
-            dashTarget.y = target.y + fator.y * 2;
+            dashTarget.y = target.y + fator.y;
         }
 
         if (!gameManager.GetComponent<GameManager>().isAlive)
