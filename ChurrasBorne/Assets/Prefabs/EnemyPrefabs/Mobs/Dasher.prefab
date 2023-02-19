@@ -4929,7 +4929,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5032,6 +5032,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: 1
   runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!114 &8802307300907700796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5073,6 +5074,8 @@ MonoBehaviour:
   isAGeletebas: 0
   isAShatebas: 0
   isAGigantebas: 0
+  isASkeletebas: 0
+  isASkully: 0
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
