@@ -19806,6 +19806,7 @@ MonoBehaviour:
   portalDois: {fileID: 396355597}
   audioS: {fileID: 1040889697}
   questHubAudio: {fileID: 8300000, guid: 1002a157e9312f34aa820e3ea746e455, type: 3}
+  isEclipse: 0
   GateCamPos:
   - {fileID: 983696180}
   - {fileID: 1004900264}
@@ -39399,6 +39400,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: -2
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!1001 &1880918709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40270,7 +40272,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.79
+  m_Intensity: 0.7
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 0000000035c6e646454e0c9263bf9ed7672f19c95f6adbe7
   m_LightCookieSprite: {fileID: 0}
