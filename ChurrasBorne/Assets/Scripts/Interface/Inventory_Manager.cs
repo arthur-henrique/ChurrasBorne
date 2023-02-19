@@ -91,6 +91,7 @@ public class Inventory_Manager : MonoBehaviour
             }
             GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 0, 16f * Time.deltaTime);
             PlayerMovement.EnableControl();
+            print("ControlEnabled");
         } else
         {
             if (pc.Movimento.Inventario.WasPressedThisFrame())

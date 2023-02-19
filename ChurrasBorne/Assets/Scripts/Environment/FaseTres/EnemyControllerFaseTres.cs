@@ -43,6 +43,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
         }
         for (int i = 0; i < ltds.Count; i++)
         {
+            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Sprite)
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
             if (ltds[i].CompareTag("Player"))
             {
                 ltds.Remove(ltds[i]);
