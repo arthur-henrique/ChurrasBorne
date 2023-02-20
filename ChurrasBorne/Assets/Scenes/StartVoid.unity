@@ -158,6 +158,9 @@ MonoBehaviour:
   gate: {fileID: 0}
   portalUm: {fileID: 0}
   portalDois: {fileID: 0}
+  audioS: {fileID: 0}
+  questHubAudio: {fileID: 0}
+  isEclipse: 0
   GateCamPos: []
 --- !u!4 &43474599
 Transform:
@@ -613,10 +616,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7927680279429262864, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -627,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7927680279429262865, guid: e0bbb2f5cab5ad547a1657326e0c9e35, type: 3}
       propertyPath: m_AnchorMax.x
@@ -767,6 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  player: {fileID: 0}
   ltd: {fileID: 601760232}
   reflAnim: {fileID: 601760230}
   slider: {fileID: 1561382289}
@@ -798,6 +798,9 @@ MonoBehaviour:
   playerArmor: 0
   hasBetterSword: 0
   playerBuff: {fileID: 601760233}
+  hasCompletedQuestOne: 0
+  hasCompletedQuestTwo: 0
+  hasCompletedQuestThree: 0
 --- !u!4 &1098553892
 Transform:
   m_ObjectHideFlags: 0
@@ -813,8 +816,8 @@ Transform:
   - {fileID: 1501838252}
   - {fileID: 1514494212}
   - {fileID: 1561382290}
-  - {fileID: 1033251545}
   - {fileID: 1647607636}
+  - {fileID: 1033251545}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1516,7 +1519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3682538114903729961, guid: c0924b2e8d7ab83479b4f64936cdbb95, type: 3}
       propertyPath: m_SortingOrder
-      value: 32767
+      value: 3270
       objectReference: {fileID: 0}
     - target: {fileID: 3682538114903729961, guid: c0924b2e8d7ab83479b4f64936cdbb95, type: 3}
       propertyPath: m_SortingLayerID
@@ -1815,7 +1818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5019324295815923012, guid: 4056109af7763474c9f3d744ebb272df, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5019324295815923012, guid: 4056109af7763474c9f3d744ebb272df, type: 3}
       propertyPath: m_AnchorMax.x
