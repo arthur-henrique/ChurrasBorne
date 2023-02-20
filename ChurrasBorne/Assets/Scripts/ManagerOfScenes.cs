@@ -16,6 +16,8 @@ public class ManagerOfScenes : MonoBehaviour
     public AudioClip questHubAudio;
     public bool isEclipse = false;
 
+    
+
     // Hub Cam Positions:
     public GameObject[] GateCamPos;
 
@@ -81,6 +83,7 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 audioS.Play();
             }
+            GameManager.instance.faseumBossFire = false;
         }
         
 

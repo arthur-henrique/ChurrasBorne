@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float playerDamage, playerArmor;
     public bool hasBetterSword = false;
-    private float swordDamage = 15f, betterSwordDamage = 25f;
+    private float swordDamage = 150f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
     // Manages Quest
     public bool hasCompletedQuestOne,
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         emptyFlask = false,
         fullFlask = false;
 
-
+    public bool faseumBossFire = false;
 
     private void Awake()
     {
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())

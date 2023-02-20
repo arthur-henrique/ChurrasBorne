@@ -476,6 +476,7 @@ public class PlayerMovement : MonoBehaviour
             isOnIce = false;
             isOnWeb = false;
             isOnBossWeb = false;
+            GameManager.instance.SwitchToDefaultCam();
         }
         //else if (other.CompareTag("Fish"))
         //{

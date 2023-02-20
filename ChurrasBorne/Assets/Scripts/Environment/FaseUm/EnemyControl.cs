@@ -18,6 +18,8 @@ public class EnemyControl : MonoBehaviour
     private bool clearedUm, clearedHalf;
     private int randomTL;
     public GateChecker gc;
+
+    public Collider2D[] mobTriggers;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -92,6 +94,8 @@ public class EnemyControl : MonoBehaviour
                 p2.SetActive(true);
                 ltds.ForEach(x => x.intensity = 2f);
             }
+
+            
         }
 
         firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
@@ -109,6 +113,12 @@ public class EnemyControl : MonoBehaviour
         fifthMob.ForEach(x => x.SetActive(false));
         sixthMob.ForEach(x => x.SetActive(false));
         bossMob.ForEach(x => x.SetActive(false));
+
+        if (GameManager.instance.faseumBossFire == true)
+        {
+            LoadFromBossCamp();
+            print("Wipe");
+        }
     }
 
     public void KilledEnemy(GameObject enemy)
@@ -220,6 +230,7 @@ public class EnemyControl : MonoBehaviour
             {
                 // abre o portão da wave
                 troncosHalf.SetActive(true);
+                FaseUmTriggerController.Instance.secondWaveCleared();
                 FaseUmTriggerController.Instance.SideFirstGateTrigger();
             }
         }
@@ -234,7 +245,11 @@ public class EnemyControl : MonoBehaviour
                 FaseUmTriggerController.Instance.FirstGateTrigger();
             }
             if (clearedUm)
+            {
                 FaseUmTriggerController.Instance.SideSecondGateOpen();
+                FaseUmTriggerController.Instance.FirstGateTrigger();
+                GameManager.instance.faseumBossFire = true;
+            }
         }
     }
     public void IsFourthMobCleared()
@@ -264,6 +279,8 @@ public class EnemyControl : MonoBehaviour
         {
             FaseUmTriggerController.Instance.FirstGateOut();
         }
+
+        GameManager.instance.faseumBossFire = true;
     }
 
     public void IsBossMobCleared()
@@ -271,6 +288,34 @@ public class EnemyControl : MonoBehaviour
         if (bossMob.Count <= 0)
         {
             gc.areTheMobsDead = true;
+        }
+    }
+
+    public void LoadFromBossCamp()
+    {
+        firstMob.ForEach(x => Destroy(x));
+        secondMob.ForEach(x => Destroy(x));
+        thirdMob.ForEach(x => Destroy(x));
+        fourthMob.ForEach(x => Destroy(x));
+        fifthMob.ForEach(x => Destroy(x));
+        sixthMob.ForEach(x => Destroy(x));
+        firstMob.Clear();
+        secondMob.Clear();
+        thirdMob.Clear();
+        fourthMob.Clear();
+        fifthMob.Clear();
+        sixthMob.Clear();
+
+        IsFirstMobCleared();
+        IsSecondMobCleared();
+        IsThirdMobCleared();
+        IsFourthMobCleared();
+        IsFifthMobCleared();
+        IsSixthMobCleared();
+
+        for (int i = 0; i < mobTriggers.Length; i++)
+        {
+            mobTriggers[i].enabled = false;
         }
     }
 

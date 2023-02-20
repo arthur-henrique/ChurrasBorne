@@ -7,7 +7,7 @@ public class FaseUmTriggerController : MonoBehaviour
     public static FaseUmTriggerController Instance;
     public GameObject[] waveTwoGates;
     public GameObject[] upPathFirstGateIn;
-    public GameObject[] upPathSecondGateIn;
+    public Animator[] upPathSecondGateIn;
     public GameObject[] upPathFirstGateOut;
     public GameObject[] sidePathFirstGateIn;
     public GameObject[] sidePathSecondGateIn;
@@ -61,7 +61,7 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
-            upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+            upPathSecondGateIn[i].SetTrigger("CLOSEIT");
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }
@@ -70,7 +70,7 @@ public class FaseUmTriggerController : MonoBehaviour
     {
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
-            upPathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            upPathSecondGateIn[i].SetTrigger("OPENIT");
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }

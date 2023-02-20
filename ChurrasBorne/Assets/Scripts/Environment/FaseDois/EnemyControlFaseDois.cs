@@ -20,6 +20,8 @@ public class EnemyControlFaseDois : MonoBehaviour
     private int randomTL;
     public GateChecker gc;
 
+    public Collider2D[] mobTriggers;
+
     private void Awake()
     {
         Instance = this;
@@ -116,6 +118,11 @@ public class EnemyControlFaseDois : MonoBehaviour
         eigthMob.ForEach(x => x.SetActive(false));
         bossMob.ForEach(x => x.SetActive(false));
 
+        if (GameManager.instance.faseumBossFire == true)
+        {
+            LoadFromBossCamp();
+            print("Wipe");
+        }
     }
 
     // Função de checagem de morte
@@ -186,15 +193,15 @@ public class EnemyControlFaseDois : MonoBehaviour
     }
     public void SpawnFifthMob()
     {
-        fifthMob.ForEach(x => x.SetActive(true));       
+        fifthMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnSixthMob()
     {
-        sixthMob.ForEach(x => x.SetActive(true));       
+        sixthMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnSeventhMob()
     {
-        seventhMob.ForEach(x => x.SetActive(true));       
+        seventhMob.ForEach(x => x.SetActive(true));
     }
     public void SpawnEigthMob()
     {
@@ -276,6 +283,34 @@ public class EnemyControlFaseDois : MonoBehaviour
         if (bossMob.Count <= 0)
         {
             gc.areTheMobsDead = true;
+        }
+    }
+
+    public void LoadFromBossCamp()
+    {
+        firstMob.ForEach(x => Destroy(x));
+        secondMob.ForEach(x => Destroy(x));
+        thirdMob.ForEach(x => Destroy(x));
+        fourthMob.ForEach(x => Destroy(x));
+        fifthMob.ForEach(x => Destroy(x));
+        sixthMob.ForEach(x => Destroy(x));
+        seventhMob.ForEach(x => Destroy(x));
+        eigthMob.ForEach(x => Destroy(x));
+        firstMob.Clear();
+        secondMob.Clear();
+        thirdMob.Clear();
+        fourthMob.Clear();
+        fifthMob.Clear();
+        sixthMob.Clear();
+        seventhMob.Clear();
+        eigthMob.Clear();
+
+        FaseDoisTriggerController.Instance.BossFireSet();
+        
+
+        for (int i = 0; i < mobTriggers.Length; i++)
+        {
+            mobTriggers[i].enabled = false;
         }
     }
 }

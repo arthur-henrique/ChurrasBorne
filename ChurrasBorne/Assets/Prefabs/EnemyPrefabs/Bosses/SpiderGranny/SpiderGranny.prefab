@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1697492546533258711}
   - component: {fileID: 5099703609207020552}
   - component: {fileID: 4637690021708069160}
+  - component: {fileID: 373234856048932101}
   m_Layer: 8
   m_Name: SpiderGranny
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1844687291
-  m_SortingLayer: 2
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3f369c1b9792f284db329ec96b662bf4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -300,6 +301,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &373234856048932101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131909312167486706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -2
+  runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!1 &1384898940038661450
 GameObject:
   m_ObjectHideFlags: 0
