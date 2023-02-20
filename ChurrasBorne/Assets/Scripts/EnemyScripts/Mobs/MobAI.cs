@@ -55,7 +55,8 @@ public class MobAI : MonoBehaviour
         isASkully;
     private bool canDash = false, isDashing = false, canBeStunned = true;
 
-    public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres;
+    public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres, isOnFaseQuatro;
+    public FaseQuatroRoomController controller;
 
     private float yOffset = 1.7f;
     private float knockbackDuration = 1f;
@@ -73,6 +74,8 @@ public class MobAI : MonoBehaviour
     private float stunCD;
 
     public GameObject spriteCenter;
+
+
     
     private void Awake()
     {
@@ -355,6 +358,10 @@ public class MobAI : MonoBehaviour
                 else if(isOnFaseTres)
                 {
                     EnemyControllerFaseTres.Instance.KilledEnemy(gameObject);
+                }
+                else if(isOnFaseQuatro)
+                {
+                    controller.KilledEnemy(gameObject);
                 }
                 break;
             case State.GazingIntoTheNightSky:
