@@ -32,7 +32,7 @@ public class ArmorAI : MonoBehaviour
 
     private bool isAlreadyDying = false;
 
-    public int health;
+    public float health;
 
     public float chasingSpeed, timeBTWSlashATKs, slashMeleeDistance, slashRangedDistance, timeBTWSpinATKs, spinDistance;
     private float currentTimeBTWSlashATKs, currentTimeBTWSpinATKs, timeToDie;
@@ -41,11 +41,15 @@ public class ArmorAI : MonoBehaviour
     private float knockbackDuration2 = 1.5f, knockbackPower2 = 125f;
     private bool canTakeDamage = true;
 
-    // to remove
-    public bool isOnFaseDois, isOnFaseDoisHalf;
-    public Animator faseDois, faseDoisHalf;
 
     public static bool armor_boss_died = false;
+
+    private float armor;
+    private float playerDamage;
+    public GateChecker gc;
+
+    public bool canMatch = false, canGrid = false;
+
 
     private void Awake()
     {
@@ -64,6 +68,8 @@ public class ArmorAI : MonoBehaviour
 
         HealthBar_Manager.instance.boss = this.gameObject;
         HealthBar_Manager.instance.refreshBoss = true;
+
+        armor = 1.15f;
     }
 
     void Update()
@@ -132,7 +138,6 @@ public class ArmorAI : MonoBehaviour
 
             case State.Dead:
                 rb.velocity = Vector2.zero;
-
                 isAlreadyDying = true;
 
                 anim.SetBool("Idle", true);
@@ -151,6 +156,9 @@ public class ArmorAI : MonoBehaviour
                 {
                     timeToDie -= Time.deltaTime;
                 }
+
+                gc.isTheBossDead = true;
+                gc.areTheMobsDead = true;
                 break;
 
             case State.Idling:
@@ -203,18 +211,6 @@ public class ArmorAI : MonoBehaviour
         {
             state = State.Dead;
             GameManager.instance.SwitchToDefaultCam();
-            if (isOnFaseDois)
-            {
-                FaseDoisTriggerController.Instance.GateOpener();
-                faseDois.SetTrigger("ON");
-                GameManager.instance.SetHasCleared(2, true);
-            }
-            else if (isOnFaseDoisHalf)
-            {
-                FaseDoisTriggerController.Instance.GateOpener();
-                faseDoisHalf.SetTrigger("ON");
-                GameManager.instance.SetHasCleared(3, true);
-            }
         }
     }
 
@@ -276,11 +272,31 @@ public class ArmorAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
-            CanTakeDamageCD();
+            StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
-            int damage = 10;
-            health -= damage;
+
+            if (GameManager.instance.GetMeat() >= 0)
+            {
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+            }
+            else
+            {
+                playerDamage = GameManager.instance.GetDamage() / armor;
+            }
+
+            health -= playerDamage;
             audioSource.PlayOneShot(armor_hurt, audioSource.volume);
+
+            if(health <= 600f && !canMatch)
+            {
+                canMatch = true;
+            }
+
+            if(health <= 300f && !canGrid)
+            {
+                canGrid = true;
+            }
+
             if (!isAlreadyDying)
             {
                 SwitchToDead();

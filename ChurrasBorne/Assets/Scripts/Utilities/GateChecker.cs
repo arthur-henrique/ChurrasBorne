@@ -5,7 +5,7 @@ using UnityEngine;
 public class GateChecker : MonoBehaviour
 {
     public static GateChecker Instance;
-    public bool isOnFaseUm = false, IsOnFaseDois = false;
+    public bool isOnFaseUm = false, IsOnFaseDois = false, isOnFaseTres = false;
     public bool isTheBossDead = false, areTheMobsDead = false, hasRun = false;
     public Animator faseDoisHalf;
     public Collider2D coll;
@@ -38,6 +38,23 @@ public class GateChecker : MonoBehaviour
                 FaseDoisTriggerController.Instance.GateOpener();
                 faseDoisHalf.SetTrigger("ON");
                 GameManager.instance.SetHasCleared(3, true);
+            }
+            if(isOnFaseTres)
+            {
+                if(!ManagerOfScenes.instance.isEclipse)
+                {
+                    hasRun = true;
+                    FaseTresTriggerController.Instance.GateOpener();
+                    // Ativa o Portal para o Hub
+                    GameManager.instance.SetHasCleared(4, true);
+                }
+                else
+                {
+                    hasRun = true;
+                    FaseTresTriggerController.Instance.GateOpener();
+                    // Ativa o Portal para o Hub
+                    GameManager.instance.SetHasCleared(5, true);
+                }
             }
             
 

@@ -13,17 +13,47 @@ public class FaseTresTriggerController : MonoBehaviour
     public GameObject[] fourthLock;
     public GameObject[] fifthLock;
 
+    // Eclipse
+    public GameObject[] eclipseFirstLock;
+
 
     public GameObject portalToHub;
     public int inimigosMortos;
     public CinemachineVirtualCamera gate;
     public GameObject[] gateCamPos;
     private bool hasOpenfirst = false, hasOpensecond = false, hasOpenthird = false, hasPlayedSound = false;
+    public GameObject normalLock8, eclipseLock6, normalBossLock, eclipseBossLock;
+    public GameObject zonaSeteOpenGate, zonaSeteClosedGate;
     // Start is called before the first frame update
     void Awake()
     {
         Instance = this;
         inimigosMortos = 0;
+    }
+
+    private void Start()
+    {
+        inimigosMortos = 0;
+        if (!ManagerOfScenes.instance.isEclipse)
+        {
+            normalLock8.SetActive(true);
+            normalBossLock.SetActive(true);
+            eclipseLock6.SetActive(false);
+            eclipseBossLock.SetActive(false);
+
+            zonaSeteOpenGate.SetActive(true);
+            zonaSeteClosedGate.SetActive(false);
+        }
+        else if(ManagerOfScenes.instance.isEclipse)
+        {
+            normalLock8.SetActive(false);
+            normalBossLock.SetActive(false);
+            eclipseLock6.SetActive(true);
+            eclipseBossLock.SetActive(true);
+
+            zonaSeteOpenGate.SetActive(false);
+            zonaSeteClosedGate.SetActive(true);
+        }
     }
 
     public void SalaUmTrigger()
@@ -39,6 +69,15 @@ public class FaseTresTriggerController : MonoBehaviour
         for (int i = 0; i < secondLock.Length; i++)
         {
             secondLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+    }
+
+    // Eclipse
+    public void SalaUmEclipse()
+    {
+        for (int i = 0; i < eclipseFirstLock.Length; i++)
+        {
+            eclipseFirstLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
     public void SalaBossInTrigger()
@@ -64,33 +103,67 @@ public class FaseTresTriggerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (inimigosMortos >= 28 && !hasOpenfirst)
+        if(!ManagerOfScenes.instance.isEclipse)
         {
-            hasOpenfirst = true;
-            gate.transform.position = gateCamPos[0].transform.position;
-            GameManager.instance.GateCamSetter(gate);
-            StartCoroutine(FreezeTime());
-            GameManager.instance.GateCAM();
-            StartCoroutine(OpenTheGates(1));
+            if (inimigosMortos >= 28 && !hasOpenfirst)
+            {
+                hasOpenfirst = true;
+                gate.transform.position = gateCamPos[0].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(1));
 
+            }
+            else if (inimigosMortos >= 53 && !hasOpensecond)
+            {
+                hasOpensecond = true;
+                gate.transform.position = gateCamPos[1].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(2));
+            }
+            else if (inimigosMortos > 99 && !hasOpenthird)
+            {
+                hasOpenthird = true;
+                gate.transform.position = gateCamPos[2].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(3));
+            }
         }
-        else if(inimigosMortos >= 53 && !hasOpensecond)
+        else if(ManagerOfScenes.instance.isEclipse)
         {
-            hasOpensecond = true;
-            gate.transform.position = gateCamPos[1].transform.position;
-            GameManager.instance.GateCamSetter(gate);
-            StartCoroutine(FreezeTime());
-            GameManager.instance.GateCAM();
-            StartCoroutine(OpenTheGates(2));
-        }
-        else if(inimigosMortos > 99 && !hasOpenthird)
-        {
-            hasOpenthird = true;
-            gate.transform.position = gateCamPos[2].transform.position;
-            GameManager.instance.GateCamSetter(gate);
-            StartCoroutine(FreezeTime());
-            GameManager.instance.GateCAM();
-            StartCoroutine(OpenTheGates(3));
+            if (inimigosMortos >= 50 && !hasOpenfirst)
+            {
+                hasOpenfirst = true;
+                gate.transform.position = gateCamPos[4].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(4));
+
+            }
+            else if (inimigosMortos >= 80 && !hasOpensecond)
+            {
+                hasOpensecond = true;
+                gate.transform.position = gateCamPos[1].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(2));
+            }
+            else if (inimigosMortos > 120 && !hasOpenthird)
+            {
+                hasOpenthird = true;
+                gate.transform.position = gateCamPos[5].transform.position;
+                GameManager.instance.GateCamSetter(gate);
+                StartCoroutine(FreezeTime());
+                GameManager.instance.GateCAM();
+                StartCoroutine(OpenTheGates(5));
+            }
         }
     }
 
@@ -105,6 +178,7 @@ public class FaseTresTriggerController : MonoBehaviour
         {
             thirdLock[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
         }
+        SalaBossOutTrigger();
     }
     IEnumerator OpenTheGates(int sequence)
     {
@@ -123,6 +197,16 @@ public class FaseTresTriggerController : MonoBehaviour
         else if (sequence == 3)
         {
             SalaBossInTrigger();
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        else if(sequence == 4)
+        {
+            SalaUmEclipse();
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        else if(sequence == 5)
+        {
+            SalaBossOutTrigger();
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
     }

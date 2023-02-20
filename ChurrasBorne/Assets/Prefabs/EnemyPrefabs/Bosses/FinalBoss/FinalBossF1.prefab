@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 4156551936544931189}
   - component: {fileID: 7833462338768357742}
   - component: {fileID: 2166543506473066037}
-  - component: {fileID: 5872128821656161893}
+  - component: {fileID: 3081682210400515377}
+  - component: {fileID: -5737606483468043429}
   m_Layer: 8
   m_Name: FinalBossF1
-  m_TagString: Untagged
+  m_TagString: BOSS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +127,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5872128821656161893
+--- !u!114 &3081682210400515377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,12 +136,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 369112808931189039}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b25405ee4303104eb6a27bb5f2a4980, type: 3}
+  m_Script: {fileID: 11500000, guid: b75bc6f89eb85b2408ca5502c6491571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  player: {fileID: 0}
   rightEye: {fileID: 1663161552698563174}
   leftEye: {fileID: 3058166116961684562}
+  mouth: {fileID: 0}
   laserLeft: {fileID: 8385405464731509094}
   laserRight: {fileID: 4799941311968697613}
   superLaserLeft: {fileID: 5645575906250253377}
@@ -155,13 +157,30 @@ MonoBehaviour:
   - {fileID: 0}
   offensiveDrills: {fileID: 1451586696442213818, guid: 021e4febbbd69c04da411242e0f30c7f, type: 3}
   defensiveDrills: {fileID: 5888971663492928793, guid: 0b7280e2a1834e7459a95668b3ffcaca, type: 3}
+  fireBalls: {fileID: 0}
   secondFase: {fileID: 0}
   health: 500
   isBreathing: 1
+  isF2: 0
   screamDistance: 7
   mask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &-5737606483468043429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369112808931189039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c119906475d1f42b0b9e9b65ba8be4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
+  speed: 5
 --- !u!1 &455606105216589597
 GameObject:
   m_ObjectHideFlags: 0

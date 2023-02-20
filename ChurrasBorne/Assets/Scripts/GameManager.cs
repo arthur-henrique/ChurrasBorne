@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -512,6 +512,7 @@ public class GameManager : MonoBehaviour
         dft.Priority = 1;
         gate.Priority = 0;
         boss.Priority = 0;
+        StartCoroutine(EnablePlayerControl());
     }
 
     public void SwitchToBossCam()
@@ -586,8 +587,13 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(6f);
         SwitchFromGateCam();
+    }
+
+    IEnumerator EnablePlayerControl()
+    {
         yield return new WaitForSecondsRealtime(1f);
         PlayerMovement.EnableControl();
+        
     }
 
 

@@ -4951,6 +4951,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: -2
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!1 &6810366000107654847
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,16 +5065,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LightType: 3
-  m_BlendStyleIndex: 0
+  m_BlendStyleIndex: 1
   m_FalloffIntensity: 0.6
   m_Color: {r: 0.6603774, g: 0.32134196, b: 0.13394447, a: 1}
   m_Intensity: 7
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 0000000035c6e646454e0c9263bf9ed75f6adbe7
   m_LightCookieSprite: {fileID: 0}
-  m_UseNormalMap: 0
+  m_UseNormalMap: 1
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 0
+  m_AlphaBlendOnOverlap: 1
   m_ShadowIntensity: 0
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360

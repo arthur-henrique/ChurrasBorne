@@ -471,10 +471,16 @@ public class PlayerMovement : MonoBehaviour
             GameManager.instance.SwitchToDefaultCam();
             ExitSnowParticles();
         }
-        else if (other.CompareTag("Fish"))
+        else if (other.CompareTag("CLEANSERTINY"))
         {
-            gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
+            isOnIce = false;
+            isOnWeb = false;
+            isOnBossWeb = false;
         }
+        //else if (other.CompareTag("Fish"))
+        //{
+        //    gameObject.GetComponent<PlayerTempPowerUps>().enabled = true;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D other)
