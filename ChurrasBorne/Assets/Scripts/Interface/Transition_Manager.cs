@@ -20,6 +20,11 @@ public class Transition_Manager : MonoBehaviour
     private Vector3 velocity_right2 = Vector3.zero;
     private Vector3 velocity_right3 = Vector3.zero;
 
+    public static Vector2 fase1_spawn = new Vector2(-6.756674f, 3.171088f);
+    public static Vector2 fase2_spawn;
+    public static Vector2 fase3_spawn;
+    public static Vector2 fase4_spawn;
+
     string scene_detect;
 
     GameObject scene_text_display;
@@ -181,11 +186,19 @@ public class Transition_Manager : MonoBehaviour
                 break;
 
             case "FaseUm":
-                GameManager.instance.SetPlayerPosition(new Vector2(-6.756674f, 3.171088f));
+                GameManager.instance.SetPlayerPosition(fase1_spawn);
                 break;
 
             case "FaseDois":
-                GameManager.instance.SetPlayerPosition(new Vector2(0f, 0f));
+                GameManager.instance.SetPlayerPosition(fase2_spawn);
+                break;
+
+            case "FaseTres":
+                GameManager.instance.SetPlayerPosition(fase3_spawn);
+                break;
+
+            case "FaseQuatro":
+                GameManager.instance.SetPlayerPosition(fase4_spawn);
                 break;
         }
 
@@ -235,12 +248,12 @@ public class Transition_Manager : MonoBehaviour
         {
             case "TransitionTest_1":
 
-                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Teste de transição";
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Transition Test";
                 break;
 
             case "TransitionTest_2":
 
-                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Boss final Nazaré Tedesco";
+                scene_text_display.GetComponent<TextMeshProUGUI>().text = "Test Transition 2";
                 break;
 
             case "MainMenu":
@@ -312,4 +325,6 @@ public class Transition_Manager : MonoBehaviour
     {
         yield return null;
     }
+
+
 }
