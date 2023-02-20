@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthBar_Manager : MonoBehaviour
@@ -29,6 +31,10 @@ public class HealthBar_Manager : MonoBehaviour
     GameObject MONSTER_Base;
     GameObject MONSTER_OverlayColor;
     GameObject MONSTER_OverlayLines;
+    GameObject TebasCounter;
+    GameObject TebasCounter_Text;
+    private float TebasCounter_Delay = 0;
+    private int TebasCounter_Last = 0;
 
     GameObject player;
     float realHealth;
@@ -82,6 +88,9 @@ public class HealthBar_Manager : MonoBehaviour
         MONSTER_Base.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         MONSTER_OverlayColor.GetComponent<Image>().color = new Color(0.828f, 0.1284265f, 0.1284265f, 0.0f);
         MONSTER_OverlayLines.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+        TebasCounter = DialogSystem.getChildGameObject(gameObject, "TebasCounter");
+        TebasCounter_Text = DialogSystem.getChildGameObject(gameObject, "TebasCounter_Text");
 
 
         hp_color_8 = new Color(0.2588235f, 0.8584604f, 0.9607843f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
@@ -370,7 +379,30 @@ public class HealthBar_Manager : MonoBehaviour
             MONSTER_OverlayLines.GetComponent<Image>().color = monsterovline;
         }
 
+        // =-------------------- Tebas Counter --------------------=
 
+        if (SceneManager.GetActiveScene().name == "FaseTres")
+        {
+            Debug.Log(FaseTresTriggerController.Instance.inimigosMortos);
+            if (FaseTresTriggerController.Instance.inimigosMortos > TebasCounter_Last)
+            {
+                TebasCounter_Delay = 60f;
+            }
+            if (TebasCounter_Delay > 0)
+            {
+                TebasCounter.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(TebasCounter.GetComponent<CanvasGroup>().alpha, 1f, Time.deltaTime * 4f);
+            } else
+            {
+                TebasCounter.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(TebasCounter.GetComponent<CanvasGroup>().alpha, 0.5f, Time.deltaTime * 4f);
+            }
+            
+            TebasCounter_Last = FaseTresTriggerController.Instance.inimigosMortos;
+            TebasCounter_Delay = Mathf.Lerp(TebasCounter_Delay, 0f, Time.deltaTime * 0.5f);
+            TebasCounter_Text.GetComponent<TextMeshProUGUI>().text = "x " + FaseTresTriggerController.Instance.inimigosMortos;
+        } else
+        {
+            TebasCounter.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(TebasCounter.GetComponent<CanvasGroup>().alpha, 0, Time.deltaTime * 4f);
+        }
     }
 
     public static IEnumerator Alpha_Control_Enable()
