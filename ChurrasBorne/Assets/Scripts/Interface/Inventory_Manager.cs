@@ -146,17 +146,19 @@ public class Inventory_Manager : MonoBehaviour
             item_chavedungeonlua_name = "Chave Lua";
             item_chavedungeonlua_desc = "Apenas um Mago louco recriaria a superfície em sua Masmorra, e a trancaria com 3 chaves... Abre uma das 3 trancas.";
         }
+
         if(PauseManager.isPaused == false)
         {
             if (movementLock == true)
             {
-                if (pc.Movimento.Inventario.WasPressedThisFrame())
+                if (pc.Movimento.Inventario.WasPressedThisFrame() && PlayerMovement.pc.Movimento.enabled)
                 {
                     audioSource.PlayOneShot(ui_confirm, audioSource.volume);
                     movementLock = false;
+                    PlayerMovement.DisableControl();
                 }
                 GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 0, 16f * Time.deltaTime);
-                PlayerMovement.EnableControl();
+                
             }
             else
             {
@@ -164,9 +166,9 @@ public class Inventory_Manager : MonoBehaviour
                 {
                     audioSource.PlayOneShot(ui_confirm, audioSource.volume);
                     movementLock = true;
+                    PlayerMovement.EnableControl();
                 }
                 GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 1, 16f * Time.deltaTime);
-                PlayerMovement.DisableControl();
             }
 
             if (movementLock == false)

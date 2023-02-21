@@ -9860,6 +9860,7 @@ GameObject:
   - component: {fileID: 8211048663312776286}
   - component: {fileID: 5325384035217847443}
   - component: {fileID: -4303711405590160919}
+  - component: {fileID: 7721501121455308085}
   m_Layer: 8
   m_Name: Goat
   m_TagString: Untagged
@@ -9923,8 +9924,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1844687291
-  m_SortingLayer: 2
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 08ab664304bfd13439198e9700e555cd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10144,6 +10145,22 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
   speed: 5
+--- !u!114 &7721501121455308085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6555616963489609874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -1
+  runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!1 &9153242015881178673
 GameObject:
   m_ObjectHideFlags: 0

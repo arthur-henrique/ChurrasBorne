@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         emptyFlask = false,
         fullFlask = false;
 
-
+    public bool faseumBossFire = false;
 
     private void Awake()
     {
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())

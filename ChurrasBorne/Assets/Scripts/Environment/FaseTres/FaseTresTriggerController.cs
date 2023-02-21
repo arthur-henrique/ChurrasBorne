@@ -24,6 +24,9 @@ public class FaseTresTriggerController : MonoBehaviour
     private bool hasOpenfirst = false, hasOpensecond = false, hasOpenthird = false, hasPlayedSound = false;
     public GameObject normalLock8, eclipseLock6, normalBossLock, eclipseBossLock;
     public GameObject zonaSeteOpenGate, zonaSeteClosedGate;
+
+    public bool ignoreCutscene;
+    public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     // Start is called before the first frame update
     void Awake()
     {
@@ -101,6 +104,11 @@ public class FaseTresTriggerController : MonoBehaviour
         inimigosMortos++;
     }
 
+    public void BossFireSet()
+    {
+        ignoreCutscene = true;
+        inimigosMortos = 125;
+    }
     private void FixedUpdate()
     {
         if(!ManagerOfScenes.instance.isEclipse)
@@ -108,29 +116,41 @@ public class FaseTresTriggerController : MonoBehaviour
             if (inimigosMortos >= 28 && !hasOpenfirst)
             {
                 hasOpenfirst = true;
-                gate.transform.position = gateCamPos[0].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[0].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                
                 StartCoroutine(OpenTheGates(1));
 
             }
             else if (inimigosMortos >= 53 && !hasOpensecond)
             {
                 hasOpensecond = true;
-                gate.transform.position = gateCamPos[1].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[1].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                
                 StartCoroutine(OpenTheGates(2));
             }
             else if (inimigosMortos > 99 && !hasOpenthird)
             {
                 hasOpenthird = true;
-                gate.transform.position = gateCamPos[2].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[2].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                Transition_Manager.fase3_spawn = preBossSpawnPointNormal.transform.position;
                 StartCoroutine(OpenTheGates(3));
             }
         }
@@ -139,29 +159,41 @@ public class FaseTresTriggerController : MonoBehaviour
             if (inimigosMortos >= 50 && !hasOpenfirst)
             {
                 hasOpenfirst = true;
-                gate.transform.position = gateCamPos[4].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[4].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                
                 StartCoroutine(OpenTheGates(4));
 
             }
             else if (inimigosMortos >= 80 && !hasOpensecond)
             {
                 hasOpensecond = true;
-                gate.transform.position = gateCamPos[1].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[1].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                
                 StartCoroutine(OpenTheGates(2));
             }
             else if (inimigosMortos > 120 && !hasOpenthird)
             {
                 hasOpenthird = true;
-                gate.transform.position = gateCamPos[5].transform.position;
-                GameManager.instance.GateCamSetter(gate);
-                StartCoroutine(FreezeTime());
-                GameManager.instance.GateCAM();
+                if(!ignoreCutscene)
+                {
+                    gate.transform.position = gateCamPos[5].transform.position;
+                    GameManager.instance.GateCamSetter(gate);
+                    StartCoroutine(FreezeTime());
+                    GameManager.instance.GateCAM();
+                }
+                Transition_Manager.fase3_spawn = preBossSpawnPointEclipse.transform.position;
                 StartCoroutine(OpenTheGates(5));
             }
         }
