@@ -84,6 +84,7 @@ public class ManagerOfScenes : MonoBehaviour
                 audioS.Play();
             }
             GameManager.instance.faseumBossFire = false;
+            SpawnPointResetter();
         }
         
 
@@ -233,5 +234,11 @@ public class ManagerOfScenes : MonoBehaviour
         gate.transform.position = GateCamPos[2].transform.position;
         yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
+    }
+
+    public void SpawnPointResetter()
+    {
+        Transition_Manager.fase1_spawn = Vector2.zero;
+        Transition_Manager.fase3_spawn = Vector2.zero;
     }
 }
