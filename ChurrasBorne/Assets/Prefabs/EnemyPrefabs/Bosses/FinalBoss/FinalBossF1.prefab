@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5737606483468043429}
   m_Layer: 8
   m_Name: FinalBossF1
-  m_TagString: BOSS
+  m_TagString: FinalBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   rightEye: {fileID: 1663161552698563174}
   leftEye: {fileID: 3058166116961684562}
   mouth: {fileID: 0}
+  movingTarget: {fileID: 5465879332127804578, guid: 4e75a91b70ec59649b124d9c3ee3ff73, type: 3}
   laserLeft: {fileID: 8385405464731509094}
   laserRight: {fileID: 4799941311968697613}
   superLaserLeft: {fileID: 5645575906250253377}
@@ -162,6 +163,7 @@ MonoBehaviour:
   health: 500
   isBreathing: 1
   isF2: 0
+  movingTargetIsActive: 0
   screamDistance: 7
   mask:
     serializedVersion: 2

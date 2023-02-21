@@ -4844,7 +4844,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -405050785
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4881,7 +4881,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7419469322836989004}
   - component: {fileID: 7419469322836989005}
-  - component: {fileID: 7419469322836989002}
   - component: {fileID: 7419469322836989007}
   - component: {fileID: 7602596573404951842}
   m_Layer: 0
@@ -4900,7 +4899,7 @@ Transform:
   m_GameObject: {fileID: 7419469322836989000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.795, y: -2.06, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.7, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1770040715875094718}
   - {fileID: 311594630275593269}
@@ -4947,7 +4946,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 12fac0e6647e1554dbe4d323a229868f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae56bb4fdc4759042bbb3b280fd983b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4958,22 +4957,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &7419469322836989002
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7419469322836989000}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.058027267, y: 0.27079284}
-  m_Size: {x: 0.30101585, y: 1.113395}
-  m_Direction: 0
 --- !u!95 &7419469322836989007
 Animator:
   serializedVersion: 3
@@ -4984,7 +4967,7 @@ Animator:
   m_GameObject: {fileID: 7419469322836989000}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a37b6d4c7c0ce214f9b57f0ffd6ed541, type: 2}
+  m_Controller: {fileID: 9100000, guid: b39cacae6d0332f4ea959ed998272d12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5007,7 +4990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   bull: {fileID: 2477395731989692503, guid: b99f82ba50d3e624a8f589cdbc046188, type: 3}
-  damageDistance: 1
   canDamage: 0
   isOnTut: 0
   anim: {fileID: 7419469322836989007}
@@ -9858,7 +9840,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -405050785
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

@@ -16,7 +16,9 @@ public class FinalBossAI : MonoBehaviour
 
     public Transform player, rightEye, leftEye, mouth;
 
-    private Vector3 eyeLaserTarget, target;
+    public Transform movingTarget;
+
+    private Vector3 superLaserTarget, target;
 
     public LineRenderer laserLeft, laserRight, superLaserLeft, superLaserRight;
 
@@ -30,9 +32,9 @@ public class FinalBossAI : MonoBehaviour
 
     public int health;
 
-    private bool isAlreadyDying = false, isShootingEyeLasers = false, isShootingSuperLasers, canTakeDamage = true;
+    private bool isAlreadyDying = false, isShootingSuperLasers, isShootingEyeLasers = false, canTakeDamage = true;
 
-    public bool isBreathing, isF2;
+    public bool isBreathing, isF2, movingTargetIsActive;
 
     public float screamDistance;
     private float timeToReposition, randomNumber, specialATKCooldown;
@@ -123,17 +125,18 @@ public class FinalBossAI : MonoBehaviour
         }
 
         //MIRA DOS LASERS
-        if (!isShootingEyeLasers && !isShootingSuperLasers)
+        
+        if (!isShootingSuperLasers)
         {
-            eyeLaserTarget = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+            superLaserTarget = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
 
-            target = eyeLaserTarget;
+            target = superLaserTarget;
 
-            Vector3 fator = eyeLaserTarget - transform.position;
+            Vector3 fator = superLaserTarget - transform.position;
 
-            target.x = eyeLaserTarget.x + fator.x * 2;
+            target.x = superLaserTarget.x + fator.x * 2;
 
-            target.y = eyeLaserTarget.y + fator.y * 2;
+            target.y = superLaserTarget.y + fator.y * 2;
 
             laserLeft.enabled = false;
             laserRight.enabled = false;
@@ -144,29 +147,29 @@ public class FinalBossAI : MonoBehaviour
         //LASER NORMAL
         if (isShootingEyeLasers)
         {
-            RaycastHit2D[] hitInfoRight = Physics2D.RaycastAll(rightEye.position, target, Mathf.Infinity, mask);
+            RaycastHit2D hitInfoRight = Physics2D.Raycast(rightEye.position, movingTarget.transform.position, Mathf.Infinity, mask);
 
-            if (hitInfoRight != null)
+            if (hitInfoRight)
             {
-                GameManager.instance.TakeDamage(1);
+                GameManager.instance.TakeDamage(10);
             }
 
             laserRight.SetPosition(0, rightEye.position);
-            laserRight.SetPosition(1, target);
+            laserRight.SetPosition(1, movingTarget.position);
 
-            RaycastHit2D[] hitInfoLeft = Physics2D.RaycastAll(leftEye.position, target, Mathf.Infinity, mask);
+            RaycastHit2D hitInfoLeft = Physics2D.Raycast(leftEye.position, movingTarget.transform.position, Mathf.Infinity, mask);
 
-            if (hitInfoLeft != null)
+            if (hitInfoLeft)
             {
-                GameManager.instance.TakeDamage(1);
+                GameManager.instance.TakeDamage(10);
             }
 
             laserLeft.SetPosition(0, leftEye.position);
-            laserLeft.SetPosition(1, target);
+            laserLeft.SetPosition(1, movingTarget.position);
 
             laserLeft.enabled = true;
             laserRight.enabled = true;
-        }
+        }      
 
         //SUPER LASER
         if (isShootingSuperLasers)
@@ -252,12 +255,18 @@ public class FinalBossAI : MonoBehaviour
     }
 
     void aeEyeLasersOn()
-    {
+    { 
         isShootingEyeLasers = true;
     }
     void aeEyeLasersOff()
     {
+        movingTargetIsActive = false;
         isShootingEyeLasers = false;
+    }
+    void aeSpawnMovingTarget()
+    {
+        movingTargetIsActive = true;
+        Instantiate(movingTarget, transform.position, Quaternion.identity); 
     }
 
     void aeSuperLaserOn()
