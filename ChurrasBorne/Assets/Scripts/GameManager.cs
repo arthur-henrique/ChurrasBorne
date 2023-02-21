@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float playerDamage, playerArmor;
     public bool hasBetterSword = false;
-    private float swordDamage = 150f, betterSwordDamage = 25f;
+    private float swordDamage = 15f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
     // Manages Quest
     public bool hasCompletedQuestOne,

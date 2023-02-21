@@ -19,7 +19,7 @@ public class Transition_Manager : MonoBehaviour
     private Vector3 velocity_right1 = Vector3.zero;
     private Vector3 velocity_right2 = Vector3.zero;
     private Vector3 velocity_right3 = Vector3.zero;
-
+    
     public static Vector2 fase1_spawn = new Vector2(-6.756674f, 3.171088f);
     public static Vector2 fase2_spawn = new Vector2(0f, 0f);
     public static Vector2 fase3_spawn = new Vector2(0f, 0f);
@@ -372,5 +372,9 @@ public class Transition_Manager : MonoBehaviour
         yield return null;
     }
 
+    public static void FaseUmSpawnSetter(Vector2 position)
+    {
+        fase1_spawn = new Vector2(position.x, position.y);
+    }
 
 }

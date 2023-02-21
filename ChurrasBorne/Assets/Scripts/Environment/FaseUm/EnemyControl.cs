@@ -20,6 +20,7 @@ public class EnemyControl : MonoBehaviour
     public GateChecker gc;
 
     public Collider2D[] mobTriggers;
+    public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -249,6 +250,8 @@ public class EnemyControl : MonoBehaviour
                 FaseUmTriggerController.Instance.SideSecondGateOpen();
                 FaseUmTriggerController.Instance.FirstGateTrigger();
                 GameManager.instance.faseumBossFire = true;
+                Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointEclipse.transform.position);
+                
             }
         }
     }
@@ -281,6 +284,8 @@ public class EnemyControl : MonoBehaviour
         }
 
         GameManager.instance.faseumBossFire = true;
+        Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
+        
     }
 
     public void IsBossMobCleared()
@@ -317,6 +322,15 @@ public class EnemyControl : MonoBehaviour
         {
             mobTriggers[i].enabled = false;
         }
+
+        //if (!ManagerOfScenes.instance.isEclipse)
+        //{
+        //    //Transition_Manager.fase1_spawn = preBossSpawnPointNormal.transform.position;
+        //    Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
+        //    print("NewSpawnPoint");
+        //}
+        //else if (ManagerOfScenes.instance.isEclipse)
+        //    Transition_Manager.fase1_spawn = preBossSpawnPointEclipse.transform.position;
     }
 
 }

@@ -26,6 +26,7 @@ public class FaseTresTriggerController : MonoBehaviour
     public GameObject zonaSeteOpenGate, zonaSeteClosedGate;
 
     public bool ignoreCutscene;
+    public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     // Start is called before the first frame update
     void Awake()
     {
@@ -149,7 +150,7 @@ public class FaseTresTriggerController : MonoBehaviour
                     StartCoroutine(FreezeTime());
                     GameManager.instance.GateCAM();
                 }
-                
+                Transition_Manager.fase3_spawn = preBossSpawnPointNormal.transform.position;
                 StartCoroutine(OpenTheGates(3));
             }
         }
@@ -192,7 +193,7 @@ public class FaseTresTriggerController : MonoBehaviour
                     StartCoroutine(FreezeTime());
                     GameManager.instance.GateCAM();
                 }
-                
+                Transition_Manager.fase3_spawn = preBossSpawnPointEclipse.transform.position;
                 StartCoroutine(OpenTheGates(5));
             }
         }

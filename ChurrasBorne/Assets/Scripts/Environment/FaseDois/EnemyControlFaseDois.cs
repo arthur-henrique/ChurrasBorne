@@ -21,6 +21,7 @@ public class EnemyControlFaseDois : MonoBehaviour
     public GateChecker gc;
 
     public Collider2D[] mobTriggers;
+    
 
     private void Awake()
     {
@@ -312,5 +313,6 @@ public class EnemyControlFaseDois : MonoBehaviour
         {
             mobTriggers[i].enabled = false;
         }
+        
     }
 }

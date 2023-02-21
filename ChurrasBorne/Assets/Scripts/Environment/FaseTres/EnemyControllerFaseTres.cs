@@ -250,6 +250,7 @@ public class EnemyControllerFaseTres : MonoBehaviour
         {
             mobTriggers[i].enabled = false;
         }
+        
     }
 }
 
