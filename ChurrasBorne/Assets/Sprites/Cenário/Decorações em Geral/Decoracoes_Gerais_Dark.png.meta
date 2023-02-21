@@ -155,6 +155,30 @@ TextureImporter:
   - first:
       213: 4194376415161273274
     second: Decoracoes_Gerais_Dark_50
+  - first:
+      213: -3215668886866061733
+    second: Decoracoes_Gerais_Dark_51
+  - first:
+      213: 7893136903057801051
+    second: Decoracoes_Gerais_Dark_52
+  - first:
+      213: 1775745738382199241
+    second: Decoracoes_Gerais_Dark_53
+  - first:
+      213: 669423196272686451
+    second: Decoracoes_Gerais_Dark_54
+  - first:
+      213: -9067223665451758904
+    second: Decoracoes_Gerais_Dark_55
+  - first:
+      213: 4911293568476362900
+    second: Decoracoes_Gerais_Dark_56
+  - first:
+      213: -2293140855421354700
+    second: Decoracoes_Gerais_Dark_57
+  - first:
+      213: 2662160324889587915
+    second: Decoracoes_Gerais_Dark_58
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1263,7 +1287,7 @@ TextureImporter:
         width: 128
         height: 105
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1284,7 +1308,7 @@ TextureImporter:
         width: 88
         height: 209
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1305,7 +1329,7 @@ TextureImporter:
         width: 128
         height: 275
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1326,7 +1350,7 @@ TextureImporter:
         width: 379
         height: 253
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1334,6 +1358,174 @@ TextureImporter:
       bones: []
       spriteID: abbc6f7702b653a30800000000000000
       internalID: 4194376415161273274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_51
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 999
+        width: 138
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b56921b4f26af53d0800000000000000
+      internalID: -3215668886866061733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_52
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 943
+        width: 275
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f7946913e0a8d60800000000000000
+      internalID: 7893136903057801051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_53
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1728
+        width: 100
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c94fab3757b4a810800000000000000
+      internalID: 1775745738382199241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_54
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 1728
+        width: 163
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3757d3aa9d44a4900800000000000000
+      internalID: 669423196272686451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_55
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 1600
+        width: 128
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ca8bb1dd10ca2280800000000000000
+      internalID: -9067223665451758904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 193
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 498b1b8ba7b682440800000000000000
+      internalID: 4911293568476362900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_57
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 1728
+        width: 98
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43dbca4aa802d20e0800000000000000
+      internalID: -2293140855421354700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_58
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 1472
+        width: 162
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0be24f5b4e1f420800000000000000
+      internalID: 2662160324889587915
       vertices: []
       indices: 
       edges: []
