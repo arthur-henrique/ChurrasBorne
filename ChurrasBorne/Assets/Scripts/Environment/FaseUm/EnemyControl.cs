@@ -18,6 +18,9 @@ public class EnemyControl : MonoBehaviour
     private bool clearedUm, clearedHalf;
     private int randomTL;
     public GateChecker gc;
+
+    public Collider2D[] mobTriggers;
+    public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -29,14 +32,35 @@ public class EnemyControl : MonoBehaviour
         ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
         for (int i = 0; i < ltds.Count; i++)
         {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Global)
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
             {
                 ltds.Remove(ltds[i]);
             }
         }
-        for (int i = 0; i <ltds.Count; i++)
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
         {
             if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Fish"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Fish"))
             {
                 ltds.Remove(ltds[i]);
             }
@@ -49,13 +73,13 @@ public class EnemyControl : MonoBehaviour
         {
             p1.SetActive(true);
             p2.SetActive(false);
-            ltds.ForEach(x => x.intensity = 7f);
+            ltds.ForEach(x => x.intensity = 5f);
         }
         else if (clearedUm && !clearedHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
-            ltds.ForEach(x => x.intensity = 3f);
+            ltds.ForEach(x => x.intensity = 2f);
         }
         else if (clearedUm && clearedHalf)
         {
@@ -63,14 +87,16 @@ public class EnemyControl : MonoBehaviour
             {
                 p1.SetActive(true);
                 p2.SetActive(false);
-                ltds.ForEach(x => x.intensity = 7f);
+                ltds.ForEach(x => x.intensity = 5f);
             }
             else if (randomTL == 2)
             {
                 p1.SetActive(false);
                 p2.SetActive(true);
-                ltds.ForEach(x => x.intensity = 7f);
+                ltds.ForEach(x => x.intensity = 2f);
             }
+
+            
         }
 
         firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
@@ -88,6 +114,12 @@ public class EnemyControl : MonoBehaviour
         fifthMob.ForEach(x => x.SetActive(false));
         sixthMob.ForEach(x => x.SetActive(false));
         bossMob.ForEach(x => x.SetActive(false));
+
+        if (GameManager.instance.faseumBossFire == true)
+        {
+            LoadFromBossCamp();
+            print("Wipe");
+        }
     }
 
     public void KilledEnemy(GameObject enemy)
@@ -199,6 +231,7 @@ public class EnemyControl : MonoBehaviour
             {
                 // abre o portão da wave
                 troncosHalf.SetActive(true);
+                FaseUmTriggerController.Instance.secondWaveCleared();
                 FaseUmTriggerController.Instance.SideFirstGateTrigger();
             }
         }
@@ -213,7 +246,13 @@ public class EnemyControl : MonoBehaviour
                 FaseUmTriggerController.Instance.FirstGateTrigger();
             }
             if (clearedUm)
+            {
                 FaseUmTriggerController.Instance.SideSecondGateOpen();
+                FaseUmTriggerController.Instance.FirstGateTrigger();
+                GameManager.instance.faseumBossFire = true;
+                Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointEclipse.transform.position);
+                
+            }
         }
     }
     public void IsFourthMobCleared()
@@ -243,6 +282,10 @@ public class EnemyControl : MonoBehaviour
         {
             FaseUmTriggerController.Instance.FirstGateOut();
         }
+
+        GameManager.instance.faseumBossFire = true;
+        Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
+        
     }
 
     public void IsBossMobCleared()
@@ -251,6 +294,43 @@ public class EnemyControl : MonoBehaviour
         {
             gc.areTheMobsDead = true;
         }
+    }
+
+    public void LoadFromBossCamp()
+    {
+        firstMob.ForEach(x => Destroy(x));
+        secondMob.ForEach(x => Destroy(x));
+        thirdMob.ForEach(x => Destroy(x));
+        fourthMob.ForEach(x => Destroy(x));
+        fifthMob.ForEach(x => Destroy(x));
+        sixthMob.ForEach(x => Destroy(x));
+        firstMob.Clear();
+        secondMob.Clear();
+        thirdMob.Clear();
+        fourthMob.Clear();
+        fifthMob.Clear();
+        sixthMob.Clear();
+
+        IsFirstMobCleared();
+        IsSecondMobCleared();
+        IsThirdMobCleared();
+        IsFourthMobCleared();
+        IsFifthMobCleared();
+        IsSixthMobCleared();
+
+        for (int i = 0; i < mobTriggers.Length; i++)
+        {
+            mobTriggers[i].enabled = false;
+        }
+
+        //if (!ManagerOfScenes.instance.isEclipse)
+        //{
+        //    //Transition_Manager.fase1_spawn = preBossSpawnPointNormal.transform.position;
+        //    Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
+        //    print("NewSpawnPoint");
+        //}
+        //else if (ManagerOfScenes.instance.isEclipse)
+        //    Transition_Manager.fase1_spawn = preBossSpawnPointEclipse.transform.position;
     }
 
 }

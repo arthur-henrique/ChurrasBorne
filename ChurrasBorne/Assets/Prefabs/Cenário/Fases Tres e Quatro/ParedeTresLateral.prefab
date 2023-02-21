@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3901485765831520883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 3901485767616489480}
   - {fileID: 3901485766307412039}
@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 3901485766115628323}
   - component: {fileID: 3901485766115628335}
   - component: {fileID: 3901485766115628320}
-  - component: {fileID: 3901485766115628321}
   - component: {fileID: 3901485766115628322}
+  - component: {fileID: 3251001926112229934}
   m_Layer: 0
   m_Name: AbertoBaixo
   m_TagString: Untagged
@@ -105,8 +105,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 5706502122170254770, guid: 6e9bda2cef41a6a47be774cf4f3518ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -135,22 +135,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.01739487, y: -0.8}
   m_Size: {x: 2.0373712, y: 0.33217028}
   m_Direction: 1
---- !u!114 &3901485766115628321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3901485766115628324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 3901485766115628335}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
 --- !u!50 &3901485766115628322
 Rigidbody2D:
   serializedVersion: 4
@@ -172,6 +156,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3251001926112229934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901485766115628324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!1 &3901485766307412056
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3901485766307412039}
   - component: {fileID: 3901485766307412037}
-  - component: {fileID: 3901485766307412038}
+  - component: {fileID: 6775771247575084001}
   m_Layer: 0
   m_Name: FechadoCima
   m_TagString: Untagged
@@ -241,8 +241,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -4896202221499964185, guid: 6e9bda2cef41a6a47be774cf4f3518ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -255,7 +255,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3901485766307412038
+--- !u!114 &6775771247575084001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -264,13 +264,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3901485766307412056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 3901485766307412037}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!1 &3901485767472122741
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3901485767472122740}
   - component: {fileID: 3901485767472122738}
-  - component: {fileID: 3901485767472122739}
+  - component: {fileID: 7427189372203518402}
   m_Layer: 0
   m_Name: AbertoCima
   m_TagString: Untagged
@@ -340,8 +340,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 8585670195449970534, guid: 6e9bda2cef41a6a47be774cf4f3518ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3901485767472122739
+--- !u!114 &7427189372203518402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,13 +363,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3901485767472122741}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 3901485767472122738}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!1 &3901485767616489481
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 3901485767616489524}
   - component: {fileID: 3901485767616489525}
   - component: {fileID: 3901485767616489526}
-  - component: {fileID: 3901485767616489527}
+  - component: {fileID: 1107383239780422424}
   m_Layer: 0
   m_Name: FechadoBaixo
   m_TagString: Untagged
@@ -441,8 +441,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -734905617007182091, guid: 6e9bda2cef41a6a47be774cf4f3518ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -492,7 +492,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3901485767616489527
+--- !u!114 &1107383239780422424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -501,10 +501,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3901485767616489481}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 3901485767616489524}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
+  sortingOrderBase: 0
+  offset: -3
+  runOnlyOnce: 0
+  isASortingGroup: 0

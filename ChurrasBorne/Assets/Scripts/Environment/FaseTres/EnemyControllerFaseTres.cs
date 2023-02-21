@@ -18,6 +18,8 @@ public class EnemyControllerFaseTres : MonoBehaviour
     private readonly List<UnityEngine.Experimental.Rendering.Universal.Light2D> ltds = new List<UnityEngine.Experimental.Rendering.Universal.Light2D>();
     private bool clearedTres, clearedTresHalf;
     private int randomTL;
+
+    public Collider2D[] mobTriggers;
     // Start is called before the first frame update
 
     private void Awake()
@@ -29,14 +31,14 @@ public class EnemyControllerFaseTres : MonoBehaviour
         ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
         for (int i = 0; i < ltds.Count; i++)
         {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Global)
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
             {
                 ltds.Remove(ltds[i]);
             }
         }
         for (int i = 0; i < ltds.Count; i++)
         {
-            if (ltds[i].lightType == UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Freeform)
+            if (ltds[i].lightType != UnityEngine.Experimental.Rendering.Universal.Light2D.LightType.Point)
             {
                 ltds.Remove(ltds[i]);
             }
@@ -44,6 +46,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
         for (int i = 0; i < ltds.Count; i++)
         {
             if (ltds[i].CompareTag("Player"))
+            {
+                ltds.Remove(ltds[i]);
+            }
+        }
+        for (int i = 0; i < ltds.Count; i++)
+        {
+            if (ltds[i].CompareTag("Fish"))
             {
                 ltds.Remove(ltds[i]);
             }
@@ -63,13 +72,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
         {
             p1.SetActive(true);
             p2.SetActive(false);
-            ltds.ForEach(x => x.intensity = 7f);
+            ltds.ForEach(x => x.intensity = 5f);
         }
         else if (clearedTres && !clearedTresHalf)
         {
             p1.SetActive(false);
             p2.SetActive(true);
-            ltds.ForEach(x => x.intensity = 3f);
+            ltds.ForEach(x => x.intensity = 2f);
         }
         else if (clearedTres && clearedTresHalf)
         {
@@ -77,13 +86,13 @@ public class EnemyControllerFaseTres : MonoBehaviour
             {
                 p1.SetActive(true);
                 p2.SetActive(false);
-                ltds.ForEach(x => x.intensity = 7f);
+                ltds.ForEach(x => x.intensity = 5f);
             }
             else if (randomTL == 2)
             {
                 p1.SetActive(false);
                 p2.SetActive(true);
-                ltds.ForEach(x => x.intensity = 3f);
+                ltds.ForEach(x => x.intensity = 2f);
 
             }
         }
@@ -107,6 +116,12 @@ public class EnemyControllerFaseTres : MonoBehaviour
         seventhMob.ForEach(x => x.SetActive(false));
         eigthMob.ForEach(x => x.SetActive(false));
         bossMob.ForEach(x => x.SetActive(false));
+
+        if (GameManager.instance.faseumBossFire == true)
+        {
+            LoadFromBossCamp();
+            print("Wipe");
+        }
     }
 
     // Update is called once per frame
@@ -209,64 +224,33 @@ public class EnemyControllerFaseTres : MonoBehaviour
         }
     }
 
-    public void LookUp()
+    public void LoadFromBossCamp()
     {
-        for (int i = 0; i < firstMob.Count; i++)
+        firstMob.ForEach(x => Destroy(x));
+        secondMob.ForEach(x => Destroy(x));
+        thirdMob.ForEach(x => Destroy(x));
+        fourthMob.ForEach(x => Destroy(x));
+        fifthMob.ForEach(x => Destroy(x));
+        sixthMob.ForEach(x => Destroy(x));
+        seventhMob.ForEach(x => Destroy(x));
+        eigthMob.ForEach(x => Destroy(x));
+        firstMob.Clear();
+        secondMob.Clear();
+        thirdMob.Clear();
+        fourthMob.Clear();
+        fifthMob.Clear();
+        sixthMob.Clear();
+        seventhMob.Clear();
+        eigthMob.Clear();
+
+        FaseTresTriggerController.Instance.BossFireSet();
+
+
+        for (int i = 0; i < mobTriggers.Length; i++)
         {
-            if (firstMob[i].activeSelf == true)
-            {
-                firstMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
+            mobTriggers[i].enabled = false;
         }
-        for (int i = 0; i < secondMob.Count; i++)
-        {
-            if (secondMob[i].activeSelf == true)
-            {
-                secondMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < thirdMob.Count; i++)
-        {
-            if (thirdMob[i].activeSelf == true)
-            {
-                thirdMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < fourthMob.Count; i++)
-        {
-            if (fourthMob[i].activeSelf == true)
-            {
-                fourthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < fifthMob.Count; i++)
-        {
-            if (fifthMob[i].activeSelf == true)
-            {
-                fifthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < sixthMob.Count; i++)
-        {
-            if (sixthMob[i].activeSelf == true)
-            {
-                sixthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < seventhMob.Count; i++)
-        {
-            if (seventhMob[i].activeSelf == true)
-            {
-                seventhMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
-        for (int i = 0; i < eigthMob.Count; i++)
-        {
-            if (eigthMob[i].activeSelf == true)
-            {
-                eigthMob[i].GetComponent<MobAI>().OpenYourEyesToTheNight();
-            }
-        }
+        
     }
 }
 

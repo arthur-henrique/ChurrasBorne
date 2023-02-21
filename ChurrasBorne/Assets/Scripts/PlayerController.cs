@@ -98,6 +98,24 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""935e6d6c-3e97-41ac-b079-4f780ffaa305"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackNoMouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""65e0524e-051a-4642-95f8-e1897fcd6921"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -538,6 +556,50 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Inventario"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""420b6ee3-87e6-4f9e-9777-c51c45f63b9d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""050fbe21-7787-444c-b077-ce7cb96ae281"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackNoMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efcce9cc-0baf-4cce-a987-afce56e09f38"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackNoMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bf04b4c-2bf9-425c-b117-44fda19084b5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackNoMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1210,6 +1272,8 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Movimento_Curar = m_Movimento.FindAction("Curar", throwIfNotFound: true);
         m_Movimento_Interagir = m_Movimento.FindAction("Interagir", throwIfNotFound: true);
         m_Movimento_Inventario = m_Movimento.FindAction("Inventario", throwIfNotFound: true);
+        m_Movimento_MouseClick = m_Movimento.FindAction("MouseClick", throwIfNotFound: true);
+        m_Movimento_AttackNoMouse = m_Movimento.FindAction("AttackNoMouse", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -1298,6 +1362,8 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movimento_Curar;
     private readonly InputAction m_Movimento_Interagir;
     private readonly InputAction m_Movimento_Inventario;
+    private readonly InputAction m_Movimento_MouseClick;
+    private readonly InputAction m_Movimento_AttackNoMouse;
     public struct MovimentoActions
     {
         private @PlayerController m_Wrapper;
@@ -1310,6 +1376,8 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @Curar => m_Wrapper.m_Movimento_Curar;
         public InputAction @Interagir => m_Wrapper.m_Movimento_Interagir;
         public InputAction @Inventario => m_Wrapper.m_Movimento_Inventario;
+        public InputAction @MouseClick => m_Wrapper.m_Movimento_MouseClick;
+        public InputAction @AttackNoMouse => m_Wrapper.m_Movimento_AttackNoMouse;
         public InputActionMap Get() { return m_Wrapper.m_Movimento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1343,6 +1411,12 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Inventario.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
                 @Inventario.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
                 @Inventario.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnInventario;
+                @MouseClick.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMouseClick;
+                @MouseClick.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMouseClick;
+                @MouseClick.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnMouseClick;
+                @AttackNoMouse.started -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttackNoMouse;
+                @AttackNoMouse.performed -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttackNoMouse;
+                @AttackNoMouse.canceled -= m_Wrapper.m_MovimentoActionsCallbackInterface.OnAttackNoMouse;
             }
             m_Wrapper.m_MovimentoActionsCallbackInterface = instance;
             if (instance != null)
@@ -1371,6 +1445,12 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @Inventario.started += instance.OnInventario;
                 @Inventario.performed += instance.OnInventario;
                 @Inventario.canceled += instance.OnInventario;
+                @MouseClick.started += instance.OnMouseClick;
+                @MouseClick.performed += instance.OnMouseClick;
+                @MouseClick.canceled += instance.OnMouseClick;
+                @AttackNoMouse.started += instance.OnAttackNoMouse;
+                @AttackNoMouse.performed += instance.OnAttackNoMouse;
+                @AttackNoMouse.canceled += instance.OnAttackNoMouse;
             }
         }
     }
@@ -1580,6 +1660,8 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnCurar(InputAction.CallbackContext context);
         void OnInteragir(InputAction.CallbackContext context);
         void OnInventario(InputAction.CallbackContext context);
+        void OnMouseClick(InputAction.CallbackContext context);
+        void OnAttackNoMouse(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

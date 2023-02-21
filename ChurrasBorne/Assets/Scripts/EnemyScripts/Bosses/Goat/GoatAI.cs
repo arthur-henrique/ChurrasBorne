@@ -299,7 +299,7 @@ public class GoatAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) <= dashATKDistance)
         {
             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
-            GameManager.instance.TakeDamage(40);
+            GameManager.instance.TakeDamage(70);
         }
 
         Instantiate(dashDrills, transform.position, Quaternion.identity);

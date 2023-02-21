@@ -11,6 +11,9 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     public static bool ferreiro_encounter_1_occurred;
     public static bool ferreiro_encounter_2_occurred;
 
+    public Material sprite_lit;
+    public Material sprite_unlit;
+
     private void Awake()
     {
         pc = new PlayerController();
@@ -51,16 +54,24 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
             if (ferreiro_encounter_1_occurred == false && ferreiro_encounter_2_occurred == false)
             {
                 float dist = Vector2.Distance(target.transform.position, transform.position);
-
+                if (dist <= 3)
+                {
+                    GetComponent<SpriteRenderer>().material = sprite_unlit;
+                } else
+                {
+                    GetComponent<SpriteRenderer>().material = sprite_lit;
+                }
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
                     dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0);
                     ferreiro_encounter_1_occurred = true;
+                    GetComponent<SpriteRenderer>().material = sprite_lit;
                 }
             }
 
             if (GoatAI.goat_boss_died == true && ferreiro_encounter_2_occurred == false)
             {
+                GetComponent<SpriteRenderer>().material = sprite_lit;
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(-56f, 262f), 8f * Time.deltaTime);
                 target.transform.position = Vector2.MoveTowards(target.transform.position, new Vector2(-48f, 262f), 10f * Time.deltaTime);
                 GetComponent<Animator>().SetBool("WALKING", true);

@@ -185,7 +185,6 @@ GameObject:
   - component: {fileID: 4642801250379645025}
   - component: {fileID: 4642801250379645024}
   - component: {fileID: 4642801250379645031}
-  - component: {fileID: 4642801250379645027}
   m_Layer: 0
   m_Name: Rampa _ Bloqueio
   m_TagString: Untagged
@@ -248,8 +247,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 3981b52b65c918c4da2f71500849a075, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -307,24 +306,6 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 0
---- !u!114 &4642801250379645027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4642801250379645030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 4642801250379645025}
-  upLayer: Player
-  downLayer: Objects
-  needXTransform: 0
-  distance: 30
 --- !u!1001 &4642801248388367149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -336,6 +317,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 800579787450778466, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 800579787450778466, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1844687291
+      objectReference: {fileID: 0}
     - target: {fileID: 1928151309057107739, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -343,6 +332,14 @@ PrefabInstance:
     - target: {fileID: 6189696831563935380, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_Name
       value: PneuDuplo Baixo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487567808257396499, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487567808257396499, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1844687291
       objectReference: {fileID: 0}
     - target: {fileID: 8002695260345312054, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_RootOrder
@@ -406,6 +403,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 800579787450778466, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 800579787450778466, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1844687291
+      objectReference: {fileID: 0}
     - target: {fileID: 1928151309057107739, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -413,6 +418,14 @@ PrefabInstance:
     - target: {fileID: 6189696831563935380, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_Name
       value: PneuDuplo Cima
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487567808257396499, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487567808257396499, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1844687291
       objectReference: {fileID: 0}
     - target: {fileID: 8002695260345312054, guid: 3c1e0db82befda54192ad898c99dc4da, type: 3}
       propertyPath: m_RootOrder

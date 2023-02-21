@@ -89,6 +89,10 @@ public class FaseDoisTriggerController : MonoBehaviour
     {
         salasTerminadas++;
     }
+    public void BossFireSet()
+    {
+        salasTerminadas = 4;
+    }
 
     private void FixedUpdate()
     {
@@ -97,6 +101,8 @@ public class FaseDoisTriggerController : MonoBehaviour
             salasTerminadas = 0;
             GameManager.instance.GateCAM();
             StartCoroutine(OpenTheGates());
+            if(!GameManager.instance.faseumBossFire)
+                GameManager.instance.faseumBossFire = true;
 
         }
     }

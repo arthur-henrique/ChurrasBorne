@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1712351523996777571}
   - component: {fileID: 5063045253736509631}
   - component: {fileID: 1750945041854158652}
+  - component: {fileID: 3943649255944544380}
   m_Layer: 8
   m_Name: Armor
   m_TagString: Untagged
@@ -35,6 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4433730912837739496}
+  - {fileID: 6315488033846601143}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1844687291
-  m_SortingLayer: 2
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 972208103877b054dbd25fedfac9f48d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -169,16 +171,15 @@ MonoBehaviour:
   armor_hurt: {fileID: 8300000, guid: 1aa94e60c2e65f844aea3aef305673dc, type: 3}
   armor_bladespin: {fileID: 8300000, guid: 136f007332e33d244a5b36132ae02c40, type: 3}
   health: 900
-  chasingSpeed: 4
+  chasingSpeed: 7
   timeBTWSlashATKs: 2
   slashMeleeDistance: 4
   slashRangedDistance: 20
   timeBTWSpinATKs: 2
   spinDistance: 3
-  isOnFaseDois: 0
-  isOnFaseDoisHalf: 0
-  faseDois: {fileID: 0}
-  faseDoisHalf: {fileID: 0}
+  gc: {fileID: 0}
+  canMatch: 0
+  canGrid: 0
 --- !u!82 &5063045253736509631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -290,6 +291,73 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 0.5568628, g: 0.11764706, b: 0.11764706, a: 1}
   speed: 5
+--- !u!114 &3943649255944544380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712351523996777568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -2
+  runOnlyOnce: 0
+  isASortingGroup: 0
+--- !u!1 &2847761805883351526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6315488033846601143}
+  - component: {fileID: 7305550649768943559}
+  m_Layer: 0
+  m_Name: ArmorAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6315488033846601143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847761805883351526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.3, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1712351523996777574}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7305550649768943559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847761805883351526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c274f04e1972c84d9d5d3ec5002b41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 25
+  canKnockback: 0
+  squareHitBox: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  size: {x: 12, y: 14}
+  radius: 0
 --- !u!1 &5748991568278659421
 GameObject:
   m_ObjectHideFlags: 0

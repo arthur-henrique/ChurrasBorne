@@ -4929,7 +4929,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5058,6 +5058,8 @@ MonoBehaviour:
   isAGeletebas: 0
   isAShatebas: 0
   isAGigantebas: 0
+  isASkeletebas: 0
+  isASkully: 0
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
@@ -5065,6 +5067,7 @@ MonoBehaviour:
   bloodSpatter: {fileID: 5037517516293098408}
   stepDust: {fileID: 0}
   stompDust: {fileID: 0}
+  spriteCenter: {fileID: 0}
 --- !u!114 &-6535169719040685427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5080,6 +5083,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: 1
   runOnlyOnce: 0
+  isASortingGroup: 0
 --- !u!82 &5215769626941744696
 AudioSource:
   m_ObjectHideFlags: 0
