@@ -143,6 +143,18 @@ TextureImporter:
   - first:
       213: -1829467168970694876
     second: Pilar_3
+  - first:
+      213: 230988379362608795
+    second: Decoracoes_Gerais_Dark_47
+  - first:
+      213: 4671087934591261424
+    second: Decoracoes_Gerais_Dark_48
+  - first:
+      213: -8281624807629324888
+    second: Decoracoes_Gerais_Dark_49
+  - first:
+      213: 4194376415161273274
+    second: Decoracoes_Gerais_Dark_50
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1238,6 +1250,90 @@ TextureImporter:
       bones: []
       spriteID: 42f13418d4d6c96e0800000000000000
       internalID: -1829467168970694876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_47
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 652
+        width: 128
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96c62b05b2a43300800000000000000
+      internalID: 230988379362608795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_48
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 718
+        width: 88
+        height: 209
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fadcef5ab903d040800000000000000
+      internalID: 4671087934591261424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_49
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 652
+        width: 128
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8adf03a8d12c11d80800000000000000
+      internalID: -8281624807629324888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_50
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 389
+        width: 379
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abbc6f7702b653a30800000000000000
+      internalID: 4194376415161273274
       vertices: []
       indices: 
       edges: []
