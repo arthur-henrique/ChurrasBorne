@@ -35,6 +35,8 @@ public class TricksterAI : MonoBehaviour
     private float currentTimeBTWLRATKs, currentTimeBTWCRATKs, timeToDie;
     private bool canTakeDamage = true;
 
+    public GateChecker gc;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -158,6 +160,8 @@ public class TricksterAI : MonoBehaviour
                 {
                     timeToDie -= Time.deltaTime;
                 }
+
+                gc.isTheBossDead = true;
                 break;
 
             case State.Idling:
