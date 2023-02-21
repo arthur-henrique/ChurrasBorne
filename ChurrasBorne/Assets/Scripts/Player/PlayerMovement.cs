@@ -261,6 +261,26 @@ public class PlayerMovement : MonoBehaviour
                     healingPressed = true;
                     attackPressed = false;
                 }
+
+                if (pc.Movimento.Rolar.WasPressedThisFrame())
+                {
+                    
+                    if (Dash_Manager.dash_fill_global >= 60)
+                    {
+                        print("DamageRoll");
+                        rollDirection = lastMovedDirection;
+                        rollSpeed = 70f;
+                        state = State.Rolling;
+                        anim.SetTrigger("isRolling");
+                        reflAnim.SetTrigger("isRolling");
+                        //print("Rolei");
+                        StartCoroutine(DustWait());
+                        audioSource.PlayOneShot(player_dash, audioSource.volume);
+                        Dash_Manager.dash_fill_global -= 60;
+                        Dash_Manager.dash_light_global = 0;
+                    }
+                }
+
                 if (timer <= 0f)
                 {
                     if (healingPressed)
