@@ -5068,6 +5068,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2556146964706598943}
     m_Modifications:
+    - target: {fileID: 1009275005415697850, guid: 71baa035dc1a6b446b8bb2f4b9502bbe, type: 3}
+      propertyPath: offset
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009275005415697850, guid: 71baa035dc1a6b446b8bb2f4b9502bbe, type: 3}
+      propertyPath: runOnlyOnce
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1954161232441794928, guid: 71baa035dc1a6b446b8bb2f4b9502bbe, type: 3}
       propertyPath: m_Name
       value: LuzTres
@@ -5147,19 +5155,3 @@ SortingGroup:
   m_SortingLayerID: -677462173
   m_SortingLayer: 3
   m_SortingOrder: 2
---- !u!114 &865189394736617452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 917097030069992846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingOrderBase: 0
-  offset: 0
-  runOnlyOnce: 1
-  isASortingGroup: 1

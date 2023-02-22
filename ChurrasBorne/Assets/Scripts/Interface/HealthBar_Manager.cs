@@ -383,7 +383,7 @@ public class HealthBar_Manager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "FaseTres")
         {
-            Debug.Log(FaseTresTriggerController.Instance.inimigosMortos);
+            //Debug.Log(FaseTresTriggerController.Instance.inimigosMortos);
             if (FaseTresTriggerController.Instance.inimigosMortos > TebasCounter_Last)
             {
                 TebasCounter_Delay = 60f;
