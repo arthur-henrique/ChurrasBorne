@@ -4,7 +4,31 @@ using UnityEngine;
 
 public class DialogBank : MonoBehaviour
 {
+    public static string[] english_bank =
+    {
+        "",                                                        /* 0 */
+        "teste um",                                                /* 1 */
+        "You've got your first meatstick!",                        /* 2 */
+        "Your health has been completely restored.",               /* 3 */
+        "Your health has been completely restored, " +
+        "and if possible, a meat has been added to your stick.",   /* 4 */
+        "Your health has been completely restored, " +
+        "and if possible, meat have been added to your stick."     /* 5 */
+    };
+
     public static string[] portuguese_bank =
+    {
+        "",                                                     /* 0 */
+        "teste um",                                             /* 1 */
+        "Você agora possui seu primeiro espetinho!",            /* 2 */
+        "Sua vida foi completamente restaurada.",               /* 3 */
+        "Sua vida foi completamente restaurada, " +
+        "e um espeto foi reposto se possível em sua espada.",   /* 4 */
+        "Sua vida foi completamente restaurada, " +
+        "e espetos foram repostos se possível em sua espada."   /* 5 */
+    };
+
+    public static string[] spanish_bank =
     {
         "",                                                     /* 0 */
         "teste um",                                             /* 1 */
