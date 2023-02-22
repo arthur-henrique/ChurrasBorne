@@ -99,9 +99,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.24}
-  m_Size: {x: 0.25, y: 0.5}
-  m_Direction: 0
+  m_Offset: {x: 0.006597873, y: -0.28785065}
+  m_Size: {x: 0.28886274, y: 0.051328547}
+  m_Direction: 1
 --- !u!114 &4132719561172653066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: 0
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!1 &9188201078226513358
 GameObject:
   m_ObjectHideFlags: 0
