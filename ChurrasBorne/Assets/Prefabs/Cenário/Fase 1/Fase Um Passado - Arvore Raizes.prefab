@@ -101,6 +101,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: -5
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!95 &687163521444977564
 Animator:
   serializedVersion: 3
@@ -234,7 +235,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -921096345
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 8
   m_Sprite: {fileID: -2271383065896649574, guid: 65f4f71d45a3a8b4cbd27629430a47b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -277,6 +278,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: -25
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!95 &2461360289378305740
 Animator:
   serializedVersion: 3
@@ -412,6 +414,7 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: 0
   runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!70 &7790717044200858799
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
