@@ -59,8 +59,8 @@ public class BullAI : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
 
-        timeBTWMeleeATKs = Random.Range(1.5f,2.6f);
-        timeBTWRangedATKs = Random.Range(2f, 3.6f);
+        timeBTWMeleeATKs = 0.5f;
+        timeBTWRangedATKs = 1.5f;
         timeBTWScreamATKs = Random.Range(15f, 21f);
 
         if (isOnTut)
@@ -69,7 +69,7 @@ public class BullAI : MonoBehaviour
         }
         else
         {
-            health = 200;
+            health = 800;
         }
         audioSource.PlayOneShot(bull_roar, audioSource.volume);
         HealthBar_Manager.instance.boss = this.gameObject;
@@ -250,12 +250,14 @@ public class BullAI : MonoBehaviour
         {
             //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(15);
+
         }
         else if (Vector2.Distance(transform.position, player.position) <= meleeDistance && !isOnTut)
         {
             //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
             GameManager.instance.TakeDamage(30);
         }
+        timeBTWRangedATKs = Random.Range(1.5f, 2.5f);
     }
 
     //SPIKES
@@ -269,6 +271,7 @@ public class BullAI : MonoBehaviour
         {
             GameManager.instance.TakeDamage(15);
         }
+        timeBTWMeleeATKs = 0.5f;
         timeBTWRangedATKs = Random.Range(2f, 3.6f);
         isSummoningSpikes = false;
         SwitchBTWCombatStates();
