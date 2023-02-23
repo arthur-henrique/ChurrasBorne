@@ -197,6 +197,15 @@ TextureImporter:
   - first:
       213: -2928287107197684247
     second: Decoracoes_Gerais_Dark_64
+  - first:
+      213: -3737661820857940692
+    second: Decoracoes_Gerais_Dark_65
+  - first:
+      213: -8515071665493020120
+    second: Decoracoes_Gerais_Dark_66
+  - first:
+      213: -6540573074392768026
+    second: Decoracoes_Gerais_Dark_67
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1670,6 +1679,69 @@ TextureImporter:
       bones: []
       spriteID: 9e530270462ac57d0800000000000000
       internalID: -2928287107197684247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_65
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 869
+        width: 22
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c25093d7068212cc0800000000000000
+      internalID: -3737661820857940692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_66
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 869
+        width: 22
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8227b4d5f6364d980800000000000000
+      internalID: -8515071665493020120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoracoes_Gerais_Dark_67
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 869
+        width: 66
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e1a55931773b35a0800000000000000
+      internalID: -6540573074392768026
       vertices: []
       indices: 
       edges: []

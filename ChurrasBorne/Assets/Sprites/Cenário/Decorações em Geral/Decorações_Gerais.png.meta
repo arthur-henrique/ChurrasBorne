@@ -287,6 +287,15 @@ TextureImporter:
   - first:
       213: -6266043997423898940
     second: "Decora\xE7\xF5es_Gerais_87"
+  - first:
+      213: 3155019252766655162
+    second: "Decora\xE7\xF5es_Gerais_88"
+  - first:
+      213: 2200647885901683627
+    second: "Decora\xE7\xF5es_Gerais_89"
+  - first:
+      213: 9190760972712118252
+    second: "Decora\xE7\xF5es_Gerais_90"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2390,6 +2399,69 @@ TextureImporter:
       bones: []
       spriteID: 4ce649aee2a8a09a0800000000000000
       internalID: -6266043997423898940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Decora\xE7\xF5es_Gerais_88"
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 847
+        width: 22
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab2ccac5b41e8cb20800000000000000
+      internalID: 3155019252766655162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Decora\xE7\xF5es_Gerais_89"
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 847
+        width: 22
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab52eab7954a8e10800000000000000
+      internalID: 2200647885901683627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Decora\xE7\xF5es_Gerais_90"
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 847
+        width: 66
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce78702f8642c8f70800000000000000
+      internalID: 9190760972712118252
       vertices: []
       indices: 
       edges: []
