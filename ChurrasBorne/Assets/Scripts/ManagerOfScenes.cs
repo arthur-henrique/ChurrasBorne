@@ -120,6 +120,7 @@ public class ManagerOfScenes : MonoBehaviour
                     isEclipse = true;
                 }
             }
+            GameManager.instance.EnableTheControl();
         }
 
         if (gameObject.CompareTag("FASEDOIS"))
@@ -166,8 +167,10 @@ public class ManagerOfScenes : MonoBehaviour
                     eclipse.SetActive(true);
                 }
             }
+            GameManager.instance.EnableTheControl();
+
         }
-        if(gameObject.CompareTag("FASETRES"))
+        if (gameObject.CompareTag("FASETRES"))
         {
             PostProcessingControl.Instance.TurnOffVignette();
             if (!clearedTres && !clearedTresHalf)
@@ -200,7 +203,9 @@ public class ManagerOfScenes : MonoBehaviour
                     isEclipse = true;
                 }
             }
+            GameManager.instance.EnableTheControl();
         }
+
 
     }
 

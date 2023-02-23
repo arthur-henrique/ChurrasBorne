@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4184757367657961259}
   - component: {fileID: 4184757367657961260}
   - component: {fileID: 4184757367657961261}
-  - component: {fileID: 4184757367657961256}
+  - component: {fileID: 1878280576901121154}
   m_Layer: 0
   m_Name: "Port\xE3o BossTres"
   m_TagString: PAREDE
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1189529141
-  m_SortingLayer: 1
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 2240623278048459841, guid: d0cea27c79635bc4f907a0cb783c413e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146,7 +146,8 @@ MonoBehaviour:
   sortingOrderBase: 0
   offset: 1
   runOnlyOnce: 1
---- !u!114 &4184757367657961256
+  isASortingGroup: 0
+--- !u!114 &1878280576901121154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,11 +156,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4184757367657961262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077837c549bedf4285c868aeec3c958, type: 3}
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  srs:
-  - {fileID: 4184757367657961258}
-  upLayer: Portoes e Paredes
-  downLayer: Objects
-  needXTransform: 0
+  passado: {fileID: 0}
+  eclipse: {fileID: 0}
+  sceneManager: {fileID: 0}
+  "isFaseTr\xEAsPort\xE3o": 1
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 0.3949892, b: 0.3150943, a: 1}

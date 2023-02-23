@@ -6,13 +6,18 @@ public class SpriteAutomation : MonoBehaviour
 {
     private SpriteRenderer sr;
     public Sprite passado, eclipse;
-    public GameObject sceneManager;
+    public ManagerOfScenes sceneManager;
+
+    // Portões
+    public bool isFaseTrêsPortão = false;
+    public Color startColor, endColor;
+
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        sceneManager = GameObject.FindGameObjectWithTag("FASETRES");
+        sceneManager = FindObjectOfType<ManagerOfScenes>();
         StartCoroutine(CheckEclipse());        
     }
 
@@ -21,14 +26,18 @@ public class SpriteAutomation : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         if (sceneManager.GetComponent<ManagerOfScenes>().isEclipse == false)
         {
-            sr.sprite = passado;
-            print("iSPassado");
+            if(!isFaseTrêsPortão)
+                sr.sprite = passado;
         }
         else if (sceneManager.GetComponent<ManagerOfScenes>().isEclipse == true)
         {
-            sr.sprite = eclipse;
-            print("iSEclipse");
-
+            if(!isFaseTrêsPortão)
+                sr.sprite = eclipse;
+            else if(isFaseTrêsPortão)
+            {
+                sr.color = endColor;
+                print("ChangedColor");
+            }
         }
     }
 

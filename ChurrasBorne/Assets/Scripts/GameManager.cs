@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -634,6 +634,17 @@ public class GameManager : MonoBehaviour
     public void TurnVignetteOn()
     {
         PostProcessingControl.Instance.TurnOnVignette();
+    }
+
+    IEnumerator WaitToEnable()
+    {
+        yield return new WaitForSeconds(.25f);
+        PlayerMovement.EnableControl();
+    }
+
+    public void EnableTheControl()
+    {
+        StartCoroutine(WaitToEnable());
     }
 }
 
