@@ -809,6 +809,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1994779153564183492}
     m_Modifications:
+    - target: {fileID: 311594630275593269, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 311594630275593269, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770040715875094718, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 1770040715875094718, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7252896213088993671, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7419469322836989000, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
       propertyPath: m_Name
       value: BullSpike
@@ -856,6 +876,54 @@ PrefabInstance:
     - target: {fileID: 7419469322836989004, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602596573404951842, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: isCenterSpike
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739566237230729913, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: ShapeModule.donutRadius
+      value: 3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739566237230729913, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739566237230729913, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 5.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739566237230729913, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739566237230729913, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 7861779171149289849, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393471087344631882, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: ShapeModule.donutRadius
+      value: 3.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393471087344631882, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393471087344631882, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 5.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393471087344631882, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393471087344631882, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa9f6638afc9ff4abb8d16679b5394b, type: 3}
