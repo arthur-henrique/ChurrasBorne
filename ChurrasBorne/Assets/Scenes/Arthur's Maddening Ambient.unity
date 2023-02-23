@@ -6956,11 +6956,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4184757367657961260, guid: 8e8165e9daa1afe42905fb7eedd75427, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4184757367657961262, guid: 8e8165e9daa1afe42905fb7eedd75427, type: 3}
       propertyPath: m_Name
       value: "Port\xE3o BossTres"
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1878280576901121154, guid: 8e8165e9daa1afe42905fb7eedd75427, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8e8165e9daa1afe42905fb7eedd75427, type: 3}
 --- !u!1 &1130404311 stripped
 GameObject:
@@ -8216,9 +8221,11 @@ MonoBehaviour:
   gate: {fileID: 0}
   portalUm: {fileID: 0}
   portalDois: {fileID: 0}
+  portalTres: {fileID: 0}
   audioS: {fileID: 0}
   questHubAudio: {fileID: 0}
   isEclipse: 0
+  test: 0
   GateCamPos: []
 --- !u!4 &1748785053
 Transform:
@@ -8778,6 +8785,63 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &4965191244340314321
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491536018421373770, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6943446008725683404, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
+      propertyPath: m_Name
+      value: FaseTres - Eclipse
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b28cd684913b3045aea9d8f59c6c313, type: 3}
 --- !u!1001 &7068435553668229619
 PrefabInstance:
   m_ObjectHideFlags: 0
