@@ -555,6 +555,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 1772222010}
+  - {fileID: 1814006355}
   - {fileID: 1004900265}
   - {fileID: 983696181}
   - {fileID: 445930343}
@@ -6232,7 +6233,7 @@ Transform:
   m_Children:
   - {fileID: 1937321011}
   m_Father: {fileID: 204643109}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &456721297
 PrefabInstance:
@@ -14462,7 +14463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3814595800453784547, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5562796071122361804, guid: 0c1da1329ce0cb040ac2455d587d3b18, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -18387,7 +18388,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 204643109}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004900264
 GameObject:
@@ -18417,7 +18418,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 204643109}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040889696
 GameObject:
@@ -18861,12 +18862,15 @@ MonoBehaviour:
   gate: {fileID: 445930342}
   portalUm: {fileID: 710057777}
   portalDois: {fileID: 396355597}
+  portalTres: {fileID: 1634643079}
   audioS: {fileID: 1040889697}
   questHubAudio: {fileID: 8300000, guid: 1002a157e9312f34aa820e3ea746e455, type: 3}
   isEclipse: 0
+  test: 0
   GateCamPos:
   - {fileID: 983696180}
   - {fileID: 1004900264}
+  - {fileID: 1814006354}
   - {fileID: 1772222009}
 --- !u!4 &1147181883
 Transform:
@@ -36990,6 +36994,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalFase3
       objectReference: {fileID: 0}
+    - target: {fileID: 3333799665382018881, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8111036982041144527, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8805076472335334027, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -37036,6 +37048,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
+--- !u!1 &1634643079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8111036982041144527, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
+  m_PrefabInstance: {fileID: 1634643078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1634836191
 GameObject:
   m_ObjectHideFlags: 0
@@ -37529,6 +37546,36 @@ Transform:
   - {fileID: 2062500722}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1814006354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814006355}
+  m_Layer: 0
+  m_Name: CamPosFaseTres
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814006355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814006354}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -54.92, y: 136.94, z: -10}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 204643109}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1814109944
 GameObject:

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6064236147103309804}
   - component: {fileID: 412791827660217465}
+  - component: {fileID: 2399791306229714859}
   m_Layer: 0
   m_Name: PosteHead2
   m_TagString: Untagged
@@ -82,3 +83,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2399791306229714859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219380329656408027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8ba25d09c01de4aaf453c4fc5eb2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passado: {fileID: 2200647885901683627, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
+  eclipse: {fileID: -3737661820857940692, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+  sceneManager: {fileID: 0}
+  "isFaseTr\xEAsPort\xE3o": 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}

@@ -7,14 +7,17 @@ public class ManagerOfScenes : MonoBehaviour
     public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
     public GameObject particleEmmy;
-    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf;
+    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf, clearedQuatro;
     public static int randomTimeline;
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
     public Animator portalDois;
+    public GameObject portalTres;
     public AudioSource audioS;
     public AudioClip questHubAudio;
     public bool isEclipse = false;
+
+    public bool test;
 
     
 
@@ -209,6 +212,15 @@ public class ManagerOfScenes : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        if(test)
+        {
+            test = false;
+            StartCoroutine(ShowThirdPath());
+        }
+    }
+
 
     public void ShowFirstPhase()
     {
@@ -233,10 +245,18 @@ public class ManagerOfScenes : MonoBehaviour
         portalDois.SetTrigger("ON");
     }
 
+    IEnumerator ShowThirdPath()
+    {
+        gate.transform.position = GateCamPos[2].transform.position;
+        yield return new WaitForSeconds(1.5f);
+        GameManager.instance.GateCAM();
+        StartCoroutine(OpenFaseTres());
+    }
+
     IEnumerator ShowChurras()
     {
         PlayerMovement.DisableControl();
-        gate.transform.position = GateCamPos[2].transform.position;
+        gate.transform.position = GateCamPos[3].transform.position;
         yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
     }
@@ -245,5 +265,11 @@ public class ManagerOfScenes : MonoBehaviour
     {
         Transition_Manager.fase1_spawn = Vector2.zero;
         Transition_Manager.fase3_spawn = Vector2.zero;
+    }
+
+    IEnumerator OpenFaseTres()
+    {
+        yield return new WaitForSeconds(1.5f);
+        portalTres.SetActive(true);
     }
 }

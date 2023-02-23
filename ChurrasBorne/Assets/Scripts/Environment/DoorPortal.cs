@@ -69,6 +69,12 @@ public class DoorPortal : MonoBehaviour
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseDois");
                 PlayerMovement.DisableControl();
             }
+
+            if (gameObject.CompareTag("PortaTres"))
+            {
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
+                PlayerMovement.DisableControl();
+            }
         }
     }
 }

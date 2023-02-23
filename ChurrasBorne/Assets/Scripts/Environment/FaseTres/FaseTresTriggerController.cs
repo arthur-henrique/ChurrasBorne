@@ -27,7 +27,9 @@ public class FaseTresTriggerController : MonoBehaviour
 
     public bool ignoreCutscene;
     public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
+    public GameObject luzPortal;
     // Start is called before the first frame update
+    public bool test, test1;
     void Awake()
     {
         Instance = this;
@@ -197,6 +199,18 @@ public class FaseTresTriggerController : MonoBehaviour
                 StartCoroutine(OpenTheGates(5));
             }
         }
+
+        if(test)
+        {
+            test = false;
+            CloseTheGates();
+        }
+
+        if (test1)
+        {
+            test1 = false;
+            GateOpener();
+        }
     }
 
     public void GateOpener()
@@ -229,6 +243,7 @@ public class FaseTresTriggerController : MonoBehaviour
         else if (sequence == 3)
         {
             SalaBossInTrigger();
+            SalaBossOutTrigger();
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
         else if(sequence == 4)
@@ -245,8 +260,9 @@ public class FaseTresTriggerController : MonoBehaviour
     IEnumerator BossWasKilled()
     {
         gate.transform.position = gateCamPos[3].transform.position;
-        yield return new WaitForSeconds(1);
         GameManager.instance.GateCamSetter(gate);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(TurnOnTheLightPortal());    
         GameManager.instance.GateCAM();
         SalaBossInTrigger();
         SalaBossOutTrigger();
@@ -262,5 +278,10 @@ public class FaseTresTriggerController : MonoBehaviour
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(7);
         Time.timeScale = 1;
+    }
+    IEnumerator TurnOnTheLightPortal()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        luzPortal.SetActive(true);
     }
 }
