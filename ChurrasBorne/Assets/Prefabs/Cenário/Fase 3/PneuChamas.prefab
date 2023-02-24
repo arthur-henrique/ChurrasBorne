@@ -140,6 +140,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: 7437872799145665151, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
   eclipse: {fileID: 2178396377148843816, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+  sceneManager: {fileID: 0}
+  "isFaseTr\xEAsPort\xE3o": 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &6346125698938766117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5065,7 +5069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: -2
+  offset: -1
   runOnlyOnce: 1
   isASortingGroup: 0
 --- !u!1001 &626998746998114811
