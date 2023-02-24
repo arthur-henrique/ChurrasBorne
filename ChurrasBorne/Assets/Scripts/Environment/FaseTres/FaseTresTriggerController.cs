@@ -15,6 +15,13 @@ public class FaseTresTriggerController : MonoBehaviour
 
     // Eclipse
     public GameObject[] eclipseFirstLock;
+    public GameObject[] eclipseSecondLock;
+    public GameObject[] eclipseThirdLock;
+    public GameObject[] eclipseFourthLock;
+    public GameObject[] eclipseFifthLock;
+    public GameObject[] eclipseSixthLock;
+
+
 
 
     public GameObject portalToHub;
@@ -28,6 +35,7 @@ public class FaseTresTriggerController : MonoBehaviour
     public bool ignoreCutscene;
     public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     public GameObject luzPortal;
+    private ManagerOfScenes manager;
     // Start is called before the first frame update
     public bool test, test1;
     void Awake()
@@ -38,26 +46,24 @@ public class FaseTresTriggerController : MonoBehaviour
 
     private void Start()
     {
+        manager = FindObjectOfType<ManagerOfScenes>();
         inimigosMortos = 0;
-        if (!ManagerOfScenes.instance.isEclipse)
+        if (!manager.isEclipse)
         {
             normalLock8.SetActive(true);
             normalBossLock.SetActive(true);
             eclipseLock6.SetActive(false);
             eclipseBossLock.SetActive(false);
 
-            zonaSeteOpenGate.SetActive(true);
-            zonaSeteClosedGate.SetActive(false);
+            
         }
-        else if(ManagerOfScenes.instance.isEclipse)
+        else if(manager.isEclipse)
         {
             normalLock8.SetActive(false);
             normalBossLock.SetActive(false);
             eclipseLock6.SetActive(true);
             eclipseBossLock.SetActive(true);
 
-            zonaSeteOpenGate.SetActive(false);
-            zonaSeteClosedGate.SetActive(true);
         }
     }
 
@@ -85,6 +91,22 @@ public class FaseTresTriggerController : MonoBehaviour
             eclipseFirstLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
+
+    public void SalaDoisEclipse()
+    {
+        for (int i = 0; i < eclipseFirstLock.Length; i++)
+        {
+            eclipseSecondLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+    }
+
+    public void SalaTresEclipse()
+    {
+        for (int i = 0; i < eclipseFirstLock.Length; i++)
+        {
+            eclipseThirdLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+    }
     public void SalaBossInTrigger()
     {
         for (int i = 0; i < thirdLock.Length; i++)
@@ -92,11 +114,48 @@ public class FaseTresTriggerController : MonoBehaviour
             thirdLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
+
+    public void SalaBossInTriggerEclipse()
+    {
+        for (int i = 0; i < eclipseThirdLock.Length; i++)
+        {
+            eclipseThirdLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+
+        for (int i = 0; i < eclipseFourthLock.Length; i++)
+        {
+            eclipseFourthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+
+        for (int i = 0; i < eclipseFifthLock.Length; i++)
+        {
+            eclipseFifthLock[i].SetActive(!eclipseFifthLock[i].activeSelf);
+        }
+    }
+                    
     public void SalaBossOutTrigger()
     {
         for (int i = 0; i < fourthLock.Length; i++)
         {
             fourthLock[i].SetActive(!fourthLock[i].activeSelf);
+        }
+    }
+
+    public void SalaBossOutTriggerEclipse()
+    {
+        for (int i = 0; i < eclipseFourthLock.Length; i++)
+        {
+            eclipseFourthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+        }
+
+        for (int i = 0; i < eclipseFifthLock.Length; i++)
+        {
+            eclipseFifthLock[i].SetActive(!eclipseFifthLock[i].activeSelf);
+        }
+
+        for (int i = 0; i < eclipseSixthLock.Length; i++)
+        {
+            eclipseSixthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
     
@@ -183,7 +242,7 @@ public class FaseTresTriggerController : MonoBehaviour
                     GameManager.instance.GateCAM();
                 }
                 
-                StartCoroutine(OpenTheGates(2));
+                StartCoroutine(OpenTheGates(6));
             }
             else if (inimigosMortos > 120 && !hasOpenthird)
             {
@@ -196,14 +255,14 @@ public class FaseTresTriggerController : MonoBehaviour
                     GameManager.instance.GateCAM();
                 }
                 Transition_Manager.fase3_spawn = preBossSpawnPointEclipse.transform.position;
-                StartCoroutine(OpenTheGates(5));
+                StartCoroutine(OpenTheGates(7));
             }
         }
 
         if(test)
         {
             test = false;
-            CloseTheGates();
+            CloseTheGatesEclipse();
         }
 
         if (test1)
@@ -225,6 +284,24 @@ public class FaseTresTriggerController : MonoBehaviour
             thirdLock[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
         }
         SalaBossOutTrigger();
+    }
+
+    public void CloseTheGatesEclipse()
+    {
+        for (int i = 0; i < eclipseFourthLock.Length; i++)
+        {
+            eclipseFourthLock[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+        }
+
+        for (int i = 0; i < eclipseFifthLock.Length; i++)
+        {
+            eclipseFifthLock[i].SetActive(!eclipseFifthLock[i].activeSelf);
+        }
+
+        for (int i = 0; i < eclipseSixthLock.Length; i++)
+        {
+            eclipseSixthLock[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
+        }
     }
     IEnumerator OpenTheGates(int sequence)
     {
@@ -256,6 +333,16 @@ public class FaseTresTriggerController : MonoBehaviour
             SalaBossOutTrigger();
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
+        else if (sequence == 6)
+        {
+            SalaDoisEclipse();
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
+        else if (sequence == 7)
+        {
+            SalaBossInTriggerEclipse();
+            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+        }
     }
     IEnumerator BossWasKilled()
     {
@@ -264,11 +351,18 @@ public class FaseTresTriggerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartCoroutine(TurnOnTheLightPortal());    
         GameManager.instance.GateCAM();
-        SalaBossInTrigger();
-        SalaBossOutTrigger();
-        for (int i = 0; i < thirdLock.Length; i++)
+        if(!ManagerOfScenes.instance.isEclipse)
         {
-            fifthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            SalaBossInTrigger();
+            SalaBossOutTrigger();
+            for (int i = 0; i < thirdLock.Length; i++)
+            {
+                fifthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            }
+        }
+        else if(ManagerOfScenes.instance.isEclipse)
+        {
+            SalaBossOutTriggerEclipse();
         }
         GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
