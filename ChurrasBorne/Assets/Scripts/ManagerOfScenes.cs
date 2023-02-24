@@ -8,7 +8,7 @@ public class ManagerOfScenes : MonoBehaviour
     public GameObject passado, eclipse;
     public GameObject particleEmmy;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf, clearedQuatro;
-    public static int randomTimeline;
+    public int randomTimeline = 0;
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
     public Animator portalDois;
@@ -115,6 +115,7 @@ public class ManagerOfScenes : MonoBehaviour
             else if(clearedUm && clearedHalf)
             {
                 randomTimeline = Random.Range(1, 3);
+                print(randomTimeline.ToString());
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);

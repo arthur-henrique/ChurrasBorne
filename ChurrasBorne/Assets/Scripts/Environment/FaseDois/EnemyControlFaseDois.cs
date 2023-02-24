@@ -21,7 +21,8 @@ public class EnemyControlFaseDois : MonoBehaviour
     public GateChecker gc;
 
     public Collider2D[] mobTriggers;
-    
+    private ManagerOfScenes manager;
+
 
     private void Awake()
     {
@@ -30,6 +31,8 @@ public class EnemyControlFaseDois : MonoBehaviour
 
     private void Start()
     {
+        manager = FindObjectOfType<ManagerOfScenes>();
+
         ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
         for (int i = 0; i < ltds.Count; i++)
         {
@@ -66,58 +69,7 @@ public class EnemyControlFaseDois : MonoBehaviour
                 ltds.Remove(ltds[i]);
             }
         }
-        clearedDois = GameManager.instance.GetHasCleared(2);
-        clearedHalf = GameManager.instance.GetHasCleared(3);
-        randomTL = ManagerOfScenes.randomTimeline;
-
-        if (!clearedDois && !clearedHalf)
-        {
-            p1.SetActive(true);
-            p2.SetActive(false);
-            ltds.ForEach(x => x.intensity = 4f);
-        }
-        else if (clearedDois && !clearedHalf)
-        {
-            p1.SetActive(false);
-            p2.SetActive(true);
-            ltds.ForEach(x => x.intensity = 1f);
-        }
-        else if (clearedDois && clearedHalf)
-        {
-            if (randomTL == 1)
-            {
-                p1.SetActive(true);
-                p2.SetActive(false);
-                ltds.ForEach(x => x.intensity = 4f);
-            }
-            else if (randomTL == 2)
-            {
-                p1.SetActive(false);
-                p2.SetActive(true);
-                ltds.ForEach(x => x.intensity = 1f);
-
-            }
-        }
-
-        firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
-        secondMob.AddRange(GameObject.FindGameObjectsWithTag("MOBDOIS"));
-        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("MOBTRES"));
-        fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
-        fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
-        sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
-        seventhMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSETE"));
-        eigthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBOITO"));
-        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
-
-        firstMob.ForEach(x => x.SetActive(false));
-        secondMob.ForEach(x => x.SetActive(false));
-        thirdMob.ForEach(x => x.SetActive(false));
-        fourthMob.ForEach(x => x.SetActive(false));
-        fifthMob.ForEach(x => x.SetActive(false));
-        sixthMob.ForEach(x => x.SetActive(false));
-        seventhMob.ForEach(x => x.SetActive(false));
-        eigthMob.ForEach(x => x.SetActive(false));
-        bossMob.ForEach(x => x.SetActive(false));
+        StartCoroutine(EnemySetter());
 
         if (GameManager.instance.faseumBossFire == true)
         {
@@ -314,5 +266,62 @@ public class EnemyControlFaseDois : MonoBehaviour
             mobTriggers[i].enabled = false;
         }
         
+    }
+
+    IEnumerator EnemySetter()
+    {
+        yield return new WaitForSeconds(0.25f);
+        clearedDois = GameManager.instance.GetHasCleared(2);
+        clearedHalf = GameManager.instance.GetHasCleared(3);
+        randomTL = manager.randomTimeline;
+
+        if (!clearedDois && !clearedHalf)
+        {
+            p1.SetActive(true);
+            p2.SetActive(false);
+            ltds.ForEach(x => x.intensity = 4f);
+        }
+        else if (clearedDois && !clearedHalf)
+        {
+            p1.SetActive(false);
+            p2.SetActive(true);
+            ltds.ForEach(x => x.intensity = 1f);
+        }
+        else if (clearedDois && clearedHalf)
+        {
+            if (randomTL == 1)
+            {
+                p1.SetActive(true);
+                p2.SetActive(false);
+                ltds.ForEach(x => x.intensity = 4f);
+            }
+            else if (randomTL == 2)
+            {
+                p1.SetActive(false);
+                p2.SetActive(true);
+                ltds.ForEach(x => x.intensity = 1f);
+
+            }
+        }
+
+        firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
+        secondMob.AddRange(GameObject.FindGameObjectsWithTag("MOBDOIS"));
+        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("MOBTRES"));
+        fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
+        fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
+        sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
+        seventhMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSETE"));
+        eigthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBOITO"));
+        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
+
+        firstMob.ForEach(x => x.SetActive(false));
+        secondMob.ForEach(x => x.SetActive(false));
+        thirdMob.ForEach(x => x.SetActive(false));
+        fourthMob.ForEach(x => x.SetActive(false));
+        fifthMob.ForEach(x => x.SetActive(false));
+        sixthMob.ForEach(x => x.SetActive(false));
+        seventhMob.ForEach(x => x.SetActive(false));
+        eigthMob.ForEach(x => x.SetActive(false));
+        bossMob.ForEach(x => x.SetActive(false));
     }
 }
