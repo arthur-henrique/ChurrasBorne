@@ -69,6 +69,7 @@ public class ManagerOfScenes : MonoBehaviour
                 particleEmmy.SetActive(true);
 
                 portalUm.enabled = true;
+                GameManager.instance.EnableTheControl();
             }
             
             if (clearedDois)
