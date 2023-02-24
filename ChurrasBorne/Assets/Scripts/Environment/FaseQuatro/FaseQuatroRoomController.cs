@@ -17,7 +17,7 @@ public class FaseQuatroRoomController : MonoBehaviour
         }
         for (int i = 0; i < portaoLado.Length; i++)
         {
-            portaoLado[i].SetActive(!portaoLado[i].activeSelf);
+            portaoLado[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +31,7 @@ public class FaseQuatroRoomController : MonoBehaviour
             }
             for (int i = 0; i < portaoLado.Length; i++)
             {
-                portaoLado[i].SetActive(!portaoLado[i].activeSelf);
+                portaoLado[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
             }
             roomTrigger.enabled = false;
         }
@@ -62,7 +62,7 @@ public class FaseQuatroRoomController : MonoBehaviour
         }
         for (int i = 0; i < portaoLado.Length; i++)
         {
-            portaoLado[i].SetActive(!portaoLado[i].activeSelf);
+            portaoLado[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
     }
 }
