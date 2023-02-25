@@ -216,10 +216,10 @@ public class ManagerOfScenes : MonoBehaviour
             }
             GameManager.instance.EnableTheControl();
         }
-        if(gameObject.CompareTag("FaseQuatro"))
+        if(gameObject.CompareTag("FASEQUATRO"))
         {
             PostProcessingControl.Instance.TurnOffVignette();
-            faseQuatroPath = Random.Range(1, 6);
+            faseQuatroPath = Random.Range(0, 5);
         }
 
 

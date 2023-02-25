@@ -192,8 +192,13 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
+        if (pc.Tester.UKey.WasPressedThisFrame())
+        {
 
-        if(pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
+        }
+
+        if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
             if (fullFlask)
             {
