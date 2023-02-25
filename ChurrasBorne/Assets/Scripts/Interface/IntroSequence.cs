@@ -44,14 +44,14 @@ public class IntroSequence : MonoBehaviour
 
     private string[] spanish_intro =
     {
-        "Há alguns anos, em 20XX, surgiu um Eclipse por causas desconhecidas, jogando o mundo em uma escuridão vermelha/rubra.",
-        "De início se imaginou ser um evento astrológico/astronômico (nn sei qual) raro, mas logo se descobriu que não era tal acontecimento.",
-        "Com algumas semanas, pessoas que olhavam demais para o Eclipse começaram a ficar loucas, bestiais e primitivas, atacando umas às outras.",
-        "Passado mais algum tempo, surgiram outras mutações e monstros, animais que cresciam demais, ou ficavam mais agressivos.",
-        "Tudo isso culminou no desaparecimento da atividade mais importante para a humanidade, essencialmente a tirando do status de civilização... ",
-        "O Churrasco.",
-        "Mas nessses tempos de escuridão, surge um herói, Sabet.",
-        "Nascido no churrasco... Moldado no churrasco... este herói iria salvar a humanidade, pois nada ficaria entre ele e seu churrasco.",
+        "Hace unos años, en 20XX, apareció un Eclipse de causas desconocidas que sumió al mundo en una oscuridad roja/rubia.",
+        "Al principio se imaginó que se trataba de un raro acontecimiento astrológico/astronómico (no sé cuál), pero pronto se descubrió que no era tal.",
+        "Al cabo de unas semanas, la gente que miraba demasiado al Eclipse empezó a volverse loca, bestial y primitiva, atacándose unos a otros.",
+        "Después de algún tiempo más, aparecieron otras mutaciones y monstruos, animales que crecieron demasiado o se volvieron más agresivos.",
+        "Todo ello culminó con la desaparición de la actividad más importante para la humanidad, despojándola esencialmente del estatus de civilización....",
+        "El Asado.",
+        "Pero en estos tiempos oscuros, surge un héroe, Sabet.",
+        "Nacido en El asado... Moldeado en El asado... este héroe salvaría a la humanidad, pues nada se interpondría entre él y su asado.",
     };
 
     private void Awake()
