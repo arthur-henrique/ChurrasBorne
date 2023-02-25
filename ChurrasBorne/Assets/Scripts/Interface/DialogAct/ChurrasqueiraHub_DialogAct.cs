@@ -45,32 +45,36 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
 
             if (GetComponent<Animator>().GetBool("APAGAR") == false)
             {
-                if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
+                if (PlayerMovement.pc.Movimento.enabled)
                 {
-                    if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 0)
+                    if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                     {
-                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
-                    }
-                    else
-                    {
-                        dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
-                    }
-                    GameManager.instance.currentHealth = GameManager.instance.maxHealth;
-                    GameManager.instance.SetHeals(3, false, true);
+                        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 0)
+                        {
+                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
+                        }
+                        else
+                        {
+                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
+                        }
+                        GameManager.instance.currentHealth = GameManager.instance.maxHealth;
+                        GameManager.instance.SetHeals(3, false, true);
 
-                    //
-                    col.enabled = true;
-                    if(!hasShownPath && !GameManager.instance.GetHasCleared(0))
-                    {
-                        hasShownPath = true;
-                        ManagerOfScenes.instance.ShowFirstPhase();
-                        StartCoroutine(ActivatePortal());
+                        //
+                        col.enabled = true;
+                        if (!hasShownPath && !GameManager.instance.GetHasCleared(0))
+                        {
+                            hasShownPath = true;
+                            ManagerOfScenes.instance.ShowFirstPhase();
+                            StartCoroutine(ActivatePortal());
+                        }
+
+
+                        while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
+
                     }
-                    
-
-                    while (!pc.Movimento.Attack.WasPressedThisFrame()) { }
-
                 }
+                
             }
 
 

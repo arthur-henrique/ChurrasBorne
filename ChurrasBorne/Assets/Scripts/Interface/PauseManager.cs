@@ -97,15 +97,18 @@ public class PauseManager : MonoBehaviour
         pause_bg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1);
         pause_bg.GetComponent<Image>().color = new Color(0.4245283f, 0.4245283f, 0.4245283f, 0.0f);
         //pause_bg.GetComponent<Image>().color = new Color(0.5607843f, 1.0f, 1.0f, 1.0f);
+        pause_bg.SetActive(false);
 
         pause_layered_shadow = DialogSystem.getChildGameObject(gameObject, "PAUSE_LayeredShadow");
         pause_layered_shadow.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         // pause_drop_shadow.GetComponent<Image>().color = new Color(0.8705882f, 1.0f, 1.0f, 1.0f);
+        pause_layered_shadow.SetActive(false);
 
         pause_drop_shadow = DialogSystem.getChildGameObject(gameObject, "PAUSE_DropShadow");
         pause_drop_shadow.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         // pause_drop_shadow.GetComponent<Image>().color = new Color(0.6745098f, 1.0f, 1.0f, 1.0f);
         pause_drop_shadow.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 108, 0);
+        pause_drop_shadow.SetActive(false);
 
         pause_label = DialogSystem.getChildGameObject(gameObject, "PAUSE_Pause");
         pause_label.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
@@ -241,6 +244,9 @@ public class PauseManager : MonoBehaviour
                     } else
                     {
                         Hide_Pause();
+                        pause_bg.SetActive(false);
+                        pause_drop_shadow.SetActive(false);
+                        pause_layered_shadow.SetActive(false);
                     }
                 }
                 else
@@ -249,6 +255,9 @@ public class PauseManager : MonoBehaviour
                     canChange = false;
                     submenu = false;
                     Show_Pause();
+                    pause_bg.SetActive(true);
+                    pause_drop_shadow.SetActive(false);
+                    pause_layered_shadow.SetActive(false);
                 }
             }
             

@@ -963,7 +963,7 @@ public class MainMenu_Manager : MonoBehaviour
 
                             if (stage_transition == false)
                             {
-                                canvas.GetComponent<Transition_Manager>().TransitionToScene("StartVoid");
+                                canvas.GetComponent<Transition_Manager>().TransitionToScene("Introduction");
                                 stage_transition = true;
                             }
                             break;

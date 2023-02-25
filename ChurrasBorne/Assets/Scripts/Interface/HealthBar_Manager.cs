@@ -35,6 +35,10 @@ public class HealthBar_Manager : MonoBehaviour
     GameObject TebasCounter_Text;
     private float TebasCounter_Delay = 0;
     private int TebasCounter_Last = 0;
+    GameObject InventoryIcon;
+    public static bool newItem = false;
+    public Sprite inventoryStandard;
+    public Sprite inventoryHighlight;
 
     GameObject player;
     float realHealth;
@@ -92,6 +96,7 @@ public class HealthBar_Manager : MonoBehaviour
         TebasCounter = DialogSystem.getChildGameObject(gameObject, "TebasCounter");
         TebasCounter_Text = DialogSystem.getChildGameObject(gameObject, "TebasCounter_Text");
 
+        InventoryIcon = DialogSystem.getChildGameObject(gameObject, "Inventory_Icon");
 
         hp_color_8 = new Color(0.2588235f, 0.8584604f, 0.9607843f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
         hp_color_7 = new Color(0.2588235f, 0.9607843f, 0.5990860f, HealthBar_Manager.instance.HP_OverlayColor.GetComponent<Image>().color.a);
@@ -403,6 +408,25 @@ public class HealthBar_Manager : MonoBehaviour
         {
             TebasCounter.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(TebasCounter.GetComponent<CanvasGroup>().alpha, 0, Time.deltaTime * 4f);
         }
+
+        // =-------------------- Inventory Icon --------------------=
+
+        if (newItem == true)
+        {
+            InventoryIcon.GetComponent<Image>().sprite = inventoryHighlight;
+
+            var invicon = InventoryIcon.GetComponent<Image>().color;
+            invicon = new Color(invicon.r, invicon.g, invicon.b, Mathf.Lerp(invicon.a, 1f, Time.deltaTime * 4f));
+            InventoryIcon.GetComponent<Image>().color = invicon;
+        } else
+        {
+            InventoryIcon.GetComponent<Image>().sprite = inventoryStandard;
+
+            var invicon = InventoryIcon.GetComponent<Image>().color;
+            invicon = new Color(invicon.r, invicon.g, invicon.b, Mathf.Lerp(invicon.a, 0.6f, Time.deltaTime * 4f));
+            InventoryIcon.GetComponent<Image>().color = invicon;
+        }
+
     }
 
     public static IEnumerator Alpha_Control_Enable()

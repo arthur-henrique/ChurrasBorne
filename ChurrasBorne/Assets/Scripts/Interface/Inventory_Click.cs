@@ -80,6 +80,36 @@ public class Inventory_Click : EventTrigger, IPointerClickHandler
 
                 }
             }
+            if (gameObject.name == "Select_Item_1")
+            {
+                if (Inventory_Manager.instance.itemStorage.Count >= 0)
+                {
+                    Inventory_Manager.instance.audioSource.PlayOneShot(Inventory_Manager.instance.ui_move, Inventory_Manager.instance.audioSource.volume);
+                    var sel_pos_old = Inventory_Manager.instance.sel_pos_highlight;
+                    Inventory_Manager.instance.sel_pos_highlight = 0;
+                    Inventory_Manager.instance.sel_pos_real += Inventory_Manager.instance.sel_pos_highlight - sel_pos_old;
+                }
+            }
+            if (gameObject.name == "Select_Item_2")
+            {
+                if (Inventory_Manager.instance.itemStorage.Count >= 1)
+                {
+                    Inventory_Manager.instance.audioSource.PlayOneShot(Inventory_Manager.instance.ui_move, Inventory_Manager.instance.audioSource.volume);
+                    var sel_pos_old = Inventory_Manager.instance.sel_pos_highlight;
+                    Inventory_Manager.instance.sel_pos_highlight = 1;
+                    Inventory_Manager.instance.sel_pos_real += Inventory_Manager.instance.sel_pos_highlight - sel_pos_old;
+                }
+            }
+            if (gameObject.name == "Select_Item_3")
+            {
+                if (Inventory_Manager.instance.itemStorage.Count >= 2)
+                {
+                    Inventory_Manager.instance.audioSource.PlayOneShot(Inventory_Manager.instance.ui_move, Inventory_Manager.instance.audioSource.volume);
+                    var sel_pos_old = Inventory_Manager.instance.sel_pos_highlight;
+                    Inventory_Manager.instance.sel_pos_highlight = 2;
+                    Inventory_Manager.instance.sel_pos_real += Inventory_Manager.instance.sel_pos_highlight - sel_pos_old;
+                }
+            }
         }
 
     }

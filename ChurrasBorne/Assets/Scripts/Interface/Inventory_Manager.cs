@@ -228,6 +228,7 @@ public class Inventory_Manager : MonoBehaviour
                     movementLock = true;
                     PlayerMovement.EnableControl();
                 }
+                HealthBar_Manager.newItem = false;
                 GetComponent<CanvasGroup>().alpha = Mathf.Lerp(GetComponent<CanvasGroup>().alpha, 1, 16f * Time.deltaTime);
             }
 
@@ -286,7 +287,7 @@ public class Inventory_Manager : MonoBehaviour
                     if (sel_pos_highlight > itemStorage.Count - 1) { sel_pos_highlight = itemStorage.Count - 1; }
                     if (sel_pos_highlight < 0) { sel_pos_highlight = 0; }
                 }
-                /*
+                
                 if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     itemStorage.Add(1);
@@ -295,7 +296,7 @@ public class Inventory_Manager : MonoBehaviour
                 if (pc.Movimento.Curar.WasPressedThisFrame())
                 {
                     itemStorage.Remove(1);
-                }*/
+                }
             }
 
 
