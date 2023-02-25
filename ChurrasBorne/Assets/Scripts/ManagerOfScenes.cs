@@ -8,7 +8,7 @@ public class ManagerOfScenes : MonoBehaviour
     public GameObject passado, eclipse;
     public GameObject particleEmmy;
     private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf, clearedQuatro;
-    public static int randomTimeline;
+    public int randomTimeline = 0;
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
     public Animator portalDois;
@@ -16,7 +16,7 @@ public class ManagerOfScenes : MonoBehaviour
     public AudioSource audioS;
     public AudioClip questHubAudio;
     public bool isEclipse = false;
-
+    public int faseQuatroPath;
     public bool test;
 
     
@@ -69,6 +69,7 @@ public class ManagerOfScenes : MonoBehaviour
                 particleEmmy.SetActive(true);
 
                 portalUm.enabled = true;
+                GameManager.instance.EnableTheControl();
             }
             
             if (clearedDois)
@@ -115,6 +116,7 @@ public class ManagerOfScenes : MonoBehaviour
             else if(clearedUm && clearedHalf)
             {
                 randomTimeline = Random.Range(1, 3);
+                print(randomTimeline.ToString());
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);
@@ -196,6 +198,7 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if (clearedTres && clearedTresHalf)
             {
+                FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
                 randomTimeline = Random.Range(1, 3);
                 if (randomTimeline == 1)
                 {
@@ -212,6 +215,11 @@ public class ManagerOfScenes : MonoBehaviour
                 }
             }
             GameManager.instance.EnableTheControl();
+        }
+        if(gameObject.CompareTag("FASEQUATRO"))
+        {
+            PostProcessingControl.Instance.TurnOffVignette();
+            faseQuatroPath = Random.Range(0, 5);
         }
 
 

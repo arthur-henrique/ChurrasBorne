@@ -21863,6 +21863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 403241935}
   - component: {fileID: 403241936}
+  - component: {fileID: 403241937}
   m_Layer: 0
   m_Name: WallColl
   m_TagString: Untagged
@@ -21910,6 +21911,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.73, y: 4.96}
   m_EdgeRadius: 0
+--- !u!50 &403241937
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403241934}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &411915918
 GameObject:
   m_ObjectHideFlags: 0
@@ -22426,6 +22448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455872148}
   - component: {fileID: 455872149}
+  - component: {fileID: 455872150}
   m_Layer: 0
   m_Name: WallColl (1)
   m_TagString: Untagged
@@ -22473,6 +22496,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.73, y: 4.96}
   m_EdgeRadius: 0
+--- !u!50 &455872150
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455872147}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &502190048
 GameObject:
   m_ObjectHideFlags: 0
@@ -22485,6 +22529,7 @@ GameObject:
   - component: {fileID: 502190050}
   - component: {fileID: 502190049}
   - component: {fileID: 502190052}
+  - component: {fileID: 502190053}
   m_Layer: 0
   m_Name: "Port\xE3oBoi"
   m_TagString: Untagged
@@ -22605,6 +22650,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.9786453, y: 1.4212608}
   m_EdgeRadius: 0
+--- !u!50 &502190053
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502190048}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!4 &545881797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1962373924799368206, guid: 92f3ef1954f94e44d96705717ee5e08c, type: 3}
@@ -28091,12 +28157,15 @@ MonoBehaviour:
   passado: {fileID: 0}
   eclipse: {fileID: 0}
   particleEmmy: {fileID: 0}
+  randomTimeline: 0
   gate: {fileID: 176320725}
   portalUm: {fileID: 0}
   portalDois: {fileID: 0}
+  portalTres: {fileID: 0}
   audioS: {fileID: 0}
   questHubAudio: {fileID: 0}
   isEclipse: 0
+  test: 0
   GateCamPos: []
 --- !u!4 &1378905018
 Transform:

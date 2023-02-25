@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -192,8 +192,13 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
+        if (pc.Tester.UKey.WasPressedThisFrame())
+        {
 
-        if(pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
+        }
+
+        if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
             if (fullFlask)
             {

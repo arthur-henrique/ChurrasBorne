@@ -21,6 +21,7 @@ public class EnemyControl : MonoBehaviour
 
     public Collider2D[] mobTriggers;
     public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
+    private ManagerOfScenes manager;
     //public UnityEngine.Experimental.Rendering.Universal.Light2D[] ltds;
 
     private void Awake()
@@ -29,6 +30,7 @@ public class EnemyControl : MonoBehaviour
     }
     void Start()
     {
+        manager = FindObjectOfType<ManagerOfScenes>();
         ltds.AddRange(FindObjectsOfType<UnityEngine.Experimental.Rendering.Universal.Light2D>());
         for (int i = 0; i < ltds.Count; i++)
         {
@@ -65,55 +67,8 @@ public class EnemyControl : MonoBehaviour
                 ltds.Remove(ltds[i]);
             }
         }
-        clearedUm = GameManager.instance.GetHasCleared(0);
-        clearedHalf = GameManager.instance.GetHasCleared(1);
-        randomTL = ManagerOfScenes.randomTimeline;
 
-        if (!clearedUm && !clearedHalf)
-        {
-            p1.SetActive(true);
-            p2.SetActive(false);
-            ltds.ForEach(x => x.intensity = 5f);
-        }
-        else if (clearedUm && !clearedHalf)
-        {
-            p1.SetActive(false);
-            p2.SetActive(true);
-            ltds.ForEach(x => x.intensity = 2f);
-        }
-        else if (clearedUm && clearedHalf)
-        {
-            if (randomTL == 1)
-            {
-                p1.SetActive(true);
-                p2.SetActive(false);
-                ltds.ForEach(x => x.intensity = 5f);
-            }
-            else if (randomTL == 2)
-            {
-                p1.SetActive(false);
-                p2.SetActive(true);
-                ltds.ForEach(x => x.intensity = 2f);
-            }
-
-            
-        }
-
-        firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
-        secondMob.AddRange(GameObject.FindGameObjectsWithTag("MOBDOIS"));
-        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("MOBTRES"));
-        fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
-        fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
-        sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
-        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
-
-        firstMob.ForEach(x => x.SetActive(false));
-        secondMob.ForEach(x => x.SetActive(false));
-        thirdMob.ForEach(x => x.SetActive(false));
-        fourthMob.ForEach(x => x.SetActive(false));
-        fifthMob.ForEach(x => x.SetActive(false));
-        sixthMob.ForEach(x => x.SetActive(false));
-        bossMob.ForEach(x => x.SetActive(false));
+        StartCoroutine(EnemySetter());
 
         if (GameManager.instance.faseumBossFire == true)
         {
@@ -332,5 +287,57 @@ public class EnemyControl : MonoBehaviour
         //else if (ManagerOfScenes.instance.isEclipse)
         //    Transition_Manager.fase1_spawn = preBossSpawnPointEclipse.transform.position;
     }
+    IEnumerator EnemySetter()
+    {
+        yield return new WaitForSeconds(0.25f);
+        clearedUm = GameManager.instance.GetHasCleared(0);
+        clearedHalf = GameManager.instance.GetHasCleared(1);
+        randomTL = manager.randomTimeline;
 
+        if (!clearedUm && !clearedHalf)
+        {
+            p1.SetActive(true);
+            p2.SetActive(false);
+            ltds.ForEach(x => x.intensity = 5f);
+        }
+        else if (clearedUm && !clearedHalf)
+        {
+            p1.SetActive(false);
+            p2.SetActive(true);
+            ltds.ForEach(x => x.intensity = 2f);
+        }
+        else if (clearedUm && clearedHalf)
+        {
+            if (randomTL == 1)
+            {
+                p1.SetActive(true);
+                p2.SetActive(false);
+                ltds.ForEach(x => x.intensity = 5f);
+            }
+            else if (randomTL == 2)
+            {
+                p1.SetActive(false);
+                p2.SetActive(true);
+                ltds.ForEach(x => x.intensity = 2f);
+            }
+
+
+        }
+
+        firstMob.AddRange(GameObject.FindGameObjectsWithTag("MOBUM"));
+        secondMob.AddRange(GameObject.FindGameObjectsWithTag("MOBDOIS"));
+        thirdMob.AddRange(GameObject.FindGameObjectsWithTag("MOBTRES"));
+        fourthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBQUATRO"));
+        fifthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBCINCO"));
+        sixthMob.AddRange(GameObject.FindGameObjectsWithTag("MOBSEIS"));
+        bossMob.AddRange(GameObject.FindGameObjectsWithTag("MOBBOSS"));
+
+        firstMob.ForEach(x => x.SetActive(false));
+        secondMob.ForEach(x => x.SetActive(false));
+        thirdMob.ForEach(x => x.SetActive(false));
+        fourthMob.ForEach(x => x.SetActive(false));
+        fifthMob.ForEach(x => x.SetActive(false));
+        sixthMob.ForEach(x => x.SetActive(false));
+        bossMob.ForEach(x => x.SetActive(false));
+    }
 }

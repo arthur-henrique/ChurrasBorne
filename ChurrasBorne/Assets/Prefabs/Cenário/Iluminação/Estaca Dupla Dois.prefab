@@ -107,21 +107,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4284659657812019879}
     m_Modifications:
+    - target: {fileID: 4601902255570201155, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
+      propertyPath: offset
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 5826006857661116145, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
       propertyPath: m_UseNormalMap
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5826006858324334184, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5826006858324334184, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5826006858324334184, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1189529141
       objectReference: {fileID: 0}
     - target: {fileID: 5826006858324334187, guid: 80470b2828fc09349a30cb83120d3396, type: 3}
       propertyPath: m_RootOrder

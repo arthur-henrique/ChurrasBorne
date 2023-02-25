@@ -1210,6 +1210,15 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b5186f5-abb5-4b89-8bce-cf40fb804f56"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1256,6 +1265,17 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                     ""action"": ""YKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49d28e47-faad-4fad-95ff-8c1399ec0f19"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1295,6 +1315,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         m_Tester_PKey = m_Tester.FindAction("PKey", throwIfNotFound: true);
         m_Tester_TKey = m_Tester.FindAction("TKey", throwIfNotFound: true);
         m_Tester_YKey = m_Tester.FindAction("YKey", throwIfNotFound: true);
+        m_Tester_UKey = m_Tester.FindAction("UKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1601,6 +1622,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
     private readonly InputAction m_Tester_PKey;
     private readonly InputAction m_Tester_TKey;
     private readonly InputAction m_Tester_YKey;
+    private readonly InputAction m_Tester_UKey;
     public struct TesterActions
     {
         private @PlayerController m_Wrapper;
@@ -1609,6 +1631,7 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         public InputAction @PKey => m_Wrapper.m_Tester_PKey;
         public InputAction @TKey => m_Wrapper.m_Tester_TKey;
         public InputAction @YKey => m_Wrapper.m_Tester_YKey;
+        public InputAction @UKey => m_Wrapper.m_Tester_UKey;
         public InputActionMap Get() { return m_Wrapper.m_Tester; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1630,6 +1653,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @YKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
                 @YKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
                 @YKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnYKey;
+                @UKey.started -= m_Wrapper.m_TesterActionsCallbackInterface.OnUKey;
+                @UKey.performed -= m_Wrapper.m_TesterActionsCallbackInterface.OnUKey;
+                @UKey.canceled -= m_Wrapper.m_TesterActionsCallbackInterface.OnUKey;
             }
             m_Wrapper.m_TesterActionsCallbackInterface = instance;
             if (instance != null)
@@ -1646,6 +1672,9 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
                 @YKey.started += instance.OnYKey;
                 @YKey.performed += instance.OnYKey;
                 @YKey.canceled += instance.OnYKey;
+                @UKey.started += instance.OnUKey;
+                @UKey.performed += instance.OnUKey;
+                @UKey.canceled += instance.OnUKey;
             }
         }
     }
@@ -1686,5 +1715,6 @@ public partial class @PlayerController : IInputActionCollection2, IDisposable
         void OnPKey(InputAction.CallbackContext context);
         void OnTKey(InputAction.CallbackContext context);
         void OnYKey(InputAction.CallbackContext context);
+        void OnUKey(InputAction.CallbackContext context);
     }
 }
