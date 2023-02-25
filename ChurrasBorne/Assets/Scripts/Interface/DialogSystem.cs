@@ -134,6 +134,8 @@ public class DialogSystem : MonoBehaviour
     public IEnumerator DialogComplex(int num)
     {
         title_box_pos = new Vector2(0f, -360f);
+        portrait_1.GetComponent<Image>().sprite = spriteArray[3];
+        portrait_2.GetComponent<Image>().sprite = spriteArray[3];
         if (PlayerPrefs.GetInt("LANGUAGE") == 0) // english
         {
             for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i, 0] != ""; i++)
@@ -310,7 +312,19 @@ public class DialogSystem : MonoBehaviour
         letterCounter = 0;
         _narrator.text = "";
         narrator_box.SetActive(false);
-        _title.text = DialogBank.portuguese_bank[scene_number];
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0)
+        {
+            _title.text = DialogBank.english_bank[scene_number];
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1)
+        {
+            _title.text = DialogBank.portuguese_bank[scene_number];
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2)
+        {
+            _title.text = DialogBank.spanish_bank[scene_number];
+        }
+
         StartCoroutine(DialogSimple());
     }
 
