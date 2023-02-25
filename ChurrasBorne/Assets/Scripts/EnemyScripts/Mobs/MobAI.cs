@@ -7,7 +7,6 @@ public class MobAI : MonoBehaviour
 {
     private enum State
     {
-        Spawning,
         Idling,
         GazingIntoTheNightSky,
         Chasing,
@@ -24,13 +23,15 @@ public class MobAI : MonoBehaviour
     public Animator anim;
     private SpriteRenderer sr;
 
-    public Transform player;
+    public Transform player, armoredTebasSpeartip, trickstebasStaff;
     private Vector3 target;
     public Vector3 dashTarget;
 
-    public GameObject projectile;
+    public GameObject projectile, armoredTebasProjectile;
 
     public GameObject gameManager;
+
+    public GameObject[] tbPoints;
 
     private AudioSource audioSource;
     public AudioClip monster_death;
@@ -38,10 +39,8 @@ public class MobAI : MonoBehaviour
     public AudioClip monster_punch;
     public AudioClip monster_spit;
 
-    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startTimeBTWAttacks, startTimeBTWShots, startStunTime, startDashRecoveryTime;
-    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime;
-
-    
+    public float agroDistance, meleeDistance, canDashDistance, dashMeleeDistance, chaseDistance, chasingSpeed, dashingSpeed, startStunTime, startTimeBTWAttacks, startTimeBTWShots;
+    private float TimeBTWAttacks, timeBTWShots, stunTime, dashRecoveryTime, timeBTWWindupATKs;  
 
     public bool isASpitter,
         isADasher,
@@ -52,8 +51,11 @@ public class MobAI : MonoBehaviour
         isAShatebas,
         isAGigantebas,
         isASkeletebas,
+        isAnArmoredTebas,
+        isATrickstebas,
         isASkully;
-    private bool canDash = false, isDashing = false, canBeStunned = true;
+
+    private bool canDash = false, isDashing = false, canBeStunned = true, isUsingWindupATK = false;
 
     public bool isOnTutorial, isOnFaseUm, isOnFaseDois, isOnFaseTres, isOnFaseQuatro;
     public FaseQuatroRoomController controller;
@@ -64,6 +66,8 @@ public class MobAI : MonoBehaviour
 
     private bool canBeKbed = true;
     private bool canTakeDamage = true;
+
+    public bool isFlipped;
 
     public ParticleSystem bloodSpatter, stepDust, stompDust;
     private ParticleSystemRenderer psr;
@@ -80,7 +84,6 @@ public class MobAI : MonoBehaviour
     private void Awake()
     {
         psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
-        state = State.Spawning;
     }
 
     void Start()
@@ -92,14 +95,14 @@ public class MobAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         TimeBTWAttacks = 0.1f;
+        timeBTWShots = 1.5f;
 
-        timeBTWShots = startTimeBTWShots;
+        timeBTWWindupATKs = Random.Range(5f, 7f);
 
         stunTime = startStunTime;
-
         stunCD = Random.Range(1, 3);
 
-        dashRecoveryTime = startDashRecoveryTime;
+        dashRecoveryTime = 1.5f;
         
         if(isASpitter)
         {
@@ -107,13 +110,13 @@ public class MobAI : MonoBehaviour
             damage = 15f;
             armor = 1f;
         }
-        else if(isADasher)
+        if(isADasher)
         {
             health = 50f;
             damage = 30f;
             armor = 1f;
         }
-        else if (isASpider)
+        if (isASpider)
         {
             health = 75f;
             damage = 5f;
@@ -130,52 +133,61 @@ public class MobAI : MonoBehaviour
             //    sr.color = new Color(0.1792207f, 0.5943396f, 0.1031684f, 1f);
             //}
         }
-        else if(isATebas)
+        if(isATebas)
         {
             health = 100f;
             damage = 10f;
             armor = 1f;
         }
-        else if(isAGeletebas)
+        if(isAGeletebas)
         {
             health = 100f;
             damage = 10f;
             armor = 1.25f;
         }
-        else if(isAShatebas)
+        if(isAShatebas)
         {
             health = 100f;
             damage = 25f;
             armor = 0.75f;
         }
-        else if(isAGigantebas)
+        if(isAGigantebas)
         {
             health = 200f;
             damage = 25f;
             armor = 1.5f;
         }
-        else if(isASkeletebas)
+        if(isASkeletebas)
         {
             health = 75f;
             damage = 30f;
             armor = 0.75f;
         }
-        else if(isASkully)
+        if(isAnArmoredTebas)
+        {
+            health = 130f;
+            damage = 30f;
+            armor = 1.2f;
+        }
+        if(isATrickstebas)
+        {
+            health = 90f;
+            damage = 25f;
+            armor = 1f;
+        }
+        if(isASkully)
         {
             health = 60f;
             damage = 15f;
             armor = 0.5f;
         }
+
     }
 
     void Update()
     {
         switch(state)
         {
-            case State.Spawning:
-                Flip();
-                break;
-            
             case State.Idling:
                 rb.velocity = Vector2.zero;
 
@@ -214,7 +226,7 @@ public class MobAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
 
-                if (TimeBTWAttacks <= 0)
+                if(TimeBTWAttacks <= 0 && !isAnArmoredTebas)
                 {
                     anim.SetTrigger("Melee");
                     //audioSource.PlayOneShot(monster_punch, audioSource.volume);
@@ -223,6 +235,31 @@ public class MobAI : MonoBehaviour
                 else
                 {
                     TimeBTWAttacks -= Time.deltaTime;
+                }
+
+                if(isAnArmoredTebas)
+                {
+                    if (TimeBTWAttacks <= 0 && !isUsingWindupATK)
+                    {
+                        anim.SetTrigger("Melee");
+                        //audioSource.PlayOneShot(monster_punch, audioSource.volume);
+                        TimeBTWAttacks = startTimeBTWAttacks;
+                    }
+                    else
+                    {
+                        TimeBTWAttacks -= Time.deltaTime;
+                    }
+
+                    if (timeBTWWindupATKs <= 0)
+                    {
+                        anim.SetTrigger("WindupATK");
+                        timeBTWWindupATKs = Random.Range(5f, 7f);
+                        isUsingWindupATK = true;
+                    }
+                    else
+                    {
+                        timeBTWWindupATKs -= Time.deltaTime;    
+                    }
                 }
 
                 SwitchToChasing();
@@ -240,7 +277,13 @@ public class MobAI : MonoBehaviour
                 if (timeBTWShots <= 0)
                 {
                     anim.SetTrigger("Ranged");
-                    audioSource.PlayOneShot(monster_spit, audioSource.volume);
+
+                    //apagar depois a condicao
+                    if (!isATrickstebas)
+                    {
+                        audioSource.PlayOneShot(monster_spit, audioSource.volume);
+                    }
+
                     timeBTWShots = startTimeBTWShots;
                 }
                 else
@@ -301,7 +344,7 @@ public class MobAI : MonoBehaviour
                     SwitchToChasing();
                     SwitchToAttacking();
 
-                    dashRecoveryTime = startDashRecoveryTime;
+                    dashRecoveryTime = 1.5f;
                 }
                 else
                 {
@@ -383,7 +426,7 @@ public class MobAI : MonoBehaviour
         }
 
         //DASH
-        if(isDashing == false)
+        if(!isDashing)
         {
             dashTarget = target;
 
@@ -416,11 +459,11 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter && !isATrickstebas && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
-        else if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && isASpitter && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && (isASpitter || isATrickstebas) && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
@@ -441,7 +484,7 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToShooting()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && isASpitter && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && (isASpitter || isATrickstebas) && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Shooting;
         }
@@ -497,7 +540,7 @@ public class MobAI : MonoBehaviour
                 GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor());
             }
         }
-        else if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
+        if (Vector2.Distance(transform.position, target) <= dashMeleeDistance && isDashing)
         {
             //if (GameManager.instance.canTakeDamage)
                 //StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower*1.2f, this.transform));
@@ -507,10 +550,58 @@ public class MobAI : MonoBehaviour
         }
     }
 
+    void WindupATK()
+    {
+        if (Vector2.Distance(transform.position, target) <= meleeDistance)
+        {
+            GameManager.instance.TakeDamage(damage);
+            Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity);
+        }
+
+        isUsingWindupATK = false;
+
+        TimeBTWAttacks = startTimeBTWAttacks;            
+;    }
+
     //RANGED
     void InstantiateProjectile()
     {
-        Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
+        if (!isATrickstebas)
+        {
+            Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
+        }
+
+        if(isATrickstebas)
+        {
+            Instantiate(projectile, trickstebasStaff.position, Quaternion.identity);
+        }
+    }
+
+    void Disappear()
+    {
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        anim.SetTrigger("Disappear");
+    }
+    void HasDisappeared()
+    {
+        int rand = Random.Range(0, 6);
+
+        transform.position = tbPoints[rand].transform.position;
+
+        anim.SetTrigger("Reappear");
+    }
+    void HasReappeared()
+    {
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+
+        SwitchToChasing();
+        SwitchToIdling();
+        SwitchToAttacking();
+        SwitchToShooting();
     }
 
     //FLIP
@@ -520,11 +611,13 @@ public class MobAI : MonoBehaviour
         {
             transform.localScale = new Vector3(-1, 1, 1);
             psr.flip = new Vector3(0, 0, 0);
+            isFlipped = true;
         }
         else if (target.x > transform.position.x && !isDashing)
         {
             transform.localScale = new Vector3(1, 1, 1);
             psr.flip = new Vector3(1, 0, 0);
+            isFlipped = false;
         }
     }
 
@@ -554,9 +647,10 @@ public class MobAI : MonoBehaviour
             health -= playerDamage;
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
 
-            if (canBeStunned && !isAGigantebas)
+            if (canBeStunned && isAGigantebas && !isATrickstebas)
             {
                 anim.SetTrigger("Hit");
+
                 state = State.Stunned;
             }
         }           

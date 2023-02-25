@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!74 &7400000
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ArmoredTebasWalk
+  serializedVersion: 6
+  m_Legacy: 0
+  m_Compressed: 0
+  m_UseHighQualityCurve: 1
+  m_RotationCurves: []
+  m_CompressedRotationCurves: []
+  m_EulerCurves: []
+  m_PositionCurves: []
+  m_ScaleCurves: []
+  m_FloatCurves: []
+  m_PPtrCurves:
+  - curve:
+    - time: 0
+      value: {fileID: 21300000, guid: cf1eb3c12dc659543b77d56b35516774, type: 3}
+    - time: 0.14285715
+      value: {fileID: 21300000, guid: f5210e3641ea658489c1a6fa44e54f91, type: 3}
+    - time: 0.2857143
+      value: {fileID: 21300000, guid: c45a12ffaad05f9458db6f3f349164be, type: 3}
+    - time: 0.42857143
+      value: {fileID: 21300000, guid: 0ecf1531e3343f4489a0c26b5fa675aa, type: 3}
+    - time: 0.5714286
+      value: {fileID: 21300000, guid: 9519c7eefa0b61c4eb6ab45353888967, type: 3}
+    - time: 0.71428573
+      value: {fileID: 21300000, guid: f6c23c09a9eff5447aaf90329464b8ee, type: 3}
+    - time: 0.85714287
+      value: {fileID: 21300000, guid: e842c8fbc85b890418c832b948fbbb10, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 1a6cfca4331989c4ab0ecdd15f8d13ef, type: 3}
+    - time: 1.1428572
+      value: {fileID: 21300000, guid: ee4ee85a7bb63ce4e8c551d076216659, type: 3}
+    attribute: m_Sprite
+    path: 
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 7
+  m_WrapMode: 0
+  m_Bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: cf1eb3c12dc659543b77d56b35516774, type: 3}
+    - {fileID: 21300000, guid: f5210e3641ea658489c1a6fa44e54f91, type: 3}
+    - {fileID: 21300000, guid: c45a12ffaad05f9458db6f3f349164be, type: 3}
+    - {fileID: 21300000, guid: 0ecf1531e3343f4489a0c26b5fa675aa, type: 3}
+    - {fileID: 21300000, guid: 9519c7eefa0b61c4eb6ab45353888967, type: 3}
+    - {fileID: 21300000, guid: f6c23c09a9eff5447aaf90329464b8ee, type: 3}
+    - {fileID: 21300000, guid: e842c8fbc85b890418c832b948fbbb10, type: 3}
+    - {fileID: 21300000, guid: 1a6cfca4331989c4ab0ecdd15f8d13ef, type: 3}
+    - {fileID: 21300000, guid: ee4ee85a7bb63ce4e8c551d076216659, type: 3}
+  m_AnimationClipSettings:
+    serializedVersion: 2
+    m_AdditiveReferencePoseClip: {fileID: 0}
+    m_AdditiveReferencePoseTime: 0
+    m_StartTime: 0
+    m_StopTime: 1.2857144
+    m_OrientationOffsetY: 0
+    m_Level: 0
+    m_CycleOffset: 0
+    m_HasAdditiveReferencePose: 0
+    m_LoopTime: 1
+    m_LoopBlend: 0
+    m_LoopBlendOrientation: 0
+    m_LoopBlendPositionY: 0
+    m_LoopBlendPositionXZ: 0
+    m_KeepOriginalOrientation: 0
+    m_KeepOriginalPositionY: 1
+    m_KeepOriginalPositionXZ: 0
+    m_HeightFromFeet: 0
+    m_Mirror: 0
+  m_EditorCurves: []
+  m_EulerEditorCurves: []
+  m_HasGenericRootTransform: 0
+  m_HasMotionFloatCurves: 0
+  m_Events:
+  - time: 0.71428573
+    functionName: PlayStepDust
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1428572
+    functionName: PlayStepDust
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -6,7 +6,6 @@ public class FinalBossAI : MonoBehaviour
 {
     private enum State
     {
-        Spawning,
         EyeLasers,
         Scream,
         Dead
@@ -16,25 +15,23 @@ public class FinalBossAI : MonoBehaviour
 
     public Transform player, rightEye, leftEye, mouth;
 
-    public Transform movingTarget;
-
     private Vector3 superLaserTarget, target;
 
-    public LineRenderer laserLeft, laserRight, superLaserLeft, superLaserRight;
+    public LineRenderer superLaserLeft, superLaserRight;
 
     public Animator anim;
 
     public GameObject[] tbPoints;
 
-    public GameObject offensiveDrills, defensiveDrills, fireBalls, secondFase;
+    public GameObject offensiveDrills, defensiveDrills, fireBalls, secondFase, projectiles;
 
     private Collider2D[] playerHit;
 
     public int health;
 
-    private bool isAlreadyDying = false, isShootingSuperLasers, isShootingEyeLasers = false, canTakeDamage = true;
+    private bool isAlreadyDying = false, isShootingSuperLasers = false, canTakeDamage = true;
 
-    public bool isBreathing, isF2, movingTargetIsActive;
+    public bool isBreathing, isF2;
 
     public float screamDistance;
     private float timeToReposition, randomNumber, specialATKCooldown;
@@ -42,11 +39,6 @@ public class FinalBossAI : MonoBehaviour
     private float yOffset = 1.7f;
 
     public LayerMask mask;
-
-    private void Awake()
-    {
-        state = State.Spawning;
-    }
 
     void Start()
     {
@@ -60,17 +52,13 @@ public class FinalBossAI : MonoBehaviour
     {
         switch (state)
         {
-            case State.Spawning:
-                Debug.Log("FinalBossSpawn");
-                break;
-
             case State.EyeLasers:
                 anim.SetBool("EyeLasers", true);
                 anim.SetBool("Scream", false);
 
                 if (specialATKCooldown <= 0)
                 {
-                    randomNumber = Random.Range(1, 5);
+                    randomNumber = Random.Range(2, 5);
 
                     if (randomNumber == 2)
                     {
@@ -134,41 +122,12 @@ public class FinalBossAI : MonoBehaviour
 
             Vector3 fator = superLaserTarget - transform.position;
 
-            target.x = superLaserTarget.x + fator.x * 2;
+            target.x = superLaserTarget.x + fator.x;
 
-            target.y = superLaserTarget.y + fator.y * 2;
+            target.y = superLaserTarget.y + fator.y;
 
-            laserLeft.enabled = false;
-            laserRight.enabled = false;
             superLaserLeft.enabled = false;
             superLaserRight.enabled = false;
-        }
-
-        //LASER NORMAL
-        if (isShootingEyeLasers)
-        {
-            RaycastHit2D hitInfoRight = Physics2D.Raycast(rightEye.position, movingTarget.transform.position, Mathf.Infinity, mask);
-
-            if (hitInfoRight)
-            {
-                GameManager.instance.TakeDamage(10);
-            }
-
-            laserRight.SetPosition(0, rightEye.position);
-            laserRight.SetPosition(1, movingTarget.position);
-
-            RaycastHit2D hitInfoLeft = Physics2D.Raycast(leftEye.position, movingTarget.transform.position, Mathf.Infinity, mask);
-
-            if (hitInfoLeft)
-            {
-                GameManager.instance.TakeDamage(10);
-            }
-
-            laserLeft.SetPosition(0, leftEye.position);
-            laserLeft.SetPosition(1, movingTarget.position);
-
-            laserLeft.enabled = true;
-            laserRight.enabled = true;
         }      
 
         //SUPER LASER
@@ -178,7 +137,7 @@ public class FinalBossAI : MonoBehaviour
 
             if (hitInfoRight != null)
             {
-                GameManager.instance.TakeDamage(50);
+                GameManager.instance.TakeDamage(60);
             }
 
             superLaserRight.SetPosition(0, rightEye.position);
@@ -188,7 +147,7 @@ public class FinalBossAI : MonoBehaviour
 
             if (hitInfoLeft != null)
             {
-                GameManager.instance.TakeDamage(50);
+                GameManager.instance.TakeDamage(60);
             }
 
             superLaserLeft.SetPosition(0, leftEye.position);
@@ -203,6 +162,7 @@ public class FinalBossAI : MonoBehaviour
     void aeHasSpawned()
     {
         SwitchCombatState();
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
     void SwitchCombatState()
     {
@@ -254,19 +214,10 @@ public class FinalBossAI : MonoBehaviour
         Instantiate(fireBalls, mouth.position, Quaternion.identity);
     }
 
-    void aeEyeLasersOn()
-    { 
-        isShootingEyeLasers = true;
-    }
-    void aeEyeLasersOff()
+    void ProjectileATK()
     {
-        movingTargetIsActive = false;
-        isShootingEyeLasers = false;
-    }
-    void aeSpawnMovingTarget()
-    {
-        movingTargetIsActive = true;
-        Instantiate(movingTarget, transform.position, Quaternion.identity); 
+        Instantiate(projectiles, leftEye.position, Quaternion.identity);
+        Instantiate(projectiles, rightEye.position, Quaternion.identity);
     }
 
     void aeSuperLaserOn()
