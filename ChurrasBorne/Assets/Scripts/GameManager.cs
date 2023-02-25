@@ -192,8 +192,13 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
+        if (pc.Tester.UKey.WasPressedThisFrame())
+        {
 
-        if(pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
+        }
+
+        if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
             if (fullFlask)
             {
@@ -634,6 +639,17 @@ public class GameManager : MonoBehaviour
     public void TurnVignetteOn()
     {
         PostProcessingControl.Instance.TurnOnVignette();
+    }
+
+    IEnumerator WaitToEnable()
+    {
+        yield return new WaitForSeconds(.25f);
+        PlayerMovement.EnableControl();
+    }
+
+    public void EnableTheControl()
+    {
+        StartCoroutine(WaitToEnable());
     }
 }
 

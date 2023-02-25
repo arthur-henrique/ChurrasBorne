@@ -117,6 +117,36 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerPrefs.GetInt("LANGAUGE") == 0) // english
+        {
+            item_void_name = "Nothing";
+            item_void_desc = "You have amazing nothings.";
+
+            item_alho_name = "Garlic Bread";
+            item_alho_desc = "The perfect snack to wait the meat - be it in a barbecue, or be it in a battle field.";
+
+            item_astrolabio_name = "Ancient Astrolabe";
+            item_astrolabio_desc = "This artifact seems to be powerless already. The tales tell that throughout the ages, such item were used to control the stars...";
+
+            item_gelo_name = "Ice";
+            item_gelo_desc = "With a spell touch, the drink shall cool forever. We got the ice, now we need the spell.";
+
+            item_lenha_name = "Firewood";
+            item_lenha_desc = "Primitive, but efficient. Perfect to light fireplaces, wood stoves, and Smith's forge furnace.";
+
+            item_sal_name = "Coarse Salt";
+            item_sal_desc = "Old world treasure. The gold of the apocalypse. The final touch. Increases the Meat's efficiency.";
+
+            item_corotefull_name = "Pitú";
+            item_corotefull_desc = "The secret recipe of the madam. Don't, just drink it. Gains movement and attack speed.";
+
+            item_coroteempty_name = "Pitú (Empty)";
+            item_coroteempty_desc = "The secret recipe of the madam. Don't, just drink it. Gains movement and attack speed.";
+
+            item_chavedungeonlua_name = "Moon Key";
+            item_chavedungeonlua_desc = "Only a mad mage would recreate the surface underneath, in his lair, and would lock it by 3 Keys... Opens one of 3 locks.";
+        }
+
         if (PlayerPrefs.GetInt("LANGAUGE") == 1) // portuguese
         {
             item_void_name = "Nada";
@@ -138,16 +168,46 @@ public class Inventory_Manager : MonoBehaviour
             item_sal_desc = "O tesouro do velho Mundo. O ouro do apocalipse. O toque final. Aumenta a eficiência das Carnes.";
 
             item_corotefull_name = "Pitú";
-            item_corotefull_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de Ataque.";
+            item_corotefull_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de ataque.";
 
             item_coroteempty_name = "Pitú (Vazio)";
-            item_coroteempty_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de Ataque.";
+            item_coroteempty_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de ataque.";
 
             item_chavedungeonlua_name = "Chave Lua";
             item_chavedungeonlua_desc = "Apenas um Mago louco recriaria a superfície em sua Masmorra, e a trancaria com 3 chaves... Abre uma das 3 trancas.";
         }
 
-        if(PauseManager.isPaused == false)
+        if (PlayerPrefs.GetInt("LANGAUGE") == 2) // spanish
+        {
+            item_void_name = "Nada";
+            item_void_desc = "Posees una nada increíble.";
+
+            item_alho_name = "Pan de Ajo";
+            item_alho_desc = "El aperitivo perfecto para esperar a la carne, ya sea en una barbacoa o en el campo de batalla (probablemente sea consumible).";
+
+            item_astrolabio_name = "Astrolabio";
+            item_astrolabio_desc = "Un instrumento ya sin ningún poder. Cuenta la leyenda que antaño se utilizaba un objeto así para controlar las estrellas...";
+
+            item_gelo_name = "Hielo";
+            item_gelo_desc = "Con un toque de magia, la bebida estará helada para siempre. Ya tenemos el hielo, falta la magia.";
+
+            item_lenha_name = "Leña";
+            item_lenha_desc = "Primitiva pero eficaz. Perfecta para encender hogueras, cocinas y el horno de la Herrería Ferreira.";
+
+            item_sal_name = "Sal";
+            item_sal_desc = "El tesoro del viejo mundo. El oro del Apocalipsis. El toque final. Aumenta la eficacia de la carne.";
+
+            item_corotefull_name = "Pitú";
+            item_corotefull_desc = "La receta secreta de la señora. No preguntes, disfruta. Obtiene bonificación de movimiento y velocidad de ataque.";
+
+            item_coroteempty_name = "Pitú (Vacío)";
+            item_coroteempty_desc = "La receta secreta de la señora. No preguntes, disfruta. Obtiene bonificación de movimiento y velocidad de ataque.";
+
+            item_chavedungeonlua_name = "Llave Lunar";
+            item_chavedungeonlua_desc = "Sólo un Mago loco recrearía la superficie en su Mazmorra, y la cerraría con 3 llaves... Abre una de las 3 cerraduras.";
+        }
+
+        if (PauseManager.isPaused == false)
         {
             if (movementLock == true)
             {

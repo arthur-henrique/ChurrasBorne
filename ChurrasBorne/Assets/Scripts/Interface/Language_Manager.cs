@@ -79,7 +79,7 @@ public class Language_Manager : MonoBehaviour
                 audioSource.PlayOneShot(ui_move, audioSource.volume);
                 selec += (int)pc.Movimento.LesteOeste.ReadValue<float>();
             }
-            Debug.Log(selec);
+            //Debug.Log(selec);
             if (selec > 2) { selec = 0; }
             if (selec < 0) { selec = 2; }
 

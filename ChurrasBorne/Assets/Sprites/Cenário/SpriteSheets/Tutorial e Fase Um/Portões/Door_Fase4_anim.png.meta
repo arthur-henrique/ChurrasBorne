@@ -1,0 +1,828 @@
+fileFormatVersion: 2
+guid: e73e273047f063947b2771e3db7bd5a3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2783131257902726306
+    second: Door_Fase4_anim_0
+  - first:
+      213: -8703395083413210692
+    second: Door_Fase4_anim_1
+  - first:
+      213: 3410534354927793121
+    second: Door_Fase4_anim_2
+  - first:
+      213: -3207398560520660825
+    second: Door_Fase4_anim_3
+  - first:
+      213: -2001377541294530500
+    second: Door_Fase4_anim_4
+  - first:
+      213: -5397351114718809821
+    second: Door_Fase4_anim_5
+  - first:
+      213: -1237218603146071942
+    second: Door_Fase4_anim_6
+  - first:
+      213: -6606252043679616918
+    second: Door_Fase4_anim_7
+  - first:
+      213: 7263009048296497131
+    second: Door_Fase4_anim_8
+  - first:
+      213: -698419530657370775
+    second: Door_Fase4_anim_9
+  - first:
+      213: -4219113651090081784
+    second: Door_Fase4_anim_10
+  - first:
+      213: 1285569852091114452
+    second: Door_Fase4_anim_11
+  - first:
+      213: 1766833204875136365
+    second: Door_Fase4_anim_12
+  - first:
+      213: -6243997848549824592
+    second: Door_Fase4_anim_13
+  - first:
+      213: 8330771856336529908
+    second: Door_Fase4_anim_14
+  - first:
+      213: -8937185687844781796
+    second: Door_Fase4_anim_15
+  - first:
+      213: -3186866581410774777
+    second: Door_Fase4_anim_16
+  - first:
+      213: 1294818434689755556
+    second: Door_Fase4_anim_17
+  - first:
+      213: 489138322265474122
+    second: Door_Fase4_anim_18
+  - first:
+      213: -7459660358752240828
+    second: Door_Fase4_anim_19
+  - first:
+      213: -7253623088803511476
+    second: Door_Fase4_anim_20
+  - first:
+      213: 3129281796571001796
+    second: Door_Fase4_anim_21
+  - first:
+      213: 5396218523683404860
+    second: Door_Fase4_anim_22
+  - first:
+      213: -5089160681387678832
+    second: Door_Fase4_anim_23
+  - first:
+      213: 3782172974284631585
+    second: Door_Fase4_anim_24
+  - first:
+      213: 6198602573273215277
+    second: Door_Fase4_anim_25
+  - first:
+      213: -2737796763442265534
+    second: Door_Fase4_anim_26
+  - first:
+      213: 449188622189091496
+    second: Door_Fase4_anim_27
+  - first:
+      213: -4299023132206797481
+    second: Door_Fase4_anim_28
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Door_Fase4_anim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 256
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e530c69ddd45069d0800000000000000
+      internalID: -2783131257902726306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 960
+        width: 256
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb93641c844573780800000000000000
+      internalID: -8703395083413210692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 960
+        width: 256
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3bcbf0de6a45f20800000000000000
+      internalID: 3410534354927793121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 960
+        width: 256
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a81113b0080d73d0800000000000000
+      internalID: -3207398560520660825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 256
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c30e1bddabda934e0800000000000000
+      internalID: -2001377541294530500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 256
+        height: 180
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321702fe1c1c815b0800000000000000
+      internalID: -5397351114718809821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 256
+        height: 203
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7039f94c3484dee0800000000000000
+      internalID: -1237218603146071942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 256
+        height: 226
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6037c784c0e154a0800000000000000
+      internalID: -6606252043679616918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 256
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef19249f346bc460800000000000000
+      internalID: 7263009048296497131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 256
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96de8f22327be46f0800000000000000
+      internalID: -698419530657370775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 256
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80836c7fc72b275c0800000000000000
+      internalID: -4219113651090081784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 256
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3a7df18f247d110800000000000000
+      internalID: 1285569852091114452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 230
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d82f1507d058810800000000000000
+      internalID: 1766833204875136365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 194
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b762e2f90dd859a0800000000000000
+      internalID: -6243997848549824592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_14
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9a2c17dd8dc9370800000000000000
+      internalID: 8330771856336529908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_15
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c118e48d7fcb8f380800000000000000
+      internalID: -8937185687844781796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_16
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 701827c9ab9f5c3d0800000000000000
+      internalID: -3186866581410774777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_17
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a96f40918e18f110800000000000000
+      internalID: 1294818434689755556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_18
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a440aa866b4c9c600800000000000000
+      internalID: 489138322265474122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_19
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b728b3d66f97890800000000000000
+      internalID: -7459660358752240828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_20
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c438b496b34f55b90800000000000000
+      internalID: -7253623088803511476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_21
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c3f5bed6317d6b20800000000000000
+      internalID: 3129281796571001796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_22
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c388a282833ea40800000000000000
+      internalID: 5396218523683404860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_23
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093a005e25baf59b0800000000000000
+      internalID: -5089160681387678832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_24
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1152
+        width: 43
+        height: 432
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e6153084afc7430800000000000000
+      internalID: 3782172974284631585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_25
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 1152
+        width: 43
+        height: 447
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21b5c3e23cd50650800000000000000
+      internalID: 6198602573273215277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_26
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1152
+        width: 43
+        height: 448
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2424fcf5954610ad0800000000000000
+      internalID: -2737796763442265534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_27
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 1152
+        width: 43
+        height: 428
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa5ab60ca6db3600800000000000000
+      internalID: 449188622189091496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Door_Fase4_anim_28
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1152
+        width: 43
+        height: 172
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d60ab0d3dc654c0800000000000000
+      internalID: -4299023132206797481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -37,7 +37,7 @@ public class BullSpike : MonoBehaviour
             }
             if(canDamage && !isOnTut)
             {
-                GameManager.instance.TakeDamage(10, 0.25f);
+                GameManager.instance.TakeDamage(15, 0.25f);
             }
         }
     }

@@ -107,6 +107,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5736956280061302190}
     m_Modifications:
+    - target: {fileID: -1403264515313419565, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: offset
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 2856997750997287604, guid: 368a900abd520ec4397bff51e6650820, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -150,18 +154,6 @@ PrefabInstance:
     - target: {fileID: 2856997750997287604, guid: 368a900abd520ec4397bff51e6650820, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2856997750997287605, guid: 368a900abd520ec4397bff51e6650820, type: 3}
-      propertyPath: m_SortingLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2856997750997287605, guid: 368a900abd520ec4397bff51e6650820, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2856997750997287605, guid: 368a900abd520ec4397bff51e6650820, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1189529141
       objectReference: {fileID: 0}
     - target: {fileID: 2856997750997287607, guid: 368a900abd520ec4397bff51e6650820, type: 3}
       propertyPath: m_Name

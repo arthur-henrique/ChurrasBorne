@@ -1188,6 +1188,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UKey",
+                    "type": "Button",
+                    "id": "1b5186f5-abb5-4b89-8bce-cf40fb804f56",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1232,6 +1241,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "YKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49d28e47-faad-4fad-95ff-8c1399ec0f19",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

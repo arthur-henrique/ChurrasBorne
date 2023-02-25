@@ -7,14 +7,17 @@ public class ManagerOfScenes : MonoBehaviour
     public static ManagerOfScenes instance;
     public GameObject passado, eclipse;
     public GameObject particleEmmy;
-    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf;
-    public static int randomTimeline;
+    private bool clearedUm, clearedHalf, clearedDois, clearedDoisHalf, clearedTres, clearedTresHalf, clearedQuatro;
+    public int randomTimeline = 0;
     public CinemachineVirtualCamera gate;
     public Collider2D portalUm;
     public Animator portalDois;
+    public GameObject portalTres;
     public AudioSource audioS;
     public AudioClip questHubAudio;
     public bool isEclipse = false;
+    public int faseQuatroPath;
+    public bool test;
 
     
 
@@ -33,6 +36,7 @@ public class ManagerOfScenes : MonoBehaviour
         clearedDoisHalf = GameManager.instance.GetHasCleared(3);
         clearedTres = GameManager.instance.GetHasCleared(4);
         clearedTresHalf = GameManager.instance.GetHasCleared(5);
+        clearedQuatro = GameManager.instance.GetHasCleared(6);
         if(gate != null)
             GameManager.instance.GateCamSetter(gate);
 
@@ -59,18 +63,23 @@ public class ManagerOfScenes : MonoBehaviour
             {
                 StartCoroutine(ShowChurras());
             }
-            if (clearedUm && !clearedHalf && !GameManager.instance.GetHasSeenGateTwoAnim())
+
+            if (clearedUm)
             {
-                GameManager.instance.SetHasSeenGateTwoAnim(true);
-                StartCoroutine(ShowSecondPath());
-                portalUm.enabled = true;
                 particleEmmy.SetActive(true);
+
+                portalUm.enabled = true;
+                GameManager.instance.EnableTheControl();
             }
-            else if (clearedUm && GameManager.instance.GetHasSeenGateTwoAnim())
+            
+            if (clearedDois)
             {
-                particleEmmy.SetActive(true);
-                portalUm.enabled = true;
                 portalDois.SetTrigger("ON");
+            }
+
+            if (clearedTres)
+            {
+                StartCoroutine(OpenFaseTres());
             }
 
             if(GameManager.instance.hasCompletedQuestThree)
@@ -107,6 +116,7 @@ public class ManagerOfScenes : MonoBehaviour
             else if(clearedUm && clearedHalf)
             {
                 randomTimeline = Random.Range(1, 3);
+                print(randomTimeline.ToString());
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);
@@ -120,6 +130,7 @@ public class ManagerOfScenes : MonoBehaviour
                     isEclipse = true;
                 }
             }
+            GameManager.instance.EnableTheControl();
         }
 
         if (gameObject.CompareTag("FASEDOIS"))
@@ -166,8 +177,10 @@ public class ManagerOfScenes : MonoBehaviour
                     eclipse.SetActive(true);
                 }
             }
+            GameManager.instance.EnableTheControl();
+
         }
-        if(gameObject.CompareTag("FASETRES"))
+        if (gameObject.CompareTag("FASETRES"))
         {
             PostProcessingControl.Instance.TurnOffVignette();
             if (!clearedTres && !clearedTresHalf)
@@ -185,6 +198,7 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if (clearedTres && clearedTresHalf)
             {
+                FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
                 randomTimeline = Random.Range(1, 3);
                 if (randomTimeline == 1)
                 {
@@ -200,14 +214,42 @@ public class ManagerOfScenes : MonoBehaviour
                     isEclipse = true;
                 }
             }
+            GameManager.instance.EnableTheControl();
+        }
+        if(gameObject.CompareTag("FASEQUATRO"))
+        {
+            PostProcessingControl.Instance.TurnOffVignette();
+            faseQuatroPath = Random.Range(0, 5);
         }
 
+
+    }
+
+    private void FixedUpdate()
+    {
+        if(test)
+        {
+            test = false;
+            StartCoroutine(ShowThirdPath());
+        }
     }
 
 
     public void ShowFirstPhase()
     {
         StartCoroutine(ShowFirstPath());
+    }
+    // NPCs show stuff
+    public void ShowSecondPhase()
+    {
+        GameManager.instance.SetHasSeenGateTwoAnim(true);
+        StartCoroutine(ShowSecondPath());
+    }
+
+    public void ShowThirdPhase()
+    {
+        StartCoroutine(ShowThirdPath());
+
     }
 
     IEnumerator ShowFirstPath()
@@ -228,10 +270,18 @@ public class ManagerOfScenes : MonoBehaviour
         portalDois.SetTrigger("ON");
     }
 
+    IEnumerator ShowThirdPath()
+    {
+        gate.transform.position = GateCamPos[2].transform.position;
+        yield return new WaitForSeconds(1.5f);
+        GameManager.instance.GateCAM();
+        StartCoroutine(OpenFaseTres());
+    }
+
     IEnumerator ShowChurras()
     {
         PlayerMovement.DisableControl();
-        gate.transform.position = GateCamPos[2].transform.position;
+        gate.transform.position = GateCamPos[3].transform.position;
         yield return new WaitForSeconds(1.5f);
         GameManager.instance.GateCAM();
     }
@@ -240,5 +290,11 @@ public class ManagerOfScenes : MonoBehaviour
     {
         Transition_Manager.fase1_spawn = Vector2.zero;
         Transition_Manager.fase3_spawn = Vector2.zero;
+    }
+
+    IEnumerator OpenFaseTres()
+    {
+        yield return new WaitForSeconds(1.5f);
+        portalTres.SetActive(true);
     }
 }
