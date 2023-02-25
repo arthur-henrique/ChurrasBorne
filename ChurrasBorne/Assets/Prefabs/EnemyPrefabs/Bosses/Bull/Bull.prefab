@@ -166,7 +166,8 @@ MonoBehaviour:
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   rb: {fileID: 2477395731989692587}
   anim: {fileID: 2477395731989692585}
-  bullSpikes: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
+  bullSpikesI: {fileID: 3524298158618976574, guid: cb5616aa8a052d14e8b537abfc009ab3, type: 3}
+  bullSpikesII: {fileID: 6190110112889978148, guid: 91b74dcb64fcb9c46a176d55cc3c6365, type: 3}
   protectiveSpikes: {fileID: 7111068594076181625, guid: 014dc416b0ec7a1419c047efb964a535, type: 3}
   portal: {fileID: 0}
   audioSource: {fileID: 0}
@@ -179,6 +180,7 @@ MonoBehaviour:
   chasingSpeed: 5
   meleeDistance: 7
   rangedDistance: 5
+  spikesSummonDistance: 9
   isOnTut: 1
   isAlive: 1
   bloodSpatter: {fileID: 4248257841506297777}

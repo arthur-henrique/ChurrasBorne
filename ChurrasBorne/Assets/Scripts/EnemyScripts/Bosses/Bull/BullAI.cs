@@ -21,7 +21,7 @@ public class BullAI : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
 
-    public GameObject bullSpikes, protectiveSpikes;
+    public GameObject bullSpikesI, bullSpikesII, protectiveSpikes;
     public Collider2D portal;
 
     public AudioSource audioSource;
@@ -33,8 +33,8 @@ public class BullAI : MonoBehaviour
 
     public float health;
 
-    public float chasingSpeed, meleeDistance, rangedDistance;
-    private float timeBTWMeleeATKs, timeBTWRangedATKs, timeBTWScreamATKs;
+    public float chasingSpeed, meleeDistance, rangedDistance, spikesSummonDistance;
+    private float timeBTWMeleeATKs, timeBTWRangedATKs, timeBTWScreamATKs, randNum;
 
     public bool isOnTut, isAlive = true;
 
@@ -130,6 +130,8 @@ public class BullAI : MonoBehaviour
             case State.Summon:
                 Flip();
                 rb.velocity = Vector2.zero;
+
+                randNum = Random.Range(1, 3);
 
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
@@ -263,9 +265,18 @@ public class BullAI : MonoBehaviour
     //SPIKES
     public void SummonSpike()
     {
-        if(Vector2.Distance(transform.position, player.position) > meleeDistance)
+        if(Vector2.Distance(transform.position, player.position) > spikesSummonDistance)
         {
-            Instantiate(bullSpikes, player.position, Quaternion.identity);
+            if(randNum == 1)
+            {
+                Instantiate(bullSpikesI, player.position, Quaternion.identity);
+                randNum = 0;
+            }
+            if(randNum == 2)
+            {
+                Instantiate(bullSpikesII, player.position, Quaternion.identity);
+                randNum = 0;
+            }
         }
         else
         {
@@ -287,6 +298,12 @@ public class BullAI : MonoBehaviour
         timeBTWRangedATKs = Random.Range(2.5f, 3.5f);
         Instantiate(protectiveSpikes, transform.position, Quaternion.identity);
         gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+
+        if(Vector2.Distance(transform.position, player.position) <= meleeDistance)
+        {
+            GameManager.instance.TakeDamage(20);
+        }
+
         SwitchBTWCombatStates();
     }
 
