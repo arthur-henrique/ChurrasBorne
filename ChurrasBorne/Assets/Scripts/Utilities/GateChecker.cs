@@ -9,7 +9,16 @@ public class GateChecker : MonoBehaviour
     public bool isTheBossDead = false, areTheMobsDead = false, hasRun = false;
     public Animator faseDoisHalf;
     public Collider2D coll;
+    private ManagerOfScenes manager;
+    public GameObject astrolabio;
 
+
+    private void Start()
+    {
+        manager = FindObjectOfType<ManagerOfScenes>();
+        isTheBossDead = false;
+        areTheMobsDead = false;
+    }
     public void TheBossDied()
     {
         isTheBossDead = true;
@@ -41,7 +50,7 @@ public class GateChecker : MonoBehaviour
             }
             if(isOnFaseTres)
             {
-                if(!ManagerOfScenes.instance.isEclipse)
+                if(!manager.isEclipse)
                 {
                     hasRun = true;
                     FaseTresTriggerController.Instance.GateOpener();
@@ -51,14 +60,20 @@ public class GateChecker : MonoBehaviour
                 else
                 {
                     hasRun = true;
-                    FaseTresTriggerController.Instance.GateOpener();
+                    //FaseTresTriggerController.Instance.GateOpener();
                     // Ativa o Portal para o Hub
+                    astrolabio.SetActive(true);
                     GameManager.instance.SetHasCleared(5, true);
                 }
             }
             
 
         }
+    }
+
+    public void SetAstrolabePos(Vector2 pos)
+    {
+        astrolabio.transform.position = pos;
     }
 
 }

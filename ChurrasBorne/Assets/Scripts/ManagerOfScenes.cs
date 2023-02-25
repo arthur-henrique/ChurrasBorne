@@ -16,7 +16,7 @@ public class ManagerOfScenes : MonoBehaviour
     public AudioSource audioS;
     public AudioClip questHubAudio;
     public bool isEclipse = false;
-
+    public int faseQuatroPath;
     public bool test;
 
     
@@ -198,6 +198,7 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if (clearedTres && clearedTresHalf)
             {
+                FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
                 randomTimeline = Random.Range(1, 3);
                 if (randomTimeline == 1)
                 {
@@ -214,6 +215,11 @@ public class ManagerOfScenes : MonoBehaviour
                 }
             }
             GameManager.instance.EnableTheControl();
+        }
+        if(gameObject.CompareTag("FaseQuatro"))
+        {
+            PostProcessingControl.Instance.TurnOffVignette();
+            faseQuatroPath = Random.Range(1, 6);
         }
 
 

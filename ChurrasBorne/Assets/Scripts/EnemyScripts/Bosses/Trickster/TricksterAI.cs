@@ -149,6 +149,7 @@ public class TricksterAI : MonoBehaviour
 
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
+                gc.SetAstrolabePos(gameObject.transform.position);
 
                 if (timeToDie <= 0)
                 {
@@ -162,6 +163,7 @@ public class TricksterAI : MonoBehaviour
                 }
 
                 gc.isTheBossDead = true;
+                gc.areTheMobsDead= true;
                 break;
 
             case State.Idling:
