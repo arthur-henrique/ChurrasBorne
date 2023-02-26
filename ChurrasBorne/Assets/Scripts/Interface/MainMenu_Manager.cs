@@ -18,6 +18,7 @@ public class MainMenu_Manager : MonoBehaviour
     public AudioClip ui_zoom;
 
     GameObject menu_bg;
+    GameObject menu_fog;
     GameObject menu_shadow;
     GameObject menu_drop_shadow;
     GameObject menu_copyright;
@@ -45,6 +46,7 @@ public class MainMenu_Manager : MonoBehaviour
     GameObject menu_lang_text;
 
     private Vector3 velocity_bg = Vector3.zero;
+    private Vector3 velocity_fog = Vector3.zero;
     private Vector3 velocity_drop_shadow = Vector3.zero;
     private Vector3 velocity_copyright = Vector3.zero;
     private Vector3 velocity_logo = Vector3.zero;
@@ -60,6 +62,7 @@ public class MainMenu_Manager : MonoBehaviour
     private Vector3 velocity_apply = Vector3.zero;
 
     Color bg_img_color;
+    Color bg_fog_color;
     Color shadow_img_color;
     Color logo_img_color;
     Color sel1_img_color;
@@ -135,6 +138,15 @@ public class MainMenu_Manager : MonoBehaviour
         bg_img_color.a = 0f;
 
         StartCoroutine(Intro_BG_Zoom());
+        #endregion
+
+        #region Menu Background
+        menu_fog = DialogSystem.getChildGameObject(gameObject, "MENU_Fog");
+        menu_fog.GetComponent<RectTransform>().localScale = new Vector3(3f, 3f, 1);
+
+        bg_fog_color = menu_fog.GetComponent<RawImage>().color;
+        bg_fog_color.a = 0f;
+
         #endregion
 
         #region Menu Layered Shadow
@@ -291,6 +303,12 @@ public class MainMenu_Manager : MonoBehaviour
         (Mouse.current.position.x.ReadValue() / Screen.width) * 10,
         (Mouse.current.position.y.ReadValue() / Screen.height) * 10
         );
+
+        // Fog image loop
+
+        var rend = menu_fog.GetComponent<RawImage>();
+        var offset = Time.time * 0.05f;
+        menu_fog.GetComponent<RawImage>().uvRect = new Rect(offset, 0.05f, 1, 1);
 
         if (pc.Movimento.NorteSul.WasPressedThisFrame())
         {
@@ -1031,6 +1049,15 @@ public class MainMenu_Manager : MonoBehaviour
             bg_img_color.a = Mathf.Lerp(bg_img_color.a, 1, Time.deltaTime * 0.4f);
             menu_bg.GetComponent<Image>().color = bg_img_color;
             menu_bg.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(menu_bg.GetComponent<RectTransform>().localScale, new Vector3(1.1f, 1.1f, 1), ref velocity_bg, 2);
+
+            bg_fog_color.a = Mathf.Lerp(bg_fog_color.a, 1, Time.deltaTime * 0.4f);
+
+            if (menu_fog)
+            {
+                menu_fog.GetComponent<RectTransform>().localScale = Vector3.SmoothDamp(menu_fog.GetComponent<RectTransform>().localScale, new Vector3(1.1f, 1.1f, 1), ref velocity_fog, 2);
+                menu_fog.GetComponent<RawImage>().color = bg_fog_color;
+            }
+
             yield return null;
         }
     }

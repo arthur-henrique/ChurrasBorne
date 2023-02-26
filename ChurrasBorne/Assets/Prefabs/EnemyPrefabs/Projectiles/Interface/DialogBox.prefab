@@ -257,6 +257,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a7a43d555608f1b43922b6c30d03fb04, type: 3}
   - {fileID: 21300000, guid: 35b5b96a715e71e4aa8796c274924d19, type: 3}
   - {fileID: 21300000, guid: eb1b3b068496be54e8f9468f8bfb6155, type: 3}
+  - {fileID: 21300000, guid: 89a6bda86eceaad49800bcc9ed4e898b, type: 3}
+  - {fileID: 21300000, guid: 342c99a3982e9b740ba5f7b43af98d4d, type: 3}
+  - {fileID: 21300000, guid: 2457454a2b916bd4bac05cd830701fd6, type: 3}
+  - {fileID: 21300000, guid: 5b54a5ef304937d478d49f6965d4211a, type: 3}
 --- !u!114 &2308846616696868524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +342,66 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: af0c067c-f6e9-4819-a2f8-0c20291ee754
     m_ActionName: Tester/TKey[/Keyboard/t]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9ca09348-ab2c-495b-8778-b1fd91b500ff
+    m_ActionName: Movimento/Inventario[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 935e6d6c-3e97-41ac-b079-4f780ffaa305
+    m_ActionName: Movimento/MouseClick[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65e0524e-051a-4642-95f8-e1897fcd6921
+    m_ActionName: Movimento/AttackNoMouse[/Keyboard/z,/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 19d73278-adf9-402e-8e88-c66dfc8d0ae5
+    m_ActionName: UI1/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f4807925-1b5b-4ebf-8b15-aa9518aff1f9
+    m_ActionName: UI1/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8b30ca36-ee7c-4635-b943-5ad14711b1b5
+    m_ActionName: UI1/Cancel[/Keyboard/escape,/Mouse/backButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7be15e9f-79e4-4cdf-a344-b4f95f382927
+    m_ActionName: UI1/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6ce4044-76e6-4d83-a90e-45a1dbb13465
+    m_ActionName: UI1/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 309aa147-1855-4e3c-b781-3ed2b8c21e3a
+    m_ActionName: UI1/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 68e7ea65-1cd0-4b20-9b92-3e596c1724e1
+    m_ActionName: UI1/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 95c1846d-5725-44e1-8c86-2491a5dc52db
+    m_ActionName: UI1/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 685ba652-aceb-4240-a210-1b0f069d72c0
+    m_ActionName: UI1/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7a2ef826-3b1b-4563-9e1d-6ae3c6941a45
+    m_ActionName: UI1/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c743b11f-2099-4bd7-af1b-8cd616b3b8a3
+    m_ActionName: Tester/YKey[/Keyboard/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1b5186f5-abb5-4b89-8bce-cf40fb804f56
+    m_ActionName: Tester/UKey[/Keyboard/u]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movimento
@@ -530,7 +594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -174}
+  m_AnchoredPosition: {x: 0, y: -329.63}
   m_SizeDelta: {x: 872, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5562796071122361806
