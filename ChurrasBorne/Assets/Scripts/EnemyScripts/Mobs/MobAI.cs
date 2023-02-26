@@ -28,6 +28,7 @@ public class MobAI : MonoBehaviour
     public Vector3 dashTarget;
 
     public GameObject projectile, armoredTebasProjectile;
+    public ArmoredTebasProjectile armored;
 
     public GameObject gameManager;
 
@@ -97,7 +98,7 @@ public class MobAI : MonoBehaviour
         TimeBTWAttacks = 0.1f;
         timeBTWShots = 1.5f;
 
-        timeBTWWindupATKs = Random.Range(5f, 7f);
+        timeBTWWindupATKs = Random.Range(2f, 4f);
 
         stunTime = startStunTime;
         stunCD = Random.Range(1, 3);
@@ -155,7 +156,7 @@ public class MobAI : MonoBehaviour
         {
             health = 200f;
             damage = 25f;
-            armor = 1.5f;
+            armor = 1.15f;
         }
         if(isASkeletebas)
         {
@@ -167,7 +168,7 @@ public class MobAI : MonoBehaviour
         {
             health = 130f;
             damage = 30f;
-            armor = 1.2f;
+            armor = 1.5f;
         }
         if(isATrickstebas)
         {
@@ -555,11 +556,13 @@ public class MobAI : MonoBehaviour
         if (Vector2.Distance(transform.position, target) <= meleeDistance)
         {
             GameManager.instance.TakeDamage(damage);
-            Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity);
+            armored = Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity).GetComponent<ArmoredTebasProjectile>();
+            armored.ArmorTebasSetter(this);
         }
         else
         {
-            Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity);
+            armored = Instantiate(armoredTebasProjectile, armoredTebasSpeartip.position, Quaternion.identity).GetComponent<ArmoredTebasProjectile>();
+            armored.ArmorTebasSetter(this);
         }
 
         isUsingWindupATK = false;

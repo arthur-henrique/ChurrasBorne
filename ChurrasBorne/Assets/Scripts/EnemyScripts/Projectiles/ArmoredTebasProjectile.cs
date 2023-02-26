@@ -6,34 +6,18 @@ public class ArmoredTebasProjectile : MonoBehaviour
 {
     public float speed;
 
-    public GameObject armoredTebas;
+    public MobAI armoredTebas;
     
     // Start is called before the first frame update
     void Start()
     {
-        if(armoredTebas.GetComponent<MobAI>().isFlipped == true)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-            Debug.Log("LEFT");
-        }
-        if(armoredTebas.GetComponent<MobAI>().isFlipped == false)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            Debug.Log("RIGHT");
-        }
+        StartCoroutine(WaitStart());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(armoredTebas.GetComponent<MobAI>().isFlipped == true)
-        {
-            
-        }
-        else
-        {
-            
-        }
+        StartCoroutine(WaitUpdate());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,5 +31,38 @@ public class ArmoredTebasProjectile : MonoBehaviour
     void DestroySelf()
     {
         Destroy(gameObject);
+    }
+
+    public void ArmorTebasSetter(MobAI armortebas)
+    {
+        armoredTebas = armortebas;
+    }
+
+    IEnumerator WaitStart()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (armoredTebas.isFlipped == true)
+        {
+            print("Left");
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (armoredTebas.isFlipped == false)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            print("Roght");
+        }
+    }
+
+    IEnumerator WaitUpdate()
+    {
+        yield return new WaitForSeconds(0.11f);
+        if (armoredTebas.isFlipped == true)
+        {
+
+        }
+        else
+        {
+
+        }
     }
 }
