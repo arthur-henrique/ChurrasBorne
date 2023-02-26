@@ -37,7 +37,7 @@ public class PauseManager : MonoBehaviour
     private GameObject pause_lang;
     private GameObject pause_apply;
 
-    private int restable_opt = 0;
+    private int restable_opt = PlayerPrefs.GetInt("RESOLUTION");
     private int[,] restable = { { 640, 360 },
                                 { 854, 480 },
                                 { 1024, 576 },
@@ -45,9 +45,9 @@ public class PauseManager : MonoBehaviour
                                 { 1920, 1080 },
                                 { 3840, 2160 }};
 
-    private int fs_mode_opt = 0;
+    private int fs_mode_opt = PlayerPrefs.GetInt("FULLSCREEN");
     private string[] fs_mode = { "Desligada", "Exclusiva", "Borderless" };
-    private int lang_mode_opt = 0;
+    private int lang_mode_opt = PlayerPrefs.GetInt("LANGUAGE");
     private string[] lang_mode = { "English", "Português", "Español" };
     private FullScreenMode[] fs_mode_out = { FullScreenMode.Windowed, FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow };
 
@@ -90,6 +90,7 @@ public class PauseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         instance = this;
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
 

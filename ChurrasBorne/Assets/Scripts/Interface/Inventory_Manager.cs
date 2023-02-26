@@ -109,6 +109,8 @@ public class Inventory_Manager : MonoBehaviour
         inv_item_2.GetComponent<Image>().sprite = itemImages[0];
         inv_item_3.GetComponent<Image>().sprite = itemImages[0];
 
+        inv_label = DialogSystem.getChildGameObject(gameObject, "Inventory_Label");
+
         itemStorage.Add(1);
         itemStorage.Add(2);
         //itemStorage.Add(1);
@@ -119,6 +121,8 @@ public class Inventory_Manager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("LANGAUGE") == 0) // english
         {
+            inv_label.GetComponent<TextMeshProUGUI>().text = "Inventory";
+
             item_void_name = "Nothing";
             item_void_desc = "You have amazing nothings.";
 
@@ -149,6 +153,8 @@ public class Inventory_Manager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 1) // portuguese
         {
+            inv_label.GetComponent<TextMeshProUGUI>().text = "Inventário";
+
             item_void_name = "Nada";
             item_void_desc = "Você possui incríveis nada.";
 
@@ -179,6 +185,8 @@ public class Inventory_Manager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 2) // spanish
         {
+            inv_label.GetComponent<TextMeshProUGUI>().text = "Inventario";
+
             item_void_name = "Nada";
             item_void_desc = "Posees una nada increíble.";
 

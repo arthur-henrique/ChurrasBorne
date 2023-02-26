@@ -53,8 +53,15 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f); 
-
+        notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f);
+        if (GameManager.isInDialog)
+        {
+            //GetComponent<Animator>().SetTrigger("IDLEX");
+        } else
+        {
+            //GetComponent<Animator>().SetTrigger("IDLE");
+        }
+        //GetComponent<Animator>().SetTrigger("IDLE");
         if (target)
         {
             if (ferreiro_encounter_1_occurred == false && ferreiro_encounter_2_occurred == false)
