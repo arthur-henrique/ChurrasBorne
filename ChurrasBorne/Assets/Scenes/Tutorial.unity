@@ -28165,6 +28165,7 @@ MonoBehaviour:
   audioS: {fileID: 0}
   questHubAudio: {fileID: 0}
   isEclipse: 0
+  faseQuatroPath: 0
   test: 0
   GateCamPos: []
 --- !u!4 &1378905018
@@ -34509,6 +34510,10 @@ PrefabInstance:
     - target: {fileID: 2477395731989692589, guid: b99f82ba50d3e624a8f589cdbc046188, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997139969748278739, guid: b99f82ba50d3e624a8f589cdbc046188, type: 3}
+      propertyPath: health
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2997139969748278739, guid: b99f82ba50d3e624a8f589cdbc046188, type: 3}
       propertyPath: portal
