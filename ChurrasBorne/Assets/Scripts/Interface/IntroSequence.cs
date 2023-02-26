@@ -51,7 +51,7 @@ public class IntroSequence : MonoBehaviour
         "Todo ello culminó con la desaparición de la actividad más importante para la humanidad, despojándola esencialmente del estatus de civilización....",
         "El Asado.",
         "Pero en estos tiempos oscuros, surge un héroe, Sabet.",
-        "Nacido en El asado... Moldeado en El asado... este héroe salvaría a la humanidad, pues nada se interpondría entre él y su asado.",
+        "Nacido en El asado... Moldeado en El asado... este héroe salvaría a la humanidad, pues nada se interpondría entre él y su asado. ",
     };
 
     private void Awake()
