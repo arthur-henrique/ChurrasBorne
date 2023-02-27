@@ -17,6 +17,7 @@ public class ManagerOfScenes : MonoBehaviour
     public AudioClip questHubAudio;
     public bool isEclipse = false;
     public int faseQuatroPath;
+    private bool secondPortalIsOn = false;
     public bool test;
 
     
@@ -72,6 +73,10 @@ public class ManagerOfScenes : MonoBehaviour
 
                 portalUm.enabled = true;
                 GameManager.instance.EnableTheControl();
+            }
+            if(secondPortalIsOn)
+            {
+                portalDois.SetTrigger("ON");
             }
             
             if (clearedDois)
@@ -271,6 +276,7 @@ public class ManagerOfScenes : MonoBehaviour
         GameManager.instance.GateCAM();
         yield return new WaitForSeconds(1.5f);
         portalDois.SetTrigger("ON");
+        secondPortalIsOn = true;
     }
 
     IEnumerator ShowThirdPath()
