@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
-//using static UnityEditor.PlayerSettings;
+using static UnityEditor.PlayerSettings;
 
 public class GoatAI : MonoBehaviour
 {
@@ -26,9 +26,9 @@ public class GoatAI : MonoBehaviour
     public float chasingSpeed, dashingSpeed, meleeDistance, dashDistance, dashATKDistance, canDashDistance;
 
     public float startTimeBTWMeleeATKs, startDashRecoveryTime;
-    private float timeBTWMeleeATKs, dashRecoveryTime, timeToDie, dashCooldown;
+    private float timeBTWMeleeATKs, dashRecoveryTime, timeToDie;
 
-    private bool isDashing = false, isAlreadyDying = false, canDash = true;
+    private bool isDashing = false, isAlreadyDying = false;
     public bool isAlive = true;
 
     public float health;
@@ -71,7 +71,6 @@ public class GoatAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         timeBTWMeleeATKs = .5f;
-        dashCooldown = Random.Range(3, 6);
 
         timeToDie = .1f;
 
@@ -143,7 +142,6 @@ public class GoatAI : MonoBehaviour
                 if (Vector2.Distance(transform.position, player.position) <= dashATKDistance && isDashing)
                 {
                     isDashing = false;
-                    canDash = false;
 
                     anim.SetTrigger("DashATK");
                     audioSource.PlayOneShot(goat_dashattack, audioSource.volume);
@@ -152,7 +150,6 @@ public class GoatAI : MonoBehaviour
                 else if (transform.position.x == dashTarget.x && transform.position.y == dashTarget.y && isDashing)
                 {
                     isDashing = false;
-                    canDash = false;
 
                     state = State.RecoveringFromDash;
                 }
@@ -245,16 +242,6 @@ public class GoatAI : MonoBehaviour
 
             dashTarget.y = player.position.y + fator.y * 2;
         }
-
-        if(!canDash)
-        {
-            dashCooldown -= Time.deltaTime;
-        }
-        if(dashCooldown <= 0)
-        {
-            canDash = true;
-            dashCooldown = Random.Range(3, 6);
-        }
     }
 
     void SwitchToChasing()
@@ -263,14 +250,14 @@ public class GoatAI : MonoBehaviour
         {
             state = State.Chasing;
         }
-        if (Vector2.Distance(transform.position, player.position) <= canDashDistance && Vector2.Distance(transform.position, player.position) > meleeDistance && health > 0)
+        else if (Vector2.Distance(transform.position, player.position) <= canDashDistance && Vector2.Distance(transform.position, player.position) > meleeDistance && health > 0)
         {
             state = State.Chasing;
         }
     }
     void SwitchToDashing()
     {
-        if (Vector2.Distance(transform.position, player.position) <= dashDistance && Vector2.Distance(transform.position, player.position) > canDashDistance && health > 0 && canDash)
+        if (Vector2.Distance(transform.position, player.position) <= dashDistance && Vector2.Distance(transform.position, player.position) > canDashDistance && health > 0)
         {
             state = State.Dashing;
         }

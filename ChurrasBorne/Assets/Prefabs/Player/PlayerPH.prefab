@@ -4897,7 +4897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045178170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6, y: 1.59, z: 0}
+  m_LocalPosition: {x: -2, y: 1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7439086971969871808}
@@ -4947,7 +4947,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 2, y: 4.5}
+  size: {x: 2.5, y: 4.5}
 --- !u!1 &1053206533
 GameObject:
   m_ObjectHideFlags: 0
@@ -9859,7 +9859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475002057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.8, z: 0}
+  m_LocalPosition: {x: 0, y: 4.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7439086971969871808}
@@ -9909,7 +9909,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 4.5, y: 2}
+  size: {x: 4.5, y: 2.5}
 --- !u!1 &1604553937
 GameObject:
   m_ObjectHideFlags: 0
@@ -10038,7 +10038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830869711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.47, z: 0}
+  m_LocalPosition: {x: 0, y: -0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7439086971969871808}
@@ -10088,7 +10088,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 4.5, y: 2}
+  size: {x: 4.5, y: 2.5}
 --- !u!1 &1957605736
 GameObject:
   m_ObjectHideFlags: 0
@@ -24661,7 +24661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5920647588938471532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6, y: 1.59, z: 0}
+  m_LocalPosition: {x: 2.07, y: 1.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 7439086971969871808}
@@ -24711,7 +24711,7 @@ MonoBehaviour:
   bossMask:
     serializedVersion: 2
     m_Bits: 0
-  size: {x: 2, y: 4.5}
+  size: {x: 2.5, y: 4.5}
 --- !u!1 &7297177542156913122
 GameObject:
   m_ObjectHideFlags: 0

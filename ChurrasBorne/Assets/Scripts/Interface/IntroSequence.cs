@@ -34,12 +34,12 @@ public class IntroSequence : MonoBehaviour
     private string[] portuguese_intro =
     {
         "Há alguns anos, em 20XX, surgiu um Eclipse por causas desconhecidas, jogando o mundo em uma escuridão vermelha/rubra.",
-        "De início se imaginou ser um evento astronômico raro, mas logo se descobriu que não era tal acontecimento.",
+        "De início se imaginou ser um evento astrológico/astronômico (nn sei qual) raro, mas logo se descobriu que não era tal acontecimento.",
         "Com algumas semanas, pessoas que olhavam demais para o Eclipse começaram a ficar loucas, bestiais e primitivas, atacando umas às outras.",
         "Passado mais algum tempo, surgiram outras mutações e monstros, animais que cresciam demais, ou ficavam mais agressivos.",
         "Tudo isso culminou no desaparecimento da atividade mais importante para a humanidade, essencialmente a tirando do status de civilização...",
         "O Churrasco.",
-        "Mas nesses tempos de escuridão, surge um herói, Sabet.",
+        "Mas nessses tempos de escuridão, surge um herói, Sabet.",
         "Nascido no churrasco... Moldado no churrasco... este herói iria salvar a humanidade, pois nada ficaria entre ele e seu churrasco.",
     };
 

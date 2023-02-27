@@ -138,13 +138,13 @@ public class DialogSystem : MonoBehaviour
         portrait_2.GetComponent<Image>().sprite = spriteArray[3];
         if (PlayerPrefs.GetInt("LANGUAGE") == 0) // english
         {
-            for (int i = 0; DialogBank.english_dialog_bank_new[num][i, 0] != ""; i++)
+            for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i, 0] != ""; i++)
             {
                 refreshText = true;
                 letterCounter = 0;
-                _title.text = DialogBank.english_dialog_bank_new[num][i, 3];
-                _narrator.text = DialogBank.english_dialog_bank_new[num][i, 1];
-                if (DialogBank.english_dialog_bank_new[num][i, 0] == "left")
+                _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
+                _narrator.text = DialogBank.portuguese_dialog_bank_new[num][i, 1];
+                if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                 {
                     portrait_1_pos = new Vector2(-480f, 0f);
                     portrait_2_pos = new Vector2(480f, -50f);
@@ -165,9 +165,9 @@ public class DialogSystem : MonoBehaviour
 
                 for (int j = 0; j < spriteArray.Length; j++)
                 {
-                    if (spriteArray[j].name == DialogBank.english_dialog_bank_new[num][i, 2])
+                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num][i, 2])
                     {
-                        if (DialogBank.english_dialog_bank_new[num][i, 0] == "left")
+                        if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                         {
                             portrait_1.GetComponent<Image>().sprite = spriteArray[j];
                         }
@@ -256,13 +256,13 @@ public class DialogSystem : MonoBehaviour
 
         if (PlayerPrefs.GetInt("LANGUAGE") == 2) // spanish
         {
-            for (int i = 0; DialogBank.spanish_dialog_bank_new[num][i, 0] != ""; i++)
+            for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i, 0] != ""; i++)
             {
                 refreshText = true;
                 letterCounter = 0;
-                _title.text = DialogBank.spanish_dialog_bank_new[num][i, 3];
-                _narrator.text = DialogBank.spanish_dialog_bank_new[num][i, 1];
-                if (DialogBank.spanish_dialog_bank_new[num][i, 0] == "left")
+                _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
+                _narrator.text = DialogBank.portuguese_dialog_bank_new[num][i, 1];
+                if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                 {
                     portrait_1_pos = new Vector2(-480f, 0f);
                     portrait_2_pos = new Vector2(480f, -50f);
@@ -283,9 +283,9 @@ public class DialogSystem : MonoBehaviour
 
                 for (int j = 0; j < spriteArray.Length; j++)
                 {
-                    if (spriteArray[j].name == DialogBank.spanish_dialog_bank_new[num][i, 2])
+                    if (spriteArray[j].name == DialogBank.portuguese_dialog_bank_new[num][i, 2])
                     {
-                        if (DialogBank.spanish_dialog_bank_new[num][i, 0] == "left")
+                        if (DialogBank.portuguese_dialog_bank_new[num][i, 0] == "left")
                         {
                             portrait_1.GetComponent<Image>().sprite = spriteArray[j];
                         }

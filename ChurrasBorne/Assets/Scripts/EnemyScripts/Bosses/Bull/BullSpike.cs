@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditorInternal;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class BullSpike : MonoBehaviour
@@ -20,7 +20,6 @@ public class BullSpike : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        isOnTut = FindObjectOfType<BullAI>().isOnTut;
     }
 
     void Update()
@@ -34,12 +33,11 @@ public class BullSpike : MonoBehaviour
         {
             if(canDamage && isOnTut)
             {
-                GameManager.instance.TakeDamage(3, 0.25f);
-                print("IsOnTut");
+                GameManager.instance.TakeDamage(5, 0.25f);
             }
             if(canDamage && !isOnTut)
             {
-                GameManager.instance.TakeDamage(7, 0.25f);
+                GameManager.instance.TakeDamage(15, 0.25f);
             }
         }
     }

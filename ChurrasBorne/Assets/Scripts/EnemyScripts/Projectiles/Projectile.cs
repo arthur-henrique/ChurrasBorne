@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     public Transform APTP, bossTarget;
     private Vector2 target, newTarget;
 
-    public GameObject mommyWeb, grannyWeb;
+    public GameObject mommyWeb;
 
     public GameObject spitter;
 
@@ -18,13 +18,11 @@ public class Projectile : MonoBehaviour
 
     public int health;
 
-    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois, isAFireBall, isFromMommy, isFromGranny;
+    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois, isAFireBall;
     private bool canBeParried = true;
     private SpriteRenderer sr;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     public GameObject normalTrail, unparryTrail;
-
-    public LayerMask mask;
 
     void Start()
     {
@@ -61,25 +59,14 @@ public class Projectile : MonoBehaviour
             isOnFaseDois = true;
         }
 
-        /*
         if (isFromBoss)
         {
             normalTrail = null; unparryTrail = null;
         }
-        */
         // Manages if the project may or not be parried
         int diceroll = Random.Range(0, 4);
         //print(diceroll);
         if (diceroll > 2 && normalTrail != null && unparryTrail != null)
-        {
-            canBeParried = false;
-            normalTrail.SetActive(false);
-            unparryTrail.SetActive(true);
-            sr.color = new Color(0.7423134f, 0f, 1f, 1f);
-            if (ltd != null)
-                ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
-        }
-        if (diceroll > 1 && normalTrail != null && unparryTrail != null)
         {
             canBeParried = false;
             normalTrail.SetActive(false);
@@ -116,15 +103,9 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            if(isAWeb && isFromBoss && isFromMommy)
+            else
             {
                 Instantiate(mommyWeb, transform.position, Quaternion.identity);
-
-                Destroy(gameObject);
-            }
-            if (isAWeb && isFromBoss && isFromGranny)
-            {
-                Instantiate(grannyWeb, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }
@@ -144,29 +125,24 @@ public class Projectile : MonoBehaviour
                 GameManager.instance.TakeDamage(9);
                 Destroy(gameObject);
             }
-            if (!isAWeb && isFromBoss)
+            else if (!isAWeb && isFromBoss)
             {
                 GameManager.instance.TakeDamage(15);
                 canBeParried = false;
                 Destroy(gameObject);
             }
-            else
+            else if(isAWeb && isFromBoss)
             {
                 canBeParried = false;
-                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                if(isFromMommy)
+                    Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                else if(isFromGranny)
+                    Instantiate(grannyWeb, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             if(isAFireBall)
             {
                 GameManager.instance.Poison(1f);
-            }
-        }
-
-        if (!isAWeb && !isFromBoss)
-        {
-            if (collision.gameObject.GetComponent<MobAI>() != null && hasBeenParried)
-            {
-                Destroy(gameObject);
             }
         }
         if (collision.CompareTag("TRONCO"))
@@ -193,7 +169,7 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void TakeDamage(bool fish = true)
+    public void TakeDamage()
     {
         int damage;
 

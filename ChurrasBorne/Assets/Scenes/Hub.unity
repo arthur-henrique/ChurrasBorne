@@ -18884,7 +18884,6 @@ MonoBehaviour:
   audioS: {fileID: 1040889697}
   questHubAudio: {fileID: 8300000, guid: 1002a157e9312f34aa820e3ea746e455, type: 3}
   isEclipse: 0
-  faseQuatroPath: 0
   test: 0
   GateCamPos:
   - {fileID: 983696180}
@@ -37013,25 +37012,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalFase3
       objectReference: {fileID: 0}
-    - target: {fileID: 1999963726920251025, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2928287107197684247, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
-    - target: {fileID: 2663380602192242553, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 5480608803640860528, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
     - target: {fileID: 3333799665382018881, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_Offset.y
       value: -1.08
       objectReference: {fileID: 0}
-    - target: {fileID: 5868899000011864894, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
-      propertyPath: offset
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 8111036982041144527, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8805076472335334027, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_RootOrder
@@ -37043,7 +37030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8805076472335334027, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 136.8
+      value: 141.5
       objectReference: {fileID: 0}
     - target: {fileID: 8805076472335334027, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37077,9 +37064,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2471432113509174940, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
-    - {fileID: 1496103091767155200, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c3b5e861477b5b4da81331075e8bfb2, type: 3}
 --- !u!1 &1634643079 stripped
 GameObject:
