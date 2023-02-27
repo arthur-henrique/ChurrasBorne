@@ -79,8 +79,8 @@ public class MobAI : MonoBehaviour
 
     public GameObject spriteCenter;
 
+    private float parriedProjectileDamage = 7;
 
-    
     private void Awake()
     {
         psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
@@ -350,6 +350,8 @@ public class MobAI : MonoBehaviour
                 {
                     dashRecoveryTime -= Time.deltaTime;
                 }
+
+                print(dashRecoveryTime);
                 SwitchToDead();
                 break;
 
@@ -598,6 +600,8 @@ public class MobAI : MonoBehaviour
     {
         gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
 
+        canTakeDamage = true;
+
         SwitchToChasing();
         SwitchToIdling();
         SwitchToAttacking();
@@ -629,25 +633,36 @@ public class MobAI : MonoBehaviour
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
-            if (health >= 0)
+
+            if (!isProjectile)
             {
-                //anim.SetTrigger("Hit");
-                if(!isASkeletebas && !isASkully)
-                    DrawBlood();
-            }
-            if(GameManager.instance.GetMeat() >= 0)
-            {
-                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+                if (health >= 0)
+                {
+                    //anim.SetTrigger("Hit");
+                    if (!isASkeletebas && !isASkully)
+                        DrawBlood();
+                }
+                if (GameManager.instance.GetMeat() >= 0)
+                {
+                    playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+                }
+                else
+                {
+                    playerDamage = GameManager.instance.GetDamage() / armor;
+                }
             }
             else
             {
-                playerDamage = GameManager.instance.GetDamage() / armor;
+                playerDamage = parriedProjectileDamage;
             }
+
             print(playerDamage);
+
             health -= playerDamage;
+
             audioSource.PlayOneShot(monster_hurt, audioSource.volume);
 
-            if (canBeStunned && isAGigantebas && !isATrickstebas)
+            if (canBeStunned && !isAGigantebas && !isATrickstebas)
             {
                 anim.SetTrigger("Hit");
 
@@ -708,11 +723,15 @@ public class MobAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PROJECTILE"))
+        if (!isATrickstebas)
         {
-            if (collision.transform.GetComponent<Projectile>().hasBeenParried)
+            if (collision.gameObject.CompareTag("PROJECTILE"))
             {
-                TakeDamage(true);
+                if (collision.transform.GetComponent<Projectile>().hasBeenParried)
+                {
+                    
+                    TakeDamage(true);
+                }
             }
         }
     }

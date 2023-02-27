@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3347523679017514795}
   - component: {fileID: 3631794478652897673}
   - component: {fileID: 2121261964967667054}
-  m_Layer: 0
-  m_Name: TrickstebasProjectile7
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: TrickstebasProjectile
+  m_TagString: PROJECTILE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,9 +98,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7355681, y: 4.222326}
+  m_Offset: {x: 0.4761657, y: 0.66275394}
   serializedVersion: 2
-  m_Radius: 0.59798676
+  m_Radius: 0.69886535
 --- !u!95 &3631794478652897673
 Animator:
   serializedVersion: 3

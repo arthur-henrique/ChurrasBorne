@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   APTP: {fileID: 0}
+  bossTarget: {fileID: 0}
   mommyWeb: {fileID: 0}
   spitter: {fileID: 0}
   health: 10
@@ -424,9 +425,13 @@ MonoBehaviour:
   isAWeb: 0
   hasBeenParried: 0
   isOnFaseDois: 0
+  isAFireBall: 0
   ltd: {fileID: 1852657174781602373}
   normalTrail: {fileID: 1665227882713597149}
   unparryTrail: {fileID: 990379512341138255}
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!95 &6631505782237336678
 Animator:
   serializedVersion: 3

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528762027462132297}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3, y: 0.5, z: 0}
+  m_LocalPosition: {x: 5.3, y: -0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4099290125323247541}
@@ -76,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100048717632020376}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.45, z: 0}
+  m_LocalPosition: {x: 0, y: -2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4099290125323247541}
@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225767581311359060}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: -3, z: 0}
+  m_LocalPosition: {x: 0.96, y: -0.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4099290125323247541}
@@ -4999,7 +4999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3437672276650822691}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.79, y: -3.07, z: 0}
+  m_LocalPosition: {x: 1.79, y: -0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4099290125323247541}
@@ -9972,8 +9972,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07089883, y: 0.29245758}
-  m_Size: {x: 1.9925832, y: 5.8742914}
+  m_Offset: {x: 0.10542941, y: -0.15594816}
+  m_Size: {x: 2.6141348, y: 6.997678}
   m_Direction: 0
 --- !u!95 &9160456545418378528
 Animator:
@@ -10010,13 +10010,13 @@ MonoBehaviour:
   dashDrills: {fileID: 9085501922857752424, guid: 87deae2f4a97599479b35edc86804021, type: 3}
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   chasingSpeed: 6
-  dashingSpeed: 20
+  dashingSpeed: 21
   meleeDistance: 7
   dashDistance: 18
-  dashATKDistance: 5
-  canDashDistance: 12
+  dashATKDistance: 4
+  canDashDistance: 15
   startTimeBTWMeleeATKs: 1.5
-  startDashRecoveryTime: 1
+  startDashRecoveryTime: 1.5
   isAlive: 1
   health: 500
   rb: {fileID: 8446388628132816272}
