@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: -5
+  offset: -6
   runOnlyOnce: 1
   isASortingGroup: 0
 --- !u!95 &687163521444977564
@@ -172,9 +172,9 @@ GameObject:
   - component: {fileID: 7790717044166218994}
   - component: {fileID: 7790717044166219006}
   - component: {fileID: 7790717044166218992}
-  - component: {fileID: 7790717044166218995}
   - component: {fileID: 2461360289378305740}
   - component: {fileID: 50012119954336112}
+  - component: {fileID: 5806472829641312783}
   m_Layer: 0
   m_Name: Arvore Copa
   m_TagString: COPA
@@ -263,22 +263,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
---- !u!114 &7790717044166218995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7790717044166218997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingOrderBase: 0
-  offset: -150
-  runOnlyOnce: 1
-  isASortingGroup: 0
 --- !u!95 &2461360289378305740
 Animator:
   serializedVersion: 3
@@ -312,6 +296,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treeAnim: {fileID: 687163521444977564}
   copaAnim: {fileID: 2461360289378305740}
+--- !u!114 &5806472829641312783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7790717044166218997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780524a3514680d40b0634d6eaf47f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase: 0
+  offset: -600
+  runOnlyOnce: 1
+  isASortingGroup: 0
 --- !u!1 &7790717044200858786
 GameObject:
   m_ObjectHideFlags: 0
