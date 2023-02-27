@@ -58,11 +58,13 @@ public class ArmoredTebasProjectile : MonoBehaviour
         yield return new WaitForSeconds(0.11f);
         if (armoredTebas.isFlipped == true)
         {
-
+            transform.localScale = new Vector3(-1, 1, 1);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
         else
         {
-
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
     }
 }
