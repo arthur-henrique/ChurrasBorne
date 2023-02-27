@@ -311,7 +311,10 @@ public class DialogSystem : MonoBehaviour
         portrait_1_pos = new Vector2(-1440f, 0f);
         portrait_2_pos = new Vector2(1440f, 0f);
 
-        gm.GetComponent<Animator>().SetTrigger("IDLE");
+        if (gm != null)
+        {
+            gm.GetComponent<Animator>().SetTrigger("IDLE");
+        }
 
         GameManager.isInDialog = false;
         PlayerMovement.EnableControl();
@@ -347,7 +350,7 @@ public class DialogSystem : MonoBehaviour
         StartCoroutine(DialogSimple());
     }
 
-    public void db_SetSceneComplex(int dialog_piece, GameObject gm, IEnumerator task = null)
+    public void db_SetSceneComplex(int dialog_piece, GameObject gm = null, IEnumerator task = null)
     {
         GameManager.isInDialog = true;
         PlayerMovement.DisableControl();
