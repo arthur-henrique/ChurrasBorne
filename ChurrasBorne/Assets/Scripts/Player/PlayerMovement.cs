@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     float timer;
     float canAttackChecker = 0.9f;
-    public static float x, y;
+    public  float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private static Animator anim;
     public Animator reflAnim;
     private Vector3 rollDirection;
-    public static Vector3 lastMovedDirection;
+    public  Vector3 lastMovedDirection;
     private Vector2 direcao;
     private Vector2 moveVelocity;
     bool attackPressed = false;
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public static PlayerController pc;
 
     public ParticleSystem walkParticles, snowWalkParticles, dashParticlesOne, dashParticlesTwo, snowDashParticlesOne, snowDashParticlesTwo;
-    private ParticleSystem.EmissionModule particleEmission, snowParticleEmission;
+    private static ParticleSystem.EmissionModule particleEmission, snowParticleEmission;
     public float particleRate;
 
     private AudioSource audioSource;
@@ -440,13 +440,8 @@ public class PlayerMovement : MonoBehaviour
     public static void DisableControl()
     {
         pc.Movimento.Disable();
-        XYZero();
-    }
-    public static void XYZero()
-    {
-        x = 0;
-        y = 0;
-        lastMovedDirection= Vector2.zero;
+        particleEmission.rateOverTime = 0;
+        snowParticleEmission.rateOverTime = 0;
     }
 
     public static void EnableControl()

@@ -15,7 +15,7 @@ public class StairEffector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerX = PlayerMovement.x;
+        playerX = PlayerMovement.instance.x;
         if (!isReversedStairs)
         {
             if (playerX > 0)
