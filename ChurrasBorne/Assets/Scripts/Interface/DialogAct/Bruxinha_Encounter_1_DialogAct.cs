@@ -11,6 +11,12 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
     public static bool bruxinha_encounter_1_occurred;
     public static bool bruxinha_encounter_2_occurred;
 
+    public Material sprite_lit;
+    public Material sprite_unlit;
+
+    public GameObject notif_balloon;
+    public Sprite notif_exclamation;
+
     private void Awake()
     {
         pc = new PlayerController();
@@ -28,6 +34,7 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        notif_balloon = DialogSystem.getChildGameObject(gameObject, "Notification_Balloon");
         if (!bruxinha_encounter_1_occurred || GameManager.instance.GetHasCleared(2) == false)
         {
             bruxinha_encounter_1_occurred = false;
@@ -46,23 +53,36 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f);
         if (target)
         {
             if (bruxinha_encounter_1_occurred == false && bruxinha_encounter_2_occurred == false)
             {
+                notif_balloon.GetComponent<SpriteRenderer>().sprite = notif_exclamation;
                 float dist = Vector2.Distance(target.transform.position, transform.position);
-
+                if (dist <= 3)
+                {
+                    GetComponent<SpriteRenderer>().material = sprite_unlit;
+                }
+                else
+                {
+                    GetComponent<SpriteRenderer>().material = sprite_lit;
+                }
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(3, gameObject);
+                    notif_balloon.SetActive(false);
+                    GetComponent<SpriteRenderer>().material = sprite_lit;
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(9, gameObject);
                     bruxinha_encounter_1_occurred = true;
+                    GetComponent<Animator>().SetTrigger("TALKING");
                 }
             }
 
             if (CEOofSpidersAI.spider_boss_died == true && bruxinha_encounter_2_occurred == false)
             {
-                dbox.GetComponent<DialogSystem>().db_SetSceneComplex(4, gameObject);
+                dbox.GetComponent<DialogSystem>().db_SetSceneComplex(10, gameObject);
                 bruxinha_encounter_2_occurred = true;
+                GetComponent<Animator>().SetTrigger("TALKING");
             }
 
         }

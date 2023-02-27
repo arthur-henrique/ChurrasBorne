@@ -73,6 +73,9 @@ public class Inventory_Manager : MonoBehaviour
 
     private string item_chavedungeonlua_name;
     private string item_chavedungeonlua_desc;
+
+    private string item_armadura_name;
+    private string item_armadura_desc;
     #endregion
 
     private void Awake()
@@ -149,6 +152,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_chavedungeonlua_name = "Moon Key";
             item_chavedungeonlua_desc = "Only a mad mage would recreate the surface underneath, in his lair, and would lock it by 3 Keys... Opens one of 3 locks.";
+
+            item_armadura_name = "Reinforced Armor";
+            item_armadura_desc = "A creation of Smith, the Smith. He tried his best. Amplifies Sabet's health.";
         }
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 1) // portuguese
@@ -181,6 +187,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_chavedungeonlua_name = "Chave Lua";
             item_chavedungeonlua_desc = "Apenas um Mago louco recriaria a superfície em sua Masmorra, e a trancaria com 3 chaves... Abre uma das 3 trancas.";
+
+            item_armadura_name = "Armadura Reforçada";
+            item_armadura_desc = "Uma criação de Ferreira, o Ferreiro. Ele tentou seu melhor. Amplifica a saúde de Sabet.";
         }
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 2) // spanish
@@ -213,6 +222,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_chavedungeonlua_name = "Llave Lunar";
             item_chavedungeonlua_desc = "Sólo un Mago loco recrearía la superficie en su Mazmorra, y la cerraría con 3 llaves... Abre una de las 3 cerraduras.";
+
+            item_armadura_name = "Armor";
+            item_armadura_desc = "a.";
         }
 
         if (PauseManager.isPaused == false)
@@ -296,7 +308,7 @@ public class Inventory_Manager : MonoBehaviour
                     if (sel_pos_highlight < 0) { sel_pos_highlight = 0; }
                 }
                 
-                if (pc.Movimento.Rolar.WasPressedThisFrame())
+                /*if (pc.Movimento.Rolar.WasPressedThisFrame())
                 {
                     itemStorage.Add(1);
                 }
@@ -304,7 +316,7 @@ public class Inventory_Manager : MonoBehaviour
                 if (pc.Movimento.Curar.WasPressedThisFrame())
                 {
                     itemStorage.Remove(1);
-                }
+                }*/
             }
 
 
@@ -391,6 +403,13 @@ public class Inventory_Manager : MonoBehaviour
                         inv_item_name.GetComponent<TextMeshProUGUI>().text = item_chavedungeonlua_name;
                         inv_item_desc.GetComponent<TextMeshProUGUI>().text = item_chavedungeonlua_desc;
                         inv_board_item.GetComponent<Image>().sprite = itemImages[8];
+                        break;
+
+                    case 9:
+                        // chave dungeon lua
+                        inv_item_name.GetComponent<TextMeshProUGUI>().text = item_armadura_name;
+                        inv_item_desc.GetComponent<TextMeshProUGUI>().text = item_armadura_desc;
+                        inv_board_item.GetComponent<Image>().sprite = itemImages[9];
                         break;
 
                     default:

@@ -176,10 +176,18 @@ public class GameManager : MonoBehaviour
         // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
-            
+
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
+            if (SceneManager.GetActiveScene().name != "Hub")
+            {
+                SetHasCleared(0, true);
+                canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            } else
+            {
+                GameManager.instance.hasCompletedQuestOne = true;
+            }
+            
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())

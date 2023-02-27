@@ -131,7 +131,7 @@ public class DialogSystem : MonoBehaviour
         
     }
 
-    public IEnumerator DialogComplex(int num, GameObject gm)
+    public IEnumerator DialogComplex(int num, GameObject gm, IEnumerator task = null)
     {
         title_box_pos = new Vector2(0f, -360f);
         portrait_1.GetComponent<Image>().sprite = spriteArray[3];
@@ -305,6 +305,7 @@ public class DialogSystem : MonoBehaviour
             {
                 yield return null;
             }
+
         }
 
         portrait_1_pos = new Vector2(-1440f, 0f);
@@ -315,6 +316,12 @@ public class DialogSystem : MonoBehaviour
         GameManager.isInDialog = false;
         PlayerMovement.EnableControl();
         title_box_pos = new Vector2(0f, -750f);
+
+        if (task != null)
+        {
+            StartCoroutine(task);
+        }
+        
     }
 
     public void db_SetSceneSimple(int scene_number)
@@ -340,13 +347,19 @@ public class DialogSystem : MonoBehaviour
         StartCoroutine(DialogSimple());
     }
 
-    public void db_SetSceneComplex(int dialog_piece, GameObject gm)
+    public void db_SetSceneComplex(int dialog_piece, GameObject gm, IEnumerator task = null)
     {
         GameManager.isInDialog = true;
         PlayerMovement.DisableControl();
         letterCounter = 0;
         narrator_box.SetActive(true);
-        StartCoroutine(DialogComplex(dialog_piece, gm));
+        if (task != null)
+        {
+            StartCoroutine(DialogComplex(dialog_piece, gm, task));
+        } else
+        {
+            StartCoroutine(DialogComplex(dialog_piece, gm));
+        }
     }
 
     public static GameObject getChildGameObject(GameObject fromGameObject, string withName)
