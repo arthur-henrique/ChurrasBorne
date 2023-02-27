@@ -37,6 +37,13 @@ public class Ferreiro_Encounter_2_DialogAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.GetHasCleared(0))
+        {
+            gameObject.SetActive(true);
+        } else
+        {
+            gameObject.SetActive(false);
+        }
         if (target)
         {
             if (ferreiro_encounter_3_occurred == false)
@@ -45,7 +52,7 @@ public class Ferreiro_Encounter_2_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(2);
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(2, gameObject);
                     ferreiro_encounter_3_occurred = true;
                 }
             }

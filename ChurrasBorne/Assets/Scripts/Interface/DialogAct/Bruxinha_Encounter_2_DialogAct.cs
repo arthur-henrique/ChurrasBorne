@@ -45,7 +45,7 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(5);
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(5, gameObject);
                     bruxinha_encounter_3_occurred = true;
                 }
             }

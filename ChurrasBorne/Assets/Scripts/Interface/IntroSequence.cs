@@ -12,6 +12,7 @@ public class IntroSequence : MonoBehaviour
     public GameObject canvas;
     public GameObject textObj;
     private Vector2 textScale;
+    public GameObject skipText;
 
     public GameObject skipProgress;
     private float skipValue = 0;
@@ -81,6 +82,8 @@ public class IntroSequence : MonoBehaviour
         textScale = new Vector2(0.5f, 0.5f);
         textObj.transform.localScale = textScale;
 
+        skipText = DialogSystem.getChildGameObject(gameObject, "SkipText");
+
         textShow = StartCoroutine(Flow());
     }
 
@@ -91,7 +94,7 @@ public class IntroSequence : MonoBehaviour
         {
             if (pc.Movimento.Attack.ReadValue<float>() != 0)
             {
-                skipValue += 0.015f;
+                skipValue += 0.02f;
             }
             if (skipValue >= 1)
             {
@@ -111,14 +114,17 @@ public class IntroSequence : MonoBehaviour
             if (PlayerPrefs.GetInt("LANGUAGE") == 0)
             {
                 textObj.GetComponent<TextMeshProUGUI>().text = english_intro[j];
+                skipText.GetComponent<TextMeshProUGUI>().text = "Skip";
             }
             if (PlayerPrefs.GetInt("LANGUAGE") == 1)
             {
                 textObj.GetComponent<TextMeshProUGUI>().text = portuguese_intro[j];
+                skipText.GetComponent<TextMeshProUGUI>().text = "Pular";
             }
             if (PlayerPrefs.GetInt("LANGUAGE") == 2)
             {
                 textObj.GetComponent<TextMeshProUGUI>().text = spanish_intro[j];
+                skipText.GetComponent<TextMeshProUGUI>().text = "Omitir";
             }
 
             textScale = textObj.transform.localScale;

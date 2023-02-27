@@ -3334,6 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+  mixer: {fileID: 24100000, guid: e027744650b10114ab71a96ed028bb2a, type: 2}
   audioSource: {fileID: 0}
   ui_move: {fileID: 8300000, guid: c354890a1d3d0b241a87d3d19bf715ec, type: 3}
   ui_confirm: {fileID: 8300000, guid: 9cba331558b0c054392dc860aae72edc, type: 3}
