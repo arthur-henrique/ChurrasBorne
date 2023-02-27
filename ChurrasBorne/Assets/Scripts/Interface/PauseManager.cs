@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class PauseManager : MonoBehaviour
     public static PauseManager instance;
     public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     PlayerController pc;
+    public AudioMixer mixer;
 
     public static bool selection_confirm = false;
     public static int selection_position;
@@ -90,6 +92,10 @@ public class PauseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        restable_opt = PlayerPrefs.GetInt("RESOLUTION_SIZE");
+        fs_mode_opt = PlayerPrefs.GetInt("FULLSCREEN_MODE");
+        lang_mode_opt = PlayerPrefs.GetInt("LANGUAGE");
+
         instance = this;
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
 
@@ -169,6 +175,13 @@ public class PauseManager : MonoBehaviour
         pause_apply.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         pause_apply.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -165, 0);
 
+        mixer.SetFloat("MasterVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("MASTER_VOLUME")) * 20);
+        mixer.SetFloat("BGMVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("BGM_VOLUME")) * 20);
+        mixer.SetFloat("SFXVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("SFX_VOLUME")) * 20);
+
+        pause_vol_master_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MASTER_VOLUME");
+        pause_vol_bgm_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("BGM_VOLUME");
+        pause_vol_sfx_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFX_VOLUME");
     }
 
     // Update is called once per frame
@@ -256,8 +269,8 @@ public class PauseManager : MonoBehaviour
                     submenu = false;
                     Show_Pause();
                     pause_bg.SetActive(true);
-                    pause_drop_shadow.SetActive(false);
-                    pause_layered_shadow.SetActive(false);
+                    pause_drop_shadow.SetActive(true);
+                    pause_layered_shadow.SetActive(true);
                 }
             }
             
@@ -511,14 +524,14 @@ public class PauseManager : MonoBehaviour
 
             if (pc.Movimento.Attack.WasPressedThisFrame())
             {
-                selection_confirm = true;
-                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
-            }
-
-            if (pc.Movimento.Attack.WasPressedThisFrame())
-            {
-                selection_confirm = true;
-                audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                if ((selection_position == 2 || selection_position == 3 || selection_position == 4) && submenu == true)
+                {
+                    
+                } else
+                {
+                    selection_confirm = true;
+                    audioSource.PlayOneShot(ui_confirm, audioSource.volume);
+                }
             }
 
             //StopCoroutine(cr_pause_drop_sh);

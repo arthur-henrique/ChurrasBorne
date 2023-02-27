@@ -131,7 +131,7 @@ public class DialogSystem : MonoBehaviour
         
     }
 
-    public IEnumerator DialogComplex(int num)
+    public IEnumerator DialogComplex(int num, GameObject gm)
     {
         title_box_pos = new Vector2(0f, -360f);
         portrait_1.GetComponent<Image>().sprite = spriteArray[3];
@@ -195,6 +195,11 @@ public class DialogSystem : MonoBehaviour
         {
             for (int i = 0; DialogBank.portuguese_dialog_bank_new[num][i,0] != ""; i++)
             {
+                for (int j = 0; pc.Movimento.Attack.WasPressedThisFrame(); j++)
+                {
+                    yield return null;
+                }
+                Debug.Log("dialogo index = " + DialogBank.portuguese_dialog_bank_new[num][i, 3]);
                 refreshText = true;
                 letterCounter = 0;
                 _title.text = DialogBank.portuguese_dialog_bank_new[num][i, 3];
@@ -231,6 +236,11 @@ public class DialogSystem : MonoBehaviour
                         
                         break;
                     }
+                }
+
+                for (int j = 0; !pc.Movimento.Attack.WasPressedThisFrame(); j++)
+                {
+                    yield return null;
                 }
             }
 
@@ -300,6 +310,8 @@ public class DialogSystem : MonoBehaviour
         portrait_1_pos = new Vector2(-1440f, 0f);
         portrait_2_pos = new Vector2(1440f, 0f);
 
+        gm.GetComponent<Animator>().SetTrigger("IDLE");
+
         GameManager.isInDialog = false;
         PlayerMovement.EnableControl();
         title_box_pos = new Vector2(0f, -750f);
@@ -328,13 +340,13 @@ public class DialogSystem : MonoBehaviour
         StartCoroutine(DialogSimple());
     }
 
-    public void db_SetSceneComplex(int dialog_piece)
+    public void db_SetSceneComplex(int dialog_piece, GameObject gm)
     {
         GameManager.isInDialog = true;
         PlayerMovement.DisableControl();
         letterCounter = 0;
         narrator_box.SetActive(true);
-        StartCoroutine(DialogComplex(dialog_piece));
+        StartCoroutine(DialogComplex(dialog_piece, gm));
     }
 
     public static GameObject getChildGameObject(GameObject fromGameObject, string withName)

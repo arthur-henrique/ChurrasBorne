@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ public class MainMenu_Manager : MonoBehaviour
     public static MainMenu_Manager instance;
     public GameObject canvas;
     PlayerController pc;
+
+    public AudioMixer mixer;
 
     public AudioSource audioSource;
     public AudioClip ui_move;
@@ -115,6 +118,7 @@ public class MainMenu_Manager : MonoBehaviour
         {
             PlayerPrefs.SetInt("LANGUAGE", 1);
         }
+
         
 
         var resolution_size = PlayerPrefs.GetInt("RESOLUTION_SIZE", 3);
@@ -244,7 +248,16 @@ public class MainMenu_Manager : MonoBehaviour
         menu_apply.GetComponent<RectTransform>().anchoredPosition = new Vector3(-700, -190, 0);
 
         #endregion
+
+        mixer.SetFloat("MasterVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("MASTER_VOLUME")) * 20);
+        mixer.SetFloat("BGMVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("BGM_VOLUME")) * 20);
+        mixer.SetFloat("SFXVolumeParam", Mathf.Log10(PlayerPrefs.GetFloat("SFX_VOLUME")) * 20);
+
+        menu_vol_master_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("MASTER_VOLUME");
+        menu_vol_bgm_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("BGM_VOLUME");
+        menu_vol_sfx_slider.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SFX_VOLUME");
     }
+
 
     void Update()
     {

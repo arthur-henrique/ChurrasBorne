@@ -131,10 +131,13 @@ public class Projectile : MonoBehaviour
                 canBeParried = false;
                 Destroy(gameObject);
             }
-            else
+            else if(isAWeb && isFromBoss)
             {
                 canBeParried = false;
-                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                if(isFromMommy)
+                    Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                else if(isFromGranny)
+                    Instantiate(grannyWeb, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             if(isAFireBall)
