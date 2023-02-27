@@ -54,13 +54,6 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     void Update()
     {
         notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f);
-        if (GameManager.isInDialog)
-        {
-            //GetComponent<Animator>().SetTrigger("IDLEX");
-        } else
-        {
-            //GetComponent<Animator>().SetTrigger("IDLE");
-        }
         //GetComponent<Animator>().SetTrigger("IDLE");
         if (target)
         {
@@ -77,10 +70,11 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
                 }
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0);
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0, gameObject);
                     notif_balloon.SetActive(false);
                     ferreiro_encounter_1_occurred = true;
                     GetComponent<SpriteRenderer>().material = sprite_lit;
+                    GetComponent<Animator>().SetTrigger("TALKING");
                 }
             }
 
@@ -95,7 +89,7 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
                 if (Vector2.Distance(transform.position, new Vector2(-56f, 262f)) < 1f) 
                 {
                     GetComponent<Animator>().SetBool("WALKING", false);
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(1);
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(1, gameObject);
                     ferreiro_encounter_2_occurred = true;
                 }
             }

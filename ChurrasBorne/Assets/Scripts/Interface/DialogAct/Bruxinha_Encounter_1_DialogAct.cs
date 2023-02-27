@@ -54,14 +54,14 @@ public class Bruxinha_Encounter_1_DialogAct : MonoBehaviour
 
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
-                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(3);
+                    dbox.GetComponent<DialogSystem>().db_SetSceneComplex(3, gameObject);
                     bruxinha_encounter_1_occurred = true;
                 }
             }
 
             if (CEOofSpidersAI.spider_boss_died == true && bruxinha_encounter_2_occurred == false)
             {
-                dbox.GetComponent<DialogSystem>().db_SetSceneComplex(4);
+                dbox.GetComponent<DialogSystem>().db_SetSceneComplex(4, gameObject);
                 bruxinha_encounter_2_occurred = true;
             }
 
