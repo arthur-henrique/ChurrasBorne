@@ -242,7 +242,7 @@ public class Inventory_Manager : MonoBehaviour
             }
             else
             {
-                if (pc.Movimento.Inventario.WasPressedThisFrame())
+                if (pc.Movimento.Inventario.WasPressedThisFrame() || pc.UI.Pause.WasPressedThisFrame())
                 {
                     audioSource.PlayOneShot(ui_confirm, audioSource.volume);
                     movementLock = true;
