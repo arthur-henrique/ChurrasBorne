@@ -60,6 +60,7 @@ public class ManagerOfScenes : MonoBehaviour
         {
             PostProcessingControl.Instance.TurnOffVignette();
             gate.transform.position = GateCamPos[0].transform.position;
+            isEclipse = true;
             if(!clearedUm && !clearedHalf)
             {
                 StartCoroutine(ShowChurras());
