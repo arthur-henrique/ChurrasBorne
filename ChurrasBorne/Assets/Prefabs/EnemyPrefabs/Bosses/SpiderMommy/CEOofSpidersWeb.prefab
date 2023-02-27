@@ -156,14 +156,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   APTP: {fileID: 0}
+  bossTarget: {fileID: 0}
   mommyWeb: {fileID: 7823189674828522440, guid: d712102df47535f4983fc052e0ae66ab, type: 3}
+  grannyWeb: {fileID: 0}
   spitter: {fileID: 0}
   health: 100
   isOnTutorial: 0
-  isFromBoss: 0
+  isFromBoss: 1
   isAWeb: 1
   hasBeenParried: 0
   isOnFaseDois: 0
+  isAFireBall: 0
+  isFromMommy: 1
+  isFromGranny: 0
   ltd: {fileID: 0}
   normalTrail: {fileID: 0}
   unparryTrail: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0

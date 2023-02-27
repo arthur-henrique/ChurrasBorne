@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 398d276ea305f4745893e96107b3fa55, type: 2}
+  - {fileID: 2100000, guid: 262f71309aafbc34fa1cfa8ccb1954cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 1189529141
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1144174390758758216, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
-  m_Color: {r: 0.254717, g: 0.16436455, b: 0.16436455, a: 0.6}
+  m_Sprite: {fileID: 3802041752983577011, guid: 22c8e42cb1daa5e4e9e9a1a7402abe67, type: 3}
+  m_Color: {r: 0.25490198, g: 0.16470589, b: 0.16470589, a: 0.6}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984044757006346770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 984044758127847402}
@@ -153,12 +153,12 @@ SpriteRenderer:
   m_SortingLayerID: -921096345
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd90f625bdf128e40ae0c3b113ab4a8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2200c2610bea2544a51b02041d1d36d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 984044757679317600}
-  - component: {fileID: 984044757679317603}
+  - component: {fileID: 6557555284842889855}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -189,13 +189,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984044757679317601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 984044758127847402}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &984044757679317603
+--- !u!114 &6557555284842889855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 984044758127847402}
   - component: {fileID: 984044758127847403}
   m_Layer: 0
-  m_Name: GridAttack - Horizontal
+  m_Name: GridAttack - Down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ Animator:
   m_GameObject: {fileID: 984044758127847400}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5083f4376d085cd418153cc19c83f42d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8327934d803b4e74aaa1057ad975f02e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

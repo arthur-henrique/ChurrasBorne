@@ -270,9 +270,9 @@ public class Transition_Manager : MonoBehaviour
 
             case "Hub":
 
-                if (PlayerPrefs.GetInt("LANGUAGE") == 0) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Temple Outskirts"; }
-                if (PlayerPrefs.GetInt("LANGUAGE") == 1) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Arredores do Templo"; }
-                if (PlayerPrefs.GetInt("LANGUAGE") == 2) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Alrededores del Templo"; }
+                if (PlayerPrefs.GetInt("LANGUAGE") == 0) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Temple of Our Lady of Pão D'Alho"; }
+                if (PlayerPrefs.GetInt("LANGUAGE") == 1) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Templo da Nossa Senhora do Pão D'Alho"; }
+                if (PlayerPrefs.GetInt("LANGUAGE") == 2) { scene_text_display.GetComponent<TextMeshProUGUI>().text = "Templo de Nuestra Señora de Pão D'Alho"; }
                 break;
 
             case "FaseUm":

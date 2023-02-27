@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 7678533086536522579}
   - component: {fileID: 487200069178791693}
   - component: {fileID: 3392305829645833786}
+  - component: {fileID: 3766120213176762751}
   m_Layer: 5
   m_Name: Select_Item_2
   m_TagString: Untagged
@@ -208,6 +209,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &3766120213176762751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523124501527592564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3392305829645833786}
+          m_TargetAssemblyTypeName: Inventory_Click, Assembly-CSharp
+          m_MethodName: SelectItem
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &554901939830252304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,6 +1404,7 @@ GameObject:
   - component: {fileID: 1715851572301304361}
   - component: {fileID: 7746740876032547166}
   - component: {fileID: 560502706487221029}
+  - component: {fileID: 2472187727603735941}
   m_Layer: 5
   m_Name: Select_Item_1
   m_TagString: Untagged
@@ -1451,6 +1482,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates: []
+--- !u!114 &2472187727603735941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421823740493667122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 560502706487221029}
+          m_TargetAssemblyTypeName: Inventory_Click, Assembly-CSharp
+          m_MethodName: SelectItem
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7428093860870768750
 GameObject:
   m_ObjectHideFlags: 0

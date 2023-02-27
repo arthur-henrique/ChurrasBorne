@@ -21,9 +21,9 @@ public class TrickstebasProjectile : MonoBehaviour
 
         Vector3 fator = player.position - transform.position;
 
-        target.x = player.position.x + fator.x * 2;
+        target.x = player.position.x + fator.x * 3;
 
-        target.y = player.position.y + fator.y * 2;
+        target.y = player.position.y + fator.y * 3;
     }
 
     // Update is called once per frame
@@ -39,17 +39,22 @@ public class TrickstebasProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GameManager.instance.TakeDamage(30);
-            Destroy(gameObject);
+            GameManager.instance.TakeDamage(12);
+            anim.SetTrigger("Destroy");
         }
         if (collision.CompareTag("PAREDE"))
         {
-            Destroy(gameObject);
+            anim.SetTrigger("Destroy");
         }
 
         if (transform.position.x == target.x && transform.position.y == target.y)
         {
-            Destroy(gameObject);
+            anim.SetTrigger("Destroy");
         }
+    }
+
+    void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }

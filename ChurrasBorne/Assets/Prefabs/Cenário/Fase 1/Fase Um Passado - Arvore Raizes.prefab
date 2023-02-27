@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 2562318158708718662, guid: e9e242cfb951b154fb9b2a8c17ce5c6b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -235,9 +235,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -921096345
   m_SortingLayer: 4
-  m_SortingOrder: 8
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2271383065896649574, guid: 65f4f71d45a3a8b4cbd27629430a47b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.3882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase: 0
-  offset: -25
+  offset: -150
   runOnlyOnce: 1
   isASortingGroup: 0
 --- !u!95 &2461360289378305740
