@@ -34,7 +34,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isTalking
+    m_ConditionEvent: TALKING
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2684344033264391824}
@@ -243,7 +243,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isOnHub
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: stopTalking
+    m_ConditionEvent: IDLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5736234481876715634}
@@ -339,13 +339,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: stopTalking
+  - m_Name: IDLE
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isTalking
+  - m_Name: TALKING
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -409,7 +409,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isOnHub
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: stopTalking
+    m_ConditionEvent: IDLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4242084269112794036}
