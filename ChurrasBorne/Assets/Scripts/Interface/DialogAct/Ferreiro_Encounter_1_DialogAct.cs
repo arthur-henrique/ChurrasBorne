@@ -14,6 +14,9 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     public Material sprite_lit;
     public Material sprite_unlit;
 
+    public GameObject notif_balloon;
+    public Sprite notif_exclamation;
+
     private void Awake()
     {
         pc = new PlayerController();
@@ -31,6 +34,7 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        notif_balloon = DialogSystem.getChildGameObject(gameObject, "Notification_Balloon");
         if (!ferreiro_encounter_1_occurred || GameManager.instance.GetHasCleared(0) == false)
         {
             ferreiro_encounter_1_occurred = false;
@@ -49,10 +53,20 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f);
+        if (GameManager.isInDialog)
+        {
+            //GetComponent<Animator>().SetTrigger("IDLEX");
+        } else
+        {
+            //GetComponent<Animator>().SetTrigger("IDLE");
+        }
+        //GetComponent<Animator>().SetTrigger("IDLE");
         if (target)
         {
             if (ferreiro_encounter_1_occurred == false && ferreiro_encounter_2_occurred == false)
             {
+                notif_balloon.GetComponent<SpriteRenderer>().sprite = notif_exclamation;
                 float dist = Vector2.Distance(target.transform.position, transform.position);
                 if (dist <= 3)
                 {
@@ -64,6 +78,7 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
                 if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 3)
                 {
                     dbox.GetComponent<DialogSystem>().db_SetSceneComplex(0);
+                    notif_balloon.SetActive(false);
                     ferreiro_encounter_1_occurred = true;
                     GetComponent<SpriteRenderer>().material = sprite_lit;
                 }

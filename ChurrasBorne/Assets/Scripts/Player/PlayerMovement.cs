@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     float timer;
     float canAttackChecker = 0.9f;
-    public float x, y;
+    public static float x, y;
     public float rollSpeed, attackTimer;
     public float attackAnimCd, healingAnimCd;
     public float healsLeft;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private static Animator anim;
     public Animator reflAnim;
     private Vector3 rollDirection;
-    public Vector3 lastMovedDirection;
+    public static Vector3 lastMovedDirection;
     private Vector2 direcao;
     private Vector2 moveVelocity;
     bool attackPressed = false;
@@ -440,6 +440,13 @@ public class PlayerMovement : MonoBehaviour
     public static void DisableControl()
     {
         pc.Movimento.Disable();
+        XYZero();
+    }
+    public static void XYZero()
+    {
+        x = 0;
+        y = 0;
+        lastMovedDirection= Vector2.zero;
     }
 
     public static void EnableControl()

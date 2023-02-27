@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             
             //SaveGame();
             //Poison(1f);
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())

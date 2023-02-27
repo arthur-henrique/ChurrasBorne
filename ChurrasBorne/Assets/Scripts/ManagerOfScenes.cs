@@ -43,6 +43,7 @@ public class ManagerOfScenes : MonoBehaviour
         if (gameObject.CompareTag("Tutorial"))
         {
             GameManager.instance.SetHeals(-1f, true, false);
+            GameManager.instance.EnableTheControl();
         }
         else if (gameObject.CompareTag("HUB") && !GameManager.instance.GetHasCleared(0))
         {
@@ -59,6 +60,7 @@ public class ManagerOfScenes : MonoBehaviour
         {
             PostProcessingControl.Instance.TurnOffVignette();
             gate.transform.position = GateCamPos[0].transform.position;
+            isEclipse = true;
             if(!clearedUm && !clearedHalf)
             {
                 StartCoroutine(ShowChurras());
@@ -220,6 +222,7 @@ public class ManagerOfScenes : MonoBehaviour
         {
             PostProcessingControl.Instance.TurnOffVignette();
             faseQuatroPath = Random.Range(0, 5);
+            GameManager.instance.EnableTheControl();
         }
 
 

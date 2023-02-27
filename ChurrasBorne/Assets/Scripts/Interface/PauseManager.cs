@@ -37,7 +37,7 @@ public class PauseManager : MonoBehaviour
     private GameObject pause_lang;
     private GameObject pause_apply;
 
-    private int restable_opt = 0;
+    private int restable_opt = PlayerPrefs.GetInt("RESOLUTION");
     private int[,] restable = { { 640, 360 },
                                 { 854, 480 },
                                 { 1024, 576 },
@@ -45,9 +45,9 @@ public class PauseManager : MonoBehaviour
                                 { 1920, 1080 },
                                 { 3840, 2160 }};
 
-    private int fs_mode_opt = 0;
+    private int fs_mode_opt = PlayerPrefs.GetInt("FULLSCREEN");
     private string[] fs_mode = { "Desligada", "Exclusiva", "Borderless" };
-    private int lang_mode_opt = 0;
+    private int lang_mode_opt = PlayerPrefs.GetInt("LANGUAGE");
     private string[] lang_mode = { "English", "Português", "Español" };
     private FullScreenMode[] fs_mode_out = { FullScreenMode.Windowed, FullScreenMode.ExclusiveFullScreen, FullScreenMode.FullScreenWindow };
 
@@ -90,6 +90,7 @@ public class PauseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         instance = this;
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
 
@@ -97,15 +98,18 @@ public class PauseManager : MonoBehaviour
         pause_bg.GetComponent<RectTransform>().localScale = new Vector3(1.5f, 1.5f, 1);
         pause_bg.GetComponent<Image>().color = new Color(0.4245283f, 0.4245283f, 0.4245283f, 0.0f);
         //pause_bg.GetComponent<Image>().color = new Color(0.5607843f, 1.0f, 1.0f, 1.0f);
+        pause_bg.SetActive(false);
 
         pause_layered_shadow = DialogSystem.getChildGameObject(gameObject, "PAUSE_LayeredShadow");
         pause_layered_shadow.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         // pause_drop_shadow.GetComponent<Image>().color = new Color(0.8705882f, 1.0f, 1.0f, 1.0f);
+        pause_layered_shadow.SetActive(false);
 
         pause_drop_shadow = DialogSystem.getChildGameObject(gameObject, "PAUSE_DropShadow");
         pause_drop_shadow.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         // pause_drop_shadow.GetComponent<Image>().color = new Color(0.6745098f, 1.0f, 1.0f, 1.0f);
         pause_drop_shadow.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 108, 0);
+        pause_drop_shadow.SetActive(false);
 
         pause_label = DialogSystem.getChildGameObject(gameObject, "PAUSE_Pause");
         pause_label.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
@@ -241,6 +245,9 @@ public class PauseManager : MonoBehaviour
                     } else
                     {
                         Hide_Pause();
+                        pause_bg.SetActive(false);
+                        pause_drop_shadow.SetActive(false);
+                        pause_layered_shadow.SetActive(false);
                     }
                 }
                 else
@@ -249,6 +256,9 @@ public class PauseManager : MonoBehaviour
                     canChange = false;
                     submenu = false;
                     Show_Pause();
+                    pause_bg.SetActive(true);
+                    pause_drop_shadow.SetActive(false);
+                    pause_layered_shadow.SetActive(false);
                 }
             }
             
