@@ -102,7 +102,7 @@ public class Projectile : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target, -speed * Time.deltaTime);
 
             hasBeenParried = true;
-        }     
+        }
         if (health <= 0 && isFromBoss)
         {
             transform.position = Vector2.MoveTowards(transform.position, newTarget, speed * Time.deltaTime);
@@ -116,7 +116,7 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            if(isAWeb && isFromBoss && isFromMommy)
+            if (isAWeb && isFromBoss && isFromMommy)
             {
                 Instantiate(mommyWeb, transform.position, Quaternion.identity);
 
@@ -133,7 +133,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, 7f);
     }
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //DAMAGE
@@ -150,13 +150,16 @@ public class Projectile : MonoBehaviour
                 canBeParried = false;
                 Destroy(gameObject);
             }
-            else
+            else if (isAWeb && isFromBoss)
             {
                 canBeParried = false;
-                Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                if (isFromMommy)
+                    Instantiate(mommyWeb, transform.position, Quaternion.identity);
+                else if (isFromGranny)
+                    Instantiate(grannyWeb, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-            if(isAFireBall)
+            if (isAFireBall)
             {
                 GameManager.instance.Poison(1f);
             }
@@ -205,7 +208,7 @@ public class Projectile : MonoBehaviour
         {
             damage = 10;
         }
-        if(canBeParried)
+        if (canBeParried)
         {
             health -= damage;
         }
