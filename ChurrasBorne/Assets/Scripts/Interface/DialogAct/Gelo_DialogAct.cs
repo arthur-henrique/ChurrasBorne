@@ -13,6 +13,8 @@ public class Gelo_DialogAct : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip item_get;
+    public GateChecker gc;
+
 
     private void Awake()
     {
@@ -52,7 +54,8 @@ public class Gelo_DialogAct : MonoBehaviour
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
                 Inventory_Manager.instance.itemStorage.Add(3);
-                //FaseTresTriggerController.Instance.GateOpener();
+                GameManager.instance.HasCollectedItemDois();
+                gc.FaseDoisOpenRoutine();
                 HealthBar_Manager.newItem = true;
                 Destroy(gameObject);
             }

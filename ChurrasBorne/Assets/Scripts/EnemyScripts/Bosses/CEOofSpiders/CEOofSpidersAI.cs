@@ -169,9 +169,7 @@ public class CEOofSpidersAI : MonoBehaviour
     {
         if(health <= 0)
         {
-            isAlreadyDying = true;
-            state = State.Dead;
-            GameManager.instance.SwitchToDefaultCam();
+            
             if (!isSpiderGranny)
             {
                 FaseDoisTriggerController.Instance.GateOpener();
@@ -183,6 +181,9 @@ public class CEOofSpidersAI : MonoBehaviour
                 gc.isTheBossDead= true;
                 gc.SetGeloPos(gameObject.transform.position);
             }
+            isAlreadyDying = true;
+            state = State.Dead;
+            GameManager.instance.SwitchToDefaultCam();
         }
     }
 

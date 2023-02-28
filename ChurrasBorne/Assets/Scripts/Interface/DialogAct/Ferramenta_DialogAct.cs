@@ -13,6 +13,7 @@ public class Ferramenta_DialogAct : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip item_get;
+    public GateChecker gc;
 
     private void Awake()
     {
@@ -52,7 +53,8 @@ public class Ferramenta_DialogAct : MonoBehaviour
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
                 Inventory_Manager.instance.itemStorage.Add(4);
-                //FaseTresTriggerController.Instance.GateOpener();
+                GameManager.instance.HasCollectedItemUm();
+                gc.FaseUmOpenRoutine();
                 HealthBar_Manager.newItem = true;
                 Destroy(gameObject);
             }

@@ -36,7 +36,7 @@ public class GateChecker : MonoBehaviour
             if(isOnFaseUm)
             {
                 hasRun = true;
-               ferramentas.SetActive(true);
+                ferramentas.SetActive(true);
                 GameManager.instance.SetHasCleared(1, true);
             }
             if(IsOnFaseDois)
