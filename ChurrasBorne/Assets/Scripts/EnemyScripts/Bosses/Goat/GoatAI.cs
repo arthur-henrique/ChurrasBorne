@@ -190,7 +190,7 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
-                gc.SetFerramentasPos(gameObject.transform.position);
+                
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
@@ -215,6 +215,7 @@ public class GoatAI : MonoBehaviour
                 }
                 else if (isP2)
                 {
+                    gc.SetFerramentasPos(gameObject.transform.position);
                     gc.isTheBossDead = true;
                     //GameManager.instance.SetHasCleared(1, true);
                     //FaseUmTriggerController.Instance.SecondGateOpen();
