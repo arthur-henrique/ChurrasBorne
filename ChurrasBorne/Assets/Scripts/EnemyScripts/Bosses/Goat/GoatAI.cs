@@ -190,6 +190,7 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
+                gc.SetFerramentasPos(gameObject.transform.position);
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 
