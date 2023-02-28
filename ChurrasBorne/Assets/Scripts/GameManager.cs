@@ -214,6 +214,8 @@ public class GameManager : MonoBehaviour
                 playerBuff.enabled = true;
                 emptyFlask = true;
                 print("HasBuff");
+                Inventory_Manager.instance.itemStorage.Remove(6);
+                Inventory_Manager.instance.itemStorage.Add(7);
             }
             else if (emptyFlask)
             {
