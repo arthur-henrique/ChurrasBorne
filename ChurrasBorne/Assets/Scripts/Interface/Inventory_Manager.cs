@@ -144,10 +144,10 @@ public class Inventory_Manager : MonoBehaviour
             item_sal_name = "Coarse Salt";
             item_sal_desc = "Old world treasure. The gold of the apocalypse. The final touch. Increases the Meat's efficiency.";
 
-            item_corotefull_name = "Pitú";
+            item_corotefull_name = "Elixir";
             item_corotefull_desc = "The secret recipe of the madam. Don't, just drink it. Gains movement and attack speed.";
 
-            item_coroteempty_name = "Pitú (Empty)";
+            item_coroteempty_name = "Elixir (Empty)";
             item_coroteempty_desc = "The secret recipe of the madam. Don't, just drink it. Gains movement and attack speed.";
 
             item_chavedungeonlua_name = "Moon Key";
@@ -179,10 +179,10 @@ public class Inventory_Manager : MonoBehaviour
             item_sal_name = "Sal";
             item_sal_desc = "O tesouro do velho Mundo. O ouro do apocalipse. O toque final. Aumenta a eficiência das Carnes.";
 
-            item_corotefull_name = "Pitú";
+            item_corotefull_name = "Elixir";
             item_corotefull_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de ataque.";
 
-            item_coroteempty_name = "Pitú (Vazio)";
+            item_coroteempty_name = "Elixir (Vazio)";
             item_coroteempty_desc = "A receita secreta da madame. Não pergunte, apenas aproveite. Ganha bônus de movimento e velocidade de ataque.";
 
             item_chavedungeonlua_name = "Chave Lua";
@@ -214,17 +214,17 @@ public class Inventory_Manager : MonoBehaviour
             item_sal_name = "Sal";
             item_sal_desc = "El tesoro del viejo mundo. El oro del Apocalipsis. El toque final. Aumenta la eficacia de la carne.";
 
-            item_corotefull_name = "Pitú";
+            item_corotefull_name = "Elixir";
             item_corotefull_desc = "La receta secreta de la señora. No preguntes, disfruta. Obtiene bonificación de movimiento y velocidad de ataque.";
 
-            item_coroteempty_name = "Pitú (Vacío)";
+            item_coroteempty_name = "Elixir (Vacío)";
             item_coroteempty_desc = "La receta secreta de la señora. No preguntes, disfruta. Obtiene bonificación de movimiento y velocidad de ataque.";
 
             item_chavedungeonlua_name = "Llave Lunar";
             item_chavedungeonlua_desc = "Sólo un Mago loco recrearía la superficie en su Mazmorra, y la cerraría con 3 llaves... Abre una de las 3 cerraduras.";
 
-            item_armadura_name = "Armor";
-            item_armadura_desc = "a.";
+            item_armadura_name = "Armadura Reforzada";
+            item_armadura_desc = "Una creación de Ferreira Forjador. Se esforzó al máximo. Amplifica la salud de Sabet.";
         }
 
         if (PauseManager.isPaused == false)
