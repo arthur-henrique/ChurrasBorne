@@ -49,6 +49,7 @@ public class ArmorAI : MonoBehaviour
     public GateChecker gc;
 
     public bool canMatch = false, canGrid = false;
+    public GameObject gridMaster;
 
 
     private void Awake()
@@ -159,6 +160,7 @@ public class ArmorAI : MonoBehaviour
 
                 gc.isTheBossDead = true;
                 gc.areTheMobsDead = true;
+                gridMaster.SetActive(false);
                 break;
 
             case State.Idling:

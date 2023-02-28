@@ -36,6 +36,7 @@ public class TricksterAI : MonoBehaviour
     private bool canTakeDamage = true;
 
     public GateChecker gc;
+    public GameObject gridMaster;
 
     private void Awake()
     {
@@ -164,6 +165,7 @@ public class TricksterAI : MonoBehaviour
 
                 gc.isTheBossDead = true;
                 gc.areTheMobsDead= true;
+                gridMaster.SetActive(false);
                 break;
 
             case State.Idling:
