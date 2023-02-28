@@ -16,8 +16,9 @@ public class GridAttackBender : MonoBehaviour
     private float rogueTimerCheck, matchTimerCheck, gridTimerCheck;
     private bool isTotalGridHappening, hasGottenPlayerPos, hasDecidedMatch;
     private int randomHorizontal, randomVertical;
-
+    public bool isFromArmor, isFromTrickster;
     public ArmorAI armor;
+    public TricksterAI trickster;
 
     private void Start()
     {
@@ -39,31 +40,64 @@ public class GridAttackBender : MonoBehaviour
             }
         }
         // Manages Random Match
-        if (matchTimerCheck > 0 && armor.canMatch)
+        // Armor
+        if(isFromArmor)
         {
-            matchTimerCheck -= Time.deltaTime;
-            if (matchTimerCheck <= 0)
+            if (matchTimerCheck > 0 && armor.canMatch)
             {
-                if (!hasDecidedMatch)
+                matchTimerCheck -= Time.deltaTime;
+                if (matchTimerCheck <= 0)
                 {
-                    hasDecidedMatch = true;
-                    randomHorizontal = Random.Range(0, horizontalGrid.Length);
-                    randomVertical = Random.Range(0, verticalGrid.Length);
+                    if (!hasDecidedMatch)
+                    {
+                        hasDecidedMatch = true;
+                        randomHorizontal = Random.Range(0, horizontalGrid.Length);
+                        randomVertical = Random.Range(0, verticalGrid.Length);
+                    }
+
+                    StartCoroutine(MatchAttack(randomHorizontal, randomVertical));
                 }
-
-                StartCoroutine(MatchAttack(randomHorizontal, randomVertical));
             }
-        }
-        // Manages Grid
-        if (gridTimerCheck > 0 && armor.canGrid)
-        {
-            gridTimerCheck -= Time.deltaTime;
-
-            if(gridTimerCheck <= 0)
+            // Manages Grid
+            if (gridTimerCheck > 0 && armor.canGrid)
             {
-                StartCoroutine(GridAttack());
+                gridTimerCheck -= Time.deltaTime;
+
+                if (gridTimerCheck <= 0)
+                {
+                    StartCoroutine(GridAttack());
+                }
             }
         }
+        else if(isFromTrickster)
+        {
+            if (matchTimerCheck > 0 && trickster.canMatch)
+            {
+                matchTimerCheck -= Time.deltaTime;
+                if (matchTimerCheck <= 0)
+                {
+                    if (!hasDecidedMatch)
+                    {
+                        hasDecidedMatch = true;
+                        randomHorizontal = Random.Range(0, horizontalGrid.Length);
+                        randomVertical = Random.Range(0, verticalGrid.Length);
+                    }
+
+                    StartCoroutine(MatchAttack(randomHorizontal, randomVertical));
+                }
+            }
+            // Manages Grid
+            if (gridTimerCheck > 0 && trickster.canGrid)
+            {
+                gridTimerCheck -= Time.deltaTime;
+
+                if (gridTimerCheck <= 0)
+                {
+                    StartCoroutine(GridAttack());
+                }
+            }
+        }
+        
     }
 
     IEnumerator RogueAttack()

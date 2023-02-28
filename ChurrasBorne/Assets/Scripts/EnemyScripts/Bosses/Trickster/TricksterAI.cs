@@ -25,7 +25,7 @@ public class TricksterAI : MonoBehaviour
 
     public GameObject closeRangeSpikes, longRangeSpikes;
 
-    public int health;
+    public float health;
 
     private bool isAlreadyDying = false;
 
@@ -36,7 +36,10 @@ public class TricksterAI : MonoBehaviour
     private bool canTakeDamage = true;
 
     public GateChecker gc;
+    public bool canMatch = false, canGrid = false;
     public GameObject gridMaster;
+
+    private float armor = 1f, playerDamage;
 
     private void Awake()
     {
@@ -53,6 +56,9 @@ public class TricksterAI : MonoBehaviour
         currentTimeBTWCRATKs = .5f;
 
         timeToDie = .1f;
+
+        HealthBar_Manager.instance.boss = this.gameObject;
+        HealthBar_Manager.instance.refreshBoss = true;
     }
 
     void Update()
@@ -264,11 +270,31 @@ public class TricksterAI : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
-            CanTakeDamageCD();
+            StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
-            int damage = 10;
-            health -= damage;
+            //DrawBlood();
+            float damage = GameManager.instance.GetDamage() / armor;
 
+
+            if (GameManager.instance.GetMeat() >= 0)
+            {
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+            }
+            else
+            {
+                playerDamage = GameManager.instance.GetDamage() / armor;
+            }
+            health -= playerDamage;
+
+            if (health <= 600f && !canMatch)
+            {
+                canMatch = true;
+            }
+
+            if (health <= 300f && !canGrid)
+            {
+                canGrid = true;
+            }
             if (!isAlreadyDying)
             {
                 SwitchToDead();

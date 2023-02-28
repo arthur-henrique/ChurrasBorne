@@ -470,6 +470,18 @@ public class GameManager : MonoBehaviour
     {
         return playerDamage;
     }
+
+    public void WidenCamera()
+    {
+        dft.m_Lens.OrthographicSize = 15;
+        boss.m_Lens.OrthographicSize = 21;
+    }
+    public void ClosenCamera()
+    {
+        dft.m_Lens.OrthographicSize = 13;
+        boss.m_Lens.OrthographicSize = 19;
+    }
+
     // Manages quest rewards
     // First Quest
     public void HasCompletedFirstQuest()

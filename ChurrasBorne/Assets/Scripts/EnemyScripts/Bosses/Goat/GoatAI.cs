@@ -71,7 +71,7 @@ public class GoatAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         timeBTWMeleeATKs = .5f;
-        dashCooldown = Random.Range(3, 6);
+        dashCooldown = 0.25f; // Random.Range(3, 6);
 
         timeToDie = .1f;
 
