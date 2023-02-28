@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this;
         pc = new PlayerController();
-        
-        SetHasCleared();
+
+        ResetHasCleared();
         poisonTime = 0f;
     }
     private void OnEnable()
@@ -484,9 +484,13 @@ public class GameManager : MonoBehaviour
 
     // Manages quest rewards
     // First Quest
-    public void HasCompletedFirstQuest()
+    public void HasCollectedItemUm()
     {
         hasCompletedQuestOne = true;
+    }
+    public void HasCompletedFirstQuest()
+    {
+        
         playerArmor = 1.5f;
     }
     public float GetArmor()
@@ -495,9 +499,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Second Quest
-    public void HasCompletedSecondQuest()
+    public void HasCollectedItemDois()
     {
         hasCompletedQuestTwo = true;
+    }
+    public void HasCompletedSecondQuest()
+    {
+        
         hasFlask = true;
         fullFlask = true;
     }
@@ -648,7 +656,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector2(0, 0);
     }
 
-    private void SetHasCleared()
+    private void ResetHasCleared()
     {
         for (int i = 0; i < 8; i++)
         {

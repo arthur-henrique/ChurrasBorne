@@ -181,6 +181,7 @@ public class CEOofSpidersAI : MonoBehaviour
             else if (isSpiderGranny)
             {
                 gc.isTheBossDead= true;
+                gc.SetGeloPos(gameObject.transform.position);
             }
         }
     }

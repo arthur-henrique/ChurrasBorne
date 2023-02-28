@@ -114,8 +114,8 @@ public class Inventory_Manager : MonoBehaviour
 
         inv_label = DialogSystem.getChildGameObject(gameObject, "Inventory_Label");
 
-        itemStorage.Add(1);
-        itemStorage.Add(2);
+        //itemStorage.Add(1);
+        //itemStorage.Add(2);
         //itemStorage.Add(1);
     }
 

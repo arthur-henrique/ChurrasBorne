@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Astrolabio_DialogAct : MonoBehaviour
+public class Ferramenta_DialogAct : MonoBehaviour
 {
     public GameObject target;
     public GameObject dbox;
@@ -51,8 +51,8 @@ public class Astrolabio_DialogAct : MonoBehaviour
             {
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
-                Inventory_Manager.instance.itemStorage.Add(2);
-                FaseTresTriggerController.Instance.GateOpener();
+                Inventory_Manager.instance.itemStorage.Add(4);
+                //FaseTresTriggerController.Instance.GateOpener();
                 HealthBar_Manager.newItem = true;
                 Destroy(gameObject);
             }
