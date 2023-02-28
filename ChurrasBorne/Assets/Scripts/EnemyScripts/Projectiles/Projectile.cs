@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
+using static UnityEditor.PlayerSettings;
 
 public class Projectile : MonoBehaviour
 {
@@ -89,6 +90,18 @@ public class Projectile : MonoBehaviour
             sr.color = new Color(0.7423134f, 0f, 1f, 1f);
             if (ltd != null)
                 ltd.color = new Color(0.7423134f, 0f, 1f, 1f);
+        }
+
+        if (isATrickstebasCrystal)
+        {
+            if (target.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (target.x > transform.position.x)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
     }
 
