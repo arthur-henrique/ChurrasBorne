@@ -35,12 +35,17 @@ public class Transition_Manager : MonoBehaviour
     bool stop_descend = false;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     void Start()
     {
         cr_transition_handle = StartCoroutine(VoidTask());
         cr_transition_restart_handle = StartCoroutine(VoidTask());
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
 
         scene_text_display = DialogSystem.getChildGameObject(gameObject, "Scene_Name_Display");
         scene_text_display.GetComponent<TextMeshProUGUI>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
