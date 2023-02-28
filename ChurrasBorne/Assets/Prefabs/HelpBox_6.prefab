@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 6623422329809284685}
   - component: {fileID: 6623422329809284684}
   - component: {fileID: 5426256840788659145}
+  - component: {fileID: 8955865107163363535}
   m_Layer: 5
   m_Name: HelpBox_6
   m_TagString: Untagged
@@ -413,6 +414,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94bef772276ef1498ab2449a0f72dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8955865107163363535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6623422329809284682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5407f1e0f4d5784cb6e91f5664cf2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
 --- !u!1 &6623422329819073882
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +439,7 @@ GameObject:
   - component: {fileID: 6623422329819073885}
   - component: {fileID: 6623422329819073884}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TextDesc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,7 +574,7 @@ GameObject:
   - component: {fileID: 6623422330151344452}
   - component: {fileID: 6623422330151344451}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SubText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

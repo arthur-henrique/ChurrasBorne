@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class Tutorial_HelpBox_2 : MonoBehaviour
     float roll_amount = 0f;
     bool transLock = false;
     PlayerController pc;
+
+    GameObject subtext;
+    GameObject textdesc;
 
     private void OnEnable()
     {
@@ -30,6 +34,23 @@ public class Tutorial_HelpBox_2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        subtext = DialogSystem.getChildGameObject(gameObject, "SubText");
+        textdesc = DialogSystem.getChildGameObject(gameObject, "TextDesc");
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Practice rolling";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "Note the limit of uses in the upper left corner:";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Pratique a rolagem";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "Note o limite de usos no canto superior esquerdo:";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Practica el desplazamiento";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "Observa el límite de usos en la esquina superior izquierda:";
+        }
         TUT_BG = DialogSystem.getChildGameObject(gameObject, "HelpBox_Background");
         TUT_BAR_FILL = DialogSystem.getChildGameObject(gameObject, "BAR_FULL");
         TUT_BG.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class Tutorial_HelpBox_1 : MonoBehaviour
 
     float walk_amount = 0f;
     bool transLock = false;
+
+    GameObject subtext;
+    GameObject textdesc;
 
     PlayerController pc;
 
@@ -31,6 +35,19 @@ public class Tutorial_HelpBox_1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        subtext = DialogSystem.getChildGameObject(gameObject, "SubText");
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Move your character";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Movimente o personagem";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Mover el personaje";
+        }
         TUT_BG = DialogSystem.getChildGameObject(gameObject, "HelpBox_Background");
         TUT_BAR_FILL = DialogSystem.getChildGameObject(gameObject, "BAR_FULL");
         TUT_BG.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);

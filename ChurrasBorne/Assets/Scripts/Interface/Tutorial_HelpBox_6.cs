@@ -1,17 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Tutorial_HelpBox_6 : MonoBehaviour
 {
-    public GameObject canvas; // TransitionCanvas NEEDS to be in scene
+    //public GameObject canvas; // TransitionCanvas NEEDS to be in scene
     GameObject TUT_BG;
     GameObject TUT_BAR_FILL;
 
     float heal_amount = 0f;
     bool transLock = false;
     PlayerController pc;
+
+    GameObject subtext;
+    GameObject textdesc;
 
     private void OnEnable()
     {
@@ -29,7 +33,25 @@ public class Tutorial_HelpBox_6 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
+        subtext = DialogSystem.getChildGameObject(gameObject, "SubText");
+        textdesc = DialogSystem.getChildGameObject(gameObject, "TextDesc");
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Game End";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "Congratulations on completing the game! More content will be made available soon...";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Fim de Jogo";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "Parabéns por completar o jogo! Em breve, mais conteúdo será disponibilizado...";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Fin del juego";
+            textdesc.GetComponent<TextMeshProUGUI>().text = "¡Enhorabuena por completar el juego! Pronto habrá más contenido disponible...";
+        }
+
+        //canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
         TUT_BG = DialogSystem.getChildGameObject(gameObject, "HelpBox_Background");
         TUT_BAR_FILL = DialogSystem.getChildGameObject(gameObject, "BAR_FULL");
         TUT_BG.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);
@@ -48,7 +70,7 @@ public class Tutorial_HelpBox_6 : MonoBehaviour
         {
             transLock = true;
             StartCoroutine(Fade_Out());
-            GameManager.instance.EndTheGame();
+            //GameManager.instance.EndTheGame();
         }
     }
     private IEnumerator Fade_In()

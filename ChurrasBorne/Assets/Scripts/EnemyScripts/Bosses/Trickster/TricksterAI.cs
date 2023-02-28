@@ -41,6 +41,12 @@ public class TricksterAI : MonoBehaviour
 
     private float armor = 1f, playerDamage;
 
+    public AudioSource audioSource;
+    public AudioClip trickster_hurt;
+    public AudioClip trickster_attack_1;
+    public AudioClip trickster_attack_2;
+    public AudioClip trickster_death;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -111,7 +117,7 @@ public class TricksterAI : MonoBehaviour
                 if(currentTimeBTWLRATKs <= 0)
                 {
                     anim.SetTrigger("LR");
-
+                    audioSource.PlayOneShot(trickster_attack_1, audioSource.volume);
                     currentTimeBTWLRATKs = timeBTWLRATKs;
                 }
                 else
@@ -134,7 +140,7 @@ public class TricksterAI : MonoBehaviour
                 if (currentTimeBTWCRATKs <= 0)
                 {
                     anim.SetTrigger("CR");
-
+                    audioSource.PlayOneShot(trickster_attack_2, audioSource.volume);
                     currentTimeBTWCRATKs = timeBTWCRATKs;
                 }
                 else
@@ -163,6 +169,7 @@ public class TricksterAI : MonoBehaviour
                     anim.SetTrigger("Die");
 
                     timeToDie = 1000;
+                    audioSource.PlayOneShot(trickster_death, audioSource.volume);
                 }
                 else
                 {
@@ -273,6 +280,7 @@ public class TricksterAI : MonoBehaviour
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
             //DrawBlood();
+            audioSource.PlayOneShot(trickster_hurt, audioSource.volume);
             float damage = GameManager.instance.GetDamage() / armor;
 
             if (GameManager.instance.GetMeat() >= 0)

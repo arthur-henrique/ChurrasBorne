@@ -76,6 +76,9 @@ public class Inventory_Manager : MonoBehaviour
 
     private string item_armadura_name;
     private string item_armadura_desc;
+
+    private string item_ferramenta_name;
+    private string item_ferramenta_desc;
     #endregion
 
     private void Awake()
@@ -155,6 +158,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_armadura_name = "Reinforced Armor";
             item_armadura_desc = "A creation of Smith, the Smith. He tried his best. Amplifies Sabet's health.";
+
+            item_ferramenta_name = "Tools";
+            item_ferramenta_desc = "Regular smithing tools, for Smith the Smith.";
         }
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 1) // portuguese
@@ -190,6 +196,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_armadura_name = "Armadura Reforçada";
             item_armadura_desc = "Uma criação de Ferreira, o Ferreiro. Ele tentou seu melhor. Amplifica a saúde de Sabet.";
+
+            item_ferramenta_name = "Ferramentas";
+            item_ferramenta_desc = "Ferramentas básicas de ferreiro, para Ferreira o Ferreiro.";
         }
 
         if (PlayerPrefs.GetInt("LANGAUGE") == 2) // spanish
@@ -225,6 +234,9 @@ public class Inventory_Manager : MonoBehaviour
 
             item_armadura_name = "Armadura Reforzada";
             item_armadura_desc = "Una creación de Ferreira Forjador. Se esforzó al máximo. Amplifica la salud de Sabet.";
+
+            item_ferramenta_name = "Herramientas";
+            item_ferramenta_desc = "Herramientas básicas de herrería, para Ferreira Forjador.";
         }
 
         if (PauseManager.isPaused == false)
@@ -406,10 +418,17 @@ public class Inventory_Manager : MonoBehaviour
                         break;
 
                     case 9:
-                        // chave dungeon lua
+                        // armadura
                         inv_item_name.GetComponent<TextMeshProUGUI>().text = item_armadura_name;
                         inv_item_desc.GetComponent<TextMeshProUGUI>().text = item_armadura_desc;
                         inv_board_item.GetComponent<Image>().sprite = itemImages[9];
+                        break;
+
+                    case 10:
+                        // ferramentaas
+                        inv_item_name.GetComponent<TextMeshProUGUI>().text = item_ferramenta_name;
+                        inv_item_desc.GetComponent<TextMeshProUGUI>().text = item_ferramenta_desc;
+                        inv_board_item.GetComponent<Image>().sprite = itemImages[10];
                         break;
 
                     default:

@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,10 @@ public class Tutorial_HelpBox_5 : MonoBehaviour
     float heal_amount = 0f;
     bool transLock = false;
     PlayerController pc;
+
+    GameObject subtext;
+    GameObject textdesc;
+
     private void OnEnable()
     {
         pc.Enable();
@@ -27,6 +32,20 @@ public class Tutorial_HelpBox_5 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        subtext = DialogSystem.getChildGameObject(gameObject, "SubText");
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Interact with barbecues to recover your health";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Interaja com churrasqueiras para recuperar sua saúde";
+        }
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2)
+        {
+            subtext.GetComponent<TextMeshProUGUI>().text = "Interactúa con las barbacoas para recuperar la salud";
+        }
+
         TUT_BG = DialogSystem.getChildGameObject(gameObject, "HelpBox_Background");
         TUT_BAR_FILL = DialogSystem.getChildGameObject(gameObject, "BAR_FULL");
         TUT_BG.GetComponent<RectTransform>().localScale = new Vector3(0, 1, 1);

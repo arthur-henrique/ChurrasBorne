@@ -350,6 +350,15 @@ public class HealthBar_Manager : MonoBehaviour
                         refreshBoss = false;
                     }
                     break;
+
+                case "Trickster":
+                    realHealthBoss = boss.GetComponent<TricksterAI>().health;
+                    if (refreshBoss)
+                    {
+                        maxHealthBoss = boss.GetComponent<TricksterAI>().health;
+                        refreshBoss = false;
+                    }
+                    break;
             }
 
             convertHealthBoss = realHealthBoss / maxHealthBoss;
