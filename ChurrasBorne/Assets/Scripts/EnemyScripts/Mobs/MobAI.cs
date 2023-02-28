@@ -32,7 +32,7 @@ public class MobAI : MonoBehaviour
 
     public GameObject gameManager;
 
-    public GameObject[] tbPoints;
+    public GameObject[] tpPoints;
 
     private AudioSource audioSource;
     public AudioClip monster_death;
@@ -277,8 +277,14 @@ public class MobAI : MonoBehaviour
 
                 if (timeBTWShots <= 0)
                 {
-                    anim.SetTrigger("Ranged");
-
+                    if (!isASkully)
+                    {
+                        anim.SetTrigger("Ranged");
+                    }
+                    if(isASkully)
+                    {
+                        anim.SetTrigger("Melee");
+                    }
                     //apagar depois a condicao
                     if (!isATrickstebas)
                     {
@@ -462,11 +468,11 @@ public class MobAI : MonoBehaviour
     //STATES
     void SwitchToChasing()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter && !isATrickstebas && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && !isASpitter && !isATrickstebas && !isASkully && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
-        if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && (isASpitter || isATrickstebas) && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= chaseDistance && Vector2.Distance(transform.position, target) > meleeDistance && health > 0 && (isASpitter || isATrickstebas || isASkully) && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Chasing;
         }
@@ -487,7 +493,7 @@ public class MobAI : MonoBehaviour
     }
     void SwitchToShooting()
     {
-        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && (isASpitter || isATrickstebas) && gameManager.GetComponent<GameManager>().isAlive)
+        if (Vector2.Distance(transform.position, target) <= agroDistance && Vector2.Distance(transform.position, target) > chaseDistance && health > 0 && (isASpitter || isATrickstebas || isASkully) && gameManager.GetComponent<GameManager>().isAlive)
         {
             state = State.Shooting;
         }
@@ -575,10 +581,19 @@ public class MobAI : MonoBehaviour
     //RANGED
     void InstantiateProjectile()
     {
+        if(isASkully)
+        {
+            if(Vector2.Distance(transform.position, player.position) > chaseDistance)
+            {
+                Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
+            }
+        }
+        
         if (!isATrickstebas)
         {
             Instantiate(projectile, spriteCenter.transform.position, Quaternion.identity);
         }
+
 
         if(isATrickstebas)
         {
@@ -593,9 +608,9 @@ public class MobAI : MonoBehaviour
     }
     void HasDisappeared()
     {
-        int rand = Random.Range(0, 6);
+        int rand = Random.Range(0, 2);
 
-        transform.position = tbPoints[rand].transform.position;
+        transform.position = tpPoints[rand].transform.position;
 
         anim.SetTrigger("Reappear");
     }

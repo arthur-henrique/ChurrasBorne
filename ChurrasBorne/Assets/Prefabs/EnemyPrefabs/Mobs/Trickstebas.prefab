@@ -5067,12 +5067,9 @@ MonoBehaviour:
   dashTarget: {x: 0, y: 0, z: 0}
   projectile: {fileID: 667370048277322279, guid: f38a8623f8510fe4eb5f8e7abacbc094, type: 3}
   armoredTebasProjectile: {fileID: 0}
+  armored: {fileID: 0}
   gameManager: {fileID: 0}
-  tbPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  tpPoints:
   - {fileID: 0}
   - {fileID: 0}
   monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
