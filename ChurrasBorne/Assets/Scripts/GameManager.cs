@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this;
         pc = new PlayerController();
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         SetHasCleared();
         poisonTime = 0f;
     }
@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
@@ -118,8 +119,8 @@ public class GameManager : MonoBehaviour
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
             og_health = (int)GameManager.instance.currentHealth;
-            og_meat = healsLeft;
-            og_sword = hasSword;
+            og_meat = GameManager.instance.GetMeat();
+            og_sword = GameManager.instance.GetSword();
             scene_detect = SceneManager.GetActiveScene().name;
             //print("OG HEALTH" + og_health);
         }
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour
             //Poison(1f);
             if (SceneManager.GetActiveScene().name != "Hub")
             {
-                SetHasCleared(0, true);
+                //SetHasCleared(0, true);
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
             } else
             {
