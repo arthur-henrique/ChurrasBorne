@@ -48,9 +48,9 @@ public class ChurrasqueiraOneMetal_DialogAct : MonoBehaviour
                 {
                     dbox.GetComponent<DialogSystem>().db_SetSceneSimple(4);
                     GameManager.instance.currentHealth = GameManager.instance.maxHealth;
-                    if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 3)
+                    if (GameManager.instance.healsLeft < 3)
                     {
-                        GameManager.instance.SetHeals(GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") + 1, false, true);
+                        GameManager.instance.SetHeals(GameManager.instance.healsLeft + 1, false, true);
                     }
                     DialogSystem.getChildGameObject(gameObject, "LuzChurras").SetActive(false);
                     emission.rateOverTime = 1f;
