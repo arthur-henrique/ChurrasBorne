@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Paulo_Encounter_1_DialogAct : MonoBehaviour
+public class Gomes_Encounter_1_DialogAct : MonoBehaviour
 {
     public GameObject target;
     public GameObject dbox;
