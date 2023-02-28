@@ -8,9 +8,6 @@ public class Paulo_Encounter_1_DialogAct : MonoBehaviour
     public GameObject dbox;
     PlayerController pc;
 
-    public static bool ferreiro_encounter_1_occurred;
-    public static bool ferreiro_encounter_2_occurred;
-
     public Material sprite_lit;
     public Material sprite_unlit;
 
@@ -20,7 +17,7 @@ public class Paulo_Encounter_1_DialogAct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
