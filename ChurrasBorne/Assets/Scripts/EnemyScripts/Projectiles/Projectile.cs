@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
-using static UnityEditor.PlayerSettings;
+//using static UnityEditor.PlayerSettings;
 
 public class Projectile : MonoBehaviour
 {

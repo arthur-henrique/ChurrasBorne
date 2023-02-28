@@ -173,7 +173,7 @@ public class MobAI : MonoBehaviour
         if(isATrickstebas)
         {
             health = 90f;
-            damage = 25f;
+            damage = 15f;
             armor = 1f;
         }
         if(isASkully)

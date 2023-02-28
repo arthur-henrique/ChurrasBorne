@@ -5074,8 +5074,8 @@ MonoBehaviour:
   - {fileID: 0}
   monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
   monster_hurt: {fileID: 8300000, guid: 945b6d2820ffd674f84b760b3df6c902, type: 3}
-  monster_punch: {fileID: 0}
-  monster_spit: {fileID: 0}
+  monster_punch: {fileID: 8300000, guid: 07098b218b5f9344a943e8882ca53a06, type: 3}
+  monster_spit: {fileID: 8300000, guid: 722d7b603b159f64282505b5b11d3a4b, type: 3}
   agroDistance: 30
   meleeDistance: 4
   canDashDistance: 0
