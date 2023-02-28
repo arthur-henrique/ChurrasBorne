@@ -4977,8 +4977,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -677462173
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28df826f802f2fe4586eda5238165318, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5067,6 +5067,7 @@ MonoBehaviour:
   dashTarget: {x: 0, y: 0, z: 0}
   projectile: {fileID: 667370048277322279, guid: f38a8623f8510fe4eb5f8e7abacbc094, type: 3}
   armoredTebasProjectile: {fileID: 0}
+  armored: {fileID: 0}
   gameManager: {fileID: 0}
   tbPoints:
   - {fileID: 0}
