@@ -74,8 +74,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this;
         pc = new PlayerController();
-        
-        SetHasCleared();
+
+        ResetHasCleared();
         poisonTime = 0f;
     }
     private void OnEnable()
@@ -648,7 +648,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector2(0, 0);
     }
 
-    private void SetHasCleared()
+    private void ResetHasCleared()
     {
         for (int i = 0; i < 8; i++)
         {
