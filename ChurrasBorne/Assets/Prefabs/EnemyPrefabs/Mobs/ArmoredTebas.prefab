@@ -5070,7 +5070,7 @@ MonoBehaviour:
   armoredTebasProjectile: {fileID: 7340731874072809615, guid: a4629c94c54464442bf852ef93a7a5c5, type: 3}
   armored: {fileID: 0}
   gameManager: {fileID: 0}
-  tbPoints: []
+  tpPoints: []
   monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
   monster_hurt: {fileID: 8300000, guid: 945b6d2820ffd674f84b760b3df6c902, type: 3}
   monster_punch: {fileID: 0}
@@ -5080,7 +5080,7 @@ MonoBehaviour:
   canDashDistance: 0
   dashMeleeDistance: 0
   chaseDistance: 0
-  chasingSpeed: 5
+  chasingSpeed: 3
   dashingSpeed: 0
   startStunTime: 0.1
   startTimeBTWAttacks: 1.6
