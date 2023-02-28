@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
-    private Animator playerAnimator;
+    public Animator playerAnimator;
     public Animator reflAnim;
     private PlayerController pc; 
     public Slider slider;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     private ParticleSystem.EmissionModule poisonEm;
     [SerializeField]
     private float playerDamage, playerArmor;
-    public bool hasBetterSword = false;
+    public bool hasSword = false, hasBetterSword = false;
     private float swordDamage = 15f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
     // Manages Quest
@@ -75,7 +75,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         pc = new PlayerController();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerAnimator = player.GetComponent<Animator>();
         SetHasCleared();
         poisonTime = 0f;
     }
@@ -119,8 +118,8 @@ public class GameManager : MonoBehaviour
         if (scene_detect != SceneManager.GetActiveScene().name)
         {
             og_health = (int)GameManager.instance.currentHealth;
-            og_meat = GameManager.instance.GetMeat();
-            og_sword = GameManager.instance.GetSword();
+            og_meat = healsLeft;
+            og_sword = hasSword;
             scene_detect = SceneManager.GetActiveScene().name;
             //print("OG HEALTH" + og_health);
         }
@@ -511,6 +510,7 @@ public class GameManager : MonoBehaviour
     }
     public void HasSword() // Buff is off
     {
+        hasSword= true;
         playerDamage = swordDamage;
     }
     

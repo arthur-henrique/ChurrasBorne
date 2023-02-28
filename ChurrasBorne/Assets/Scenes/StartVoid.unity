@@ -429,6 +429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5f448de460a124db4776842e8cd6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &601760234 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &757716132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -768,6 +773,7 @@ MonoBehaviour:
   canvas: {fileID: 0}
   player: {fileID: 0}
   ltd: {fileID: 601760232}
+  playerAnimator: {fileID: 601760234}
   reflAnim: {fileID: 601760230}
   slider: {fileID: 1561382289}
   dft: {fileID: 189145003}
@@ -796,6 +802,7 @@ MonoBehaviour:
   poison: {fileID: 601760231}
   playerDamage: 0
   playerArmor: 0
+  hasSword: 0
   hasBetterSword: 0
   playerBuff: {fileID: 601760233}
   hasCompletedQuestOne: 0
