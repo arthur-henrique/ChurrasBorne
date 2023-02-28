@@ -51,7 +51,7 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
     {
         notif_balloon.transform.localPosition = new Vector2(0, 4.75f + Mathf.Sin(Time.time * 1f) * 0.25f);
 
-        if (GameManager.instance.GetHasCleared(1)) // verificar com arthur
+        if (GameManager.instance.GetHasCleared(2)) // verificar com arthur
         {
             gameObject.SetActive(true);
         }
@@ -104,7 +104,7 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
                     GetComponent<Animator>().SetTrigger("TALKING");
                     bruxinha_encounter_6_occurred = true;
                     GameManager.instance.HasCompletedSecondQuest();
-                    HealthBar_Manager.newItem = false;
+                    HealthBar_Manager.newItem = true;
                 }
             }
             else if (GameObject.Find("Encapuzado"))
@@ -159,7 +159,8 @@ public class Bruxinha_Encounter_2_DialogAct : MonoBehaviour
 
     private IEnumerator GiveArmor()
     {
-        //Inventory_Manager.instance.itemStorage.Add(9);
+        Inventory_Manager.instance.itemStorage.Add(6);
+
         yield return null;
     }
 }

@@ -255,6 +255,7 @@ public class ManagerOfScenes : MonoBehaviour
     {
         GameManager.instance.SetHasSeenGateTwoAnim(true);
         StartCoroutine(ShowSecondPath());
+
     }
 
     public void ShowThirdPhase()
@@ -279,6 +280,7 @@ public class ManagerOfScenes : MonoBehaviour
         GameManager.instance.GateCAM();
         yield return new WaitForSeconds(1.5f);
         portalDois.SetTrigger("ON");
+        portalDois.enabled = true;
         secondPortalIsOn = true;
     }
 
