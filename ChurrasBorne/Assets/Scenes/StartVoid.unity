@@ -423,7 +423,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 601760239, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   m_PrefabInstance: {fileID: 601760228}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 601760235}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa5f448de460a124db4776842e8cd6a9, type: 3}
@@ -432,6 +432,11 @@ MonoBehaviour:
 --- !u!95 &601760234 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 928652248, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  m_PrefabInstance: {fileID: 601760228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &601760235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7439086971969871812, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
   m_PrefabInstance: {fileID: 601760228}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &757716132
@@ -771,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 601760235}
   ltd: {fileID: 601760232}
   playerAnimator: {fileID: 601760234}
   reflAnim: {fileID: 601760230}
