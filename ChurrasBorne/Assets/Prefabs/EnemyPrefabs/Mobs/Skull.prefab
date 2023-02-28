@@ -4909,6 +4909,8 @@ Transform:
   - {fileID: 5975223249520542911}
   - {fileID: 235396936187405933}
   - {fileID: 6193593243703221143}
+  - {fileID: 3027147741615398789}
+  - {fileID: 4384057062736422423}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5034,24 +5036,28 @@ MonoBehaviour:
   rb: {fileID: 2836564491944049886}
   anim: {fileID: 2836564491944049884}
   player: {fileID: 7439086971969871808, guid: a6ab3c7be7556c1448df9ce5078bae6c, type: 3}
+  armoredTebasSpeartip: {fileID: 0}
+  trickstebasStaff: {fileID: 0}
   dashTarget: {x: 0, y: 0, z: 0}
-  projectile: {fileID: 0}
+  projectile: {fileID: 3571336353675850579, guid: 96864d533fc0a144aa752dee7d832ae2, type: 3}
+  armoredTebasProjectile: {fileID: 0}
+  armored: {fileID: 0}
   gameManager: {fileID: 0}
-  monster_death: {fileID: 0}
+  tbPoints: []
+  monster_death: {fileID: 8300000, guid: c07118979447a8c45946748ac68ffe50, type: 3}
   monster_hurt: {fileID: 0}
   monster_punch: {fileID: 0}
   monster_spit: {fileID: 0}
-  agroDistance: 20
+  agroDistance: 30
   meleeDistance: 3
   canDashDistance: 0
   dashMeleeDistance: 0
-  chaseDistance: 0
+  chaseDistance: 6
   chasingSpeed: 3
   dashingSpeed: 0
-  startTimeBTWAttacks: 2
-  startTimeBTWShots: 0
   startStunTime: 0.5
-  startDashRecoveryTime: 0
+  startTimeBTWAttacks: 2
+  startTimeBTWShots: 2
   isASpitter: 0
   isADasher: 0
   isASpider: 0
@@ -5061,17 +5067,20 @@ MonoBehaviour:
   isAShatebas: 0
   isAGigantebas: 0
   isASkeletebas: 0
-  isASkully: 0
+  isAnArmoredTebas: 0
+  isATrickstebas: 0
+  isASkully: 1
   isOnTutorial: 0
   isOnFaseUm: 0
   isOnFaseDois: 0
   isOnFaseTres: 0
   isOnFaseQuatro: 0
   controller: {fileID: 0}
+  isFlipped: 0
   bloodSpatter: {fileID: 525378346070600607}
   stepDust: {fileID: 3127788310244048777}
   stompDust: {fileID: 3127788310244048777}
-  spriteCenter: {fileID: 0}
+  spriteCenter: {fileID: 7878419239143040765}
 --- !u!82 &104732389356124469
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10070,6 +10079,36 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &5485897270900437248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3027147741615398789}
+  m_Layer: 8
+  m_Name: skullSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3027147741615398789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485897270900437248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2836564491944049880}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5676109511636267681
 GameObject:
   m_ObjectHideFlags: 0
@@ -10121,3 +10160,33 @@ MonoBehaviour:
     m_Bits: 128
   size: {x: 3.5, y: 6}
   radius: 0
+--- !u!1 &7878419239143040765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4384057062736422423}
+  m_Layer: 8
+  m_Name: SpriteCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4384057062736422423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7878419239143040765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.167, y: 0.619, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2836564491944049880}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

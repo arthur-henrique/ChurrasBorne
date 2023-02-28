@@ -16,9 +16,11 @@ public class Projectile : MonoBehaviour
 
     private GameObject faseDois;
 
+    public Animator anim;
+
     public int health;
 
-    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois, isAFireBall, isFromMommy, isFromGranny;
+    public bool isOnTutorial, isFromBoss, isAWeb, hasBeenParried, isOnFaseDois, isAFireBall, isFromMommy, isFromGranny, isASkull, isATrickstebasCrystal;
     private bool canBeParried = true;
     private SpriteRenderer sr;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
@@ -130,6 +132,11 @@ public class Projectile : MonoBehaviour
             }
         }
 
+        if(isASkull || isATrickstebasCrystal)
+        {
+            anim.SetTrigger("Fly");
+        }
+
         Destroy(gameObject, 7f);
     }
 
@@ -173,7 +180,7 @@ public class Projectile : MonoBehaviour
             }
         }
         if (collision.CompareTag("TRONCO"))
-        {
+        {           
             Destroy(gameObject);
         }
         if (collision.CompareTag("PAREDE") && !isOnFaseDois)
