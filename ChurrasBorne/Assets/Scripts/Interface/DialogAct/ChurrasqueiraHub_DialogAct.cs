@@ -59,6 +59,7 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
                         }
                         GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                         GameManager.instance.SetHeals(3, false, true);
+                        GameManager.instance.FlaskRefill();
 
                         //
                         col.enabled = true;
