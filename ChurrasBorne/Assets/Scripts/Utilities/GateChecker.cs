@@ -10,7 +10,7 @@ public class GateChecker : MonoBehaviour
     public Animator faseDoisHalf;
     public Collider2D coll;
     private ManagerOfScenes manager;
-    public GameObject astrolabio;
+    public GameObject ferramentas, gelo, astrolabio;
 
 
     private void Start()
@@ -36,16 +36,14 @@ public class GateChecker : MonoBehaviour
             if(isOnFaseUm)
             {
                 hasRun = true;
-                FaseUmTriggerController.Instance.SecondGateOpen();
-                coll.enabled = true;
-                coll.transform.GetChild(0).gameObject.SetActive(true);
+                ferramentas.SetActive(true);
                 GameManager.instance.SetHasCleared(1, true);
             }
             if(IsOnFaseDois)
             {
                 hasRun = true;
-                FaseDoisTriggerController.Instance.GateOpener();
-                faseDoisHalf.SetTrigger("ON");
+                gelo.SetActive(true);
+                
                 GameManager.instance.SetHasCleared(3, true);
             }
             if(isOnFaseTres)
@@ -70,7 +68,26 @@ public class GateChecker : MonoBehaviour
 
         }
     }
+    public void FaseUmOpenRoutine()
+    {
+        FaseUmTriggerController.Instance.SecondGateOpen();
+        coll.enabled = true;
+        coll.transform.GetChild(0).gameObject.SetActive(true);
+    }
+    public void FaseDoisOpenRoutine()
+    {
+        FaseDoisTriggerController.Instance.GateOpener();
+        faseDoisHalf.SetTrigger("ON");
+    }
 
+    public void SetFerramentasPos(Vector2 pos)
+    {
+        ferramentas.transform.position = pos;
+    }
+    public void SetGeloPos(Vector2 pos)
+    {
+        astrolabio.transform.position = pos;
+    }
     public void SetAstrolabePos(Vector2 pos)
     {
         astrolabio.transform.position = pos;

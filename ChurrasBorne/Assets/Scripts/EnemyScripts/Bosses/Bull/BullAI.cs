@@ -280,7 +280,7 @@ public class BullAI : MonoBehaviour
         }
         else
         {
-            GameManager.instance.TakeDamage(15);
+            GameManager.instance.TakeDamage(10);
         }
         timeBTWMeleeATKs = 0.5f;
         timeBTWRangedATKs = Random.Range(2f, 3.6f);

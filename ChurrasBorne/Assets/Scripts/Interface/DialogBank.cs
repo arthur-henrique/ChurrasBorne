@@ -13,7 +13,10 @@ public class DialogBank : MonoBehaviour
         "Your health has been completely restored, " +
         "and if possible, a meat has been added to your stick.",   /* 4 */
         "Your health has been completely restored, " +
-        "and if possible, meat have been added to your stick."     /* 5 */
+        "and if possible, meat have been added to your stick. ",     /* 5 */
+        "Your health has been completely restored,"  +              /* 6 */
+        "and if possible, meat have been added to your stick. " +
+        "The elixir has been replenished."
     };
 
     public static string[] portuguese_bank =
@@ -25,7 +28,10 @@ public class DialogBank : MonoBehaviour
         "Sua vida foi completamente restaurada, " +
         "e um espeto foi reposto se possível em sua espada.",   /* 4 */
         "Sua vida foi completamente restaurada, " +
-        "e espetos foram repostos se possível em sua espada."   /* 5 */
+        "e espetos foram repostos se possível em sua espada.",     /* 5 */
+        "Sua vida foi completamente restaurada, "  +              /* 6 */
+        "e espetos foram repostos se possível em sua espada. " +
+        "O elixir foi restaurado."
     };
 
     public static string[] spanish_bank =
@@ -37,7 +43,10 @@ public class DialogBank : MonoBehaviour
         "Su vida ha sido completamente restaurada, " +
         "y un pincho ha sido reemplazado si es posible en su espada. ",   /* 4 */
         "Su vida ha sido completamente restaurada, " +
-        "y los pinchos han sido reemplazados si es posible en su espada." /* 5 */
+        "y los pinchos han sido reemplazados si es posible en su espada.",     /* 5 */
+        "Your health has been completely restored,"  +              /* 6 */
+        "and if possible, meat have been added to your stick. " +
+        "El elixir se ha repuesto."
     };
 
     public static string[,] portuguese_dialog_bank =

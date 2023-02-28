@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public UnityEngine.Experimental.Rendering.Universal.Light2D ltd;
     //public Transform spawnPoint, lastCheckPoint;
-    private Animator playerAnimator;
+    public Animator playerAnimator;
     public Animator reflAnim;
     private PlayerController pc; 
     public Slider slider;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     private ParticleSystem.EmissionModule poisonEm;
     [SerializeField]
     private float playerDamage, playerArmor;
-    public bool hasBetterSword = false;
+    public bool hasSword = false, hasBetterSword = false;
     private float swordDamage = 15f, betterSwordDamage = 25f;
     public PlayerTempPowerUps playerBuff;
     // Manages Quest
@@ -74,9 +74,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         instance = this;
         pc = new PlayerController();
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerAnimator = player.GetComponent<Animator>();
-        SetHasCleared();
+
+        ResetHasCleared();
         poisonTime = 0f;
     }
     private void OnEnable()
@@ -90,6 +89,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        
         canvas = GameObject.Find("TransitionCanvas"); // TransitionCanvas NEEDS to be in scene
         audioSource = GetComponent<AudioSource>();
         currentHealth = maxHealth;
@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
             //Poison(1f);
             if (SceneManager.GetActiveScene().name != "Hub")
             {
-                SetHasCleared(0, true);
+                //SetHasCleared(0, true);
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
             } else
             {
@@ -214,6 +214,8 @@ public class GameManager : MonoBehaviour
                 playerBuff.enabled = true;
                 emptyFlask = true;
                 print("HasBuff");
+                Inventory_Manager.instance.itemStorage.Remove(6);
+                Inventory_Manager.instance.itemStorage.Add(7);
             }
             else if (emptyFlask)
             {
@@ -470,11 +472,27 @@ public class GameManager : MonoBehaviour
     {
         return playerDamage;
     }
+
+    public void WidenCamera()
+    {
+        dft.m_Lens.OrthographicSize = 15;
+        boss.m_Lens.OrthographicSize = 21;
+    }
+    public void ClosenCamera()
+    {
+        dft.m_Lens.OrthographicSize = 13;
+        boss.m_Lens.OrthographicSize = 19;
+    }
+
     // Manages quest rewards
     // First Quest
-    public void HasCompletedFirstQuest()
+    public void HasCollectedItemUm()
     {
         hasCompletedQuestOne = true;
+    }
+    public void HasCompletedFirstQuest()
+    {
+        
         playerArmor = 1.5f;
     }
     public float GetArmor()
@@ -483,9 +501,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Second Quest
-    public void HasCompletedSecondQuest()
+    public void HasCollectedItemDois()
     {
         hasCompletedQuestTwo = true;
+    }
+    public void HasCompletedSecondQuest()
+    {
+        
         hasFlask = true;
         fullFlask = true;
     }
@@ -499,6 +521,7 @@ public class GameManager : MonoBehaviour
     }
     public void HasSword() // Buff is off
     {
+        hasSword= true;
         playerDamage = swordDamage;
     }
     
@@ -635,7 +658,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector2(0, 0);
     }
 
-    private void SetHasCleared()
+    private void ResetHasCleared()
     {
         for (int i = 0; i < 8; i++)
         {

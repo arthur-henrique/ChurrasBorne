@@ -34,6 +34,10 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.instance.GetHasCleared(0))
+        {
+            gameObject.SetActive(false);
+        }
         notif_balloon = DialogSystem.getChildGameObject(gameObject, "Notification_Balloon");
         if (!ferreiro_encounter_1_occurred || GameManager.instance.GetHasCleared(0) == false)
         {
@@ -47,7 +51,7 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameManager.instance.player;
     }
 
     // Update is called once per frame
@@ -82,7 +86,7 @@ public class Ferreiro_Encounter_1_DialogAct : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().material = sprite_lit;
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(-56f, 262f), 8f * Time.deltaTime);
-                target.transform.position = Vector2.MoveTowards(target.transform.position, new Vector2(-48f, 262f), 10f * Time.deltaTime);
+                GameManager.instance.player.transform.position = Vector2.MoveTowards(GameManager.instance.player.transform.position, new Vector2(-48f, 262f), 10f * Time.deltaTime);
                 GetComponent<Animator>().SetBool("WALKING", true);
                 PlayerMovement.DisableControl();
                 GameManager.instance.SwitchToDefaultCam();

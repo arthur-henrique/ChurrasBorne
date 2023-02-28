@@ -40,6 +40,8 @@ public class FaseTresTriggerController : MonoBehaviour
     public GameObject preBossSpawnPointNormal, preBossSpawnPointEclipse;
     public GameObject luzPortal;
     private ManagerOfScenes manager;
+
+    public GameObject clearGamePrefab;
     // Start is called before the first frame update
     public bool test, test1;
     void Awake()
@@ -52,23 +54,7 @@ public class FaseTresTriggerController : MonoBehaviour
     {
         manager = FindObjectOfType<ManagerOfScenes>();
         inimigosMortos = 0;
-        if (!manager.isEclipse)
-        {
-            normalLock8.SetActive(true);
-            normalBossLock.SetActive(true);
-            eclipseLock6.SetActive(false);
-            eclipseBossLock.SetActive(false);
-
-            
-        }
-        else if(manager.isEclipse)
-        {
-            normalLock8.SetActive(false);
-            normalBossLock.SetActive(false);
-            eclipseLock6.SetActive(true);
-            eclipseBossLock.SetActive(true);
-
-        }
+        StartCoroutine(ActivateTriggers());
     }
 
     public void SalaUmTrigger()
@@ -177,7 +163,8 @@ public class FaseTresTriggerController : MonoBehaviour
             eclipseSixthLock[i].GetComponent<Animator>().SetTrigger("OPENIT");
         }
 
-        DungeonAccessLockEclipse();
+
+        //DungeonAccessLockEclipse();
     }
     
 
@@ -404,12 +391,13 @@ public class FaseTresTriggerController : MonoBehaviour
         }
         else if(manager.isEclipse)
         {
-            gate.transform.position = gateCamPos[6].transform.position;
+            gate.transform.position = gateCamPos[3].transform.position;
             GameManager.instance.GateCamSetter(gate);
             yield return new WaitForSeconds(1);
             StartCoroutine(TurnOnTheLightPortal());
             GameManager.instance.GateCAM();
             SalaBossOutTriggerEclipse();
+            Instantiate(clearGamePrefab);
         }
         GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
@@ -424,5 +412,26 @@ public class FaseTresTriggerController : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.5f);
         luzPortal.SetActive(true);
+    }
+    IEnumerator ActivateTriggers()
+    {
+        yield return new WaitForSeconds(0.15f);
+        if (!manager.isEclipse)
+        {
+            normalLock8.SetActive(true);
+            normalBossLock.SetActive(true);
+            eclipseLock6.SetActive(false);
+            eclipseBossLock.SetActive(false);
+
+
+        }
+        else if (manager.isEclipse)
+        {
+            normalLock8.SetActive(false);
+            normalBossLock.SetActive(false);
+            eclipseLock6.SetActive(true);
+            eclipseBossLock.SetActive(true);
+
+        }
     }
 }

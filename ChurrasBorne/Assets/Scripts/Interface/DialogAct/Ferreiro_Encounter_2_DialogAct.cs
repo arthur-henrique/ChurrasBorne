@@ -100,7 +100,7 @@ public class Ferreiro_Encounter_2_DialogAct : MonoBehaviour
                     GetComponent<Animator>().SetTrigger("TALKING");
                     ferreiro_encounter_6_occurred = true;
                     GameManager.instance.HasCompletedFirstQuest();
-                    HealthBar_Manager.newItem = false;
+                    HealthBar_Manager.newItem = true;
                 }
             } else if (GameObject.Find("Encapuzado"))
             {

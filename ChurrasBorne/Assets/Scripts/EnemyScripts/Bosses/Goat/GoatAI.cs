@@ -71,7 +71,7 @@ public class GoatAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         timeBTWMeleeATKs = .5f;
-        dashCooldown = Random.Range(3, 6);
+        dashCooldown = 0.25f; // Random.Range(3, 6);
 
         timeToDie = .1f;
 
@@ -190,6 +190,7 @@ public class GoatAI : MonoBehaviour
                 anim.SetBool("Idle", true);
                 anim.SetBool("Dash", false);
                 anim.SetBool("Walk", false);
+                gc.SetFerramentasPos(gameObject.transform.position);
 
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
 

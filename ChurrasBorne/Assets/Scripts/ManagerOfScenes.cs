@@ -60,6 +60,7 @@ public class ManagerOfScenes : MonoBehaviour
         if (gameObject.CompareTag("HUB"))
         {
             PostProcessingControl.Instance.TurnOffVignette();
+            GameManager.instance.ClosenCamera();
             gate.transform.position = GateCamPos[0].transform.position;
             isEclipse = true;
             if(!clearedUm && !clearedHalf)
@@ -190,6 +191,7 @@ public class ManagerOfScenes : MonoBehaviour
         if (gameObject.CompareTag("FASETRES"))
         {
             PostProcessingControl.Instance.TurnOffVignette();
+            GameManager.instance.WidenCamera();
             if (!clearedTres && !clearedTresHalf)
             {
                 passado.SetActive(true);
@@ -205,7 +207,7 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if (clearedTres && clearedTresHalf)
             {
-                FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
+                //FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
                 randomTimeline = Random.Range(1, 3);
                 if (randomTimeline == 1)
                 {
@@ -225,6 +227,7 @@ public class ManagerOfScenes : MonoBehaviour
         }
         if(gameObject.CompareTag("FASEQUATRO"))
         {
+            GameManager.instance.ClosenCamera();
             PostProcessingControl.Instance.TurnOffVignette();
             faseQuatroPath = Random.Range(0, 5);
             GameManager.instance.EnableTheControl();
@@ -252,6 +255,7 @@ public class ManagerOfScenes : MonoBehaviour
     {
         GameManager.instance.SetHasSeenGateTwoAnim(true);
         StartCoroutine(ShowSecondPath());
+
     }
 
     public void ShowThirdPhase()
@@ -276,6 +280,7 @@ public class ManagerOfScenes : MonoBehaviour
         GameManager.instance.GateCAM();
         yield return new WaitForSeconds(1.5f);
         portalDois.SetTrigger("ON");
+        portalDois.enabled = true;
         secondPortalIsOn = true;
     }
 

@@ -49,16 +49,36 @@ public class ChurrasqueiraHub_DialogAct : MonoBehaviour
                 {
                     if (pc.Movimento.Attack.WasPressedThisFrame() && dist <= 4)
                     {
-                        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>().GetFloat("numberOfMeat") < 0)
+                        if (GameManager.instance.healsLeft < 0)
                         {
-                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
+                            if(GameManager.instance.HasFlask())
+                            {
+                                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(6);
+                            } else
+                            {
+                                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(2);
+                            }
+                            
                         }
                         else
                         {
-                            dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
+                            if (GameManager.instance.HasFlask())
+                            {
+                                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(6);
+                            }
+                            else
+                            {
+                                dbox.GetComponent<DialogSystem>().db_SetSceneSimple(5);
+                            }
+                        }
+                        
+                        if (GameManager.instance.HasFlask())
+                        {
+                            GameManager.instance.FlaskRefill();
                         }
                         GameManager.instance.currentHealth = GameManager.instance.maxHealth;
                         GameManager.instance.SetHeals(3, false, true);
+                        
 
                         //
                         col.enabled = true;

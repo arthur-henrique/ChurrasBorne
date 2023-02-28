@@ -30,7 +30,7 @@ public class Astrolabio_DialogAct : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameManager.instance.player;
     }
 
     // Update is called once per frame
@@ -52,6 +52,8 @@ public class Astrolabio_DialogAct : MonoBehaviour
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
                 Inventory_Manager.instance.itemStorage.Add(2);
+                FaseTresTriggerController.Instance.GateOpener();
+                HealthBar_Manager.newItem = true;
                 Destroy(gameObject);
             }
 

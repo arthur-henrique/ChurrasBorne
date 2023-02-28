@@ -25,6 +25,10 @@ public class Language_Manager : MonoBehaviour
     {
         pc = new PlayerController();
         audioSource = GetComponent<AudioSource>();
+        if (PlayerPrefs.GetInt("BOOT") == 1)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
     private void OnEnable()
     {
@@ -48,10 +52,7 @@ public class Language_Manager : MonoBehaviour
         lockSelec = false;
         Debug.Log(PlayerPrefs.GetInt("LANGUAGE"));
 
-        if (PlayerPrefs.GetInt("BOOT") == 1)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        
 
         StartCoroutine(render_manager());
     }
