@@ -38,7 +38,7 @@ public class PathControllerFaseTres : MonoBehaviour
                     EnemyControllerFaseTres.Instance.SpawnSeventhMob();
                     gameObject.SetActive(false);
                 }
-                else if (gameObject.CompareTag("FASETRESSALAQUATRO"))
+                else if (gameObject.CompareTag("FASETRESLOCKQUATRO"))
                 {
                     EnemyControllerFaseTres.Instance.SpawnEigthMob();
                     gameObject.SetActive(false);
