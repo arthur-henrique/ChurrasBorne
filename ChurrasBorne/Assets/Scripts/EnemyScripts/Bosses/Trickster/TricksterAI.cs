@@ -275,7 +275,6 @@ public class TricksterAI : MonoBehaviour
             //DrawBlood();
             float damage = GameManager.instance.GetDamage() / armor;
 
-
             if (GameManager.instance.GetMeat() >= 0)
             {
                 playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
@@ -284,6 +283,7 @@ public class TricksterAI : MonoBehaviour
             {
                 playerDamage = GameManager.instance.GetDamage() / armor;
             }
+
             health -= playerDamage;
 
             if (health <= 600f && !canMatch)

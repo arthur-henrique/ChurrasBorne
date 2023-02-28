@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1844687291
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9e3f640ab890cc44393909cc9cbdc967, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -116,7 +116,9 @@ MonoBehaviour:
   APTP: {fileID: 0}
   bossTarget: {fileID: 0}
   mommyWeb: {fileID: 0}
+  grannyWeb: {fileID: 0}
   spitter: {fileID: 0}
+  anim: {fileID: 0}
   health: 50
   isOnTutorial: 0
   isFromBoss: 1
@@ -124,6 +126,13 @@ MonoBehaviour:
   hasBeenParried: 0
   isOnFaseDois: 0
   isAFireBall: 1
+  isFromMommy: 0
+  isFromGranny: 0
+  isASkull: 0
+  isATrickstebasCrystal: 0
   ltd: {fileID: 0}
   normalTrail: {fileID: 0}
   unparryTrail: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
