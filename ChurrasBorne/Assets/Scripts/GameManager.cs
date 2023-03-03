@@ -186,7 +186,7 @@ public class GameManager : MonoBehaviour
             //{
             //    GameManager.instance.hasCompletedQuestOne = true;
             //}
-            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
 
 
 
@@ -494,7 +494,7 @@ public class GameManager : MonoBehaviour
     public void HasCompletedFirstQuest()
     {
         
-        playerArmor = 1.5f;
+        playerArmor = 1.25f;
     }
     public float GetArmor()
     {
