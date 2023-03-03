@@ -172,22 +172,23 @@ public class GameManager : MonoBehaviour
             canTakeDamage = true;
         }
         SetHealth(currentHealth);
-        /*
+        
         // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
 
             //SaveGame();
             //Poison(1f);
-            if (SceneManager.GetActiveScene().name != "Hub")
-            {
-                //SetHasCleared(0, true);
-                canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
-            } else
-            {
-                GameManager.instance.hasCompletedQuestOne = true;
-            }
-            
+            //if (SceneManager.GetActiveScene().name != "Hub")
+            //{
+            //    //SetHasCleared(0, true);
+            //} else
+            //{
+            //    GameManager.instance.hasCompletedQuestOne = true;
+            //}
+            canvas.GetComponent<Transition_Manager>().TransitionToScene("Hub");
+
+
 
         }
         if (pc.Tester.TKey.WasPressedThisFrame())
@@ -205,7 +206,7 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
         }
-        */
+        
         if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
             if (fullFlask)

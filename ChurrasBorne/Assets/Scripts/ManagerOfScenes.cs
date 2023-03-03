@@ -75,7 +75,7 @@ public class ManagerOfScenes : MonoBehaviour
                 portalUm.enabled = true;
                 GameManager.instance.EnableTheControl();
             }
-            if(secondPortalIsOn)
+            if (secondPortalIsOn || GameManager.instance.GetHasSeenGateTwoAnim() == true)
             {
                 portalDois.SetTrigger("ON");
             }
@@ -281,6 +281,7 @@ public class ManagerOfScenes : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         portalDois.SetTrigger("ON");
         portalDois.enabled = true;
+        GameManager.instance.SetHasSeenGateTwoAnim(true);
         secondPortalIsOn = true;
     }
 
