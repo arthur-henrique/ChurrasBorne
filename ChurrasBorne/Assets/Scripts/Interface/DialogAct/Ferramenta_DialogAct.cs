@@ -52,7 +52,7 @@ public class Ferramenta_DialogAct : MonoBehaviour
             {
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
-                Inventory_Manager.instance.itemStorage.Add(4);
+                Inventory_Manager.instance.itemStorage.Add(10);
                 GameManager.instance.HasCollectedItemUm();
                 gc.FaseUmOpenRoutine();
                 HealthBar_Manager.newItem = true;

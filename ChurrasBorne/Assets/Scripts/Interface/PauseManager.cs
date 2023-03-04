@@ -223,11 +223,11 @@ public class PauseManager : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("LANGUAGE") == 2) // SPANISH
         {
-            pause_label.GetComponent<TextMeshProUGUI>().text = "Pause Menu";
-            pause_sel1.GetComponent<TextMeshProUGUI>().text = "Resume Game";
-            pause_sel2.GetComponent<TextMeshProUGUI>().text = "Return to Hub";
-            pause_sel3.GetComponent<TextMeshProUGUI>().text = "Options";
-            pause_sel4.GetComponent<TextMeshProUGUI>().text = "Return to Main Menu";
+            pause_label.GetComponent<TextMeshProUGUI>().text = "Menú de Pausa";
+            pause_sel1.GetComponent<TextMeshProUGUI>().text = "Continuar el Juego";
+            pause_sel2.GetComponent<TextMeshProUGUI>().text = "Volver al Centro";
+            pause_sel3.GetComponent<TextMeshProUGUI>().text = "Opciones";
+            pause_sel4.GetComponent<TextMeshProUGUI>().text = "Volver a la Pantalla de Título";
 
             pause_res.GetComponent<TextMeshProUGUI>().text = "Resolución: " + restable[restable_opt, 0] + "x" + restable[restable_opt, 1];
             pause_fscreen.GetComponent<TextMeshProUGUI>().text = "Fullscreen: " + fs_mode[fs_mode_opt];

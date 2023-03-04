@@ -125,7 +125,7 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.GetInt("LANGAUGE") == 0) // english
+        if (PlayerPrefs.GetInt("LANGUAGE") == 0) // english
         {
             inv_label.GetComponent<TextMeshProUGUI>().text = "Inventory";
 
@@ -163,7 +163,7 @@ public class Inventory_Manager : MonoBehaviour
             item_ferramenta_desc = "Regular smithing tools, for Smith the Smith.";
         }
 
-        if (PlayerPrefs.GetInt("LANGAUGE") == 1) // portuguese
+        if (PlayerPrefs.GetInt("LANGUAGE") == 1) // portuguese
         {
             inv_label.GetComponent<TextMeshProUGUI>().text = "Inventário";
 
@@ -201,7 +201,7 @@ public class Inventory_Manager : MonoBehaviour
             item_ferramenta_desc = "Ferramentas básicas de ferreiro, para Ferreira o Ferreiro.";
         }
 
-        if (PlayerPrefs.GetInt("LANGAUGE") == 2) // spanish
+        if (PlayerPrefs.GetInt("LANGUAGE") == 2) // spanish
         {
             inv_label.GetComponent<TextMeshProUGUI>().text = "Inventario";
 
@@ -438,6 +438,14 @@ public class Inventory_Manager : MonoBehaviour
                         inv_board_item.GetComponent<Image>().sprite = itemImages[0];
                         break;
                 }
+            }
+
+            if (itemStorage.Count == 0)
+            {
+                // empty / vazio / sem item
+                inv_item_name.GetComponent<TextMeshProUGUI>().text = item_void_name;
+                inv_item_desc.GetComponent<TextMeshProUGUI>().text = item_void_desc;
+                inv_board_item.GetComponent<Image>().sprite = itemImages[0];
             }
 
 
