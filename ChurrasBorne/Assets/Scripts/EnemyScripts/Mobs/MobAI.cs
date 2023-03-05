@@ -80,7 +80,7 @@ public class MobAI : MonoBehaviour
 
     public GameObject spriteCenter;
 
-    private float parriedProjectileDamage = 7;
+    private float parriedProjectileDamage = 15;
 
     private void Awake()
     {

@@ -86,7 +86,7 @@ public class GateChecker : MonoBehaviour
     }
     public void SetGeloPos(Vector2 pos)
     {
-        astrolabio.transform.position = pos;
+        gelo.transform.position = pos;
     }
     public void SetAstrolabePos(Vector2 pos)
     {

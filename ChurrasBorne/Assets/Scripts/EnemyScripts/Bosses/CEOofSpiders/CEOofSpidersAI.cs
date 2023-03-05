@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using static Cinemachine.CinemachineTriggerAction.ActionSettings;
 
@@ -27,7 +28,7 @@ public class CEOofSpidersAI : MonoBehaviour
 
     public Animator anim;
 
-    public int health;
+    public float health;
 
     public bool isSpiderGranny;
 
@@ -49,7 +50,8 @@ public class CEOofSpidersAI : MonoBehaviour
     public AudioClip spider_death;
     private bool canTakeDamage = true;
     public GateChecker gc;
-
+    private float playerDamage;
+    private float armor = 1f;
     private void Awake()
     {
         state = State.Spawning;
@@ -249,8 +251,15 @@ public class CEOofSpidersAI : MonoBehaviour
             canTakeDamage = false;
             StartCoroutine(CanTakeDamageCD());
             gameObject.GetComponent<ColorChanger>().ChangeColor();
-            int damage = 10;
-            health -= damage;
+            if (GameManager.instance.GetMeat() >= 0)
+            {
+                playerDamage = GameManager.instance.GetDamage() * (1 + GameManager.instance.GetMeat() / 6.2f) / armor;
+            }
+            else
+            {
+                playerDamage = GameManager.instance.GetDamage() / armor;
+            }
+            health -= playerDamage;
             audioSource.PlayOneShot(spider_hurt, audioSource.volume);
 
             if (!isAlreadyDying)
