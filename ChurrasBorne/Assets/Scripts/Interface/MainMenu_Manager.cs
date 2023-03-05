@@ -171,7 +171,7 @@ public class MainMenu_Manager : MonoBehaviour
 
         #region Menu Copyright
         menu_copyright = DialogSystem.getChildGameObject(gameObject, "MENU_Copyright");
-        menu_copyright.GetComponent<RectTransform>().anchoredPosition = new Vector3(580, -228, -1);
+        menu_copyright.GetComponent<RectTransform>().anchoredPosition = new Vector3(620, -228, -1);
 
         StartCoroutine(Intro_Copyright_Move());
         #endregion
@@ -267,7 +267,7 @@ public class MainMenu_Manager : MonoBehaviour
             menu_sel1.GetComponent<TextMeshProUGUI>().text = "Start Game";
             menu_sel2.GetComponent<TextMeshProUGUI>().text = "Options";
             menu_sel3.GetComponent<TextMeshProUGUI>().text = "Quit to Desktop";
-            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Team ChurrasBorne 2022-2023";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "v1.2 · Copyright © Team ChurrasBorne 2022-2023";
 
             menu_res.GetComponent<TextMeshProUGUI>().text = "Resolution:";
             menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Fullscreen:";
@@ -283,7 +283,7 @@ public class MainMenu_Manager : MonoBehaviour
             menu_sel1.GetComponent<TextMeshProUGUI>().text = "Iniciar Jogo";
             menu_sel2.GetComponent<TextMeshProUGUI>().text = "Opções";
             menu_sel3.GetComponent<TextMeshProUGUI>().text = "Sair para Desktop";
-            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Equipe ChurrasBorne 2022-2023";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "v1.2 · Copyright © Equipe ChurrasBorne 2022-2023";
 
             menu_res.GetComponent<TextMeshProUGUI>().text = "Resolução:";
             menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Tela Cheia:";
@@ -299,7 +299,7 @@ public class MainMenu_Manager : MonoBehaviour
             menu_sel1.GetComponent<TextMeshProUGUI>().text = "Empezar Juego";
             menu_sel2.GetComponent<TextMeshProUGUI>().text = "Opciones";
             menu_sel3.GetComponent<TextMeshProUGUI>().text = "Salir al Desktop";
-            menu_copyright.GetComponent<TextMeshProUGUI>().text = "Copyright © Equipo ChurrasBorne 2022-2023";
+            menu_copyright.GetComponent<TextMeshProUGUI>().text = "v1.2 · Copyright © Equipo ChurrasBorne 2022-2023";
 
             menu_res.GetComponent<TextMeshProUGUI>().text = "Resolución:";
             menu_fscreen.GetComponent<TextMeshProUGUI>().text = "Fullscreen:";

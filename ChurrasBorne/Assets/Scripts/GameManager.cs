@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour
         }
         SetHealth(currentHealth);
         
+        /*
         // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
@@ -208,6 +209,7 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
         }
+        */
         
         if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
