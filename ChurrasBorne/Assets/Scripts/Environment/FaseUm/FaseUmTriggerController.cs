@@ -11,7 +11,6 @@ public class FaseUmTriggerController : MonoBehaviour
     public GameObject[] upPathFirstGateOut;
     public GameObject[] sidePathFirstGateIn;
     public GameObject[] sidePathSecondGateIn;
-    public GameObject[] sidePathThirdGateIn;
 
     public GameObject portalToHubP1, portalToHubP2;
 
@@ -23,25 +22,24 @@ public class FaseUmTriggerController : MonoBehaviour
 
     private void Start()
     {
-        SecondGateOpen();
+        //SecondGateOpen();
     }
     public void secondWaveCleared()
     {
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
             waveTwoGates[i].GetComponent<Animator>().SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
-            print("PortãoAberto");
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
     public void FirstGateTrigger()
     {
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
             upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
             print("PortãoAberto");
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void FirstGateOut()
@@ -49,12 +47,12 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathFirstGateIn.Length; i++)
         {
             upPathFirstGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
         for (int i = 0; i < upPathFirstGateOut.Length; i++)
         {
             upPathFirstGateOut[i].SetActive(!upPathFirstGateOut[i].activeSelf);
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void SecondGateTrigger()
@@ -62,8 +60,8 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
             upPathSecondGateIn[i].SetTrigger("CLOSEIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void SecondGateOpen()
@@ -71,8 +69,8 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < upPathSecondGateIn.Length; i++)
         {
             upPathSecondGateIn[i].SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     // SidePathGates
@@ -82,6 +80,7 @@ public class FaseUmTriggerController : MonoBehaviour
         {
             sidePathFirstGateIn[i].SetActive(!sidePathFirstGateIn[i].activeSelf);
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void SideSecondGateTrigger()
@@ -89,17 +88,20 @@ public class FaseUmTriggerController : MonoBehaviour
         for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
             sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("CLOSEIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void SideSecondGateOpen()
     {
         for (int i = 0; i < sidePathSecondGateIn.Length; i++)
         {
-            sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
-            GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
+            if (sidePathSecondGateIn[i].activeSelf == true)
+            {
+                sidePathSecondGateIn[i].GetComponent<Animator>().SetTrigger("OPENIT");
+            }
         }
+        GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
     }
 
     public void P1Portal()

@@ -67,7 +67,9 @@ public class GameManager : MonoBehaviour
         emptyFlask = false,
         fullFlask = false;
 
-    public bool faseumBossFire = false;
+    public bool faseumBossFire = false, isClearToRandomize = true;
+    public int randomT;
+
 
     private void Awake()
     {
@@ -172,7 +174,7 @@ public class GameManager : MonoBehaviour
             canTakeDamage = true;
         }
         SetHealth(currentHealth);
-        /*
+        
         // Testing and prototyping
         if (pc.Tester.PKey.WasPressedThisFrame())
         {
@@ -206,7 +208,7 @@ public class GameManager : MonoBehaviour
 
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
         }
-        */
+        
         if (pc.Movimento.Interagir.WasPressedThisFrame() && hasFlask != false)
         {
             if (fullFlask)
@@ -531,7 +533,7 @@ public class GameManager : MonoBehaviour
         playerDamage= betterSwordDamage;
     }
     // Third Quest
-    public void HasCompletedThirdQuest()
+    public void HasCollectedItemTres()
     {
         hasCompletedQuestThree = true;
     }

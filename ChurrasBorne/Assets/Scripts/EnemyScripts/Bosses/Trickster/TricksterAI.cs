@@ -47,6 +47,8 @@ public class TricksterAI : MonoBehaviour
     public AudioClip trickster_attack_2;
     public AudioClip trickster_death;
 
+    private bool hasPlayedAudio = false;
+
     private void Awake()
     {
         state = State.Spawning;
@@ -169,7 +171,11 @@ public class TricksterAI : MonoBehaviour
                     anim.SetTrigger("Die");
 
                     timeToDie = 1000;
-                    audioSource.PlayOneShot(trickster_death, audioSource.volume);
+                    if(!hasPlayedAudio)
+                    {
+                        hasPlayedAudio = true;
+                        audioSource.PlayOneShot(trickster_death, audioSource.volume);
+                    }
                 }
                 else
                 {

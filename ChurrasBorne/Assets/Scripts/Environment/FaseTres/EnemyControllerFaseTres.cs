@@ -179,8 +179,9 @@ public class EnemyControllerFaseTres : MonoBehaviour
         }
     }
 
-    public void LoadFromBossCamp()
+    IEnumerator LoadFromBossCamp()
     {
+        yield return new WaitForSeconds(0.05f);
         firstMob.ForEach(x => Destroy(x));
         secondMob.ForEach(x => Destroy(x));
         thirdMob.ForEach(x => Destroy(x));
@@ -210,10 +211,10 @@ public class EnemyControllerFaseTres : MonoBehaviour
 
     IEnumerator EnemySetter()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.03f);
         clearedTres = GameManager.instance.GetHasCleared(4);
         clearedTresHalf = GameManager.instance.GetHasCleared(5);
-        randomTL = manager.randomTimeline;
+        randomTL = GameManager.instance.randomT;
         if (!clearedTres && !clearedTresHalf)
         {
             p1.SetActive(true);

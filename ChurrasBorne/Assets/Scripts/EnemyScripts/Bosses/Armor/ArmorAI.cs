@@ -148,9 +148,12 @@ public class ArmorAI : MonoBehaviour
 
                 if (timeToDie <= 0)
                 {
+                    if(!armor_boss_died)
+                    {
+                        audioSource.PlayOneShot(armor_death, audioSource.volume);
+                    }
                     armor_boss_died = true;
                     anim.SetTrigger("Die");
-                    audioSource.PlayOneShot(armor_death, audioSource.volume);
                     timeToDie = 1000;
                 }
                 else

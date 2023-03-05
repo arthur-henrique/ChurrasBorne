@@ -36,15 +36,30 @@ public class GateChecker : MonoBehaviour
             if(isOnFaseUm)
             {
                 hasRun = true;
-                ferramentas.SetActive(true);
-                GameManager.instance.SetHasCleared(1, true);
+                if (!GameManager.instance.hasCompletedQuestOne)
+                {
+                    ferramentas.SetActive(true);
+                    GameManager.instance.SetHasCleared(1, true);
+                }
+                else if(GameManager.instance.hasCompletedQuestOne)
+                {
+                    FaseUmOpenRoutine();
+                    GameManager.instance.SetHasCleared(1, true);
+                }
             }
             if(IsOnFaseDois)
             {
                 hasRun = true;
-                gelo.SetActive(true);
-                
-                GameManager.instance.SetHasCleared(3, true);
+                if (!GameManager.instance.hasCompletedQuestTwo)
+                {
+                    gelo.SetActive(true);
+                    GameManager.instance.SetHasCleared(3, true);
+                }
+                else if (GameManager.instance.hasCompletedQuestTwo)
+                {
+                    FaseDoisOpenRoutine();
+                    GameManager.instance.SetHasCleared(3, true);
+                }
             }
             if(isOnFaseTres)
             {
@@ -58,10 +73,19 @@ public class GateChecker : MonoBehaviour
                 else
                 {
                     hasRun = true;
+                    if (!GameManager.instance.hasCompletedQuestThree)
+                    {
+                        astrolabio.SetActive(true);
+                        GameManager.instance.SetHasCleared(5, true);
+                    }
+                    else if (GameManager.instance.hasCompletedQuestThree)
+                    {
+                        FaseTresTriggerController.Instance.GateOpener();
+                        GameManager.instance.SetHasCleared(5, true);
+                    }
                     //FaseTresTriggerController.Instance.GateOpener();
                     // Ativa o Portal para o Hub
-                    astrolabio.SetActive(true);
-                    GameManager.instance.SetHasCleared(5, true);
+
                 }
             }
             
@@ -70,7 +94,7 @@ public class GateChecker : MonoBehaviour
     }
     public void FaseUmOpenRoutine()
     {
-        FaseUmTriggerController.Instance.SecondGateOpen();
+        FaseUmTriggerController.Instance.SideSecondGateOpen();
         coll.enabled = true;
         coll.transform.GetChild(0).gameObject.SetActive(true);
     }

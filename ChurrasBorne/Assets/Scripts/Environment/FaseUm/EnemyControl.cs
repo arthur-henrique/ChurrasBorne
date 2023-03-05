@@ -72,7 +72,8 @@ public class EnemyControl : MonoBehaviour
 
         if (GameManager.instance.faseumBossFire == true)
         {
-            LoadFromBossCamp();
+            StartCoroutine(LoadFromBossCamp());
+            
             print("Wipe");
         }
     }
@@ -180,9 +181,9 @@ public class EnemyControl : MonoBehaviour
         {
             // abre o portão da wave
             FaseUmTriggerController.Instance.secondWaveCleared();
-            if (!clearedUm)
+            if (p1.activeSelf == true && p2.activeSelf == false)
                 SpawnThirdMob();
-            if(clearedUm)
+            if(p1.activeSelf == false && p2.activeSelf == true)
             {
                 // abre o portão da wave
                 troncosHalf.SetActive(true);
@@ -196,15 +197,16 @@ public class EnemyControl : MonoBehaviour
     {
         if (thirdMob.Count <= 0)
         {
-            if(!clearedUm)
+            if(p1.activeSelf == true && p2.activeSelf == false)
             {
                 FaseUmTriggerController.Instance.FirstGateTrigger();
             }
-            if (clearedUm)
+            if (p1.activeSelf == false && p2.activeSelf == true)
             {
                 FaseUmTriggerController.Instance.SideSecondGateOpen();
-                FaseUmTriggerController.Instance.FirstGateTrigger();
+                FaseUmTriggerController.Instance.secondWaveCleared();
                 GameManager.instance.faseumBossFire = true;
+                print("HasSetEclipse");
                 Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointEclipse.transform.position);
                 
             }
@@ -214,7 +216,7 @@ public class EnemyControl : MonoBehaviour
     {
         if (fourthMob.Count <= 0)
         {
-            if (!clearedUm)
+            if (p1.activeSelf == true && p2.activeSelf == false)
             {
                 SpawnFifthMob();
             }
@@ -236,11 +238,12 @@ public class EnemyControl : MonoBehaviour
         if (sixthMob.Count <= 0)
         {
             FaseUmTriggerController.Instance.FirstGateOut();
+            FaseUmTriggerController.Instance.SecondGateOpen();
+            GameManager.instance.faseumBossFire = true;
+            print("HasSet");
+            if(p1.activeSelf == true && p2.activeSelf == false)
+                Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
         }
-
-        GameManager.instance.faseumBossFire = true;
-        Transition_Manager.FaseUmSpawnSetter(preBossSpawnPointNormal.transform.position);
-        
     }
 
     public void IsBossMobCleared()
@@ -251,8 +254,9 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    public void LoadFromBossCamp()
+    IEnumerator LoadFromBossCamp()
     {
+        yield return new WaitForSeconds(0.05f);
         firstMob.ForEach(x => Destroy(x));
         secondMob.ForEach(x => Destroy(x));
         thirdMob.ForEach(x => Destroy(x));
@@ -277,7 +281,7 @@ public class EnemyControl : MonoBehaviour
         {
             mobTriggers[i].enabled = false;
         }
-
+        
         //if (!ManagerOfScenes.instance.isEclipse)
         //{
         //    //Transition_Manager.fase1_spawn = preBossSpawnPointNormal.transform.position;
@@ -289,10 +293,10 @@ public class EnemyControl : MonoBehaviour
     }
     IEnumerator EnemySetter()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.03f);
         clearedUm = GameManager.instance.GetHasCleared(0);
         clearedHalf = GameManager.instance.GetHasCleared(1);
-        randomTL = manager.randomTimeline;
+        randomTL = GameManager.instance.randomT;
 
         if (!clearedUm && !clearedHalf)
         {

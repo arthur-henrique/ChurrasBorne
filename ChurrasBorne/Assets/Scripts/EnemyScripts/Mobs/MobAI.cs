@@ -674,7 +674,6 @@ public class MobAI : MonoBehaviour
                 playerDamage = parriedProjectileDamage;
             }
 
-            print(playerDamage);
 
             health -= playerDamage;
 

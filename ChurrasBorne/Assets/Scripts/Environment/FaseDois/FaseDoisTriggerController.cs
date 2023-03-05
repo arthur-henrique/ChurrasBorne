@@ -114,13 +114,13 @@ public class FaseDoisTriggerController : MonoBehaviour
 
     public void CloseTheGates()
     {
-        if (!GameManager.instance.GetHasCleared(2))
+        if (EnemyControlFaseDois.Instance.p1.activeSelf == true && EnemyControlFaseDois.Instance.p2.activeSelf == false)
         {
             preBossAnim.SetTrigger("CLOSEIT");
             bossAnim.SetTrigger("CLOSEIT");
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
-        if (GameManager.instance.GetHasCleared(2))
+        if (EnemyControlFaseDois.Instance.p1.activeSelf == false && EnemyControlFaseDois.Instance.p2.activeSelf == true)
         {
             preBossAnimEc.SetTrigger("CLOSEIT");
             bossAnimEc.SetTrigger("CLOSEIT");
@@ -130,13 +130,13 @@ public class FaseDoisTriggerController : MonoBehaviour
     IEnumerator OpenTheGates()
     {
         yield return new WaitForSeconds(2);
-        if(!GameManager.instance.GetHasCleared(2))
+        if(EnemyControlFaseDois.Instance.p1.activeSelf == true && EnemyControlFaseDois.Instance.p2.activeSelf == false)
         {
             preBossAnim.SetTrigger("OPENIT");
             bossAnim.SetTrigger("OPENIT");
             GameManager.instance.audioSource.PlayOneShot(GameManager.instance.gateOpen, GameManager.instance.audioSource.volume);
         }
-        if (GameManager.instance.GetHasCleared(2))
+        if (EnemyControlFaseDois.Instance.p1.activeSelf == false && EnemyControlFaseDois.Instance.p2.activeSelf == true)
         {
             preBossAnimEc.SetTrigger("OPENIT");
             bossAnimEc.SetTrigger("OPENIT");

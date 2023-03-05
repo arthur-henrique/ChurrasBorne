@@ -52,6 +52,7 @@ public class Astrolabio_DialogAct : MonoBehaviour
                 audioSource.PlayOneShot(item_get, audioSource.volume);
                 GetComponent<SpriteRenderer>().material = sprite_lit;
                 Inventory_Manager.instance.itemStorage.Add(2);
+                GameManager.instance.HasCollectedItemTres();
                 FaseTresTriggerController.Instance.GateOpener();
                 HealthBar_Manager.newItem = true;
                 Destroy(gameObject);

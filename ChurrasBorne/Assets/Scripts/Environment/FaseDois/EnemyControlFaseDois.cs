@@ -73,7 +73,7 @@ public class EnemyControlFaseDois : MonoBehaviour
 
         if (GameManager.instance.faseumBossFire == true)
         {
-            LoadFromBossCamp();
+            StartCoroutine(LoadFromBossCamp());
             print("Wipe");
         }
     }
@@ -239,8 +239,9 @@ public class EnemyControlFaseDois : MonoBehaviour
         }
     }
 
-    public void LoadFromBossCamp()
+    IEnumerator LoadFromBossCamp()
     {
+        yield return new WaitForSeconds(0.05f);
         firstMob.ForEach(x => Destroy(x));
         secondMob.ForEach(x => Destroy(x));
         thirdMob.ForEach(x => Destroy(x));
@@ -270,10 +271,10 @@ public class EnemyControlFaseDois : MonoBehaviour
 
     IEnumerator EnemySetter()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.03f);
         clearedDois = GameManager.instance.GetHasCleared(2);
         clearedHalf = GameManager.instance.GetHasCleared(3);
-        randomTL = manager.randomTimeline;
+        randomTL = GameManager.instance.randomT;
 
         if (!clearedDois && !clearedHalf)
         {

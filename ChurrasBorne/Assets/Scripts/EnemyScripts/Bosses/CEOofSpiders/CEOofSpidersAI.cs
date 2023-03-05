@@ -52,6 +52,8 @@ public class CEOofSpidersAI : MonoBehaviour
     public GateChecker gc;
     private float playerDamage;
     private float armor = 1f;
+
+    public bool hasOpenedGate = false;
     private void Awake()
     {
         state = State.Spawning;
@@ -128,7 +130,10 @@ public class CEOofSpidersAI : MonoBehaviour
                 rb.velocity = Vector2.zero;
 
                 anim.SetTrigger("Die");
-                audioSource.PlayOneShot(spider_death, audioSource.volume);
+                if(isAlive)
+                {
+                    audioSource.PlayOneShot(spider_death, audioSource.volume);
+                }
 
                 isAlive = false;
                 spider_boss_died = true;
@@ -174,9 +179,13 @@ public class CEOofSpidersAI : MonoBehaviour
             
             if (!isSpiderGranny)
             {
-                FaseDoisTriggerController.Instance.GateOpener();
-                faseDois.SetTrigger("ON");
-                GameManager.instance.SetHasCleared(2, true);
+                if(!hasOpenedGate)
+                {
+                    hasOpenedGate = true;
+                    FaseDoisTriggerController.Instance.GateOpener();
+                    faseDois.SetTrigger("ON");
+                    GameManager.instance.SetHasCleared(2, true);
+                }
             }
             else if (isSpiderGranny)
             {

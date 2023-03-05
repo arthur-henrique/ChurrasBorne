@@ -58,6 +58,8 @@ public class GoatAI : MonoBehaviour
     private float playerDamage;
     public GateChecker gc;
 
+    public bool hasOpenedGate = false;
+
     private void Awake()
     {
         psr = bloodSpatter.GetComponent<ParticleSystemRenderer>();
@@ -197,7 +199,10 @@ public class GoatAI : MonoBehaviour
                 if (timeToDie <= 0)
                 {
                     anim.SetTrigger("Die");
-                    audioSource.PlayOneShot(goat_death, audioSource.volume);
+                    if(!goat_boss_died)
+                    {
+                        audioSource.PlayOneShot(goat_death, audioSource.volume);
+                    }
                     goat_boss_died = true;
                     timeToDie = 1000;
                 }
@@ -209,7 +214,11 @@ public class GoatAI : MonoBehaviour
                 if(isP1)
                 {
                     GameManager.instance.SetHasCleared(0, true);
-                    FaseUmTriggerController.Instance.SecondGateOpen();
+                    if(!hasOpenedGate)
+                    {
+                        hasOpenedGate = true;
+                        FaseUmTriggerController.Instance.SecondGateOpen();
+                    }
                     coll.enabled = true;
                     coll.transform.GetChild(0).gameObject.SetActive(true);
                 }

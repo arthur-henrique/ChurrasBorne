@@ -102,6 +102,7 @@ public class ManagerOfScenes : MonoBehaviour
             }
             GameManager.instance.faseumBossFire = false;
             SpawnPointResetter();
+            GameManager.instance.isClearToRandomize = true;
         }
         
 
@@ -123,8 +124,13 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if(clearedUm && clearedHalf)
             {
-                randomTimeline = Random.Range(1, 3);
-                print(randomTimeline.ToString());
+                if(GameManager.instance.isClearToRandomize)
+                {
+                    GameManager.instance.isClearToRandomize = false;
+                    randomTimeline = Random.Range(1, 3);
+                    GameManager.instance.randomT = randomTimeline;
+                }
+                randomTimeline = GameManager.instance.randomT;
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);
@@ -148,41 +154,36 @@ public class ManagerOfScenes : MonoBehaviour
             PlayerMovement.instance.SetFaseDois();
             if (!clearedDois && !clearedDoisHalf)
             {
+                passado.SetActive(true);
                 eclipse.SetActive(false);
-                //FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                //FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                //FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                //FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                isEclipse = false;
             }
             else if (clearedDois && !clearedDoisHalf)
             {
                 passado.SetActive(false);
-                //FaseDoisTriggerController.Instance.SalaUmTrigger();
-                //FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                //FaseDoisTriggerController.Instance.SalaTresTrigger();
-                //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                 eclipse.SetActive(true);
+                isEclipse = true;
             }
             else if (clearedDois && clearedDoisHalf)
             {
-                randomTimeline = Random.Range(1, 3);
+                if(GameManager.instance.isClearToRandomize)
+                {
+                    GameManager.instance.isClearToRandomize = false;
+                    randomTimeline = Random.Range(1, 3);
+                    GameManager.instance.randomT = randomTimeline;
+                }
+                randomTimeline = GameManager.instance.randomT;
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);
                     eclipse.SetActive(false);
-                    //FaseDoisTriggerController.Instance.SalaCincoTrigger();
-                    //FaseDoisTriggerController.Instance.SalaSeisTrigger();
-                    //FaseDoisTriggerController.Instance.SalaSeteTrigger();
-                    //FaseDoisTriggerController.Instance.SalaOitoTrigger();
+                    isEclipse = false;
                 }
                 else if (randomTimeline == 2)
                 {
                     passado.SetActive(false);
-                    //FaseDoisTriggerController.Instance.SalaUmTrigger();
-                    //FaseDoisTriggerController.Instance.SalaDoisTrigger();
-                    //FaseDoisTriggerController.Instance.SalaTresTrigger();
-                    //FaseDoisTriggerController.Instance.SalaQuatroTrigger();
                     eclipse.SetActive(true);
+                    isEclipse= true;
                 }
             }
             GameManager.instance.EnableTheControl();
@@ -207,8 +208,13 @@ public class ManagerOfScenes : MonoBehaviour
             }
             else if (clearedTres && clearedTresHalf)
             {
-                //FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
-                randomTimeline = Random.Range(1, 3);
+                if (GameManager.instance.isClearToRandomize)
+                {
+                    GameManager.instance.isClearToRandomize = false;
+                    randomTimeline = Random.Range(1, 3);
+                    GameManager.instance.randomT = randomTimeline;
+                }
+                randomTimeline = GameManager.instance.randomT;
                 if (randomTimeline == 1)
                 {
                     passado.SetActive(true);
@@ -222,6 +228,7 @@ public class ManagerOfScenes : MonoBehaviour
                     PostProcessingControl.Instance.TurnOnVignette();
                     isEclipse = true;
                 }
+                //FaseTresTriggerController.Instance.DirectRouteToFaseQuatro();
             }
             GameManager.instance.EnableTheControl();
         }

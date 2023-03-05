@@ -158,13 +158,15 @@ public class BullAI : MonoBehaviour
             case State.Dead:
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 rb.velocity = Vector2.zero;
-
+                if(isAlive)
+                {
+                    audioSource.PlayOneShot(bull_death, audioSource.volume);
+                }
                 isAlive = false;
 
                 anim.SetBool("Idle", true);
                 anim.SetBool("Walk", false);
                 anim.SetTrigger("Die");
-                audioSource.PlayOneShot(bull_death, audioSource.volume);
                 break;
 
             case State.Idling:

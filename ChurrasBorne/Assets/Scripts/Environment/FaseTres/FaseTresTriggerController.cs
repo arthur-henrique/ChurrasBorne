@@ -200,7 +200,7 @@ public class FaseTresTriggerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!ManagerOfScenes.instance.isEclipse)
+        if(!manager.isEclipse)
         {
             if (inimigosMortos >= 28 && !hasOpenfirst)
             {
@@ -243,7 +243,7 @@ public class FaseTresTriggerController : MonoBehaviour
                 StartCoroutine(OpenTheGates(3));
             }
         }
-        else if(ManagerOfScenes.instance.isEclipse)
+        else if(manager.isEclipse)
         {
             if (inimigosMortos >= 50 && !hasOpenfirst)
             {
@@ -405,7 +405,7 @@ public class FaseTresTriggerController : MonoBehaviour
     IEnumerator FreezeTime()
     {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(7);
+        yield return new WaitForSecondsRealtime(7.5f);
         Time.timeScale = 1;
     }
     IEnumerator TurnOnTheLightPortal()

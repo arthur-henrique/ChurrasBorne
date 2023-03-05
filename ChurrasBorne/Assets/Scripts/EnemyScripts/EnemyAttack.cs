@@ -24,7 +24,6 @@ public class EnemyAttack : MonoBehaviour
                 {
                     if (playerHit[i].transform.GetComponent<PlayerMovement>() != null)
                     {
-                        print("Damage");
                         if (canKnockback && GameManager.instance.canTakeDamage == true)
                             StartCoroutine(PlayerMovement.instance.Knockback(knockbackDuration, knockbackPower, this.transform));
                         GameManager.instance.TakeDamage(damage / GameManager.instance.GetArmor());
