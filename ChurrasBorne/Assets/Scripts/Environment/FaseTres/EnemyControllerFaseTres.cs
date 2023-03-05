@@ -74,7 +74,7 @@ public class EnemyControllerFaseTres : MonoBehaviour
 
         if (GameManager.instance.faseumBossFire == true)
         {
-            LoadFromBossCamp();
+            StartCoroutine(LoadFromBossCamp());
             print("Wipe");
         }
     }
