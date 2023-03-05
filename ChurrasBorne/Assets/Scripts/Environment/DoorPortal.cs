@@ -14,8 +14,6 @@ public class DoorPortal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
         if (collision.CompareTag("Player"))
         {
             if (gameObject.CompareTag("Tester"))
@@ -34,6 +32,7 @@ public class DoorPortal : MonoBehaviour
             {
                 canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseUm");
                 PlayerMovement.DisableControl();
+                GoatAI.goat_boss_died = false;
                 //if (!GameManager.instance.hasCleared[0])
                 //{
                 //    GameManager.instance.NextLevelSetter(Vector2.zero);

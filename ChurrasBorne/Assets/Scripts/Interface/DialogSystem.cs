@@ -179,6 +179,11 @@ public class DialogSystem : MonoBehaviour
                         break;
                     }
                 }
+
+                for (int j = 0; !pc.Movimento.Attack.WasPressedThisFrame(); j++)
+                {
+                    yield return null;
+                }
             }
 
             yield return new WaitForSeconds(.5f);
@@ -296,6 +301,11 @@ public class DialogSystem : MonoBehaviour
 
                         break;
                     }
+                }
+
+                for (int j = 0; !pc.Movimento.Attack.WasPressedThisFrame(); j++)
+                {
+                    yield return null;
                 }
             }
 
