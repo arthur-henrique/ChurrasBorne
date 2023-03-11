@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4970907853669779963}
   - component: {fileID: 3780147372478851154}
   m_Layer: 0
-  m_Name: LuzDeParedeUm
+  m_Name: TochaDeParedeUm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +98,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passado: {fileID: -2670828881919431651, guid: c78c0d3685b915b419c6357e98aa1d85, type: 3}
   eclipse: {fileID: -2168418606941581916, guid: 0ab45d34e60d8c341bfeac6ad55bab33, type: 3}
+  sceneManager: {fileID: 0}
+  "isFaseTr\xEAsPort\xE3o": 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &8343642579017636609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -105,6 +109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4970907853669779962}
     m_Modifications:
+    - target: {fileID: 1944009360135844712, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_TagString
+      value: Fish
+      objectReference: {fileID: 0}
     - target: {fileID: 2856997750997287604, guid: 368a900abd520ec4397bff51e6650820, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -164,6 +172,18 @@ PrefabInstance:
     - target: {fileID: 2856997750997287607, guid: 368a900abd520ec4397bff51e6650820, type: 3}
       propertyPath: m_Name
       value: LuzUm
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623257996429826976, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623257996429826976, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_PointLightDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7623257996429826976, guid: 368a900abd520ec4397bff51e6650820, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 368a900abd520ec4397bff51e6650820, type: 3}
