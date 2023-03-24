@@ -201,12 +201,18 @@ public class GameManager : MonoBehaviour
         }
         if (pc.Tester.YKey.WasPressedThisFrame())
         {
-
+            HasCompletedFirstQuest();
+            hasFlask = true;
+            fullFlask = true;
+            emptyFlask = false;
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseTres");
         }
         if (pc.Tester.UKey.WasPressedThisFrame())
         {
-
+            HasCompletedFirstQuest();
+            hasFlask = true;
+            fullFlask = true;
+            emptyFlask = false;
             canvas.GetComponent<Transition_Manager>().TransitionToScene("FaseQuatro");
         }
         
